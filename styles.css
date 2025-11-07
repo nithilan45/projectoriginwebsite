@@ -1783,6 +1783,13 @@ body {
     margin-bottom: 60px;
 }
 
+.mentors-grid:has(.mentor-card-horizontal) {
+    grid-template-columns: 1fr;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .mentor-card {
     background-color: var(--white);
     padding: 30px;
@@ -1794,6 +1801,18 @@ body {
 
 .mentor-card:hover {
     transform: translateY(-5px);
+}
+
+.mentor-card-horizontal {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    text-align: left;
+    padding: 50px;
+}
+
+.mentor-content {
+    flex: 1;
 }
 
 .mentor-card.placeholder {
@@ -1812,6 +1831,14 @@ body {
     justify-content: center;
     position: relative;
     overflow: hidden;
+    flex-shrink: 0;
+}
+
+.mentor-avatar-large {
+    width: 200px;
+    height: 200px;
+    margin: 0;
+    border-radius: 12px;
 }
 
 .avatar-placeholder {
@@ -1821,11 +1848,21 @@ body {
     text-align: center;
 }
 
+.mentor-avatar-large .avatar-placeholder {
+    font-size: 16px;
+    padding: 20px;
+}
+
 .mentor-card h3 {
     font-size: 20px;
     font-weight: 600;
     color: var(--origin-blue);
     margin-bottom: 8px;
+}
+
+.mentor-card-horizontal h3 {
+    font-size: 32px;
+    margin-bottom: 12px;
 }
 
 .mentor-role {
@@ -1835,10 +1872,20 @@ body {
     margin-bottom: 5px;
 }
 
+.mentor-card-horizontal .mentor-role {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
 .mentor-company {
     font-size: 14px;
     color: var(--text-light);
     margin-bottom: 15px;
+}
+
+.mentor-card-horizontal .mentor-company {
+    font-size: 18px;
+    margin-bottom: 20px;
 }
 
 .mentor-bio {
@@ -1846,6 +1893,12 @@ body {
     color: var(--text-light);
     line-height: 1.6;
     margin-bottom: 20px;
+}
+
+.mentor-card-horizontal .mentor-bio {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 0;
 }
 
 .mentor-links {
@@ -2009,6 +2062,36 @@ body {
     .mentor-card,
     .judge-card {
         padding: 20px;
+    }
+    
+    .mentor-card-horizontal {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 30px 20px;
+        gap: 30px;
+    }
+    
+    .mentor-avatar-large {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+    }
+    
+    .mentor-card-horizontal h3 {
+        font-size: 24px;
+    }
+    
+    .mentor-card-horizontal .mentor-role {
+        font-size: 18px;
+    }
+    
+    .mentor-card-horizontal .mentor-company {
+        font-size: 16px;
+    }
+    
+    .mentor-card-horizontal .mentor-bio {
+        font-size: 16px;
     }
 }
 
