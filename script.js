@@ -1,5 +1,51 @@
 // Project Origin Website JavaScript
 
+// NAVIGATION SCROLL EFFECT - MUST RUN IMMEDIATELY
+(function() {
+    'use strict';
+    
+    function updateNavOnScroll() {
+        const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+        const threshold = 50;
+        
+        const nav = document.querySelector('.nav');
+        const mobileNav = document.querySelector('.mobile-nav');
+        
+        if (nav) {
+            if (scrollY > threshold) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        }
+        
+        if (mobileNav) {
+            if (scrollY > threshold) {
+                mobileNav.classList.add('scrolled');
+            } else {
+                mobileNav.classList.remove('scrolled');
+            }
+        }
+    }
+    
+    // Run immediately
+    updateNavOnScroll();
+    
+    // Run on scroll
+    window.addEventListener('scroll', updateNavOnScroll, { passive: true });
+    
+    // Run when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', updateNavOnScroll);
+    } else {
+        updateNavOnScroll();
+    }
+    
+    // Run after a delay to catch any timing issues
+    setTimeout(updateNavOnScroll, 100);
+    setTimeout(updateNavOnScroll, 500);
+})();
+
 // Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', function() {
     // Handle navigation link clicks
@@ -17,24 +63,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         });
-    });
-
-    // Add scroll effect to navigation
-    const nav = document.querySelector('.nav');
-    let lastScrollY = window.scrollY;
-
-    window.addEventListener('scroll', () => {
-        const currentScrollY = window.scrollY;
-        
-        if (currentScrollY > 100) {
-            nav.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-            nav.style.backdropFilter = 'blur(10px)';
-        } else {
-            nav.style.backgroundColor = '#ffffff';
-            nav.style.backdropFilter = 'none';
-        }
-        
-        lastScrollY = currentScrollY;
     });
 
     // Scroll-based fade-in animations for statistics

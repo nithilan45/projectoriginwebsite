@@ -10,25 +10,69 @@ body {
     font-family: 'Inter', sans-serif;
     font-size: 16px;
     line-height: 1.5;
-    color: #1f2937;
-    background: #ffffff;
+    color: #ffffff;
+    background: #000000;
     overflow-x: hidden;
 }
 
-/* Mobile Navigation */
+/* Mobile Navigation - DARK MODE GLASS */
 .mobile-nav {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    background: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
+    background: transparent;
+    border-bottom: none;
     padding: 16px 20px;
     z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: none;
+}
+
+.mobile-nav::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 16px;
+    right: 16px;
+    bottom: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+                0 0 40px rgba(0, 212, 255, 0.2);
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-nav.scrolled::before {
+    opacity: 1;
+    animation: mobileGlassGlow 3s ease-in-out infinite;
+}
+
+@keyframes mobileGlassGlow {
+    0%, 100% { 
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+                    0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+                    0 0 40px rgba(0, 212, 255, 0.2);
+    }
+    50% { 
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+                    0 0 0 1px rgba(255, 255, 255, 0.15) inset,
+                    0 0 60px rgba(0, 212, 255, 0.4),
+                    0 0 100px rgba(0, 212, 255, 0.2);
+    }
+}
+
+.mobile-nav.scrolled {
+    padding: 12px 20px;
 }
 
 .nav-brand {
@@ -50,24 +94,43 @@ body {
     -webkit-overflow-scrolling: touch;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 2;
 }
 
 .nav-item {
     font-size: 13px;
-    color: #6b7280;
+    color: #ffffff;
     text-decoration: none;
     padding: 8px 12px;
-    border-radius: 8px;
+    border-radius: 12px;
     white-space: nowrap;
-    transition: all 0.2s;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     font-weight: 500;
     min-width: fit-content;
+    position: relative;
+    z-index: 2;
+}
+
+.nav-item:hover {
+    color: #00d4ff;
+    background: rgba(0, 212, 255, 0.1);
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
 }
 
 .nav-item.active {
-    color: #1e40af;
-    background: #eff6ff;
-    border: 1px solid #dbeafe;
+    color: #00d4ff;
+    background: rgba(0, 212, 255, 0.15);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
+}
+
+.nav-item.active {
+    color: #00d4ff;
+    background: rgba(0, 212, 255, 0.15);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
 }
 
 .nav-item:hover:not(.active) {
