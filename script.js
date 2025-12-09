@@ -303,3 +303,309 @@ if (prefersReducedMotion()) {
     `;
     document.head.appendChild(style);
 }
+
+// ============================================
+// SCROLL-TRIGGERED ANIMATIONS (Apple-style)
+// ============================================
+(function() {
+    'use strict';
+    
+    // Elements to animate on scroll
+    const animateSelectors = [
+        '.pillar-card',
+        '.winner-card',
+        '.testimonial-card',
+        '.stat-card',
+        '.gallery-item',
+        '.section-header',
+        '.pillars-header',
+        '.winners-header',
+        '.testimonials-header',
+        '.gallery-header',
+        '.why-card',
+        '.journey-step',
+        '.proof-stat',
+        '.ai-preview-content'
+    ];
+    
+    // Initialize intersection observer
+    function initScrollAnimations() {
+        if (prefersReducedMotion()) return;
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -80px 0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Add staggered delay based on siblings
+                    const siblings = entry.target.parentElement.children;
+                    const siblingIndex = Array.from(siblings).indexOf(entry.target);
+                    const delay = siblingIndex * 0.08;
+                    
+                    entry.target.style.transitionDelay = `${delay}s`;
+                    entry.target.classList.add('animate-visible');
+                    
+                    // Unobserve after animation
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // Add initial styles and observe elements
+        animateSelectors.forEach(selector => {
+            document.querySelectorAll(selector).forEach(el => {
+                el.classList.add('animate-on-scroll');
+                observer.observe(el);
+            });
+        });
+    }
+    
+    // Add CSS for scroll animations
+    const style = document.createElement('style');
+    style.textContent = `
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .animate-on-scroll.animate-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Reduce motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            .animate-on-scroll {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initScrollAnimations);
+    } else {
+        initScrollAnimations();
+    }
+})();
+
+// ============================================
+// SMOOTH PARALLAX EFFECT (Subtle)
+// ============================================
+(function() {
+    'use strict';
+    
+    if (prefersReducedMotion()) return;
+    
+    let ticking = false;
+    
+    function updateParallax() {
+        const scrollY = window.scrollY;
+        
+        // Subtle parallax for hero section
+        const heroNew = document.querySelector('.hero-new');
+        if (heroNew) {
+            const heroContent = heroNew.querySelector('.hero-new-container');
+            if (heroContent && scrollY < window.innerHeight) {
+                const parallaxAmount = scrollY * 0.15;
+                heroContent.style.transform = `translateY(${parallaxAmount}px)`;
+                heroContent.style.opacity = 1 - (scrollY / (window.innerHeight * 0.8));
+            }
+        }
+        
+        ticking = false;
+    }
+    
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(updateParallax);
+            ticking = true;
+        }
+    }, { passive: true });
+})();
+
+// ============================================
+// FULL-SCREEN SCROLL TRANSITION
+// Apple visionOS-style immersive effect
+// ============================================
+(function() {
+    'use strict';
+    
+    // Skip if user prefers reduced motion
+    if (typeof prefersReducedMotion === 'function' && prefersReducedMotion()) return;
+    
+    function init() {
+        const overlay = document.getElementById('transition-overlay');
+        const aiSection = document.getElementById('ai-section');
+        const socialProof = document.querySelector('.social-proof');
+        
+        if (!overlay || !aiSection) return;
+        
+        let ticking = false;
+        
+        // Easing functions
+        function easeOutCubic(x) {
+            return 1 - Math.pow(1 - x, 3);
+        }
+        
+        function easeInOutCubic(x) {
+            return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+        }
+        
+        function clamp(val, min, max) {
+            return Math.max(min, Math.min(max, val));
+        }
+        
+        function updateScrollTransition() {
+            const viewportHeight = window.innerHeight;
+            const aiRect = aiSection.getBoundingClientRect();
+            
+            // Get position of social proof section
+            const triggerStart = socialProof ? socialProof.getBoundingClientRect().bottom : aiRect.top + viewportHeight;
+            
+            // PHASE 1: Screen fades to black as we approach AI section
+            const fadeStart = viewportHeight * 0.8;
+            const fadeEnd = viewportHeight * 0.4;
+            
+            let overlayFadeIn = 0;
+            if (triggerStart < fadeStart) {
+                overlayFadeIn = clamp((fadeStart - triggerStart) / (fadeStart - fadeEnd), 0, 1);
+            }
+            
+            // PHASE 2: Keep overlay solid while in AI section, fade out when leaving
+            // Overlay stays at 1 until AI section bottom is near viewport top
+            let overlayFadeOut = 0;
+            if (aiRect.bottom < viewportHeight * 0.3) {
+                overlayFadeOut = clamp((viewportHeight * 0.3 - aiRect.bottom) / (viewportHeight * 0.4), 0, 1);
+            }
+            
+            // Final overlay: fades in, stays solid, fades out when leaving
+            const finalOverlay = clamp(overlayFadeIn - overlayFadeOut, 0, 1);
+            overlay.style.opacity = easeInOutCubic(finalOverlay).toFixed(3);
+            
+            if (finalOverlay > 0.05) {
+                overlay.classList.add('active');
+            } else {
+                overlay.classList.remove('active');
+            }
+            
+            // PHASE 3: Content reveals INSIDE the black screen
+            // Once screen is mostly black (overlayFadeIn > 0.7), content starts appearing
+            // Content tied to how far into AI section we've scrolled
+            let contentProgress = 0;
+            if (overlayFadeIn > 0.7) {
+                // Calculate progress based on AI section position
+                const contentStart = viewportHeight * 0.5;
+                const scrolledIntoAI = contentStart - aiRect.top;
+                contentProgress = clamp(scrolledIntoAI / (viewportHeight * 0.6), 0, 1);
+            }
+            
+            // Staggered element reveals
+            const badgeProgress = clamp((contentProgress - 0) * 2, 0, 1);
+            const titleProgress = clamp((contentProgress - 0.1) * 2, 0, 1);
+            const descProgress = clamp((contentProgress - 0.2) * 2, 0, 1);
+            const featuresProgress = clamp((contentProgress - 0.3) * 2, 0, 1);
+            const btnProgress = clamp((contentProgress - 0.45) * 2, 0, 1);
+            const visualProgress = clamp((contentProgress - 0.15) * 1.8, 0, 1);
+            
+            // Apply easing
+            const easedBadge = easeOutCubic(badgeProgress);
+            const easedTitle = easeOutCubic(titleProgress);
+            const easedDesc = easeOutCubic(descProgress);
+            const easedFeatures = easeOutCubic(featuresProgress);
+            const easedBtn = easeOutCubic(btnProgress);
+            const easedVisual = easeOutCubic(visualProgress);
+            
+            // Glow appears with content
+            const glowProgress = clamp(contentProgress * 1.2, 0, 1);
+            
+            // Set CSS custom properties
+            aiSection.style.setProperty('--glow-opacity', (easeOutCubic(glowProgress) * 0.4).toFixed(3));
+            aiSection.style.setProperty('--badge-opacity', easedBadge.toFixed(3));
+            aiSection.style.setProperty('--badge-progress', easedBadge.toFixed(3));
+            aiSection.style.setProperty('--title-opacity', easedTitle.toFixed(3));
+            aiSection.style.setProperty('--title-progress', easedTitle.toFixed(3));
+            aiSection.style.setProperty('--desc-opacity', easedDesc.toFixed(3));
+            aiSection.style.setProperty('--desc-progress', easedDesc.toFixed(3));
+            aiSection.style.setProperty('--features-opacity', easedFeatures.toFixed(3));
+            aiSection.style.setProperty('--features-progress', easedFeatures.toFixed(3));
+            aiSection.style.setProperty('--btn-opacity', easedBtn.toFixed(3));
+            aiSection.style.setProperty('--btn-progress', easedBtn.toFixed(3));
+            aiSection.style.setProperty('--visual-opacity', easedVisual.toFixed(3));
+            aiSection.style.setProperty('--visual-progress', easedVisual.toFixed(3));
+            
+            ticking = false;
+        }
+        
+        function onScroll() {
+            if (!ticking) {
+                requestAnimationFrame(updateScrollTransition);
+                ticking = true;
+            }
+        }
+        
+        window.addEventListener('scroll', onScroll, { passive: true });
+        
+        // Initial call
+        updateScrollTransition();
+        
+        // ========================================
+        // OTHER SECTIONS - IntersectionObserver
+        // ========================================
+        const revealSections = document.querySelectorAll('.why-us, .journey-timeline, .final-cta');
+        
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '-10% 0px',
+            threshold: 0.1
+        });
+        
+        revealSections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+        
+        // ========================================
+        // FADE-UP ELEMENTS
+        // ========================================
+        const fadeUpElements = document.querySelectorAll('.pillar-card, .proof-stat, .why-card, .step');
+        
+        const fadeUpObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '0px 0px -30px 0px',
+            threshold: 0.1
+        });
+        
+        fadeUpElements.forEach(el => {
+            fadeUpObserver.observe(el);
+        });
+    }
+    
+    // Run when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
+

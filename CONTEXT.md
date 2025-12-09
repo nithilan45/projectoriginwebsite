@@ -13,7 +13,7 @@ Talented students end up on the sidelines while peers pitch and prototype. Proje
 
 ## What Project Origin Does
 
-Origin Challenge is a 5-week, student-run bootcamp + pitch day for immigrant high schoolers.
+Origin Challenge is a 4-week, student-run bootcamp + pitch day for immigrant high schoolers.
 Students: identify a problem, design a prototype in Figma, build a scrappy MVP (AI/no-code allowed), create a short slide deck, and pitch to mentors/judges—many immigrants themselves.
 
 Outcome: tangible work (prototype + slides), real feedback, confidence, and community.
@@ -39,7 +39,7 @@ Anchor the visual style to the logo.
 - Final CTA
 
 ### Origin Challenge (program page)
-The 5-week flow, eligibility, judging criteria, timeline, deliverables.
+The 4-week flow, eligibility, judging criteria, timeline, deliverables.
 
 ### Mentors & Judges
 Grid of names, roles, companies, LinkedIn links. Keep it empty for now.
@@ -50,11 +50,23 @@ Simple form; note: free, no coding required.
 ### FAQ / Contact
 Clear answers + email (nithilan@projectorigin.co).
 
+### Weekly Career Navigation AI (Coming Soon)
+An AI mentor built on your program's curriculum that does:
+
+- **5-minute weekly check-in**
+- **Analyzes their interests/strengths**
+- **Recommends next skill to learn**
+- **Assigns a micro-project**
+- **Tracks proof-of-work**
+- **Builds a portfolio automatically**
+
+This is your differentiator - personalized AI guidance that scales mentorship.
+
 ## Homepage Sample Copy
 
 **Tagline**: Build. Demo. Pitch.
 
-A student-run incubator for immigrant students looking to get into entrepreneurship. In 5 weeks, turn your idea into a demo and tell your story with confidence.
+A student-run incubator for immigrant students looking to get into entrepreneurship. In 4 weeks, turn your idea into a demo and tell your story with confidence.
 
 **Why It Matters**: Great ideas are everywhere. Access isn't. Project Origin closes that gap with mentors who share your journey and a structure that gets you building fast.
 

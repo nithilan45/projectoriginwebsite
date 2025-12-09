@@ -5,7 +5,7 @@ A youth-led initiative to give immigrant and first-generation students the chanc
 ## Features
 
 - **Responsive Design**: Separate mobile and desktop versions
-- **Origin Challenge**: 5-week program with one intensive session per weekend
+- **Origin Challenge**: 4-week program with one intensive session per weekend
 - **Mentor Network**: Connect with successful immigrant entrepreneurs
 - **Community**: Join thousands of immigrant students building the future
 
