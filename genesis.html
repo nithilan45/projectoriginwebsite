@@ -4,304 +4,669 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Genesis - AI Career Navigator | Project Origin</title>
-    <link rel="stylesheet" href="styles.css?v=1005">
-    <style>
-        /* Override ALL scroll animations - show all content immediately */
-        .why-card,
-        .journey-step,
-        .ai-preview-content,
-        .pillar-card,
-        .proof-stat,
-        .step,
-        .animate-on-scroll,
-        .fade-up {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-            transition: none !important;
-        }
-        
-        /* Fix AI Preview Section - override all the scroll-triggered vars */
-        .ai-preview {
-            --glow-opacity: 0.4 !important;
-            --badge-opacity: 1 !important;
-            --badge-progress: 1 !important;
-            --title-opacity: 1 !important;
-            --title-progress: 1 !important;
-            --desc-opacity: 1 !important;
-            --desc-progress: 1 !important;
-            --features-opacity: 1 !important;
-            --features-progress: 1 !important;
-            --btn-opacity: 1 !important;
-            --btn-progress: 1 !important;
-            --visual-opacity: 1 !important;
-            --visual-progress: 1 !important;
-        }
-        
-        .ai-preview .coming-soon-badge,
-        .ai-preview h2,
-        .ai-preview .ai-description,
-        .ai-preview .ai-features,
-        .ai-preview .ai-features li,
-        .ai-preview .btn-primary,
-        .ai-preview-visual,
-        .ai-mockup {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
-    </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-</head>
-<body>
-    <!-- Mobile Navigation -->
-    <nav class="mobile-nav">
-        <div class="nav-brand"></div>
-        <div class="nav-menu">
-            <a href="index.html" class="nav-item">Home</a>
-            <a href="cohort1.html" class="nav-item">Cohort 1</a>
-            <a href="mentors.html" class="nav-item">Mentors</a>
-            <a href="faq.html" class="nav-item">FAQ</a>
-            <a href="contact.html" class="nav-item">Contact</a>
-        </div>
-    </nav>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="index.html">
-                    <img src="assets/originlogo.svg" alt="Project Origin" class="nav-logo-img">
-                </a>
-            </div>
-            <div class="nav-links">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="cohort1.html" class="nav-link">Cohort 1</a>
-                <a href="mentors.html" class="nav-link">Mentors</a>
-                <a href="contact.html" class="nav-link">Contact</a>
-            </div>
-            <div class="nav-actions">
-                <a href="genesis.html" class="nav-button active">Genesis</a>
-            </div>
-        </div>
-    </nav>
+        :root {
+            --genesis-bg: #0a0a0f;
+            --genesis-surface: #12121a;
+            --genesis-surface-light: #1a1a24;
+            --genesis-border: rgba(255, 255, 255, 0.08);
+            --genesis-border-light: rgba(255, 255, 255, 0.12);
+            --genesis-text: #ffffff;
+            --genesis-text-secondary: rgba(255, 255, 255, 0.6);
+            --genesis-text-muted: rgba(255, 255, 255, 0.4);
+            --genesis-accent: #3b82f6;
+            --genesis-accent-glow: rgba(59, 130, 246, 0.3);
+            --genesis-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            --genesis-user-bg: #3b82f6;
+            --genesis-ai-bg: #1e1e2a;
+        }
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-new">
-        <div class="hero-new-container">
-            <div class="hero-badge">
-                <span class="badge-dot"></span>
-                Coming Soon
-            </div>
-            
-            <h1 class="hero-new-title">
-                Genesis
-            </h1>
-            
-            <p class="hero-new-subtitle">
-                Your AI-powered career navigator. Get personalized guidance, build your portfolio, and unlock your entrepreneurial potential.
-            </p>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--genesis-bg);
+            color: var(--genesis-text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
 
-            <div class="hero-new-ctas">
-                <a href="https://www.skool.com/project-origin-2029/about?ref=0acec4050c47453e9b2b0044bd79d842" class="btn-primary" target="_blank">
-                    Join the Waitlist
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
-                <a href="#features" class="btn-secondary">Learn More</a>
-            </div>
-        </div>
-    </section>
+        /* Navigation */
+        .genesis-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 16px 24px;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--genesis-border);
+        }
 
-    <!-- What is Genesis Section -->
-    <section id="features" class="why-origin">
-        <div class="container">
-            <div class="why-header">
-                <h2>What is Genesis?</h2>
-                <p>Your personal AI mentor—available 24/7 to guide your journey and build your portfolio.</p>
-            </div>
+        .genesis-nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-            <div class="why-grid">
-                <div class="why-card">
-                    <div class="why-number">📊</div>
-                    <h3>Weekly Check-ins</h3>
-                    <p>5-minute conversations that keep you accountable and on track toward your goals.</p>
-                </div>
-                <div class="why-card">
-                    <div class="why-number">🎯</div>
-                    <h3>Personalized Roadmap</h3>
-                    <p>AI-generated skill recommendations and projects tailored to your unique strengths.</p>
-                </div>
-                <div class="why-card">
-                    <div class="why-number">📁</div>
-                    <h3>Auto-Built Portfolio</h3>
-                    <p>Your projects automatically organized and ready to showcase to colleges and employers.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        .genesis-nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--genesis-text);
+        }
 
-    <!-- How It Works Section -->
-    <section class="journey-section">
-        <div class="container">
-            <div class="journey-header">
-                <h2>How Genesis Works</h2>
-            </div>
+        .genesis-nav-logo img {
+            height: 32px;
+            filter: brightness(0) invert(1);
+        }
 
-            <div class="journey-timeline">
-                <div class="journey-step">
-                    <div class="step-marker">1</div>
-                    <div class="step-content">
-                        <h3>Tell Genesis about yourself</h3>
-                        <p>Share your interests, goals, and background. Genesis learns what makes you unique.</p>
-                    </div>
-                </div>
-                <div class="journey-step">
-                    <div class="step-marker">2</div>
-                    <div class="step-content">
-                        <h3>Get your personalized plan</h3>
-                        <p>Receive a custom roadmap with micro-projects designed to build real skills.</p>
-                    </div>
-                </div>
-                <div class="journey-step">
-                    <div class="step-marker">3</div>
-                    <div class="step-content">
-                        <h3>Check in weekly</h3>
-                        <p>Quick 5-minute conversations keep you accountable and adjust your path as you grow.</p>
-                    </div>
-                </div>
-                <div class="journey-step">
-                    <div class="step-marker">4</div>
-                    <div class="step-content">
-                        <h3>Build your portfolio</h3>
-                        <p>Your work is automatically compiled into a portfolio you can share anywhere.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        .genesis-nav-logo span {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            background: var(--genesis-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-    <!-- AI Platform Preview Section -->
-    <section class="ai-preview" id="ai-section">
-        <div class="container">
-            <div class="ai-preview-content">
-                <div class="ai-preview-text">
-                    <div class="coming-soon-badge">Coming Soon</div>
-                    <h2>Meet Your AI Mentor</h2>
-                    <p class="ai-description">
-                        Genesis understands the unique challenges immigrant students face. It's like having a mentor who's always available, always supportive, and always pushing you to be your best.
-                    </p>
-                    <ul class="ai-features">
-                        <li>
-                            <span class="feature-icon">🌍</span>
-                            <div>
-                                <strong>Understands Your Journey</strong>
-                                <p>Built specifically for immigrant and first-gen students</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="feature-icon">⚡</span>
-                            <div>
-                                <strong>Always Available</strong>
-                                <p>Get guidance anytime, anywhere—no scheduling needed</p>
-                            </div>
-                        </li>
-                        <li>
-                            <span class="feature-icon">📈</span>
-                            <div>
-                                <strong>Tracks Your Growth</strong>
-                                <p>See your progress and celebrate your wins</p>
-                            </div>
-                        </li>
-                    </ul>
-                    <a href="https://www.skool.com/project-origin-2029/about?ref=0acec4050c47453e9b2b0044bd79d842" class="btn-primary" target="_blank">
-                        Join the Waitlist
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </a>
-                </div>
-                <div class="ai-preview-visual">
-                    <div class="ai-mockup">
-                        <div class="mockup-header">
-                            <div class="mockup-dots">
-                                <span></span><span></span><span></span>
-                            </div>
-                            <span class="mockup-title">Genesis</span>
-                        </div>
-                        <div class="mockup-content">
-                            <div class="chat-message ai">
-                                <p>Hey! 👋 Ready for your weekly check-in?</p>
-                            </div>
-                            <div class="chat-message user">
-                                <p>Yes! I finished the pitch deck.</p>
-                            </div>
-                            <div class="chat-message ai">
-                                <p>Amazing progress! 🎉 Based on your growth, I recommend focusing on customer discovery next. Here's a micro-project...</p>
-                            </div>
-                            <div class="chat-input">
-                                <span>Type your response...</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        .genesis-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
 
-    <!-- Final CTA -->
-    <section class="final-cta-new">
-        <div class="container">
-            <div class="cta-new-content">
-                <h2>Be the first to try Genesis</h2>
-                <p>Join the waitlist and get early access when we launch.</p>
-                <div class="cta-new-buttons">
-                    <a href="https://www.skool.com/project-origin-2029/about?ref=0acec4050c47453e9b2b0044bd79d842" class="btn-primary btn-large" target="_blank">
-                        Join the Waitlist
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+        .genesis-nav-links a {
+            color: var(--genesis-text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="assets/originlogo.svg" alt="Project Origin" class="logo-img">
-                </div>
-                <div class="footer-links">
-                    <a href="index.html">Home</a>
-                    <a href="cohort1.html">Cohort 1</a>
-                    <a href="mentors.html">Mentors</a>
-                    <a href="contact.html">Contact</a>
-                    <a href="faq.html">FAQ</a>
-                </div>
-                <div class="footer-contact">
-                    <p>Contact: <a href="mailto:nithilan@projectorigin.co">nithilan@projectorigin.co</a></p>
-                </div>
-            </div>
-        </div>
-    </footer>
+        .genesis-nav-links a:hover {
+            color: var(--genesis-text);
+        }
 
-    <script>
-        // Mobile detection and navigation switching
-        function toggleNavigation() {
-            const isSmallScreen = window.innerWidth <= 768;
-            const desktopNav = document.querySelector('.nav');
-            const mobileNav = document.querySelector('.mobile-nav');
-            if (isSmallScreen) {
-                if (desktopNav) desktopNav.style.display = 'none';
-                if (mobileNav) mobileNav.style.display = 'flex';
-            } else {
-                if (desktopNav) desktopNav.style.display = 'flex';
-                if (mobileNav) mobileNav.style.display = 'none';
+        .genesis-nav-btn {
+            background: var(--genesis-gradient);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .genesis-nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--genesis-accent-glow);
+        }
+
+        /* Main Layout */
+        .genesis-main {
+            display: flex;
+            min-height: 100vh;
+            padding-top: 65px;
+        }
+
+        /* Sidebar */
+        .genesis-sidebar {
+            width: 280px;
+            background: var(--genesis-surface);
+            border-right: 1px solid var(--genesis-border);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 65px;
+            bottom: 0;
+            left: 0;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--genesis-border);
+        }
+
+        .new-chat-btn {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--genesis-surface-light);
+            border: 1px solid var(--genesis-border-light);
+            border-radius: 10px;
+            color: var(--genesis-text);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+
+        .new-chat-btn:hover {
+            background: var(--genesis-surface);
+            border-color: var(--genesis-accent);
+        }
+
+        .new-chat-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .sidebar-chats {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px;
+        }
+
+        .chat-item {
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 4px;
+            transition: background 0.2s;
+        }
+
+        .chat-item:hover {
+            background: var(--genesis-surface-light);
+        }
+
+        .chat-item.active {
+            background: var(--genesis-surface-light);
+            border: 1px solid var(--genesis-border-light);
+        }
+
+        .chat-item-title {
+            font-size: 14px;
+            color: var(--genesis-text);
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chat-item-date {
+            font-size: 12px;
+            color: var(--genesis-text-muted);
+        }
+
+        .sidebar-footer {
+            padding: 16px;
+            border-top: 1px solid var(--genesis-border);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-radius: 10px;
+            background: var(--genesis-surface-light);
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--genesis-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .user-info {
+            flex: 1;
+        }
+
+        .user-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--genesis-text);
+        }
+
+        .user-plan {
+            font-size: 12px;
+            color: var(--genesis-text-muted);
+        }
+
+        /* Chat Area */
+        .genesis-chat {
+            flex: 1;
+            margin-left: 280px;
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 65px);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .message {
+            display: flex;
+            gap: 16px;
+            max-width: 800px;
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+            margin-left: auto;
+        }
+
+        .message-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .message.ai .message-avatar {
+            background: var(--genesis-gradient);
+        }
+
+        .message.user .message-avatar {
+            background: var(--genesis-surface-light);
+            border: 1px solid var(--genesis-border-light);
+        }
+
+        .message-content {
+            padding: 16px 20px;
+            border-radius: 16px;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .message.ai .message-content {
+            background: var(--genesis-ai-bg);
+            border: 1px solid var(--genesis-border);
+            border-top-left-radius: 4px;
+        }
+
+        .message.user .message-content {
+            background: var(--genesis-user-bg);
+            border-top-right-radius: 4px;
+        }
+
+        .message-content p {
+            margin-bottom: 12px;
+        }
+
+        .message-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .message-content strong {
+            color: var(--genesis-accent);
+        }
+
+        .message.user .message-content strong {
+            color: white;
+        }
+
+        /* Quick Actions in messages */
+        .quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .quick-action-btn {
+            padding: 8px 16px;
+            background: var(--genesis-surface-light);
+            border: 1px solid var(--genesis-border-light);
+            border-radius: 20px;
+            color: var(--genesis-text);
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quick-action-btn:hover {
+            background: var(--genesis-accent);
+            border-color: var(--genesis-accent);
+        }
+
+        /* Chat Input */
+        .chat-input-area {
+            padding: 24px 32px;
+            border-top: 1px solid var(--genesis-border);
+            background: var(--genesis-surface);
+        }
+
+        .chat-input-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .chat-input {
+            width: 100%;
+            padding: 16px 56px 16px 20px;
+            background: var(--genesis-surface-light);
+            border: 1px solid var(--genesis-border-light);
+            border-radius: 12px;
+            color: var(--genesis-text);
+            font-size: 15px;
+            font-family: inherit;
+            resize: none;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .chat-input:focus {
+            border-color: var(--genesis-accent);
+        }
+
+        .chat-input::placeholder {
+            color: var(--genesis-text-muted);
+        }
+
+        .send-btn {
+            position: absolute;
+            right: 8px;
+            bottom: 8px;
+            width: 40px;
+            height: 40px;
+            background: var(--genesis-gradient);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 16px var(--genesis-accent-glow);
+        }
+
+        .send-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .input-hint {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 12px;
+            color: var(--genesis-text-muted);
+        }
+
+        /* Welcome Screen */
+        .welcome-screen {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .welcome-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--genesis-gradient);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin-bottom: 24px;
+            box-shadow: 0 16px 48px var(--genesis-accent-glow);
+        }
+
+        .welcome-title {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            background: var(--genesis-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .welcome-subtitle {
+            font-size: 16px;
+            color: var(--genesis-text-secondary);
+            max-width: 500px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+
+        .welcome-suggestions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .suggestion-card {
+            padding: 16px 20px;
+            background: var(--genesis-surface);
+            border: 1px solid var(--genesis-border);
+            border-radius: 12px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .suggestion-card:hover {
+            border-color: var(--genesis-accent);
+            background: var(--genesis-surface-light);
+        }
+
+        .suggestion-card h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: var(--genesis-text);
+        }
+
+        .suggestion-card p {
+            font-size: 13px;
+            color: var(--genesis-text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .genesis-sidebar {
+                display: none;
+            }
+            .genesis-chat {
+                margin-left: 0;
+            }
+            .genesis-nav-links {
+                display: none;
             }
         }
-        
-        document.addEventListener('DOMContentLoaded', toggleNavigation);
-        window.addEventListener('resize', toggleNavigation);
+
+        @media (max-width: 600px) {
+            .welcome-suggestions {
+                grid-template-columns: 1fr;
+            }
+            .chat-messages {
+                padding: 16px;
+            }
+            .chat-input-area {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="genesis-nav">
+        <div class="genesis-nav-container">
+            <a href="index.html" class="genesis-nav-logo">
+                <img src="assets/originlogo.svg" alt="Project Origin">
+                <span>Genesis</span>
+            </a>
+            <div class="genesis-nav-links">
+                <a href="index.html">Home</a>
+                <a href="cohort1.html">Cohort 1</a>
+                <a href="mentors.html">Mentors</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <a href="https://www.skool.com/project-origin-2029/about?ref=0acec4050c47453e9b2b0044bd79d842" class="genesis-nav-btn" target="_blank">Join Community</a>
+        </div>
+    </nav>
+
+    <!-- Main App -->
+    <main class="genesis-main">
+        <!-- Sidebar -->
+        <aside class="genesis-sidebar">
+            <div class="sidebar-header">
+                <button class="new-chat-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 5v14M5 12h14"/>
+                    </svg>
+                    New Chat
+                </button>
+            </div>
+            <div class="sidebar-chats">
+                <div class="chat-item active">
+                    <div class="chat-item-title">Weekly Check-in</div>
+                    <div class="chat-item-date">Today</div>
+                </div>
+                <div class="chat-item">
+                    <div class="chat-item-title">Building my pitch deck</div>
+                    <div class="chat-item-date">Yesterday</div>
+                </div>
+                <div class="chat-item">
+                    <div class="chat-item-title">Customer discovery tips</div>
+                    <div class="chat-item-date">Dec 8</div>
+                </div>
+                <div class="chat-item">
+                    <div class="chat-item-title">Business model feedback</div>
+                    <div class="chat-item-date">Dec 5</div>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">N</div>
+                    <div class="user-info">
+                        <div class="user-name">Nithilan</div>
+                        <div class="user-plan">Origin Member</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Chat Area -->
+        <div class="genesis-chat">
+            <div class="chat-messages">
+                <!-- AI Welcome Message -->
+                <div class="message ai">
+                    <div class="message-avatar">✨</div>
+                    <div class="message-content">
+                        <p>Hey! 👋 Welcome back to your weekly check-in. I've been tracking your progress, and you've been crushing it lately!</p>
+                        <p>Last week you mentioned working on customer discovery for your startup idea. <strong>How did that go?</strong></p>
+                        <div class="quick-actions">
+                            <button class="quick-action-btn">Great progress!</button>
+                            <button class="quick-action-btn">Need more help</button>
+                            <button class="quick-action-btn">Let's pivot</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Message -->
+                <div class="message user">
+                    <div class="message-avatar">N</div>
+                    <div class="message-content">
+                        <p>I talked to 5 potential customers this week! Found out they care more about saving time than saving money.</p>
+                    </div>
+                </div>
+
+                <!-- AI Response -->
+                <div class="message ai">
+                    <div class="message-avatar">✨</div>
+                    <div class="message-content">
+                        <p>That's an incredible insight! 🎉 <strong>5 customer interviews in one week</strong> - you're moving faster than 90% of founders.</p>
+                        <p>The "time over money" insight is huge. This tells me your positioning should focus on <strong>efficiency and convenience</strong>, not cost savings.</p>
+                        <p>Here's a micro-project for this week:</p>
+                        <p><strong>📋 Task:</strong> Rewrite your value proposition to lead with time-saving. Then test it with 3 more customers.</p>
+                        <div class="quick-actions">
+                            <button class="quick-action-btn">Show me examples</button>
+                            <button class="quick-action-btn">Add to my roadmap</button>
+                            <button class="quick-action-btn">I need help with this</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="chat-input-area">
+                <div class="chat-input-container">
+                    <textarea class="chat-input" placeholder="Ask Genesis anything..." rows="1"></textarea>
+                    <button class="send-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                        </svg>
+                    </button>
+                </div>
+                <p class="input-hint">Genesis is your AI career navigator. Ask about skills, projects, or career guidance.</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Auto-resize textarea
+        const textarea = document.querySelector('.chat-input');
+        textarea.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 150) + 'px';
+        });
+
+        // Quick action buttons
+        document.querySelectorAll('.quick-action-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                textarea.value = this.textContent;
+                textarea.focus();
+            });
+        });
+
+        // Suggestion cards (if on welcome screen)
+        document.querySelectorAll('.suggestion-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const text = this.querySelector('h4').textContent;
+                textarea.value = text;
+                textarea.focus();
+            });
+        });
     </script>
-    <script src="script.js"></script>
 </body>
 </html>
