@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         * {
             margin: 0;
@@ -1473,22 +1475,103 @@
     </div>
 
     <script>
-        // App State
+        // ==========================================
+        // SUPABASE CONFIGURATION
+        // ==========================================
+        const SUPABASE_URL = 'https://snajdozjhrfkjnxrhtce.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNuYWpkb3pqaHJma2pueHJodGNlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUzODc1MTMsImV4cCI6MjA4MDk2MzUxM30.B-hLDP4wbXZyWaizFiL6_CbERMCS0wZtg9jJYzqfl7U';
+        
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // ==========================================
+        // APP STATE
+        // ==========================================
         let currentScreen = 'welcome';
         let currentQuestion = 1;
         const totalQuestions = 5;
         const answers = {};
         let userName = '';
+        let currentUser = null;
 
-        // Screen Navigation
+        // ==========================================
+        // CHECK AUTH ON PAGE LOAD
+        // ==========================================
+        async function checkAuth() {
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            
+            if (session) {
+                currentUser = session.user;
+                userName = currentUser.user_metadata?.name?.split(' ')[0] || 
+                           currentUser.email?.split('@')[0] || 
+                           'Entrepreneur';
+                
+                // Check if user has completed quiz
+                const { data: profile } = await supabaseClient
+                    .from('profiles')
+                    .select('*')
+                    .eq('id', currentUser.id)
+                    .single();
+                
+                if (profile?.quiz_completed) {
+                    // Go straight to dashboard
+                    updateDashboard(profile);
+                    showScreen('dashboard');
+                } else {
+                    // Show quiz
+                    showScreen('quiz');
+                }
+            }
+        }
+
+        // Handle OAuth callback
+        supabaseClient.auth.onAuthStateChange(async (event, session) => {
+            if (event === 'SIGNED_IN' && session) {
+                currentUser = session.user;
+                userName = currentUser.user_metadata?.name?.split(' ')[0] || 
+                           currentUser.user_metadata?.full_name?.split(' ')[0] ||
+                           currentUser.email?.split('@')[0] || 
+                           'Entrepreneur';
+                
+                // Check/create profile
+                const { data: profile } = await supabaseClient
+                    .from('profiles')
+                    .select('*')
+                    .eq('id', currentUser.id)
+                    .single();
+                
+                if (!profile) {
+                    // Create new profile
+                    await supabaseClient.from('profiles').insert({
+                        id: currentUser.id,
+                        name: currentUser.user_metadata?.name || currentUser.user_metadata?.full_name || userName,
+                        email: currentUser.email
+                    });
+                    showScreen('quiz');
+                } else if (profile.quiz_completed) {
+                    updateDashboard(profile);
+                    showScreen('dashboard');
+                } else {
+                    showScreen('quiz');
+                }
+            }
+        });
+
+        // Run auth check on load
+        checkAuth();
+
+        // ==========================================
+        // SCREEN NAVIGATION
+        // ==========================================
         function showScreen(screenId) {
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
             document.getElementById(`screen-${screenId}`).classList.add('active');
             currentScreen = screenId;
         }
 
-        // Sign Up
-        document.getElementById('btn-signup').addEventListener('click', () => {
+        // ==========================================
+        // SIGN UP WITH EMAIL
+        // ==========================================
+        document.getElementById('btn-signup').addEventListener('click', async () => {
             const name = document.getElementById('signup-name').value.trim();
             const email = document.getElementById('signup-email').value.trim();
             const password = document.getElementById('signup-password').value;
@@ -1498,40 +1581,88 @@
                 return;
             }
 
-            userName = name.split(' ')[0]; // First name only
-            showScreen('quiz');
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters');
+                return;
+            }
+
+            const btn = document.getElementById('btn-signup');
+            btn.disabled = true;
+            btn.textContent = 'Creating Account...';
+
+            try {
+                const { data, error } = await supabaseClient.auth.signUp({
+                    email,
+                    password,
+                    options: {
+                        data: { name }
+                    }
+                });
+
+                if (error) throw error;
+
+                if (data.user) {
+                    currentUser = data.user;
+                    userName = name.split(' ')[0];
+
+                    // Create profile
+                    await supabaseClient.from('profiles').insert({
+                        id: data.user.id,
+                        name: name,
+                        email: email
+                    });
+
+                    showScreen('quiz');
+                }
+            } catch (error) {
+                console.error('Signup error:', error);
+                alert(error.message || 'Error creating account. Please try again.');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Create Account';
+            }
         });
 
-        // Google Sign In (placeholder)
-        document.querySelector('.btn-google').addEventListener('click', () => {
-            // Will connect to Supabase later
-            userName = 'Entrepreneur';
-            showScreen('quiz');
+        // ==========================================
+        // SIGN IN WITH GOOGLE
+        // ==========================================
+        document.querySelector('.btn-google').addEventListener('click', async () => {
+            try {
+                const { data, error } = await supabaseClient.auth.signInWithOAuth({
+                    provider: 'google',
+                    options: {
+                        redirectTo: window.location.origin + '/genesis.html'
+                    }
+                });
+
+                if (error) throw error;
+            } catch (error) {
+                console.error('Google sign in error:', error);
+                alert('Error signing in with Google. Please try again.');
+            }
         });
 
-        // Quiz Option Selection
+        // ==========================================
+        // QUIZ LOGIC
+        // ==========================================
         document.querySelectorAll('.quiz-option').forEach(option => {
             option.addEventListener('click', function() {
                 const question = this.closest('.quiz-question');
                 question.querySelectorAll('.quiz-option').forEach(o => o.classList.remove('selected'));
                 this.classList.add('selected');
                 
-                // Store answer
                 const questionNum = question.dataset.question;
                 answers[questionNum] = this.dataset.value;
                 
-                // Enable next button
                 document.getElementById('btn-quiz-next').disabled = false;
             });
         });
 
-        // Quiz Navigation
         document.getElementById('btn-quiz-next').addEventListener('click', () => {
             if (currentQuestion < totalQuestions) {
                 currentQuestion++;
                 updateQuizUI();
             } else {
-                // Quiz complete - show dashboard
                 finishQuiz();
             }
         });
@@ -1546,15 +1677,12 @@
         });
 
         function updateQuizUI() {
-            // Update progress
             document.getElementById('quiz-current').textContent = currentQuestion;
             document.getElementById('quiz-progress-fill').style.width = `${(currentQuestion / totalQuestions) * 100}%`;
             
-            // Show current question
             document.querySelectorAll('.quiz-question').forEach(q => q.classList.remove('active'));
             document.querySelector(`.quiz-question[data-question="${currentQuestion}"]`).classList.add('active');
             
-            // Update button text
             const nextBtn = document.getElementById('btn-quiz-next');
             if (currentQuestion === totalQuestions) {
                 nextBtn.innerHTML = 'Finish <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>';
@@ -1562,20 +1690,46 @@
                 nextBtn.innerHTML = 'Next <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7l7 7-7 7"/></svg>';
             }
             
-            // Check if current question has answer
             nextBtn.disabled = !answers[currentQuestion];
         }
 
-        function finishQuiz() {
-            // Update dashboard with user name
+        async function finishQuiz() {
+            // Save quiz answers to Supabase
+            if (currentUser) {
+                try {
+                    await supabaseClient.from('profiles').update({
+                        quiz_motivation: answers[1],
+                        quiz_industry: answers[2],
+                        quiz_experience: answers[3],
+                        quiz_time_commitment: answers[4],
+                        quiz_goal: answers[5],
+                        quiz_completed: true
+                    }).eq('id', currentUser.id);
+                } catch (error) {
+                    console.error('Error saving quiz:', error);
+                }
+            }
+
+            // Update dashboard UI
             document.getElementById('user-name').textContent = userName;
             document.getElementById('nav-avatar').textContent = userName.charAt(0).toUpperCase();
             
-            // Show dashboard
             showScreen('dashboard');
+        }
+
+        // ==========================================
+        // DASHBOARD
+        // ==========================================
+        function updateDashboard(profile) {
+            userName = profile?.name?.split(' ')[0] || 'Entrepreneur';
+            document.getElementById('user-name').textContent = userName;
+            document.getElementById('nav-avatar').textContent = userName.charAt(0).toUpperCase();
             
-            // Log answers (will be sent to Supabase later)
-            console.log('Quiz answers:', answers);
+            // Update XP display
+            if (profile?.xp) {
+                document.querySelector('.nav-xp').innerHTML = `⚡ ${profile.xp} XP`;
+                document.querySelector('.stat-value').textContent = profile.xp;
+            }
         }
 
         // Pathway Step Toggle
@@ -1585,6 +1739,16 @@
                 step.classList.toggle('active');
             });
         });
+
+        // ==========================================
+        // SIGN OUT (can be called from console or added to UI)
+        // ==========================================
+        async function signOut() {
+            await supabaseClient.auth.signOut();
+            currentUser = null;
+            userName = '';
+            showScreen('welcome');
+        }
     </script>
 </body>
 </html>
