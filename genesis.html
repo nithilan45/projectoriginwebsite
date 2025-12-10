@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genesis - AI Career Navigator | Project Origin</title>
+    <title>Genesis - Your Entrepreneurship Pathway | Project Origin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -19,16 +19,19 @@
             --genesis-bg: #0a0a0f;
             --genesis-surface: #12121a;
             --genesis-surface-light: #1a1a24;
+            --genesis-surface-hover: #22222e;
             --genesis-border: rgba(255, 255, 255, 0.08);
             --genesis-border-light: rgba(255, 255, 255, 0.12);
             --genesis-text: #ffffff;
-            --genesis-text-secondary: rgba(255, 255, 255, 0.6);
+            --genesis-text-secondary: rgba(255, 255, 255, 0.7);
             --genesis-text-muted: rgba(255, 255, 255, 0.4);
             --genesis-accent: #3b82f6;
-            --genesis-accent-glow: rgba(59, 130, 246, 0.3);
+            --genesis-accent-glow: rgba(59, 130, 246, 0.25);
             --genesis-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-            --genesis-user-bg: #3b82f6;
-            --genesis-ai-bg: #1e1e2a;
+            --genesis-success: #10b981;
+            --genesis-warning: #f59e0b;
+            --genesis-purple: #8b5cf6;
+            --genesis-pink: #ec4899;
         }
 
         body {
@@ -36,7 +39,6 @@
             background: var(--genesis-bg);
             color: var(--genesis-text);
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
         /* Navigation */
@@ -47,50 +49,46 @@
             right: 0;
             z-index: 100;
             padding: 16px 24px;
-            background: rgba(10, 10, 15, 0.8);
+            background: rgba(10, 10, 15, 0.9);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--genesis-border);
         }
 
-        .genesis-nav-container {
-            max-width: 1400px;
+        .nav-container {
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        .genesis-nav-logo {
+        .nav-logo {
             display: flex;
             align-items: center;
             gap: 12px;
             text-decoration: none;
-            color: var(--genesis-text);
         }
 
-        .genesis-nav-logo img {
-            height: 32px;
+        .nav-logo img {
+            height: 28px;
             filter: brightness(0) invert(1);
         }
 
-        .genesis-nav-logo span {
+        .nav-logo-text {
             font-family: 'DM Sans', sans-serif;
             font-size: 20px;
             font-weight: 700;
             background: var(--genesis-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
-        .genesis-nav-links {
+        .nav-links {
             display: flex;
-            align-items: center;
             gap: 32px;
         }
 
-        .genesis-nav-links a {
+        .nav-links a {
             color: var(--genesis-text-secondary);
             text-decoration: none;
             font-size: 14px;
@@ -98,11 +96,11 @@
             transition: color 0.2s;
         }
 
-        .genesis-nav-links a:hover {
+        .nav-links a:hover {
             color: var(--genesis-text);
         }
 
-        .genesis-nav-btn {
+        .nav-cta {
             background: var(--genesis-gradient);
             color: white;
             padding: 10px 20px;
@@ -110,419 +108,487 @@
             text-decoration: none;
             font-size: 14px;
             font-weight: 600;
-            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .genesis-nav-btn:hover {
+        /* Main Content */
+        .main-content {
+            padding-top: 80px;
+            min-height: 100vh;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 60px 24px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--genesis-accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: var(--genesis-surface);
+            border: 1px solid var(--genesis-border-light);
+            border-radius: 100px;
+            font-size: 13px;
+            color: var(--genesis-text-secondary);
+            margin-bottom: 24px;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--genesis-success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero h1 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            position: relative;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--genesis-text-secondary);
+            max-width: 600px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+        }
+
+        /* Progress Overview */
+        .progress-section {
+            max-width: 900px;
+            margin: 0 auto 48px;
+            padding: 0 24px;
+        }
+
+        .progress-card {
+            background: var(--genesis-surface);
+            border: 1px solid var(--genesis-border);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .progress-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--genesis-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .progress-stats {
+            display: flex;
+            gap: 24px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--genesis-accent);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--genesis-text-muted);
+        }
+
+        .progress-bar-container {
+            background: var(--genesis-surface-light);
+            border-radius: 8px;
+            height: 12px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--genesis-gradient);
+            border-radius: 8px;
+            width: 35%;
+            transition: width 0.5s ease;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+            font-size: 13px;
+            color: var(--genesis-text-muted);
+        }
+
+        /* Pathway Section */
+        .pathway-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+
+        .section-header {
+            margin-bottom: 32px;
+        }
+
+        .section-header h2 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .section-header p {
+            color: var(--genesis-text-secondary);
+            font-size: 15px;
+        }
+
+        /* Pathway Steps */
+        .pathway {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .pathway-step {
+            background: var(--genesis-surface);
+            border: 1px solid var(--genesis-border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .pathway-step:hover {
+            border-color: var(--genesis-border-light);
+            transform: translateY(-2px);
+        }
+
+        .pathway-step.completed {
+            border-color: var(--genesis-success);
+        }
+
+        .pathway-step.active {
+            border-color: var(--genesis-accent);
+            box-shadow: 0 0 0 1px var(--genesis-accent), 0 8px 32px var(--genesis-accent-glow);
+        }
+
+        .pathway-step.locked {
+            opacity: 0.5;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 24px;
+            cursor: pointer;
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .pathway-step.completed .step-number {
+            background: var(--genesis-success);
+            color: white;
+        }
+
+        .pathway-step.active .step-number {
+            background: var(--genesis-gradient);
+            color: white;
+        }
+
+        .pathway-step.locked .step-number {
+            background: var(--genesis-surface-light);
+            color: var(--genesis-text-muted);
+        }
+
+        .step-info {
+            flex: 1;
+        }
+
+        .step-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .step-description {
+            font-size: 14px;
+            color: var(--genesis-text-secondary);
+        }
+
+        .step-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .pathway-step.completed .step-status {
+            color: var(--genesis-success);
+        }
+
+        .pathway-step.active .step-status {
+            color: var(--genesis-accent);
+        }
+
+        .pathway-step.locked .step-status {
+            color: var(--genesis-text-muted);
+        }
+
+        .step-arrow {
+            color: var(--genesis-text-muted);
+            transition: transform 0.2s;
+        }
+
+        .pathway-step.active .step-arrow {
+            color: var(--genesis-accent);
+        }
+
+        /* Expanded Step Content */
+        .step-content {
+            display: none;
+            padding: 0 24px 24px;
+            border-top: 1px solid var(--genesis-border);
+        }
+
+        .pathway-step.active .step-content {
+            display: block;
+        }
+
+        .quests-grid {
+            display: grid;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .quest-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: var(--genesis-surface-light);
+            border: 1px solid var(--genesis-border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quest-item:hover {
+            background: var(--genesis-surface-hover);
+            border-color: var(--genesis-border-light);
+        }
+
+        .quest-item.completed {
+            opacity: 0.6;
+        }
+
+        .quest-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--genesis-border-light);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+
+        .quest-item.completed .quest-checkbox {
+            background: var(--genesis-success);
+            border-color: var(--genesis-success);
+        }
+
+        .quest-checkbox svg {
+            width: 14px;
+            height: 14px;
+            color: white;
+            opacity: 0;
+        }
+
+        .quest-item.completed .quest-checkbox svg {
+            opacity: 1;
+        }
+
+        .quest-info {
+            flex: 1;
+        }
+
+        .quest-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .quest-xp {
+            font-size: 12px;
+            color: var(--genesis-warning);
+            font-weight: 600;
+        }
+
+        .quest-time {
+            font-size: 12px;
+            color: var(--genesis-text-muted);
+        }
+
+        .start-btn {
+            padding: 8px 16px;
+            background: var(--genesis-accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .start-btn:hover {
+            background: #2563eb;
+        }
+
+        /* Current Quest Card */
+        .current-quest {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border: 1px solid var(--genesis-accent);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+
+        .current-quest-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .current-quest-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: var(--genesis-accent);
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .current-quest h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .current-quest p {
+            color: var(--genesis-text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .quest-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-primary {
+            padding: 12px 24px;
+            background: var(--genesis-gradient);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 24px var(--genesis-accent-glow);
         }
 
-        /* Main Layout */
-        .genesis-main {
-            display: flex;
-            min-height: 100vh;
-            padding-top: 65px;
-        }
-
-        /* Sidebar */
-        .genesis-sidebar {
-            width: 280px;
-            background: var(--genesis-surface);
-            border-right: 1px solid var(--genesis-border);
-            display: flex;
-            flex-direction: column;
-            position: fixed;
-            top: 65px;
-            bottom: 0;
-            left: 0;
-        }
-
-        .sidebar-header {
-            padding: 20px;
-            border-bottom: 1px solid var(--genesis-border);
-        }
-
-        .new-chat-btn {
-            width: 100%;
-            padding: 12px 16px;
+        .btn-secondary {
+            padding: 12px 24px;
             background: var(--genesis-surface-light);
+            color: var(--genesis-text);
             border: 1px solid var(--genesis-border-light);
             border-radius: 10px;
-            color: var(--genesis-text);
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.2s;
-        }
-
-        .new-chat-btn:hover {
-            background: var(--genesis-surface);
-            border-color: var(--genesis-accent);
-        }
-
-        .new-chat-btn svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        .sidebar-chats {
-            flex: 1;
-            overflow-y: auto;
-            padding: 12px;
-        }
-
-        .chat-item {
-            padding: 12px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-bottom: 4px;
-            transition: background 0.2s;
-        }
-
-        .chat-item:hover {
-            background: var(--genesis-surface-light);
-        }
-
-        .chat-item.active {
-            background: var(--genesis-surface-light);
-            border: 1px solid var(--genesis-border-light);
-        }
-
-        .chat-item-title {
-            font-size: 14px;
-            color: var(--genesis-text);
-            margin-bottom: 4px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .chat-item-date {
-            font-size: 12px;
-            color: var(--genesis-text-muted);
-        }
-
-        .sidebar-footer {
-            padding: 16px;
-            border-top: 1px solid var(--genesis-border);
-        }
-
-        .user-profile {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px;
-            border-radius: 10px;
-            background: var(--genesis-surface-light);
-        }
-
-        .user-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: var(--genesis-gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        .user-info {
-            flex: 1;
-        }
-
-        .user-name {
             font-size: 14px;
             font-weight: 600;
-            color: var(--genesis-text);
-        }
-
-        .user-plan {
-            font-size: 12px;
-            color: var(--genesis-text-muted);
-        }
-
-        /* Chat Area */
-        .genesis-chat {
-            flex: 1;
-            margin-left: 280px;
-            display: flex;
-            flex-direction: column;
-            height: calc(100vh - 65px);
-        }
-
-        .chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 32px;
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .message {
-            display: flex;
-            gap: 16px;
-            max-width: 800px;
-        }
-
-        .message.user {
-            flex-direction: row-reverse;
-            margin-left: auto;
-        }
-
-        .message-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-        }
-
-        .message.ai .message-avatar {
-            background: var(--genesis-gradient);
-        }
-
-        .message.user .message-avatar {
-            background: var(--genesis-surface-light);
-            border: 1px solid var(--genesis-border-light);
-        }
-
-        .message-content {
-            padding: 16px 20px;
-            border-radius: 16px;
-            line-height: 1.6;
-            font-size: 15px;
-        }
-
-        .message.ai .message-content {
-            background: var(--genesis-ai-bg);
-            border: 1px solid var(--genesis-border);
-            border-top-left-radius: 4px;
-        }
-
-        .message.user .message-content {
-            background: var(--genesis-user-bg);
-            border-top-right-radius: 4px;
-        }
-
-        .message-content p {
-            margin-bottom: 12px;
-        }
-
-        .message-content p:last-child {
-            margin-bottom: 0;
-        }
-
-        .message-content strong {
-            color: var(--genesis-accent);
-        }
-
-        .message.user .message-content strong {
-            color: white;
-        }
-
-        /* Quick Actions in messages */
-        .quick-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 16px;
-        }
-
-        .quick-action-btn {
-            padding: 8px 16px;
-            background: var(--genesis-surface-light);
-            border: 1px solid var(--genesis-border-light);
-            border-radius: 20px;
-            color: var(--genesis-text);
-            font-size: 13px;
             cursor: pointer;
             transition: all 0.2s;
         }
 
-        .quick-action-btn:hover {
-            background: var(--genesis-accent);
-            border-color: var(--genesis-accent);
-        }
-
-        /* Chat Input */
-        .chat-input-area {
-            padding: 24px 32px;
-            border-top: 1px solid var(--genesis-border);
-            background: var(--genesis-surface);
-        }
-
-        .chat-input-container {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .chat-input {
-            width: 100%;
-            padding: 16px 56px 16px 20px;
-            background: var(--genesis-surface-light);
-            border: 1px solid var(--genesis-border-light);
-            border-radius: 12px;
-            color: var(--genesis-text);
-            font-size: 15px;
-            font-family: inherit;
-            resize: none;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .chat-input:focus {
-            border-color: var(--genesis-accent);
-        }
-
-        .chat-input::placeholder {
-            color: var(--genesis-text-muted);
-        }
-
-        .send-btn {
-            position: absolute;
-            right: 8px;
-            bottom: 8px;
-            width: 40px;
-            height: 40px;
-            background: var(--genesis-gradient);
-            border: none;
-            border-radius: 8px;
-            color: white;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .send-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 16px var(--genesis-accent-glow);
-        }
-
-        .send-btn svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        .input-hint {
-            text-align: center;
-            margin-top: 12px;
-            font-size: 12px;
-            color: var(--genesis-text-muted);
-        }
-
-        /* Welcome Screen */
-        .welcome-screen {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 32px;
-            text-align: center;
-        }
-
-        .welcome-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--genesis-gradient);
-            border-radius: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            margin-bottom: 24px;
-            box-shadow: 0 16px 48px var(--genesis-accent-glow);
-        }
-
-        .welcome-title {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            background: var(--genesis-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .welcome-subtitle {
-            font-size: 16px;
-            color: var(--genesis-text-secondary);
-            max-width: 500px;
-            line-height: 1.6;
-            margin-bottom: 32px;
-        }
-
-        .welcome-suggestions {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            max-width: 600px;
-            width: 100%;
-        }
-
-        .suggestion-card {
-            padding: 16px 20px;
-            background: var(--genesis-surface);
-            border: 1px solid var(--genesis-border);
-            border-radius: 12px;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .suggestion-card:hover {
-            border-color: var(--genesis-accent);
-            background: var(--genesis-surface-light);
-        }
-
-        .suggestion-card h4 {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 4px;
-            color: var(--genesis-text);
-        }
-
-        .suggestion-card p {
-            font-size: 13px;
-            color: var(--genesis-text-muted);
+        .btn-secondary:hover {
+            background: var(--genesis-surface-hover);
         }
 
         /* Responsive */
-        @media (max-width: 900px) {
-            .genesis-sidebar {
+        @media (max-width: 768px) {
+            .nav-links {
                 display: none;
             }
-            .genesis-chat {
-                margin-left: 0;
+            
+            .hero h1 {
+                font-size: 32px;
             }
-            .genesis-nav-links {
-                display: none;
+            
+            .progress-header {
+                flex-direction: column;
+                gap: 16px;
             }
-        }
-
-        @media (max-width: 600px) {
-            .welcome-suggestions {
-                grid-template-columns: 1fr;
+            
+            .progress-stats {
+                width: 100%;
+                justify-content: space-around;
             }
-            .chat-messages {
-                padding: 16px;
-            }
-            .chat-input-area {
-                padding: 16px;
+            
+            .quest-actions {
+                flex-direction: column;
             }
         }
     </style>
@@ -530,141 +596,275 @@
 <body>
     <!-- Navigation -->
     <nav class="genesis-nav">
-        <div class="genesis-nav-container">
-            <a href="index.html" class="genesis-nav-logo">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
                 <img src="assets/originlogo.svg" alt="Project Origin">
-                <span>Genesis</span>
+                <span class="nav-logo-text">Genesis</span>
             </a>
-            <div class="genesis-nav-links">
+            <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="cohort1.html">Cohort 1</a>
                 <a href="mentors.html">Mentors</a>
                 <a href="contact.html">Contact</a>
             </div>
-            <a href="https://www.skool.com/project-origin-2029/about?ref=0acec4050c47453e9b2b0044bd79d842" class="genesis-nav-btn" target="_blank">Join Community</a>
+            <a href="https://www.skool.com/project-origin-2029/about?ref=0acec4050c47453e9b2b0044bd79d842" class="nav-cta" target="_blank">Join Community</a>
         </div>
     </nav>
 
-    <!-- Main App -->
-    <main class="genesis-main">
-        <!-- Sidebar -->
-        <aside class="genesis-sidebar">
-            <div class="sidebar-header">
-                <button class="new-chat-btn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 5v14M5 12h14"/>
-                    </svg>
-                    New Chat
-                </button>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                Your personalized pathway
             </div>
-            <div class="sidebar-chats">
-                <div class="chat-item active">
-                    <div class="chat-item-title">Weekly Check-in</div>
-                    <div class="chat-item-date">Today</div>
-                </div>
-                <div class="chat-item">
-                    <div class="chat-item-title">Building my pitch deck</div>
-                    <div class="chat-item-date">Yesterday</div>
-                </div>
-                <div class="chat-item">
-                    <div class="chat-item-title">Customer discovery tips</div>
-                    <div class="chat-item-date">Dec 8</div>
-                </div>
-                <div class="chat-item">
-                    <div class="chat-item-title">Business model feedback</div>
-                    <div class="chat-item-date">Dec 5</div>
-                </div>
-            </div>
-            <div class="sidebar-footer">
-                <div class="user-profile">
-                    <div class="user-avatar">N</div>
-                    <div class="user-info">
-                        <div class="user-name">Nithilan</div>
-                        <div class="user-plan">Origin Member</div>
-                    </div>
-                </div>
-            </div>
-        </aside>
+            <h1>Welcome back, Entrepreneur 👋</h1>
+            <p>Continue your journey to becoming a successful founder. Complete quests, learn skills, and build your portfolio.</p>
+        </section>
 
-        <!-- Chat Area -->
-        <div class="genesis-chat">
-            <div class="chat-messages">
-                <!-- AI Welcome Message -->
-                <div class="message ai">
-                    <div class="message-avatar">✨</div>
-                    <div class="message-content">
-                        <p>Hey! 👋 Welcome back to your weekly check-in. I've been tracking your progress, and you've been crushing it lately!</p>
-                        <p>Last week you mentioned working on customer discovery for your startup idea. <strong>How did that go?</strong></p>
-                        <div class="quick-actions">
-                            <button class="quick-action-btn">Great progress!</button>
-                            <button class="quick-action-btn">Need more help</button>
-                            <button class="quick-action-btn">Let's pivot</button>
+        <!-- Progress Overview -->
+        <section class="progress-section">
+            <div class="progress-card">
+                <div class="progress-header">
+                    <span class="progress-title">Your Progress</span>
+                    <div class="progress-stats">
+                        <div class="stat">
+                            <div class="stat-value">7</div>
+                            <div class="stat-label">Quests Done</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">850</div>
+                            <div class="stat-label">XP Earned</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">🔥 5</div>
+                            <div class="stat-label">Day Streak</div>
                         </div>
                     </div>
                 </div>
-
-                <!-- User Message -->
-                <div class="message user">
-                    <div class="message-avatar">N</div>
-                    <div class="message-content">
-                        <p>I talked to 5 potential customers this week! Found out they care more about saving time than saving money.</p>
-                    </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar"></div>
                 </div>
+                <div class="progress-label">
+                    <span>Level 2: Explorer</span>
+                    <span>850 / 2000 XP to Level 3</span>
+                </div>
+            </div>
+        </section>
 
-                <!-- AI Response -->
-                <div class="message ai">
-                    <div class="message-avatar">✨</div>
-                    <div class="message-content">
-                        <p>That's an incredible insight! 🎉 <strong>5 customer interviews in one week</strong> - you're moving faster than 90% of founders.</p>
-                        <p>The "time over money" insight is huge. This tells me your positioning should focus on <strong>efficiency and convenience</strong>, not cost savings.</p>
-                        <p>Here's a micro-project for this week:</p>
-                        <p><strong>📋 Task:</strong> Rewrite your value proposition to lead with time-saving. Then test it with 3 more customers.</p>
-                        <div class="quick-actions">
-                            <button class="quick-action-btn">Show me examples</button>
-                            <button class="quick-action-btn">Add to my roadmap</button>
-                            <button class="quick-action-btn">I need help with this</button>
+        <!-- Current Quest -->
+        <section class="pathway-section">
+            <div class="current-quest">
+                <div class="current-quest-header">
+                    <div>
+                        <div class="current-quest-badge">
+                            <span>⚡</span> Current Quest
                         </div>
                     </div>
+                    <span class="quest-xp">+150 XP</span>
+                </div>
+                <h3>Talk to 3 Potential Customers</h3>
+                <p>The best founders validate their ideas by talking to real people. Your mission: have conversations with 3 people who might use your product. Ask them about their problems, not your solution.</p>
+                <div class="quest-actions">
+                    <button class="btn-primary">Start Quest →</button>
+                    <button class="btn-secondary">View Guide</button>
                 </div>
             </div>
 
-            <!-- Input Area -->
-            <div class="chat-input-area">
-                <div class="chat-input-container">
-                    <textarea class="chat-input" placeholder="Ask Genesis anything..." rows="1"></textarea>
-                    <button class="send-btn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+            <!-- Pathway -->
+            <div class="section-header">
+                <h2>Your Pathway</h2>
+                <p>Complete each phase to unlock new skills and opportunities</p>
+            </div>
+
+            <div class="pathway">
+                <!-- Step 1: Complete -->
+                <div class="pathway-step completed">
+                    <div class="step-header">
+                        <div class="step-number">✓</div>
+                        <div class="step-info">
+                            <div class="step-title">Discovery Quiz</div>
+                            <div class="step-description">Find your entrepreneurship style and interests</div>
+                        </div>
+                        <div class="step-status">
+                            <span>Completed</span>
+                        </div>
+                        <svg class="step-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18l6-6-6-6"/>
                         </svg>
-                    </button>
+                    </div>
                 </div>
-                <p class="input-hint">Genesis is your AI career navigator. Ask about skills, projects, or career guidance.</p>
+
+                <!-- Step 2: Active -->
+                <div class="pathway-step active">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <div class="step-info">
+                            <div class="step-title">Problem Discovery</div>
+                            <div class="step-description">Learn to identify real problems worth solving</div>
+                        </div>
+                        <div class="step-status">
+                            <span>3/5 quests</span>
+                        </div>
+                        <svg class="step-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                    </div>
+                    <div class="step-content">
+                        <div class="quests-grid">
+                            <div class="quest-item completed">
+                                <div class="quest-checkbox">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <path d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </div>
+                                <div class="quest-info">
+                                    <div class="quest-title">List 10 problems you've experienced</div>
+                                    <div class="quest-xp">+50 XP</div>
+                                </div>
+                                <span class="quest-time">Done</span>
+                            </div>
+                            <div class="quest-item completed">
+                                <div class="quest-checkbox">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <path d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </div>
+                                <div class="quest-info">
+                                    <div class="quest-title">Research one problem deeply</div>
+                                    <div class="quest-xp">+75 XP</div>
+                                </div>
+                                <span class="quest-time">Done</span>
+                            </div>
+                            <div class="quest-item completed">
+                                <div class="quest-checkbox">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <path d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </div>
+                                <div class="quest-info">
+                                    <div class="quest-title">Create a problem statement</div>
+                                    <div class="quest-xp">+75 XP</div>
+                                </div>
+                                <span class="quest-time">Done</span>
+                            </div>
+                            <div class="quest-item">
+                                <div class="quest-checkbox">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <path d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </div>
+                                <div class="quest-info">
+                                    <div class="quest-title">Talk to 3 potential customers</div>
+                                    <div class="quest-xp">+150 XP</div>
+                                </div>
+                                <button class="start-btn">Start</button>
+                            </div>
+                            <div class="quest-item">
+                                <div class="quest-checkbox">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <path d="M5 13l4 4L19 7"/>
+                                    </svg>
+                                </div>
+                                <div class="quest-info">
+                                    <div class="quest-title">Validate your problem hypothesis</div>
+                                    <div class="quest-xp">+100 XP</div>
+                                </div>
+                                <span class="quest-time">~20 min</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Locked -->
+                <div class="pathway-step locked">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <div class="step-info">
+                            <div class="step-title">Solution Design</div>
+                            <div class="step-description">Design and prototype your solution</div>
+                        </div>
+                        <div class="step-status">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C9.24 2 7 4.24 7 7v5H6c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2h-1V7c0-2.76-2.24-5-5-5zm0 2c1.66 0 3 1.34 3 3v5H9V7c0-1.66 1.34-3 3-3z"/>
+                            </svg>
+                            <span>Locked</span>
+                        </div>
+                        <svg class="step-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Step 4: Locked -->
+                <div class="pathway-step locked">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <div class="step-info">
+                            <div class="step-title">Build Your MVP</div>
+                            <div class="step-description">Create a minimum viable product</div>
+                        </div>
+                        <div class="step-status">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C9.24 2 7 4.24 7 7v5H6c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2h-1V7c0-2.76-2.24-5-5-5zm0 2c1.66 0 3 1.34 3 3v5H9V7c0-1.66 1.34-3 3-3z"/>
+                            </svg>
+                            <span>Locked</span>
+                        </div>
+                        <svg class="step-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Step 5: Locked -->
+                <div class="pathway-step locked">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <div class="step-info">
+                            <div class="step-title">Pitch & Launch</div>
+                            <div class="step-description">Present your idea and get your first users</div>
+                        </div>
+                        <div class="step-status">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2C9.24 2 7 4.24 7 7v5H6c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-8c0-1.1-.9-2-2-2h-1V7c0-2.76-2.24-5-5-5zm0 2c1.66 0 3 1.34 3 3v5H9V7c0-1.66 1.34-3 3-3z"/>
+                            </svg>
+                            <span>Locked</span>
+                        </div>
+                        <svg class="step-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
     </main>
 
     <script>
-        // Auto-resize textarea
-        const textarea = document.querySelector('.chat-input');
-        textarea.addEventListener('input', function() {
-            this.style.height = 'auto';
-            this.style.height = Math.min(this.scrollHeight, 150) + 'px';
-        });
-
-        // Quick action buttons
-        document.querySelectorAll('.quick-action-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                textarea.value = this.textContent;
-                textarea.focus();
+        // Toggle pathway steps
+        document.querySelectorAll('.pathway-step:not(.locked) .step-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const step = this.closest('.pathway-step');
+                const wasActive = step.classList.contains('active');
+                
+                // Remove active from all
+                document.querySelectorAll('.pathway-step').forEach(s => {
+                    if (!s.classList.contains('completed') && !s.classList.contains('locked')) {
+                        s.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current
+                if (!wasActive && !step.classList.contains('completed')) {
+                    step.classList.add('active');
+                }
             });
         });
 
-        // Suggestion cards (if on welcome screen)
-        document.querySelectorAll('.suggestion-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const text = this.querySelector('h4').textContent;
-                textarea.value = text;
-                textarea.focus();
+        // Quest item click
+        document.querySelectorAll('.quest-item:not(.completed)').forEach(quest => {
+            quest.addEventListener('click', function() {
+                // Could navigate to quest detail page
             });
         });
     </script>
