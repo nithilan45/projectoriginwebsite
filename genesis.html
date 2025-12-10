@@ -4,15 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Genesis - AI Career Navigator | Project Origin</title>
-    <link rel="stylesheet" href="styles.css?v=1004">
+    <link rel="stylesheet" href="styles.css?v=1005">
     <style>
-        /* Override scroll animations - show all content immediately */
+        /* Override ALL scroll animations - show all content immediately */
         .why-card,
         .journey-step,
         .ai-preview-content,
         .pillar-card,
         .proof-stat,
-        .step {
+        .step,
+        .animate-on-scroll,
+        .fade-up {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+            transition: none !important;
+        }
+        
+        /* Fix AI Preview Section - override all the scroll-triggered vars */
+        .ai-preview {
+            --glow-opacity: 0.4 !important;
+            --badge-opacity: 1 !important;
+            --badge-progress: 1 !important;
+            --title-opacity: 1 !important;
+            --title-progress: 1 !important;
+            --desc-opacity: 1 !important;
+            --desc-progress: 1 !important;
+            --features-opacity: 1 !important;
+            --features-progress: 1 !important;
+            --btn-opacity: 1 !important;
+            --btn-progress: 1 !important;
+            --visual-opacity: 1 !important;
+            --visual-progress: 1 !important;
+        }
+        
+        .ai-preview .coming-soon-badge,
+        .ai-preview h2,
+        .ai-preview .ai-description,
+        .ai-preview .ai-features,
+        .ai-preview .ai-features li,
+        .ai-preview .btn-primary,
+        .ai-preview-visual,
+        .ai-mockup {
             opacity: 1 !important;
             transform: translateY(0) !important;
         }
