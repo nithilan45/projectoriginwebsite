@@ -424,6 +424,28 @@
             margin: 0 auto;
         }
         
+        .api-key-notice {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(251, 191, 36, 0.15);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: 12px;
+            padding: 12px 20px;
+            margin-bottom: 24px;
+            color: #fbbf24;
+            font-size: 0.9rem;
+        }
+        
+        .api-key-notice.hidden {
+            display: none;
+        }
+        
+        .notice-icon {
+            font-size: 1.1rem;
+        }
+        
         .ai-features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -1383,6 +1405,12 @@
                 </div>
             </div>
 
+            <!-- API Key Notice -->
+            <div class="api-key-notice" id="api-key-notice">
+                <span class="notice-icon">🔑</span>
+                <span>Running in demo mode. To enable full AI, add your OpenAI API key in the code.</span>
+            </div>
+
             <!-- AI Mentor App -->
             <div class="ai-mentor-app">
                 <!-- Tabs -->
@@ -2023,12 +2051,16 @@
 
     <script src="script.js"></script>
     <script>
-        // ============================================
-        // AI MENTOR - ChatGPT Integration
-        // ============================================
+        // ╔════════════════════════════════════════════════════════════════╗
+        // ║                    🔑 API KEY CONFIGURATION                     ║
+        // ║                                                                 ║
+        // ║  Paste your OpenAI API key below to enable AI mentor:          ║
+        // ║                                                                 ║
+        // ╚════════════════════════════════════════════════════════════════╝
         
-        // IMPORTANT: Add your OpenAI API key here
-        const OPENAI_API_KEY = ''; // Leave empty - user will add their key
+        const OPENAI_API_KEY = 'YOUR_API_KEY_HERE';
+        
+        // ═══════════════════════════════════════════════════════════════════
         
         // Mentor system prompt
         const MENTOR_SYSTEM_PROMPT = `You are an AI mentor for Genesis, a program by Project Origin that helps young immigrant entrepreneurs build their first startups.
@@ -2147,7 +2179,7 @@ Keep responses conversational and concise (2-3 paragraphs max unless they ask fo
 
         // ChatGPT API call
         async function callChatGPT(message, systemOverride = null) {
-            if (!OPENAI_API_KEY) {
+            if (!OPENAI_API_KEY || OPENAI_API_KEY === 'YOUR_API_KEY_HERE') {
                 // Demo mode - provide helpful response without API
                 return generateDemoResponse(message);
             }
@@ -2431,6 +2463,11 @@ Focus: ${c.focus}
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             updatePortfolioStats();
+            
+            // Hide API key notice if key is configured
+            if (OPENAI_API_KEY && OPENAI_API_KEY !== 'YOUR_API_KEY_HERE') {
+                document.getElementById('api-key-notice').classList.add('hidden');
+            }
         });
     </script>
 </body>
