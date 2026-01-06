@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 2.4: Competitive Analysis - Genesis</title>
+    <link rel="stylesheet" href="../styles.css?v=1002">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="lesson-styles.css">
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html">
+                    <img src="../assets/originlogo.svg" alt="Project Origin" class="nav-logo-img">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../cohort1.html" class="nav-link">Cohort 1</a>
+                <a href="../mentors.html" class="nav-link">Mentors</a>
+                <a href="../contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../genesis.html" class="nav-button active">Genesis</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="lesson-container">
+        <nav class="lesson-breadcrumb">
+            <a href="../genesis.html">Genesis</a>
+            <span>→</span>
+            <a href="../genesis.html#lessons">Phase 2</a>
+            <span>→</span>
+            <span>Lesson 2.4</span>
+        </nav>
+
+        <div class="lesson-phase-tag">Phase 2: Solution Design</div>
+        <h1 class="lesson-title">Competitive Analysis</h1>
+        
+        <div class="lesson-meta">
+            <div class="lesson-meta-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+                35 min read
+            </div>
+            <div class="lesson-meta-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+                Lesson 8 of 16
+            </div>
+        </div>
+
+        <div class="lesson-content">
+            <p>Understanding your competition isn't about copying them—it's about finding where you can win. In this lesson, you'll learn how to research competitors, identify gaps in the market, and position your startup for success.</p>
+
+            <h2>Why Competitive Analysis Matters</h2>
+            
+            <p>Many founders make two opposite mistakes:</p>
+            <ol>
+                <li><strong>Ignoring competition:</strong> "We don't have competitors" (you always do)</li>
+                <li><strong>Obsessing over competition:</strong> Copying everything they do instead of innovating</li>
+            </ol>
+
+            <div class="key-concept">
+                <h4>Key Concept</h4>
+                <p>Competition validates that a market exists. No competitors might mean no market. The goal isn't to avoid competition—it's to find where you can differentiate and win.</p>
+            </div>
+
+            <p>Good competitive analysis helps you:</p>
+            <ul>
+                <li>Understand what customers already have access to</li>
+                <li>Find gaps that aren't being addressed</li>
+                <li>Learn from competitors' successes and mistakes</li>
+                <li>Position your product to stand out</li>
+                <li>Anticipate competitive responses</li>
+            </ul>
+
+            <h2>Types of Competitors</h2>
+
+            <h3>Direct Competitors</h3>
+            <p>Companies that solve the same problem for the same customers in a similar way.</p>
+            <p><em>Example: If you're building a meditation app, Headspace and Calm are direct competitors.</em></p>
+
+            <h3>Indirect Competitors</h3>
+            <p>Companies that solve the same problem but in a different way, or solve a related problem.</p>
+            <p><em>Example: For a meditation app, yoga studios, therapy apps, or even walks in nature are indirect competitors.</em></p>
+
+            <h3>Substitute Competitors</h3>
+            <p>Different solutions that customers might choose instead—including doing nothing.</p>
+            <p><em>Example: Customers might just listen to music to relax instead of using a meditation app.</em></p>
+
+            <div class="warning-box">
+                <h4>⚠️ "We Have No Competitors" is a Red Flag</h4>
+                <p>If you can't find any competitors, either: (1) there's no real market, (2) you haven't looked hard enough, or (3) you're defining your market too narrowly. At minimum, customers are doing SOMETHING today—even if it's nothing.</p>
+            </div>
+
+            <h2>How to Research Competitors</h2>
+
+            <h3>Step 1: Make a List</h3>
+            <p>Find all relevant competitors through:</p>
+            <ul>
+                <li><strong>Google searches:</strong> Search for the problem you solve, not just your solution type</li>
+                <li><strong>App stores:</strong> Search relevant categories</li>
+                <li><strong>Customer interviews:</strong> Ask "What do you currently use?"</li>
+                <li><strong>Review sites:</strong> G2, Capterra, TrustPilot</li>
+                <li><strong>Industry reports:</strong> Look for market research</li>
+                <li><strong>Startup databases:</strong> Crunchbase, AngelList</li>
+                <li><strong>Social media:</strong> What are people recommending?</li>
+            </ul>
+
+            <h3>Step 2: Analyze Each Competitor</h3>
+            <p>For each major competitor, research:</p>
+
+            <p><strong>Product/Service:</strong></p>
+            <ul>
+                <li>What features do they offer?</li>
+                <li>What's their user experience like?</li>
+                <li>What are customers saying in reviews?</li>
+                <li>What are common complaints?</li>
+            </ul>
+
+            <p><strong>Business Model:</strong></p>
+            <ul>
+                <li>How do they make money?</li>
+                <li>What do they charge?</li>
+                <li>Who are their customers?</li>
+            </ul>
+
+            <p><strong>Marketing & Positioning:</strong></p>
+            <ul>
+                <li>What's their value proposition?</li>
+                <li>What channels do they use?</li>
+                <li>What's their brand like?</li>
+            </ul>
+
+            <p><strong>Strengths & Weaknesses:</strong></p>
+            <ul>
+                <li>What do they do well?</li>
+                <li>Where do they fall short?</li>
+                <li>What are customers complaining about?</li>
+            </ul>
+
+            <h3>Step 3: Create a Competitive Matrix</h3>
+            <p>Organize your findings in a comparison table:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature/Factor</th>
+                        <th>Competitor A</th>
+                        <th>Competitor B</th>
+                        <th>Your Startup</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Price</td>
+                        <td>$50/mo</td>
+                        <td>$20/mo</td>
+                        <td>$30/mo</td>
+                    </tr>
+                    <tr>
+                        <td>Target Customer</td>
+                        <td>Enterprise</td>
+                        <td>SMBs</td>
+                        <td>Students</td>
+                    </tr>
+                    <tr>
+                        <td>Key Feature</td>
+                        <td>Advanced analytics</td>
+                        <td>Ease of use</td>
+                        <td>Personalization</td>
+                    </tr>
+                    <tr>
+                        <td>Main Weakness</td>
+                        <td>Complex setup</td>
+                        <td>Limited features</td>
+                        <td>New to market</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Finding Your Competitive Advantage</h2>
+
+            <p>Your competitive advantage is what makes you different and better for your target customers. It can come from:</p>
+
+            <h3>1. Underserved Customer Segments</h3>
+            <p>Is there a group that existing solutions don't serve well?</p>
+            <p><em>Example: Most task management tools are built for teams. Maybe you focus on solo creators.</em></p>
+
+            <h3>2. Feature Gaps</h3>
+            <p>Is there functionality that customers want but competitors don't offer?</p>
+            <p><em>Example: Competitors don't have mobile apps, but your customers need mobile access.</em></p>
+
+            <h3>3. Experience/Interface</h3>
+            <p>Can you make something significantly easier or more delightful to use?</p>
+            <p><em>Example: Existing solutions are clunky; you make a beautiful, intuitive interface.</em></p>
+
+            <h3>4. Price Point</h3>
+            <p>Can you serve the market at a significantly different price?</p>
+            <p><em>Example: Enterprise solutions cost $500/mo; you offer 80% of the value for $50/mo.</em></p>
+
+            <h3>5. Distribution/Access</h3>
+            <p>Can you reach customers in ways competitors can't?</p>
+            <p><em>Example: You have unique access to a community or partnership.</em></p>
+
+            <h3>6. Speed/Technology</h3>
+            <p>Can you leverage new technology for a better solution?</p>
+            <p><em>Example: Use AI to automate what competitors do manually.</em></p>
+
+            <h2>Creating a Positioning Map</h2>
+
+            <p>A positioning map visually shows where competitors sit relative to each other on two key dimensions. This helps you find open space in the market.</p>
+
+            <div class="example-box">
+                <h4>Example: Positioning Map</h4>
+                <p>For a meal delivery service, you might map competitors on:</p>
+                <p><strong>X-axis:</strong> Price (Low → High)</p>
+                <p><strong>Y-axis:</strong> Health Focus (Convenience → Healthy)</p>
+                <p>&nbsp;</p>
+                <p>• McDonald's: Low price, convenience-focused (bottom-left)</p>
+                <p>• Sweetgreen: Higher price, health-focused (top-right)</p>
+                <p>• Chipotle: Medium price, somewhat healthy (middle)</p>
+                <p>&nbsp;</p>
+                <p><strong>The gap:</strong> Low-price, health-focused options (top-left) might be underserved!</p>
+            </div>
+
+            <p>Choose dimensions that matter to your customers and where you can differentiate.</p>
+
+            <h2>Competitive Strategy for Startups</h2>
+
+            <p>As a startup, you can't compete head-on with established players. Instead:</p>
+
+            <ol>
+                <li><strong>Start narrow:</strong> Be the best solution for a specific niche before expanding</li>
+                <li><strong>Move fast:</strong> Ship features and improvements quickly while competitors are slow</li>
+                <li><strong>Focus on unmet needs:</strong> Solve problems competitors are ignoring</li>
+                <li><strong>Build relationships:</strong> Give customers personal attention big companies can't</li>
+                <li><strong>Tell a different story:</strong> Position yourself in a new category if possible</li>
+            </ol>
+
+            <div class="quote-box">
+                <blockquote>If you define the market as the sum of all your competitors' customers, you've lost already. Find the customers they're not serving.</blockquote>
+                <cite>— Ben Horowitz</cite>
+            </div>
+
+            <div class="activity-box">
+                <h4>📝 Activity: Competitor Research</h4>
+                <p>List your competitors and analyze them:</p>
+                <textarea placeholder="DIRECT COMPETITORS:&#10;1. Name:&#10;   What they do:&#10;   Strengths:&#10;   Weaknesses:&#10;   Price:&#10;&#10;2. Name:&#10;   What they do:&#10;   Strengths:&#10;   Weaknesses:&#10;   Price:&#10;&#10;INDIRECT COMPETITORS:&#10;1.&#10;2.&#10;&#10;WHAT ARE CUSTOMERS USING TODAY?"></textarea>
+            </div>
+
+            <div class="activity-box">
+                <h4>📝 Activity: Find Your Competitive Advantage</h4>
+                <p>Based on your competitor research, identify where you can win:</p>
+                <textarea placeholder="Underserved customer segment I can focus on:&#10;&#10;Feature gap I can fill:&#10;&#10;Experience improvement I can make:&#10;&#10;Price positioning:&#10;&#10;Unique access or distribution I have:&#10;&#10;My main competitive advantage in one sentence:"></textarea>
+            </div>
+
+            <div class="activity-box">
+                <h4>📝 Activity: Create a Positioning Map</h4>
+                <p>Create a simple positioning map for your market:</p>
+                <textarea placeholder="Dimension 1 (X-axis): ________________&#10;Dimension 2 (Y-axis): ________________&#10;&#10;Where does Competitor A sit?&#10;Where does Competitor B sit?&#10;Where does Competitor C sit?&#10;&#10;Where will YOU sit?&#10;&#10;What gap in the market does this reveal?"></textarea>
+            </div>
+
+            <div class="takeaways-box">
+                <h4>🎯 Key Takeaways</h4>
+                <ul>
+                    <li>Competition validates market demand—embrace it, don't fear it</li>
+                    <li>Consider direct, indirect, and substitute competitors</li>
+                    <li>Analyze competitors' products, business models, and positioning</li>
+                    <li>Find your competitive advantage: underserved segments, feature gaps, or better experience</li>
+                    <li>Use positioning maps to visualize market gaps</li>
+                    <li>As a startup, compete by being focused, fast, and personal</li>
+                </ul>
+            </div>
+
+            <p style="text-align: center; margin-top: 40px; padding: 24px; background: var(--bg-accent); border-radius: 12px;">
+                <strong>🎉 Congratulations!</strong> You've completed Phase 2: Solution Design.<br>
+                In Phase 3, you'll learn how to build your Minimum Viable Product.
+            </p>
+        </div>
+
+        <nav class="lesson-nav">
+            <a href="2-3-business-model.html" class="lesson-nav-btn prev">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m0 0l7 7m-7-7l7-7"></path></svg>
+                Previous: Business Model
+            </a>
+            <a href="3-1-mvp.html" class="lesson-nav-btn next">
+                Next: What is an MVP?
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
+            </a>
+        </nav>
+    </main>
+
+    <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1.1: The Entrepreneurial Mindset - Genesis</title>
+    <link rel="stylesheet" href="../styles.css?v=1002">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .lesson-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 120px 24px 80px;
+        }
+        
+        .lesson-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--text-tertiary);
+            margin-bottom: 24px;
+        }
+        
+        .lesson-breadcrumb a {
+            color: var(--origin-blue-light);
+            text-decoration: none;
+        }
+        
+        .lesson-breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .lesson-phase-tag {
+            display: inline-block;
+            background: var(--bg-accent);
+            color: var(--origin-blue);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .lesson-title {
+            font-family: 'DM Sans', sans-serif;
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+        
+        .lesson-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: var(--text-tertiary);
+            font-size: 0.95rem;
+            margin-bottom: 40px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-light);
+        }
+        
+        .lesson-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .lesson-content h2 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 48px 0 20px;
+        }
+        
+        .lesson-content h3 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 32px 0 16px;
+        }
+        
+        .lesson-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        
+        .lesson-content ul, .lesson-content ol {
+            margin: 20px 0;
+            padding-left: 24px;
+        }
+        
+        .lesson-content li {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+        
+        .key-concept {
+            background: var(--bg-accent);
+            border-left: 4px solid var(--origin-blue);
+            padding: 20px 24px;
+            border-radius: 0 12px 12px 0;
+            margin: 28px 0;
+        }
+        
+        .key-concept h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--origin-blue);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .key-concept p {
+            margin: 0;
+            color: var(--text-primary);
+        }
+        
+        .activity-box {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 1px solid #86efac;
+            border-radius: 16px;
+            padding: 28px;
+            margin: 32px 0;
+        }
+        
+        .activity-box h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #166534;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .activity-box p {
+            color: #15803d;
+            margin-bottom: 16px;
+        }
+        
+        .activity-box ol, .activity-box ul {
+            padding-left: 20px;
+        }
+        
+        .activity-box li {
+            color: #166534;
+            margin-bottom: 10px;
+        }
+        
+        .activity-box textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 16px;
+            border: 1px solid #86efac;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            resize: vertical;
+            margin-top: 12px;
+        }
+        
+        .activity-box textarea:focus {
+            outline: none;
+            border-color: #22c55e;
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+        }
+        
+        .quote-box {
+            background: var(--bg-tertiary);
+            border-radius: 16px;
+            padding: 28px;
+            margin: 28px 0;
+            position: relative;
+        }
+        
+        .quote-box::before {
+            content: '"';
+            font-family: Georgia, serif;
+            font-size: 4rem;
+            color: var(--origin-blue-light);
+            opacity: 0.3;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            line-height: 1;
+        }
+        
+        .quote-box blockquote {
+            font-size: 1.15rem;
+            font-style: italic;
+            color: var(--text-primary);
+            margin: 0 0 12px;
+            padding-left: 30px;
+        }
+        
+        .quote-box cite {
+            font-size: 0.95rem;
+            color: var(--text-tertiary);
+            padding-left: 30px;
+        }
+        
+        .takeaways-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 16px;
+            padding: 28px;
+            margin: 40px 0;
+        }
+        
+        .takeaways-box h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 16px;
+        }
+        
+        .takeaways-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .takeaways-box li {
+            color: #92400e;
+            padding-left: 28px;
+            position: relative;
+            margin-bottom: 12px;
+        }
+        
+        .takeaways-box li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #d97706;
+            font-weight: 700;
+        }
+        
+        .lesson-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 60px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-light);
+            gap: 16px;
+        }
+        
+        .lesson-nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        
+        .lesson-nav-btn.prev {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+        }
+        
+        .lesson-nav-btn.prev:hover {
+            background: var(--bg-secondary);
+        }
+        
+        .lesson-nav-btn.next {
+            background: var(--gradient-primary);
+            color: white;
+        }
+        
+        .lesson-nav-btn.next:hover {
+            transform: translateX(4px);
+        }
+        
+        @media (max-width: 768px) {
+            .lesson-container {
+                padding: 100px 16px 60px;
+            }
+            
+            .lesson-nav {
+                flex-direction: column;
+            }
+            
+            .lesson-nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html">
+                    <img src="../assets/originlogo.svg" alt="Project Origin" class="nav-logo-img">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../cohort1.html" class="nav-link">Cohort 1</a>
+                <a href="../mentors.html" class="nav-link">Mentors</a>
+                <a href="../contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <a href="../genesis.html" class="nav-button active">Genesis</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="lesson-container">
+        <nav class="lesson-breadcrumb">
+            <a href="../genesis.html">Genesis</a>
+            <span>→</span>
+            <a href="../genesis.html#lessons">Phase 1</a>
+            <span>→</span>
+            <span>Lesson 1.1</span>
+        </nav>
+
+        <div class="lesson-phase-tag">Phase 1: Problem Discovery</div>
+        <h1 class="lesson-title">The Entrepreneurial Mindset</h1>
+        
+        <div class="lesson-meta">
+            <div class="lesson-meta-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+                25 min read
+            </div>
+            <div class="lesson-meta-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+                Lesson 1 of 16
+            </div>
+        </div>
+
+        <div class="lesson-content">
+            <p>Before you can build a successful startup, you need to think differently. Entrepreneurship isn't just about having a good idea—it's about developing a mindset that allows you to see opportunities where others see obstacles, persist through failure, and create value in the world.</p>
+
+            <p>In this lesson, we'll explore what makes entrepreneurs tick and how you can start developing these mental habits today.</p>
+
+            <h2>What is the Entrepreneurial Mindset?</h2>
+            
+            <p>The entrepreneurial mindset is a set of beliefs, thought processes, and ways of viewing the world that drive entrepreneurial behavior. It's not something you're born with—it's something you can develop through practice and intentional effort.</p>
+
+            <div class="key-concept">
+                <h4>Key Concept</h4>
+                <p>An entrepreneur sees a problem and thinks "How can I solve this?" while most people see the same problem and think "Someone should fix this."</p>
+            </div>
+
+            <p>Here are the core components of the entrepreneurial mindset:</p>
+
+            <h3>1. Opportunity Recognition</h3>
+            <p>Entrepreneurs have trained their brains to spot opportunities everywhere. Every complaint you hear, every inefficient process you experience, every "I wish there was..." moment—these are all potential business ideas.</p>
+            
+            <p>Start paying attention to friction in your daily life. When something frustrates you, don't just move on. Ask yourself: "Could this be a business opportunity?"</p>
+
+            <h3>2. Bias Toward Action</h3>
+            <p>Most people spend too much time planning and not enough time doing. Entrepreneurs understand that you learn more from taking action than from endless analysis.</p>
+            
+            <p>This doesn't mean being reckless. It means being willing to test ideas quickly, gather real feedback, and iterate based on what you learn.</p>
+
+            <div class="quote-box">
+                <blockquote>The best way to predict the future is to create it.</blockquote>
+                <cite>— Peter Drucker</cite>
+            </div>
+
+            <h3>3. Comfort with Uncertainty</h3>
+            <p>Building a startup means operating in constant uncertainty. You won't have all the answers. You'll make decisions with incomplete information. And that's okay.</p>
+            
+            <p>The key is learning to be comfortable with "not knowing" while still moving forward. Successful entrepreneurs don't wait for certainty—they make smart bets and adjust as they learn.</p>
+
+            <h3>4. Resilience and Persistence</h3>
+            <p>Every successful entrepreneur has a long list of failures behind them. The difference isn't that they never fail—it's that they don't let failure stop them.</p>
+
+            <p>Rejection and setbacks are part of the journey. When you adopt an entrepreneurial mindset, you start seeing failures as learning experiences rather than endpoints.</p>
+
+            <h3>5. Growth Orientation</h3>
+            <p>Entrepreneurs believe that skills, intelligence, and abilities can be developed through effort and learning. This "growth mindset" (a term coined by psychologist Carol Dweck) is fundamental to entrepreneurial success.</p>
+
+            <p>When you believe you can improve, you're more likely to take on challenges, persist through difficulties, and ultimately succeed.</p>
+
+            <h2>Employee vs. Entrepreneur: The Mental Shift</h2>
+
+            <p>Many of us are trained from a young age to think like employees—follow instructions, minimize risk, and stay within defined boundaries. Entrepreneurship requires a different approach:</p>
+
+            <table style="width: 100%; border-collapse: collapse; margin: 24px 0;">
+                <thead>
+                    <tr style="background: var(--bg-tertiary);">
+                        <th style="padding: 16px; text-align: left; border-bottom: 2px solid var(--border-light);">Employee Mindset</th>
+                        <th style="padding: 16px; text-align: left; border-bottom: 2px solid var(--border-light);">Entrepreneur Mindset</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 14px; border-bottom: 1px solid var(--border-light);">Wait for instructions</td>
+                        <td style="padding: 14px; border-bottom: 1px solid var(--border-light);">Take initiative</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 14px; border-bottom: 1px solid var(--border-light);">Avoid risk</td>
+                        <td style="padding: 14px; border-bottom: 1px solid var(--border-light);">Take calculated risks</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 14px; border-bottom: 1px solid var(--border-light);">Focus on tasks</td>
+                        <td style="padding: 14px; border-bottom: 1px solid var(--border-light);">Focus on outcomes</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 14px; border-bottom: 1px solid var(--border-light);">Fear failure</td>
+                        <td style="padding: 14px; border-bottom: 1px solid var(--border-light);">Learn from failure</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 14px; border-bottom: 1px solid var(--border-light);">See problems</td>
+                        <td style="padding: 14px; border-bottom: 1px solid var(--border-light);">See opportunities</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 14px;">Trade time for money</td>
+                        <td style="padding: 14px;">Create value for money</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Your Immigrant Advantage</h2>
+
+            <p>As someone from an immigrant background, you already have many entrepreneurial qualities that others have to develop from scratch:</p>
+
+            <ul>
+                <li><strong>Resilience:</strong> You or your family navigated significant challenges to build a life in a new country. That resilience is exactly what entrepreneurship requires.</li>
+                <li><strong>Adaptability:</strong> Living between cultures teaches you to adapt quickly and see things from multiple perspectives.</li>
+                <li><strong>Unique Perspective:</strong> You see problems and opportunities that others miss because you experience the world differently.</li>
+                <li><strong>Hustle:</strong> Many immigrant families understand hard work and sacrifice—essential entrepreneurial traits.</li>
+                <li><strong>Global Thinking:</strong> You naturally think beyond borders, which is valuable in our connected world.</li>
+            </ul>
+
+            <div class="quote-box">
+                <blockquote>Immigrants are almost twice as likely to start a business as native-born Americans. Over 40% of Fortune 500 companies were founded by immigrants or their children.</blockquote>
+                <cite>— National Bureau of Economic Research</cite>
+            </div>
+
+            <h2>Developing Your Entrepreneurial Mindset</h2>
+
+            <p>The good news is that the entrepreneurial mindset can be developed. Here are practical ways to start:</p>
+
+            <ol>
+                <li><strong>Start a "Problem Journal":</strong> Every day, write down 3 problems you noticed. Don't try to solve them yet—just build the habit of noticing.</li>
+                <li><strong>Take Small Risks:</strong> Start with low-stakes experiments. Try a new route to school. Start a conversation with someone new. Build your comfort with uncertainty.</li>
+                <li><strong>Reframe Failures:</strong> When something goes wrong, ask "What can I learn from this?" instead of "Why did this happen to me?"</li>
+                <li><strong>Read About Entrepreneurs:</strong> Study how successful founders think. Their stories will inspire you and teach you patterns.</li>
+                <li><strong>Surround Yourself with Builders:</strong> Join communities of people who are creating things. Mindsets are contagious.</li>
+            </ol>
+
+            <div class="activity-box">
+                <h4>📝 Activity: Mindset Self-Assessment</h4>
+                <p>Reflect on your current mindset by answering these questions honestly. There are no right or wrong answers—this is just to understand where you're starting from.</p>
+                <ol>
+                    <li>When you encounter a problem, what's your first instinct? (Complain, accept it, try to solve it, or ignore it?)</li>
+                    <li>Think of a recent failure or rejection. How did you respond? What did you learn?</li>
+                    <li>On a scale of 1-10, how comfortable are you with uncertainty and not having all the answers?</li>
+                    <li>What's one thing from your background that could be an entrepreneurial advantage?</li>
+                </ol>
+                <textarea placeholder="Write your reflections here..."></textarea>
+            </div>
+
+            <div class="activity-box">
+                <h4>📝 Activity: Problem Spotting</h4>
+                <p>For the next 24 hours, actively look for problems around you. Write down at least 5 problems you notice—big or small. These could be in your school, home, community, or daily routines.</p>
+                <p>Remember: A problem is any situation where something could be better, easier, faster, or more enjoyable.</p>
+                <textarea placeholder="List 5 problems you noticed today:&#10;&#10;1. &#10;&#10;2. &#10;&#10;3. &#10;&#10;4. &#10;&#10;5. "></textarea>
+            </div>
+
+            <div class="takeaways-box">
+                <h4>🎯 Key Takeaways</h4>
+                <ul>
+                    <li>The entrepreneurial mindset is a learnable set of mental habits, not an innate trait</li>
+                    <li>Entrepreneurs see opportunities where others see problems</li>
+                    <li>Taking action and learning from failure is better than endless planning</li>
+                    <li>Your immigrant background gives you unique entrepreneurial advantages</li>
+                    <li>Start developing your mindset today through small, consistent practices</li>
+                </ul>
+            </div>
+        </div>
+
+        <nav class="lesson-nav">
+            <a href="../genesis.html" class="lesson-nav-btn prev">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m0 0l7 7m-7-7l7-7"></path></svg>
+                Back to Genesis
+            </a>
+            <a href="1-2-finding-problems.html" class="lesson-nav-btn next">
+                Next: Finding Problems
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
+            </a>
+        </nav>
+    </main>
+
+    <script src="../script.js"></script>
+</body>
+</html>

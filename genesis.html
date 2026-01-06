@@ -290,93 +290,49 @@
             transition: all 0.3s ease;
         }
         
-        .lesson-card.expanded .lesson-toggle {
-            transform: rotate(180deg);
-            background: var(--origin-blue);
-            color: white;
-        }
-        
-        .lesson-content {
-            display: none;
-            padding: 0 24px 24px;
-        }
-        
-        .lesson-card.expanded .lesson-content {
+        /* Clickable Lesson Links */
+        a.lesson-link {
+            text-decoration: none;
             display: block;
         }
         
-        .lesson-description {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 20px;
+        a.lesson-link .lesson-header {
+            cursor: pointer;
         }
         
-        .lesson-objectives {
+        .lesson-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
             background: white;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
+            border-radius: 8px;
+            color: var(--text-tertiary);
+            transition: all 0.3s ease;
         }
         
-        .lesson-objectives h4 {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        a.lesson-link:hover .lesson-arrow {
+            background: var(--origin-blue);
+            color: white;
+            transform: translateX(4px);
         }
         
-        .lesson-objectives ul {
-            list-style: none;
-            padding: 0;
+        .lesson-preview {
+            font-size: 0.95rem;
+            color: var(--text-tertiary);
+            line-height: 1.6;
+            padding: 0 24px 20px;
             margin: 0;
         }
         
-        .lesson-objectives li {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
+        a.lesson-link:hover {
+            border-color: var(--origin-blue-light);
+            box-shadow: var(--shadow-md);
         }
         
-        .lesson-objectives li:last-child {
-            margin-bottom: 0;
-        }
-        
-        .lesson-objectives li::before {
-            content: '✓';
-            color: var(--origin-blue-light);
-            font-weight: 600;
-            flex-shrink: 0;
-        }
-        
-        .lesson-resources {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .resource-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--bg-accent);
+        a.lesson-link:hover .lesson-title {
             color: var(--origin-blue);
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-        
-        .resource-tag:hover {
-            background: var(--origin-blue);
-            color: white;
         }
         
         /* Progress Overview */
@@ -608,8 +564,8 @@
                     </div>
                 </div>
                 <div class="lessons-grid">
-                    <div class="lesson-card">
-                        <div class="lesson-header" onclick="toggleLesson(this)">
+                    <a href="lessons/1-1-entrepreneurial-mindset.html" class="lesson-card lesson-link">
+                        <div class="lesson-header">
                             <div class="lesson-info">
                                 <div class="lesson-number">1.1</div>
                                 <div class="lesson-title">The Entrepreneurial Mindset</div>
@@ -619,32 +575,16 @@
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
                                     25 min
                                 </span>
-                                <div class="lesson-toggle">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg>
+                                <div class="lesson-arrow">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
                                 </div>
                             </div>
                         </div>
-                        <div class="lesson-content">
-                            <p class="lesson-description">Before you can build a startup, you need to think like an entrepreneur. This lesson covers the mindset shifts required to identify opportunities, embrace uncertainty, and persist through challenges.</p>
-                            <div class="lesson-objectives">
-                                <h4>What You'll Learn</h4>
-                                <ul>
-                                    <li>The difference between an employee mindset and entrepreneur mindset</li>
-                                    <li>How to embrace failure as a learning opportunity</li>
-                                    <li>The importance of curiosity and asking "why"</li>
-                                    <li>How successful immigrant entrepreneurs think differently</li>
-                                </ul>
-                            </div>
-                            <div class="lesson-resources">
-                                <a href="#" class="resource-tag">📄 Reading</a>
-                                <a href="#" class="resource-tag">🎬 Video</a>
-                                <a href="#" class="resource-tag">📝 Exercise</a>
-                            </div>
-                        </div>
-                    </div>
+                        <p class="lesson-preview">Learn the mindset shifts required to identify opportunities, embrace uncertainty, and persist through challenges.</p>
+                    </a>
                     
-                    <div class="lesson-card">
-                        <div class="lesson-header" onclick="toggleLesson(this)">
+                    <a href="lessons/1-2-finding-problems.html" class="lesson-card lesson-link">
+                        <div class="lesson-header">
                             <div class="lesson-info">
                                 <div class="lesson-number">1.2</div>
                                 <div class="lesson-title">Finding Problems in Your Community</div>
@@ -654,32 +594,16 @@
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
                                     30 min
                                 </span>
-                                <div class="lesson-toggle">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg>
+                                <div class="lesson-arrow">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
                                 </div>
                             </div>
                         </div>
-                        <div class="lesson-content">
-                            <p class="lesson-description">The best startup ideas come from problems you've experienced yourself. Learn how to systematically identify pain points in your community, school, or daily life that could become business opportunities.</p>
-                            <div class="lesson-objectives">
-                                <h4>What You'll Learn</h4>
-                                <ul>
-                                    <li>How to conduct problem interviews with potential customers</li>
-                                    <li>The "5 Whys" technique for getting to root causes</li>
-                                    <li>Recognizing problems that people will pay to solve</li>
-                                    <li>Your immigrant experience as a source of unique insights</li>
-                                </ul>
-                            </div>
-                            <div class="lesson-resources">
-                                <a href="#" class="resource-tag">📄 Reading</a>
-                                <a href="#" class="resource-tag">🎬 Video</a>
-                                <a href="#" class="resource-tag">🎯 Template</a>
-                            </div>
-                        </div>
-                    </div>
+                        <p class="lesson-preview">Systematically identify pain points in your community, school, or daily life that could become business opportunities.</p>
+                    </a>
                     
-                    <div class="lesson-card">
-                        <div class="lesson-header" onclick="toggleLesson(this)">
+                    <a href="lessons/1-3-validating-problems.html" class="lesson-card lesson-link">
+                        <div class="lesson-header">
                             <div class="lesson-info">
                                 <div class="lesson-number">1.3</div>
                                 <div class="lesson-title">Validating Your Problem</div>
@@ -689,32 +613,16 @@
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
                                     35 min
                                 </span>
-                                <div class="lesson-toggle">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg>
+                                <div class="lesson-arrow">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
                                 </div>
                             </div>
                         </div>
-                        <div class="lesson-content">
-                            <p class="lesson-description">Not every problem is worth solving. Learn how to validate that your problem is real, significant, and affects enough people to build a business around it.</p>
-                            <div class="lesson-objectives">
-                                <h4>What You'll Learn</h4>
-                                <ul>
-                                    <li>How to size your market opportunity</li>
-                                    <li>Conducting customer discovery interviews</li>
-                                    <li>Red flags that indicate a problem isn't worth pursuing</li>
-                                    <li>The difference between "nice to have" and "must have" problems</li>
-                                </ul>
-                            </div>
-                            <div class="lesson-resources">
-                                <a href="#" class="resource-tag">📄 Reading</a>
-                                <a href="#" class="resource-tag">🎬 Video</a>
-                                <a href="#" class="resource-tag">📝 Exercise</a>
-                            </div>
-                        </div>
-                    </div>
+                        <p class="lesson-preview">Learn how to validate that your problem is real, significant, and affects enough people to build a business around it.</p>
+                    </a>
                     
-                    <div class="lesson-card">
-                        <div class="lesson-header" onclick="toggleLesson(this)">
+                    <a href="lessons/1-4-understanding-customers.html" class="lesson-card lesson-link">
+                        <div class="lesson-header">
                             <div class="lesson-info">
                                 <div class="lesson-number">1.4</div>
                                 <div class="lesson-title">Understanding Your Customer</div>
@@ -724,29 +632,13 @@
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
                                     30 min
                                 </span>
-                                <div class="lesson-toggle">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg>
+                                <div class="lesson-arrow">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
                                 </div>
                             </div>
                         </div>
-                        <div class="lesson-content">
-                            <p class="lesson-description">Deep customer understanding is the foundation of every successful startup. Learn to create customer personas and understand the jobs your customers are trying to get done.</p>
-                            <div class="lesson-objectives">
-                                <h4>What You'll Learn</h4>
-                                <ul>
-                                    <li>Creating detailed customer personas</li>
-                                    <li>The Jobs-to-be-Done framework</li>
-                                    <li>Mapping the customer journey</li>
-                                    <li>Identifying customer segments and early adopters</li>
-                                </ul>
-                            </div>
-                            <div class="lesson-resources">
-                                <a href="#" class="resource-tag">📄 Reading</a>
-                                <a href="#" class="resource-tag">🎯 Template</a>
-                                <a href="#" class="resource-tag">📝 Exercise</a>
-                            </div>
-                        </div>
-                    </div>
+                        <p class="lesson-preview">Create customer personas and understand the jobs your customers are trying to get done.</p>
+                    </a>
                 </div>
             </div>
             
@@ -760,8 +652,8 @@
                     </div>
                 </div>
                 <div class="lessons-grid">
-                    <div class="lesson-card">
-                        <div class="lesson-header" onclick="toggleLesson(this)">
+                    <a href="lessons/2-1-ideation.html" class="lesson-card lesson-link">
+                        <div class="lesson-header">
                             <div class="lesson-info">
                                 <div class="lesson-number">2.1</div>
                                 <div class="lesson-title">Ideation & Brainstorming</div>
@@ -771,32 +663,16 @@
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
                                     30 min
                                 </span>
-                                <div class="lesson-toggle">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg>
+                                <div class="lesson-arrow">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
                                 </div>
                             </div>
                         </div>
-                        <div class="lesson-content">
-                            <p class="lesson-description">Learn proven techniques to generate creative solutions for the problems you've identified. Explore multiple approaches before committing to one direction.</p>
-                            <div class="lesson-objectives">
-                                <h4>What You'll Learn</h4>
-                                <ul>
-                                    <li>Structured brainstorming techniques</li>
-                                    <li>How to think outside the box with constraint-based ideation</li>
-                                    <li>Evaluating ideas based on feasibility and impact</li>
-                                    <li>When to pivot and when to persevere</li>
-                                </ul>
-                            </div>
-                            <div class="lesson-resources">
-                                <a href="#" class="resource-tag">📄 Reading</a>
-                                <a href="#" class="resource-tag">🎬 Video</a>
-                                <a href="#" class="resource-tag">📝 Exercise</a>
-                            </div>
-                        </div>
-                    </div>
+                        <p class="lesson-preview">Learn proven techniques to generate creative solutions and explore multiple approaches.</p>
+                    </a>
                     
-                    <div class="lesson-card">
-                        <div class="lesson-header" onclick="toggleLesson(this)">
+                    <a href="lessons/2-2-value-proposition.html" class="lesson-card lesson-link">
+                        <div class="lesson-header">
                             <div class="lesson-info">
                                 <div class="lesson-number">2.2</div>
                                 <div class="lesson-title">Crafting Your Value Proposition</div>
@@ -806,32 +682,16 @@
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
                                     35 min
                                 </span>
-                                <div class="lesson-toggle">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg>
+                                <div class="lesson-arrow">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
                                 </div>
                             </div>
                         </div>
-                        <div class="lesson-content">
-                            <p class="lesson-description">Your value proposition is the promise of value you'll deliver. Learn to articulate why customers should choose your solution over alternatives.</p>
-                            <div class="lesson-objectives">
-                                <h4>What You'll Learn</h4>
-                                <ul>
-                                    <li>The Value Proposition Canvas framework</li>
-                                    <li>Writing compelling value propositions</li>
-                                    <li>Differentiating from competitors</li>
-                                    <li>Testing your value proposition with real customers</li>
-                                </ul>
-                            </div>
-                            <div class="lesson-resources">
-                                <a href="#" class="resource-tag">📄 Reading</a>
-                                <a href="#" class="resource-tag">🎯 Template</a>
-                                <a href="#" class="resource-tag">🎬 Video</a>
-                            </div>
-                        </div>
-                    </div>
+                        <p class="lesson-preview">Articulate why customers should choose your solution over alternatives.</p>
+                    </a>
                     
-                    <div class="lesson-card">
-                        <div class="lesson-header" onclick="toggleLesson(this)">
+                    <a href="lessons/2-3-business-model.html" class="lesson-card lesson-link">
+                        <div class="lesson-header">
                             <div class="lesson-info">
                                 <div class="lesson-number">2.3</div>
                                 <div class="lesson-title">Business Model Basics</div>
@@ -841,32 +701,16 @@
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
                                     40 min
                                 </span>
-                                <div class="lesson-toggle">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg>
+                                <div class="lesson-arrow">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
                                 </div>
                             </div>
                         </div>
-                        <div class="lesson-content">
-                            <p class="lesson-description">A great product needs a great business model. Learn how startups make money and design a sustainable business model for your idea.</p>
-                            <div class="lesson-objectives">
-                                <h4>What You'll Learn</h4>
-                                <ul>
-                                    <li>Introduction to the Business Model Canvas</li>
-                                    <li>Common revenue models (subscription, marketplace, freemium, etc.)</li>
-                                    <li>Understanding unit economics and profitability</li>
-                                    <li>Choosing the right business model for your startup</li>
-                                </ul>
-                            </div>
-                            <div class="lesson-resources">
-                                <a href="#" class="resource-tag">📄 Reading</a>
-                                <a href="#" class="resource-tag">🎯 Template</a>
-                                <a href="#" class="resource-tag">📝 Exercise</a>
-                            </div>
-                        </div>
-                    </div>
+                        <p class="lesson-preview">Learn how startups make money and design a sustainable business model.</p>
+                    </a>
                     
-                    <div class="lesson-card">
-                        <div class="lesson-header" onclick="toggleLesson(this)">
+                    <a href="lessons/2-4-competitive-analysis.html" class="lesson-card lesson-link">
+                        <div class="lesson-header">
                             <div class="lesson-info">
                                 <div class="lesson-number">2.4</div>
                                 <div class="lesson-title">Competitive Analysis</div>
@@ -876,29 +720,13 @@
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
                                     35 min
                                 </span>
-                                <div class="lesson-toggle">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg>
+                                <div class="lesson-arrow">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
                                 </div>
                             </div>
                         </div>
-                        <div class="lesson-content">
-                            <p class="lesson-description">Know your competition. Learn how to research competitors, identify gaps in the market, and position your startup for success.</p>
-                            <div class="lesson-objectives">
-                                <h4>What You'll Learn</h4>
-                                <ul>
-                                    <li>How to identify direct and indirect competitors</li>
-                                    <li>Analyzing competitor strengths and weaknesses</li>
-                                    <li>Finding your competitive advantage</li>
-                                    <li>Creating a competitive positioning map</li>
-                                </ul>
-                            </div>
-                            <div class="lesson-resources">
-                                <a href="#" class="resource-tag">📄 Reading</a>
-                                <a href="#" class="resource-tag">🎯 Template</a>
-                                <a href="#" class="resource-tag">🎬 Video</a>
-                            </div>
-                        </div>
-                    </div>
+                        <p class="lesson-preview">Research competitors, identify market gaps, and position your startup for success.</p>
+                    </a>
                 </div>
             </div>
             
@@ -912,8 +740,8 @@
                     </div>
                 </div>
                 <div class="lessons-grid">
-                    <div class="lesson-card">
-                        <div class="lesson-header" onclick="toggleLesson(this)">
+                    <a href="lessons/3-1-mvp.html" class="lesson-card lesson-link">
+                        <div class="lesson-header">
                             <div class="lesson-info">
                                 <div class="lesson-number">3.1</div>
                                 <div class="lesson-title">What is an MVP?</div>
@@ -923,32 +751,16 @@
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
                                     30 min
                                 </span>
-                                <div class="lesson-toggle">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg>
+                                <div class="lesson-arrow">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
                                 </div>
                             </div>
                         </div>
-                        <div class="lesson-content">
-                            <p class="lesson-description">Understand the concept of Minimum Viable Product and why building less can help you learn more. Stop perfecting and start shipping.</p>
-                            <div class="lesson-objectives">
-                                <h4>What You'll Learn</h4>
-                                <ul>
-                                    <li>The lean startup methodology</li>
-                                    <li>Why "minimum" doesn't mean low quality</li>
-                                    <li>Examples of famous company MVPs</li>
-                                    <li>Defining the scope of your MVP</li>
-                                </ul>
-                            </div>
-                            <div class="lesson-resources">
-                                <a href="#" class="resource-tag">📄 Reading</a>
-                                <a href="#" class="resource-tag">🎬 Video</a>
-                                <a href="#" class="resource-tag">📝 Exercise</a>
-                            </div>
-                        </div>
-                    </div>
+                        <p class="lesson-preview">Understand why building less can help you learn more. Stop perfecting and start shipping.</p>
+                    </a>
                     
-                    <div class="lesson-card">
-                        <div class="lesson-header" onclick="toggleLesson(this)">
+                    <a href="lessons/3-2-no-code-tools.html" class="lesson-card lesson-link">
+                        <div class="lesson-header">
                             <div class="lesson-info">
                                 <div class="lesson-number">3.2</div>
                                 <div class="lesson-title">No-Code MVP Tools</div>
@@ -958,32 +770,16 @@
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
                                     45 min
                                 </span>
-                                <div class="lesson-toggle">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg>
+                                <div class="lesson-arrow">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
                                 </div>
                             </div>
                         </div>
-                        <div class="lesson-content">
-                            <p class="lesson-description">You don't need to code to build a startup. Learn about powerful no-code tools that let you build apps, websites, and automations without writing a single line of code.</p>
-                            <div class="lesson-objectives">
-                                <h4>What You'll Learn</h4>
-                                <ul>
-                                    <li>Overview of no-code platforms (Notion, Airtable, Webflow, Bubble)</li>
-                                    <li>Building landing pages that convert</li>
-                                    <li>Setting up forms and collecting customer data</li>
-                                    <li>Automation tools to save time (Zapier, Make)</li>
-                                </ul>
-                            </div>
-                            <div class="lesson-resources">
-                                <a href="#" class="resource-tag">📄 Reading</a>
-                                <a href="#" class="resource-tag">🎬 Video</a>
-                                <a href="#" class="resource-tag">🔗 Tools List</a>
-                            </div>
-                        </div>
-                    </div>
+                        <p class="lesson-preview">Build apps, websites, and automations without writing a single line of code.</p>
+                    </a>
                     
-                    <div class="lesson-card">
-                        <div class="lesson-header" onclick="toggleLesson(this)">
+                    <a href="lessons/3-3-testing.html" class="lesson-card lesson-link">
+                        <div class="lesson-header">
                             <div class="lesson-info">
                                 <div class="lesson-number">3.3</div>
                                 <div class="lesson-title">Testing & Iteration</div>
@@ -993,32 +789,16 @@
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
                                     35 min
                                 </span>
-                                <div class="lesson-toggle">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg>
+                                <div class="lesson-arrow">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
                                 </div>
                             </div>
                         </div>
-                        <div class="lesson-content">
-                            <p class="lesson-description">Build, measure, learn. Master the feedback loop that drives startup success. Learn how to test your assumptions and improve based on real data.</p>
-                            <div class="lesson-objectives">
-                                <h4>What You'll Learn</h4>
-                                <ul>
-                                    <li>Setting up experiments and tests</li>
-                                    <li>Key metrics to track for early-stage startups</li>
-                                    <li>How to collect and analyze user feedback</li>
-                                    <li>Making data-driven decisions</li>
-                                </ul>
-                            </div>
-                            <div class="lesson-resources">
-                                <a href="#" class="resource-tag">📄 Reading</a>
-                                <a href="#" class="resource-tag">🎬 Video</a>
-                                <a href="#" class="resource-tag">🎯 Template</a>
-                            </div>
-                        </div>
-                    </div>
+                        <p class="lesson-preview">Master the Build-Measure-Learn feedback loop that drives startup success.</p>
+                    </a>
                     
-                    <div class="lesson-card">
-                        <div class="lesson-header" onclick="toggleLesson(this)">
+                    <a href="lessons/3-4-first-users.html" class="lesson-card lesson-link">
+                        <div class="lesson-header">
                             <div class="lesson-info">
                                 <div class="lesson-number">3.4</div>
                                 <div class="lesson-title">Getting Your First Users</div>
@@ -1028,29 +808,13 @@
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
                                     40 min
                                 </span>
-                                <div class="lesson-toggle">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg>
+                                <div class="lesson-arrow">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
                                 </div>
                             </div>
                         </div>
-                        <div class="lesson-content">
-                            <p class="lesson-description">A startup without users is just an idea. Learn scrappy, low-cost strategies to acquire your first customers and start building traction.</p>
-                            <div class="lesson-objectives">
-                                <h4>What You'll Learn</h4>
-                                <ul>
-                                    <li>Finding and reaching early adopters</li>
-                                    <li>Growth hacking fundamentals</li>
-                                    <li>Building in public and community-led growth</li>
-                                    <li>Free marketing channels that work</li>
-                                </ul>
-                            </div>
-                            <div class="lesson-resources">
-                                <a href="#" class="resource-tag">📄 Reading</a>
-                                <a href="#" class="resource-tag">🎬 Video</a>
-                                <a href="#" class="resource-tag">📝 Exercise</a>
-                            </div>
-                        </div>
-                    </div>
+                        <p class="lesson-preview">Learn scrappy, low-cost strategies to acquire your first customers.</p>
+                    </a>
                 </div>
             </div>
             
@@ -1064,8 +828,8 @@
                     </div>
                 </div>
                 <div class="lessons-grid">
-                    <div class="lesson-card">
-                        <div class="lesson-header" onclick="toggleLesson(this)">
+                    <a href="lessons/4-1-storytelling.html" class="lesson-card lesson-link">
+                        <div class="lesson-header">
                             <div class="lesson-info">
                                 <div class="lesson-number">4.1</div>
                                 <div class="lesson-title">Storytelling for Startups</div>
@@ -1075,32 +839,16 @@
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
                                     30 min
                                 </span>
-                                <div class="lesson-toggle">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg>
+                                <div class="lesson-arrow">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
                                 </div>
                             </div>
                         </div>
-                        <div class="lesson-content">
-                            <p class="lesson-description">Great founders are great storytellers. Learn how to craft a compelling narrative that resonates with customers, investors, and partners.</p>
-                            <div class="lesson-objectives">
-                                <h4>What You'll Learn</h4>
-                                <ul>
-                                    <li>The elements of a great startup story</li>
-                                    <li>Using your personal journey as a founder</li>
-                                    <li>Making your story memorable and shareable</li>
-                                    <li>Storytelling frameworks used by top founders</li>
-                                </ul>
-                            </div>
-                            <div class="lesson-resources">
-                                <a href="#" class="resource-tag">📄 Reading</a>
-                                <a href="#" class="resource-tag">🎬 Video</a>
-                                <a href="#" class="resource-tag">📝 Exercise</a>
-                            </div>
-                        </div>
-                    </div>
+                        <p class="lesson-preview">Craft a compelling narrative that resonates with customers, investors, and partners.</p>
+                    </a>
                     
-                    <div class="lesson-card">
-                        <div class="lesson-header" onclick="toggleLesson(this)">
+                    <a href="lessons/4-2-pitch-deck.html" class="lesson-card lesson-link">
+                        <div class="lesson-header">
                             <div class="lesson-info">
                                 <div class="lesson-number">4.2</div>
                                 <div class="lesson-title">Building Your Pitch Deck</div>
@@ -1110,32 +858,16 @@
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
                                     45 min
                                 </span>
-                                <div class="lesson-toggle">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg>
+                                <div class="lesson-arrow">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
                                 </div>
                             </div>
                         </div>
-                        <div class="lesson-content">
-                            <p class="lesson-description">Create a pitch deck that gets attention. Learn the structure, design principles, and content that makes investors and partners say yes.</p>
-                            <div class="lesson-objectives">
-                                <h4>What You'll Learn</h4>
-                                <ul>
-                                    <li>The 10-slide pitch deck structure</li>
-                                    <li>What to include (and exclude) from each slide</li>
-                                    <li>Design tips for non-designers</li>
-                                    <li>Common pitch deck mistakes to avoid</li>
-                                </ul>
-                            </div>
-                            <div class="lesson-resources">
-                                <a href="#" class="resource-tag">📄 Reading</a>
-                                <a href="#" class="resource-tag">🎯 Template</a>
-                                <a href="#" class="resource-tag">🎬 Video</a>
-                            </div>
-                        </div>
-                    </div>
+                        <p class="lesson-preview">Learn the structure, design principles, and content that makes investors say yes.</p>
+                    </a>
                     
-                    <div class="lesson-card">
-                        <div class="lesson-header" onclick="toggleLesson(this)">
+                    <a href="lessons/4-3-presentation-skills.html" class="lesson-card lesson-link">
+                        <div class="lesson-header">
                             <div class="lesson-info">
                                 <div class="lesson-number">4.3</div>
                                 <div class="lesson-title">Presentation Skills</div>
@@ -1145,32 +877,16 @@
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
                                     35 min
                                 </span>
-                                <div class="lesson-toggle">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg>
+                                <div class="lesson-arrow">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
                                 </div>
                             </div>
                         </div>
-                        <div class="lesson-content">
-                            <p class="lesson-description">Your pitch is only as good as your delivery. Master the art of presenting with confidence, handling Q&A, and leaving a lasting impression.</p>
-                            <div class="lesson-objectives">
-                                <h4>What You'll Learn</h4>
-                                <ul>
-                                    <li>Body language and stage presence</li>
-                                    <li>Voice control and pacing</li>
-                                    <li>Handling tough questions gracefully</li>
-                                    <li>Practice techniques and getting feedback</li>
-                                </ul>
-                            </div>
-                            <div class="lesson-resources">
-                                <a href="#" class="resource-tag">📄 Reading</a>
-                                <a href="#" class="resource-tag">🎬 Video</a>
-                                <a href="#" class="resource-tag">📝 Exercise</a>
-                            </div>
-                        </div>
-                    </div>
+                        <p class="lesson-preview">Master presenting with confidence, handling Q&A, and leaving a lasting impression.</p>
+                    </a>
                     
-                    <div class="lesson-card">
-                        <div class="lesson-header" onclick="toggleLesson(this)">
+                    <a href="lessons/4-4-launch-strategy.html" class="lesson-card lesson-link">
+                        <div class="lesson-header">
                             <div class="lesson-info">
                                 <div class="lesson-number">4.4</div>
                                 <div class="lesson-title">Launch Strategy</div>
@@ -1180,29 +896,13 @@
                                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
                                     40 min
                                 </span>
-                                <div class="lesson-toggle">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg>
+                                <div class="lesson-arrow">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
                                 </div>
                             </div>
                         </div>
-                        <div class="lesson-content">
-                            <p class="lesson-description">Plan and execute a successful launch. Learn how to create buzz, leverage launch platforms, and turn launch day into ongoing momentum.</p>
-                            <div class="lesson-objectives">
-                                <h4>What You'll Learn</h4>
-                                <ul>
-                                    <li>Creating a launch timeline and checklist</li>
-                                    <li>Product Hunt and other launch platforms</li>
-                                    <li>Leveraging social media for launch</li>
-                                    <li>Post-launch: maintaining momentum and next steps</li>
-                                </ul>
-                            </div>
-                            <div class="lesson-resources">
-                                <a href="#" class="resource-tag">📄 Reading</a>
-                                <a href="#" class="resource-tag">🎬 Video</a>
-                                <a href="#" class="resource-tag">🎯 Checklist</a>
-                            </div>
-                        </div>
-                    </div>
+                        <p class="lesson-preview">Plan and execute a successful launch that turns into ongoing momentum.</p>
+                    </a>
                 </div>
             </div>
             
@@ -1242,12 +942,5 @@
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        // Toggle lesson expansion
-        function toggleLesson(header) {
-            const card = header.closest('.lesson-card');
-            card.classList.toggle('expanded');
-        }
-    </script>
 </body>
 </html>
