@@ -362,6 +362,71 @@
             color: var(--origin-blue);
         }
         
+        /* Interactive badge for lessons */
+        .lesson-badges {
+            display: flex;
+            gap: 8px;
+            padding: 0 24px 16px;
+        }
+        
+        .lesson-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .lesson-badge.quiz {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+        
+        .lesson-badge.activity {
+            background: rgba(34, 197, 94, 0.1);
+            color: #22c55e;
+        }
+        
+        .lesson-badge.scenario {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+        }
+        
+        /* Feature highlight cards */
+        .features-highlight {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+        
+        .feature-card h4 {
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
         /* Progress Overview */
         .progress-overview {
             background: var(--gradient-dark);
@@ -503,10 +568,10 @@
                         <path d="M2 17l10 5 10-5"></path>
                         <path d="M2 12l10 5 10-5"></path>
                     </svg>
-                    Self-Paced Learning
+                    Interactive Learning
                 </div>
                 <h1>Genesis: Your Entrepreneurship Journey</h1>
-                <p>Master the fundamentals of building a startup through our comprehensive, self-paced curriculum. From finding problems worth solving to pitching your idea—learn everything you need to launch.</p>
+                <p>Learn by doing with interactive quizzes, real-world scenarios, and hands-on activities. From finding problems worth solving to pitching your idea—this is the future of business education.</p>
                 <a href="#lessons" class="btn-primary btn-large">
                     Start Learning
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -554,24 +619,46 @@
     <!-- Progress Overview -->
     <section class="progress-overview">
         <div class="container">
-            <h2>Comprehensive Curriculum</h2>
-            <p>Everything you need to go from zero to launch</p>
+            <h2>Learn By Doing</h2>
+            <p>Interactive lessons designed for real-world learning</p>
             <div class="progress-stats">
                 <div class="progress-stat">
                     <span class="progress-stat-number">16</span>
                     <span class="progress-stat-label">Lessons</span>
                 </div>
                 <div class="progress-stat">
-                    <span class="progress-stat-number">10+</span>
-                    <span class="progress-stat-label">Hours of Content</span>
+                    <span class="progress-stat-number">50+</span>
+                    <span class="progress-stat-label">Activities</span>
                 </div>
                 <div class="progress-stat">
-                    <span class="progress-stat-number">4</span>
-                    <span class="progress-stat-label">Phases</span>
+                    <span class="progress-stat-number">30+</span>
+                    <span class="progress-stat-label">Quizzes</span>
                 </div>
                 <div class="progress-stat">
                     <span class="progress-stat-number">∞</span>
-                    <span class="progress-stat-label">Access</span>
+                    <span class="progress-stat-label">Model Answers</span>
+                </div>
+            </div>
+            <div class="features-highlight">
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h4>Knowledge Checks</h4>
+                    <p>Instant-feedback quizzes to test understanding</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h4>Real Scenarios</h4>
+                    <p>Make decisions in realistic business situations</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h4>Hands-On Activities</h4>
+                    <p>Apply concepts with guided exercises</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h4>Model Responses</h4>
+                    <p>Compare your work to expert examples</p>
                 </div>
             </div>
         </div>
@@ -608,6 +695,11 @@
                             </div>
                         </div>
                         <p class="lesson-preview">Learn the mindset shifts required to identify opportunities, embrace uncertainty, and persist through challenges.</p>
+                        <div class="lesson-badges">
+                            <span class="lesson-badge quiz">🧠 3 Quizzes</span>
+                            <span class="lesson-badge activity">📝 2 Activities</span>
+                            <span class="lesson-badge scenario">🎯 Scenario</span>
+                        </div>
                     </a>
                     
                     <a href="lessons/1-2-finding-problems.html" class="lesson-card lesson-link">
