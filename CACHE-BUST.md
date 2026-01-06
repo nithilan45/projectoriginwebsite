@@ -40,3 +40,6 @@ When making CSS changes, update the version in ALL HTML files:
 4. Look for `styles.css?v=200` - should show 200 status
 5. Click on it → Response tab → Should show purple/pink color scheme
 
+
+
+Cache bust: Tue Jan  6 11:01:14 CST 2026
