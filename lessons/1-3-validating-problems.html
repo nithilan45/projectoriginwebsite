@@ -6,6 +6,7 @@
     <title>Lesson 1.3: Validating Your Problem - Genesis</title>
     <link rel="stylesheet" href="../styles.css?v=1002">
     <link rel="stylesheet" href="interactive.css">
+    <link rel="stylesheet" href="simulations.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -246,6 +247,85 @@
                 </div>
             </div>
 
+            <!-- PATTERN RECOGNITION DRILL -->
+            <div class="pattern-drill">
+                <div class="pattern-header">
+                    <div class="pattern-title-section">
+                        <div class="pattern-icon">🔍</div>
+                        <h4 class="pattern-title">Pattern Recognition: Red Flags</h4>
+                    </div>
+                    <div class="pattern-score">
+                        <span class="score-label">Score:</span>
+                        <span class="score-value">0</span>
+                    </div>
+                </div>
+                
+                <div class="pattern-data">
+                    <div class="data-title">Interview Feedback Summary</div>
+                    <div class="metrics-display">
+                        <div class="metric-box">
+                            <div class="metric-box-value">12</div>
+                            <div class="metric-box-label">Interviews</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-box-value">9</div>
+                            <div class="metric-box-label">Said "sounds cool"</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-box-value">2</div>
+                            <div class="metric-box-label">Asked to pay now</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-box-value">0</div>
+                            <div class="metric-box-label">Using alternatives</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="pattern-question">Based on this data, what's the biggest red flag?</p>
+                
+                <div class="pattern-answers">
+                    <div class="pattern-answer" data-correct="false" data-explanation="'Sounds cool' is polite encouragement, not validation. It's actually a warning sign—real pain gets stronger reactions.">
+                        Only 9 out of 12 said "sounds cool" — need more positive feedback
+                    </div>
+                    <div class="pattern-answer" data-correct="true" data-explanation="Correct! If zero people are actively trying to solve this problem, it might not be painful enough. Real problems have people cobbling together workarounds. No alternatives = 'nice to have' territory.">
+                        Zero people are using alternatives — no one is trying to solve this
+                    </div>
+                    <div class="pattern-answer" data-correct="false" data-explanation="Only 12 interviews is fine for early validation. Quality matters more than quantity. You can learn a lot from 5-10 good interviews.">
+                        Only 12 interviews — need a bigger sample size
+                    </div>
+                    <div class="pattern-answer" data-correct="false" data-explanation="2 out of 12 willing to pay immediately is actually good signal! That's 16%—a strong conversion indicator. The bigger issue is no one currently solving the problem.">
+                        Only 2 offered to pay — not enough demand
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+            document.querySelectorAll('.pattern-drill .pattern-answer').forEach(answer => {
+                answer.addEventListener('click', function() {
+                    if (this.classList.contains('selected')) return;
+                    
+                    const drill = this.closest('.pattern-drill');
+                    drill.querySelectorAll('.pattern-answer').forEach(a => a.classList.add('disabled'));
+                    
+                    if (this.dataset.correct === 'true') {
+                        this.classList.add('correct');
+                        const scoreEl = drill.querySelector('.score-value');
+                        scoreEl.textContent = parseInt(scoreEl.textContent) + 10;
+                    } else {
+                        this.classList.add('incorrect');
+                        drill.querySelector('[data-correct="true"]').classList.add('correct');
+                    }
+                    
+                    // Show explanation
+                    const expl = document.createElement('div');
+                    expl.style.cssText = 'margin-top:16px;padding:16px;background:rgba(255,255,255,0.1);border-radius:10px;font-size:0.95rem;line-height:1.6;';
+                    expl.textContent = this.dataset.explanation;
+                    drill.querySelector('.pattern-answers').after(expl);
+                });
+            });
+            </script>
+
             <div class="takeaways-box">
                 <h4>🎯 Key Takeaways</h4>
                 <ul>
@@ -265,6 +345,7 @@
     </main>
 
     <script src="interactive.js"></script>
+    <script src="simulations.js"></script>
     <script src="../script.js"></script>
 </body>
 </html>

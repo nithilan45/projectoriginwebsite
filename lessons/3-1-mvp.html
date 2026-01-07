@@ -6,6 +6,7 @@
     <title>Lesson 3.1: Building Your MVP - Genesis</title>
     <link rel="stylesheet" href="../styles.css?v=1002">
     <link rel="stylesheet" href="interactive.css">
+    <link rel="stylesheet" href="simulations.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -113,6 +114,123 @@
                 <p><strong>Learn:</strong> Decide whether to pivot, persevere, or iterate</p>
             </div>
 
+            <!-- WHAT-IF COMPARISON: MVP vs Full Build -->
+            <div class="whatif-comparison">
+                <div class="whatif-header">
+                    <h3 class="whatif-title">⚡ What If: Two Paths</h3>
+                    <p class="whatif-subtitle">Same idea, different approaches. Watch how the timelines diverge.</p>
+                </div>
+                
+                <div class="whatif-toggle">
+                    <div class="toggle-container">
+                        <div class="toggle-option active" data-path="a">MVP Approach</div>
+                        <div class="toggle-option" data-path="b">Full Build First</div>
+                    </div>
+                </div>
+                
+                <div class="whatif-paths">
+                    <div class="whatif-path path-a active">
+                        <div class="path-header">
+                            <div class="path-icon">🚀</div>
+                            <div class="path-name">MVP Approach</div>
+                        </div>
+                        <div class="path-timeline">
+                            <div class="timeline-point">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-time">Week 1</div>
+                                    <div class="timeline-event">Launch Google Form + manual matching. 15 students sign up.</div>
+                                </div>
+                            </div>
+                            <div class="timeline-point">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-time">Week 3</div>
+                                    <div class="timeline-event">Discover students want career advice, not just mentorship. Pivot messaging.</div>
+                                </div>
+                            </div>
+                            <div class="timeline-point">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-time">Month 2</div>
+                                    <div class="timeline-event">100 users, clear product direction, ready to build real product.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="path-outcome">
+                            <div class="outcome-label">After 6 Months</div>
+                            <div class="outcome-metrics">
+                                <div class="outcome-metric">
+                                    <div class="metric-value" style="color: #22c55e;">500</div>
+                                    <div class="metric-label">Active Users</div>
+                                </div>
+                                <div class="outcome-metric">
+                                    <div class="metric-value" style="color: #22c55e;">$2K</div>
+                                    <div class="metric-label">Spent</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="whatif-path path-b">
+                        <div class="path-header">
+                            <div class="path-icon">🏗️</div>
+                            <div class="path-name">Full Build First</div>
+                        </div>
+                        <div class="path-timeline">
+                            <div class="timeline-point">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-time">Month 1-3</div>
+                                    <div class="timeline-event">Building features: AI matching, profiles, chat, scheduling...</div>
+                                </div>
+                            </div>
+                            <div class="timeline-point">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-time">Month 4</div>
+                                    <div class="timeline-event">Launch! 20 sign-ups. Discover users wanted something different.</div>
+                                </div>
+                            </div>
+                            <div class="timeline-point">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-time">Month 5-6</div>
+                                    <div class="timeline-event">Rebuilding features based on feedback. Back to square one.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="path-outcome">
+                            <div class="outcome-label">After 6 Months</div>
+                            <div class="outcome-metrics">
+                                <div class="outcome-metric">
+                                    <div class="metric-value" style="color: #ef4444;">50</div>
+                                    <div class="metric-label">Active Users</div>
+                                </div>
+                                <div class="outcome-metric">
+                                    <div class="metric-value" style="color: #ef4444;">$15K</div>
+                                    <div class="metric-label">Spent</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+            document.querySelectorAll('.whatif-comparison .toggle-option').forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    const container = toggle.closest('.whatif-comparison');
+                    container.querySelectorAll('.toggle-option').forEach(t => t.classList.remove('active'));
+                    toggle.classList.add('active');
+                    const path = toggle.dataset.path;
+                    container.querySelectorAll('.whatif-path').forEach(p => {
+                        p.classList.toggle('active', p.classList.contains('path-' + path));
+                    });
+                });
+            });
+            </script>
+
             <div class="matching-container" data-matches='{"wizard":"automated","concierge":"manual","landing":"interest"}'>
                 <div class="matching-header"><div class="matching-icon">🎯</div><h4 class="matching-title">Match the MVP Types</h4></div>
                 <p style="color: #155e75; margin-bottom: 20px;">Match each MVP type to its approach:</p>
@@ -143,6 +261,57 @@
                 <div class="scenario-outcome best" data-outcome-id="best"><p class="scenario-outcome-title">🌟 Perfect MVP Thinking!</p><p>A concierge MVP! Google Form + manual matching lets you validate: Do students sign up? Do mentors participate? Is the matching valuable? You learn in days, not months.</p></div>
                 <div class="scenario-outcome good" data-outcome-id="good"><p class="scenario-outcome-title">👍 Works, But Slower</p><p>Hiring a developer is expensive and slow. You might build the wrong thing. Test manually first to know WHAT to build.</p></div>
                 <div class="scenario-outcome learning" data-outcome-id="learning"><p class="scenario-outcome-title">💡 Don't Do This!</p><p>6 months to learn to code means 6 months of assumptions untested. You might build something nobody wants. Test the concept first, learn to code later.</p></div>
+            </div>
+
+            <!-- TIMED DECISION -->
+            <div class="timed-decision" data-time="45">
+                <div class="timed-header">
+                    <div class="timed-title-section">
+                        <div class="timed-icon">⏱️</div>
+                        <h4 class="timed-title">Timed Decision: Feature Crisis</h4>
+                    </div>
+                    <div class="timer-display">
+                        <span class="timer-icon">⏰</span>
+                        <span class="timer-value">45s</span>
+                    </div>
+                </div>
+                
+                <div class="timed-scenario">
+                    <div class="incomplete-info">
+                        <span>⚠️</span>
+                        <span>Incomplete information—just like real life</span>
+                    </div>
+                    <p class="timed-prompt">You're 2 days from MVP launch. Your co-founder says users in testing want a chat feature. Building it would delay launch by 2 weeks. You have limited runway. Some users said chat is "essential," others didn't mention it. What do you do?</p>
+                </div>
+                
+                <div class="timed-choices">
+                    <div class="timed-choice" data-correct="true" data-explanation="Launching without chat is the right MVP move. You'll learn whether chat is truly essential from REAL user behavior, not hypothetical feedback. If users drop off without it, you can add it. But you might find they don't actually need it.">
+                        <strong>A.</strong> Launch without chat. Add it later if users really need it.
+                    </div>
+                    <div class="timed-choice" data-correct="false" data-explanation="Delaying for a 'maybe' feature is a common trap. 2 weeks becomes 4. Feature requests from testing aren't always accurate—users say they want things they won't actually use.">
+                        <strong>B.</strong> Delay 2 weeks. Users said it's essential.
+                    </div>
+                    <div class="timed-choice" data-correct="false" data-explanation="Building a hack version might work, but it's still a delay and distraction. The core question is: do you need chat to test your hypothesis? Probably not.">
+                        <strong>C.</strong> Build a quick hack version of chat in 3 days.
+                    </div>
+                    <div class="timed-choice" data-correct="false" data-explanation="More research delays decisions. You have enough signal: 'some' users wanted it, 'some' didn't. Launch and let real data decide.">
+                        <strong>D.</strong> Do more user research to decide.
+                    </div>
+                </div>
+                
+                <div class="timed-result">
+                    <div class="result-header">
+                        <span class="result-icon"></span>
+                        <span class="result-title"></span>
+                    </div>
+                    <p class="result-explanation"></p>
+                </div>
+                
+                <div class="time-expired-overlay">
+                    <div class="expired-icon">⏰</div>
+                    <div class="expired-text">Time's Up!</div>
+                    <p class="expired-lesson">In startups, indecision IS a decision—usually the worst one. Perfect information never arrives. Decide anyway.</p>
+                </div>
             </div>
 
             <h2>What to Include in Your MVP</h2>
@@ -216,6 +385,7 @@
     </main>
 
     <script src="interactive.js"></script>
+    <script src="simulations.js"></script>
     <script src="../script.js"></script>
 </body>
 </html>

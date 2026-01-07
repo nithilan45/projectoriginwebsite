@@ -6,6 +6,7 @@
     <title>Lesson 2.3: Business Model - Genesis</title>
     <link rel="stylesheet" href="../styles.css?v=1002">
     <link rel="stylesheet" href="interactive.css">
+    <link rel="stylesheet" href="simulations.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -90,23 +91,126 @@
                 <div class="model-card"><h4>🔄 Transaction Fee</h4><p>Take % of each transaction</p><p class="example">Stripe, PayPal, Square</p></div>
             </div>
 
-            <div class="matching-container" data-matches='{"subscription":"recurring","freemium":"free","marketplace":"connect"}'>
-                <div class="matching-header"><div class="matching-icon">🎯</div><h4 class="matching-title">Match the Models</h4></div>
-                <p style="color: #155e75; margin-bottom: 20px;">Match each model to its core mechanic:</p>
-                <div class="matching-grid">
-                    <div class="matching-column matching-left">
-                        <div class="matching-item" data-id="subscription">Subscription</div>
-                        <div class="matching-item" data-id="freemium">Freemium</div>
-                        <div class="matching-item" data-id="marketplace">Marketplace</div>
-                    </div>
-                    <div class="matching-connector"><div class="matching-line"></div><div class="matching-line"></div><div class="matching-line"></div></div>
-                    <div class="matching-column matching-right">
-                        <div class="matching-item" data-id="connect">Connect buyers & sellers</div>
-                        <div class="matching-item" data-id="recurring">Recurring payments</div>
-                        <div class="matching-item" data-id="free">Free basic, paid premium</div>
+            <!-- PRICING SLIDER SIMULATION -->
+            <div class="slider-simulation" id="pricing-sim">
+                <div class="slider-simulation-header">
+                    <div class="slider-simulation-icon">📊</div>
+                    <div>
+                        <h4 class="slider-simulation-title">Pricing Simulator</h4>
+                        <p class="slider-simulation-subtitle">Adjust your price and watch how metrics react</p>
                     </div>
                 </div>
+                
+                <div class="slider-controls">
+                    <div class="slider-control">
+                        <div class="slider-label">
+                            <span class="slider-name">Monthly Price</span>
+                            <span class="slider-value" id="price-value">$15</span>
+                        </div>
+                        <input type="range" class="slider-input" id="price-slider" min="0" max="50" value="15">
+                    </div>
+                </div>
+                
+                <div class="slider-effects">
+                    <div class="effect-card" id="effect-signups">
+                        <div class="effect-icon">👥</div>
+                        <div class="effect-label">Monthly Signups</div>
+                        <div class="effect-value">850</div>
+                    </div>
+                    <div class="effect-card" id="effect-revenue">
+                        <div class="effect-icon">💰</div>
+                        <div class="effect-label">Monthly Revenue</div>
+                        <div class="effect-value">$12,750</div>
+                    </div>
+                    <div class="effect-card" id="effect-churn">
+                        <div class="effect-icon">📉</div>
+                        <div class="effect-label">Monthly Churn</div>
+                        <div class="effect-value">5%</div>
+                    </div>
+                    <div class="effect-card" id="effect-ltv">
+                        <div class="effect-icon">⏳</div>
+                        <div class="effect-label">Customer LTV</div>
+                        <div class="effect-value">$300</div>
+                    </div>
+                </div>
+                
+                <div class="slider-warning">
+                    <span class="slider-warning-icon">⚠️</span>
+                    <span class="slider-warning-text"></span>
+                </div>
             </div>
+            
+            <script>
+            (function() {
+                const priceSlider = document.getElementById('price-slider');
+                const priceValue = document.getElementById('price-value');
+                const effectSignups = document.getElementById('effect-signups');
+                const effectRevenue = document.getElementById('effect-revenue');
+                const effectChurn = document.getElementById('effect-churn');
+                const effectLtv = document.getElementById('effect-ltv');
+                const warning = document.querySelector('#pricing-sim .slider-warning');
+                
+                priceSlider.addEventListener('input', updatePricing);
+                
+                function updatePricing() {
+                    const price = parseInt(priceSlider.value);
+                    priceValue.textContent = price === 0 ? 'Free' : '$' + price;
+                    
+                    // Pricing model: higher price = fewer signups but better quality
+                    let signups, churn, revenue, ltv;
+                    
+                    if (price === 0) {
+                        signups = 5000;
+                        churn = 0;
+                        revenue = 0;
+                        ltv = 0;
+                    } else {
+                        // Signups decrease as price increases
+                        signups = Math.round(2000 * Math.exp(-0.03 * price));
+                        // Churn increases with price but committed users stay
+                        churn = Math.min(25, 3 + (price * 0.4));
+                        // Revenue = signups * price
+                        revenue = signups * price;
+                        // LTV = price / churn rate (in months)
+                        ltv = Math.round(price * (100 / churn));
+                    }
+                    
+                    // Update displays
+                    effectSignups.querySelector('.effect-value').textContent = signups.toLocaleString();
+                    effectRevenue.querySelector('.effect-value').textContent = '$' + revenue.toLocaleString();
+                    effectChurn.querySelector('.effect-value').textContent = churn.toFixed(1) + '%';
+                    effectLtv.querySelector('.effect-value').textContent = '$' + ltv.toLocaleString();
+                    
+                    // Update card states
+                    updateCardState(effectSignups, signups, 1000, 300);
+                    updateCardState(effectRevenue, revenue, 15000, 5000);
+                    updateCardState(effectChurn, -churn, -5, -15); // Inverted - lower is better
+                    updateCardState(effectLtv, ltv, 200, 50);
+                    
+                    // Warnings
+                    warning.classList.remove('show');
+                    if (price === 0) {
+                        warning.querySelector('.slider-warning-text').textContent = "Free = no revenue! You'll need another monetization strategy (ads, upsells, data).";
+                        warning.classList.add('show');
+                    } else if (price > 35) {
+                        warning.querySelector('.slider-warning-text').textContent = "At $" + price + "/mo, you're losing 85%+ of potential customers. Only works with massive value delivery.";
+                        warning.classList.add('show');
+                    } else if (revenue < 3000) {
+                        warning.querySelector('.slider-warning-text').textContent = "Revenue too low to sustain operations. You need more signups OR higher prices.";
+                        warning.classList.add('show');
+                    }
+                }
+                
+                function updateCardState(card, value, goodThreshold, badThreshold) {
+                    card.classList.remove('positive', 'negative', 'warning');
+                    if (value >= goodThreshold) card.classList.add('positive');
+                    else if (value <= badThreshold) card.classList.add('negative');
+                    else card.classList.add('warning');
+                }
+                
+                updatePricing();
+            })();
+            </script>
 
             <h2>Revenue Streams</h2>
             <p>How will you actually make money? Consider:</p>
@@ -226,6 +330,7 @@
     </main>
 
     <script src="interactive.js"></script>
+    <script src="simulations.js"></script>
     <script src="../script.js"></script>
 </body>
 </html>
