@@ -5,274 +5,179 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 3.3: Testing & Iteration - Genesis</title>
     <link rel="stylesheet" href="../styles.css?v=1002">
+    <link rel="stylesheet" href="interactive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="lesson-styles.css">
+    <style>
+        .lesson-container { max-width: 800px; margin: 0 auto; padding: 120px 24px 80px; }
+        .lesson-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-tertiary); margin-bottom: 24px; }
+        .lesson-breadcrumb a { color: var(--origin-blue-light); text-decoration: none; }
+        .lesson-phase-tag { display: inline-block; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); color: #d97706; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; margin-bottom: 16px; }
+        .lesson-title { font-family: 'DM Sans', sans-serif; font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; color: var(--text-primary); margin-bottom: 16px; line-height: 1.2; }
+        .lesson-meta { display: flex; align-items: center; gap: 20px; color: var(--text-tertiary); font-size: 0.95rem; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--border-light); flex-wrap: wrap; }
+        .lesson-content h2 { font-family: 'DM Sans', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin: 48px 0 20px; }
+        .lesson-content p { font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 20px; }
+        .lesson-content ul { margin: 20px 0; padding-left: 24px; }
+        .lesson-content li { font-size: 1.05rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 12px; }
+        .key-concept { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #d97706; padding: 20px 24px; border-radius: 0 12px 12px 0; margin: 28px 0; }
+        .key-concept h4 { font-size: 1rem; font-weight: 700; color: #d97706; margin-bottom: 8px; }
+        .key-concept p { margin: 0 0 8px; color: #92400e; }
+        .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 24px 0; }
+        .metric-card { background: white; border: 1px solid var(--border-light); border-radius: 12px; padding: 20px; }
+        .metric-card h4 { color: #d97706; margin-bottom: 8px; }
+        .metric-card p { color: var(--text-secondary); font-size: 0.95rem; margin: 0; }
+        .takeaways-box { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 16px; padding: 28px; margin: 40px 0; }
+        .takeaways-box h4 { font-size: 1.1rem; font-weight: 700; color: #92400e; margin-bottom: 16px; }
+        .takeaways-box ul { list-style: none; padding: 0; }
+        .takeaways-box li { color: #92400e; padding-left: 28px; position: relative; margin-bottom: 12px; }
+        .takeaways-box li::before { content: '✓'; position: absolute; left: 0; color: #d97706; font-weight: 700; }
+        .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--border-light); gap: 16px; flex-wrap: wrap; }
+        .lesson-nav-btn { display: flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 12px; font-weight: 600; text-decoration: none; }
+        .lesson-nav-btn.prev { background: var(--bg-tertiary); color: var(--text-secondary); }
+        .lesson-nav-btn.next { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; }
+    </style>
 </head>
-<body>
+<body data-lesson-id="3-3-testing">
+    <div class="points-display" id="points-display"><span class="points-icon">⭐</span><div><span class="points-value">0</span><span class="points-label">points</span></div></div>
+
     <nav class="nav">
         <div class="nav-container">
-            <div class="nav-logo">
-                <a href="../index.html">
-                    <img src="../assets/originlogo.svg" alt="Project Origin" class="nav-logo-img">
-                </a>
-            </div>
-            <div class="nav-links">
-                <a href="../index.html" class="nav-link">Home</a>
-                <a href="../cohort1.html" class="nav-link">Cohort 1</a>
-                <a href="../mentors.html" class="nav-link">Mentors</a>
-                <a href="../contact.html" class="nav-link">Contact</a>
-            </div>
-            <div class="nav-actions">
-                <a href="../genesis.html" class="nav-button active">Genesis</a>
-            </div>
+            <div class="nav-logo"><a href="../index.html"><img src="../assets/originlogo.svg" alt="Project Origin" class="nav-logo-img"></a></div>
+            <div class="nav-links"><a href="../index.html" class="nav-link">Home</a><a href="../cohort1.html" class="nav-link">Cohort 1</a><a href="../mentors.html" class="nav-link">Mentors</a><a href="../contact.html" class="nav-link">Contact</a></div>
+            <div class="nav-actions"><a href="../genesis.html" class="nav-button active">Genesis</a></div>
         </div>
     </nav>
 
     <main class="lesson-container">
-        <nav class="lesson-breadcrumb">
-            <a href="../genesis.html">Genesis</a>
-            <span>→</span>
-            <a href="../genesis.html#lessons">Phase 3</a>
-            <span>→</span>
-            <span>Lesson 3.3</span>
-        </nav>
+        <nav class="lesson-breadcrumb"><a href="../genesis.html">Genesis</a><span>→</span><span>Phase 3</span><span>→</span><span>Lesson 3.3</span></nav>
 
         <div class="lesson-phase-tag">Phase 3: Build Your MVP</div>
         <h1 class="lesson-title">Testing & Iteration</h1>
         
         <div class="lesson-meta">
-            <div class="lesson-meta-item">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
-                35 min read
-            </div>
-            <div class="lesson-meta-item">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
-                Lesson 11 of 16
-            </div>
+            <div class="lesson-meta-item">⏱️ 30 min</div>
+            <div class="lesson-meta-item">Lesson 11 of 16</div>
+            <div class="lesson-meta-item">🎯 2 Activities</div>
         </div>
 
         <div class="lesson-content">
-            <p>Building an MVP is just the beginning. The real value comes from testing it with real users, measuring what happens, and improving based on what you learn. In this lesson, you'll master the Build-Measure-Learn feedback loop.</p>
+            <p>Your MVP is live—now what? The real work begins: watching how users behave, collecting feedback, and rapidly iterating based on what you learn.</p>
 
-            <h2>The Build-Measure-Learn Loop</h2>
+            <div class="quiz-container" data-correct="C" data-explanation="Conversion rate measures the % of visitors who take action (sign up, purchase). It's one of the most important metrics because it shows if your value proposition resonates.">
+                <div class="quiz-header"><div class="quiz-icon">🧠</div><div><h4 class="quiz-title">Metrics Check</h4></div></div>
+                <p class="quiz-question">What metric measures how many visitors become customers?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-option="A"><span class="quiz-option-marker">A</span><span class="quiz-option-text">Bounce rate</span></div>
+                    <div class="quiz-option" data-option="B"><span class="quiz-option-marker">B</span><span class="quiz-option-text">Page views</span></div>
+                    <div class="quiz-option" data-option="C"><span class="quiz-option-marker">C</span><span class="quiz-option-text">Conversion rate</span></div>
+                    <div class="quiz-option" data-option="D"><span class="quiz-option-marker">D</span><span class="quiz-option-text">Session duration</span></div>
+                </div>
+                <button class="quiz-check-btn" disabled>Check Answer</button>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <h2>Key Metrics to Track</h2>
             
-            <p>This cycle is the heart of lean startup methodology:</p>
-
-            <ol>
-                <li><strong>Build:</strong> Create a small experiment (your MVP or a feature)</li>
-                <li><strong>Measure:</strong> Track what users actually do</li>
-                <li><strong>Learn:</strong> Analyze data and decide what to do next</li>
-            </ol>
+            <div class="metrics-grid">
+                <div class="metric-card"><h4>👀 Traffic</h4><p>How many people visit your page or product?</p></div>
+                <div class="metric-card"><h4>🎯 Conversion</h4><p>% who take the action you want (sign up, buy)</p></div>
+                <div class="metric-card"><h4>📊 Engagement</h4><p>Are users actually using your product?</p></div>
+                <div class="metric-card"><h4>🔄 Retention</h4><p>Do users come back?</p></div>
+                <div class="metric-card"><h4>😊 NPS</h4><p>Would they recommend you? (0-10 scale)</p></div>
+                <div class="metric-card"><h4>💬 Feedback</h4><p>What are users saying?</p></div>
+            </div>
 
             <div class="key-concept">
-                <h4>Key Concept</h4>
-                <p>The goal isn't to build—it's to learn. Every feature, every experiment should be designed to answer a specific question about your business.</p>
+                <h4>The "One Metric That Matters"</h4>
+                <p>Don't track everything—focus on one key metric that indicates if your core hypothesis is working. For an early MVP, this is usually:</p>
+                <p><strong>Are users completing the core action that delivers value?</strong></p>
             </div>
 
-            <h2>What to Measure</h2>
-
-            <p>With so many possible metrics, it's easy to get overwhelmed. Focus on what matters.</p>
-
-            <h3>Vanity Metrics vs. Actionable Metrics</h3>
-
-            <p><strong>Vanity Metrics</strong> look good but don't help you make decisions:</p>
+            <h2>Collecting Feedback</h2>
+            <p>Quantitative data (numbers) tells you WHAT is happening. Qualitative feedback (conversations) tells you WHY.</p>
             <ul>
-                <li>Total users (doesn't tell you if they're active)</li>
-                <li>Page views (doesn't tell you if they're engaged)</li>
-                <li>Social media followers (doesn't mean they'll buy)</li>
+                <li><strong>User interviews:</strong> 15-30 min calls with early users</li>
+                <li><strong>Surveys:</strong> Quick feedback forms (keep them short!)</li>
+                <li><strong>Session recordings:</strong> Watch how users actually use your product</li>
+                <li><strong>Support messages:</strong> Every complaint is a learning opportunity</li>
             </ul>
 
-            <p><strong>Actionable Metrics</strong> tell you what's working and what to change:</p>
-            <ul>
-                <li>Activation rate (% who complete key action)</li>
-                <li>Retention rate (% who come back)</li>
-                <li>Conversion rate (% who buy)</li>
-                <li>Revenue per user</li>
-            </ul>
-
-            <h3>The Pirate Metrics (AARRR)</h3>
-            <p>A useful framework for tracking the customer journey:</p>
-
-            <ul>
-                <li><strong>Acquisition:</strong> How do users find you?</li>
-                <li><strong>Activation:</strong> Do they have a good first experience?</li>
-                <li><strong>Retention:</strong> Do they come back?</li>
-                <li><strong>Revenue:</strong> Do they pay?</li>
-                <li><strong>Referral:</strong> Do they tell others?</li>
-            </ul>
-
-            <p>For early-stage startups, focus on Activation and Retention first. If people aren't getting value (activation) or coming back (retention), nothing else matters.</p>
-
-            <h3>The One Metric That Matters (OMTM)</h3>
-
-            <p>At any given time, pick ONE metric to focus on. This keeps you focused and prevents optimization chaos.</p>
-
-            <div class="example-box">
-                <h4>Example: Choosing Your OMTM</h4>
-                <p><strong>Stage: Pre-launch</strong> → Email signups (demand validation)</p>
-                <p><strong>Stage: Just launched</strong> → Activation rate (are people getting value?)</p>
-                <p><strong>Stage: Have users</strong> → Retention (are they coming back?)</p>
-                <p><strong>Stage: Retaining users</strong> → Revenue (will they pay?)</p>
+            <div class="scenario-container">
+                <div class="scenario-header"><div class="scenario-icon">📊</div><h4 class="scenario-title">Interpret the Data</h4></div>
+                <div class="scenario-story">Your mentor matching MVP has been live for 2 weeks. Results: 50 students signed up, 30 were matched with mentors, but only 8 actually had a meeting. Feedback: "I got matched but didn't know what to do next."</div>
+                <p class="scenario-question">What should you iterate on?</p>
+                <div class="scenario-choices">
+                    <div class="scenario-choice" data-outcome="learning"><span class="scenario-choice-marker">A</span><span class="scenario-choice-text">Get more sign-ups through better marketing</span></div>
+                    <div class="scenario-choice" data-outcome="good"><span class="scenario-choice-marker">B</span><span class="scenario-choice-text">Find better mentors who are more responsive</span></div>
+                    <div class="scenario-choice" data-outcome="best"><span class="scenario-choice-marker">C</span><span class="scenario-choice-text">Improve the post-match experience with clear next steps</span></div>
+                </div>
+                <div class="scenario-outcome best" data-outcome-id="best"><p class="scenario-outcome-title">🌟 Fix the Leak First!</p><p>The data shows a clear drop-off: 30 matches → 8 meetings. The feedback explains why: unclear next steps. Add a clear email with "Here's your mentor, here's how to book a call" before worrying about more sign-ups.</p></div>
+                <div class="scenario-outcome good" data-outcome-id="good"><p class="scenario-outcome-title">👍 Maybe, But...</p><p>The problem might not be mentor quality—students said they didn't know what to do next. Fix the process before blaming people.</p></div>
+                <div class="scenario-outcome learning" data-outcome-id="learning"><p class="scenario-outcome-title">💡 Wrong Focus</p><p>More sign-ups won't help if 70% drop off before the core value (meeting). Fix the funnel leak before pouring more water in.</p></div>
             </div>
 
-            <h2>Running Experiments</h2>
-
-            <p>Don't just guess—run structured experiments to learn.</p>
-
-            <h3>The Experiment Framework</h3>
-
-            <ol>
-                <li><strong>Hypothesis:</strong> "We believe [this change] will [cause this effect] for [these users]"</li>
-                <li><strong>Metric:</strong> What specific number will you measure?</li>
-                <li><strong>Target:</strong> What result would validate the hypothesis?</li>
-                <li><strong>Duration:</strong> How long will you run the experiment?</li>
-                <li><strong>Results:</strong> What actually happened?</li>
-                <li><strong>Learning:</strong> What does this tell you? What will you do next?</li>
-            </ol>
-
-            <div class="example-box">
-                <h4>Example: Experiment</h4>
-                <p><strong>Hypothesis:</strong> We believe adding a progress bar will increase course completion rate for new users.</p>
-                <p><strong>Metric:</strong> % of users who complete first module within 7 days</p>
-                <p><strong>Target:</strong> Increase from 20% to 35%</p>
-                <p><strong>Duration:</strong> 2 weeks, 100 new users</p>
-                <p><strong>Result:</strong> Completion increased to 41%</p>
-                <p><strong>Learning:</strong> Users respond well to visible progress. Keep the feature and test other motivational elements.</p>
-            </div>
-
-            <h2>Collecting User Feedback</h2>
-
-            <p>Data tells you what users do. Feedback tells you why.</p>
-
-            <h3>Ways to Collect Feedback</h3>
-
-            <ul>
-                <li><strong>User interviews:</strong> Deep conversations with individual users</li>
-                <li><strong>Surveys:</strong> Quick questions to many users</li>
-                <li><strong>Feedback forms:</strong> In-app ways to share thoughts</li>
-                <li><strong>Support requests:</strong> What are people asking for help with?</li>
-                <li><strong>Session recordings:</strong> Watch how users actually use your product (tools like Hotjar)</li>
-                <li><strong>Social listening:</strong> What are people saying about you online?</li>
-            </ul>
-
-            <h3>Good Feedback Questions</h3>
-
-            <ul>
-                <li>"What were you trying to accomplish?"</li>
-                <li>"What was confusing or frustrating?"</li>
-                <li>"What's one thing you'd change?"</li>
-                <li>"Would you be disappointed if this product no longer existed? Why?"</li>
-                <li>"How would you describe this product to a friend?"</li>
-            </ul>
-
-            <h3>The Sean Ellis Test</h3>
-            <p>Ask users: "How would you feel if you could no longer use [product]?"</p>
-            <ul>
-                <li>Very disappointed</li>
-                <li>Somewhat disappointed</li>
-                <li>Not disappointed</li>
-            </ul>
-
+            <h2>The Iteration Cycle</h2>
             <div class="key-concept">
-                <h4>Product-Market Fit Indicator</h4>
-                <p>If 40%+ of users say "very disappointed," you likely have product-market fit. Below 40%, you have more work to do.</p>
+                <h4>Weekly Iteration Loop</h4>
+                <p><strong>Monday:</strong> Review last week's metrics and feedback</p>
+                <p><strong>Tuesday-Thursday:</strong> Build/test one improvement</p>
+                <p><strong>Friday:</strong> Launch the improvement</p>
+                <p><strong>Weekend:</strong> Collect new data</p>
+                <p><strong>Repeat!</strong></p>
             </div>
 
-            <h2>Making Data-Driven Decisions</h2>
-
-            <p>Once you have data and feedback, you need to act on it.</p>
-
-            <h3>The Decision Framework</h3>
-
-            <p>For each insight, ask:</p>
-            <ol>
-                <li>Is this a pattern or an outlier? (Look for repeated signals)</li>
-                <li>Does this align with our core hypothesis?</li>
-                <li>What's the cost of acting vs. not acting?</li>
-                <li>What's the minimum we could do to test further?</li>
-            </ol>
-
-            <h3>When to Pivot vs. Persevere</h3>
-
-            <p><strong>Signals to persevere:</strong></p>
-            <ul>
-                <li>Users who try the product love it</li>
-                <li>Problems are in execution, not the core idea</li>
-                <li>Metrics are improving over time</li>
-                <li>Customers are asking for more features (not leaving)</li>
-            </ul>
-
-            <p><strong>Signals to pivot:</strong></p>
-            <ul>
-                <li>Users try it once and don't come back</li>
-                <li>Consistently hearing "this isn't quite what I need"</li>
-                <li>Can't get past a certain metric ceiling</li>
-                <li>Discovered a bigger/better problem to solve</li>
-            </ul>
-
-            <h2>Iteration in Practice</h2>
-
-            <p>Here's what a healthy iteration cycle looks like:</p>
-
-            <ol>
-                <li><strong>Weekly review:</strong> Look at your metrics. What changed? Why?</li>
-                <li><strong>Prioritize learning:</strong> What's the most important thing to learn next?</li>
-                <li><strong>Run small experiments:</strong> Test one thing at a time</li>
-                <li><strong>Talk to users regularly:</strong> At least 2-3 conversations per week</li>
-                <li><strong>Ship improvements weekly:</strong> Small, frequent updates beat big, rare launches</li>
-            </ol>
-
-            <div class="warning-box">
-                <h4>⚠️ Avoid Analysis Paralysis</h4>
-                <p>Don't wait for perfect data. Make decisions with the information you have, learn from the results, and adjust. Speed of learning beats quality of any single decision.</p>
+            <div class="fill-blank-container">
+                <div class="fill-blank-header"><div class="fill-blank-icon">✏️</div><h4 class="fill-blank-title">Pivot vs Persevere</h4></div>
+                <p class="fill-blank-sentence">
+                    If your core hypothesis is wrong, you should <input type="text" class="blank-input" data-answer="pivot" data-alternatives="change,adjust">.<br><br>
+                    If metrics are improving with each iteration, you should <input type="text" class="blank-input" data-answer="persevere" data-alternatives="continue,persist">.<br><br>
+                    Small changes based on feedback are called <input type="text" class="blank-input" data-answer="iterations" data-alternatives="improvements,tweaks">.
+                </p>
+                <button class="quiz-check-btn fill-blank-check-btn">Check Answers</button>
             </div>
 
-            <div class="activity-box">
-                <h4>📝 Activity: Define Your Metrics</h4>
-                <p>Identify the key metrics for your MVP:</p>
-                <textarea placeholder="My One Metric That Matters (OMTM) right now:&#10;&#10;Why this metric matters:&#10;&#10;Current value (or target if not yet launched):&#10;&#10;Goal value:&#10;&#10;How I'll measure it:&#10;&#10;Other metrics I'll track:&#10;1.&#10;2.&#10;3."></textarea>
-            </div>
-
-            <div class="activity-box">
-                <h4>📝 Activity: Design an Experiment</h4>
-                <p>Create your first experiment:</p>
-                <textarea placeholder="HYPOTHESIS:&#10;We believe [this change] will [cause this effect] for [these users].&#10;&#10;METRIC I'll measure:&#10;&#10;TARGET result that validates hypothesis:&#10;&#10;DURATION of experiment:&#10;&#10;SAMPLE SIZE needed:&#10;&#10;What I'll do if hypothesis is validated:&#10;&#10;What I'll do if hypothesis is not validated:"></textarea>
-            </div>
-
-            <div class="activity-box">
-                <h4>📝 Activity: User Feedback Plan</h4>
-                <p>Plan how you'll collect user feedback:</p>
-                <textarea placeholder="Methods I'll use to collect feedback:&#10;[ ] User interviews&#10;[ ] In-app surveys&#10;[ ] Feedback forms&#10;[ ] Support conversations&#10;[ ] Other:&#10;&#10;Questions I'll ask:&#10;1.&#10;2.&#10;3.&#10;&#10;How often I'll review feedback:&#10;&#10;How I'll organize and track insights:"></textarea>
+            <div class="interactive-activity" data-activity-id="3-3-metrics">
+                <div class="activity-header"><div class="activity-icon">📊</div><h4 class="activity-title">Define Your Success Metrics</h4><span class="activity-type">Planning</span></div>
+                <p class="activity-prompt">Define how you'll measure if your MVP is working:</p>
+                <textarea class="activity-input" placeholder="MY ONE METRIC THAT MATTERS:&#10;(The key action that shows the MVP is working)&#10;&#10;SUCCESS THRESHOLD:&#10;(What number would mean success? e.g., '10 users complete X')&#10;&#10;SECONDARY METRICS I'LL TRACK:&#10;1. &#10;2. &#10;3. &#10;&#10;HOW I'LL COLLECT FEEDBACK:&#10;&#10;HOW OFTEN I'LL CHECK METRICS:&#10;&#10;WHEN I'LL DECIDE TO PIVOT OR PERSEVERE:"></textarea>
+                <div class="activity-actions">
+                    <button class="activity-btn activity-btn-primary save-activity-btn"><span>💾</span> Save</button>
+                    <button class="activity-btn activity-btn-secondary show-model-btn"><span>💡</span> Show Model</button>
+                </div>
+                <div class="model-response">
+                    <div class="model-response-header"><span class="model-response-icon">✨</span><h5 class="model-response-title">Example Metrics Plan</h5></div>
+                    <div class="model-response-content">
+                        <p><strong>One Metric:</strong> # of mentor meetings completed</p>
+                        <p><strong>Success:</strong> 20 meetings in first month = validated. Less than 5 = major problem.</p>
+                        <p><strong>Secondary:</strong> 1) Sign-up rate 2) Match rate 3) User satisfaction (1-10)</p>
+                        <p><strong>Feedback:</strong> Short survey after first meeting + 3 user calls per week</p>
+                        <p><strong>Check:</strong> Review metrics every Sunday night</p>
+                        <p><strong>Decision:</strong> After 4 weeks, decide: if <5 meetings despite fixes → pivot. If 10+ → persevere and scale.</p>
+                    </div>
+                </div>
             </div>
 
             <div class="takeaways-box">
                 <h4>🎯 Key Takeaways</h4>
                 <ul>
-                    <li>The goal is to learn, not just to build</li>
-                    <li>Focus on actionable metrics, not vanity metrics</li>
-                    <li>Pick one metric that matters at a time</li>
-                    <li>Run structured experiments with clear hypotheses</li>
-                    <li>Combine quantitative data with qualitative feedback</li>
-                    <li>Iterate weekly—small, frequent improvements beat big launches</li>
+                    <li>Focus on "one metric that matters" for your core hypothesis</li>
+                    <li>Quantitative data shows WHAT, qualitative shows WHY</li>
+                    <li>Fix funnel leaks before adding more traffic</li>
+                    <li>Iterate weekly: review → build → launch → learn</li>
+                    <li>Know when to pivot (hypothesis wrong) vs persevere (improving)</li>
                 </ul>
             </div>
         </div>
 
         <nav class="lesson-nav">
-            <a href="3-2-no-code-tools.html" class="lesson-nav-btn prev">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m0 0l7 7m-7-7l7-7"></path></svg>
-                Previous: No-Code Tools
-            </a>
-            <a href="3-4-first-users.html" class="lesson-nav-btn next">
-                Next: Getting First Users
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
-            </a>
+            <a href="3-2-no-code-tools.html" class="lesson-nav-btn prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m0 0l7 7m-7-7l7-7"></path></svg>Previous: No-Code</a>
+            <a href="3-4-first-users.html" class="lesson-nav-btn next">Next: First Users<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg></a>
         </nav>
     </main>
 
+    <script src="interactive.js"></script>
     <script src="../script.js"></script>
 </body>
 </html>

@@ -5,264 +5,201 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 2.1: Ideation & Brainstorming - Genesis</title>
     <link rel="stylesheet" href="../styles.css?v=1002">
+    <link rel="stylesheet" href="interactive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="lesson-styles.css">
+    <style>
+        .lesson-container { max-width: 800px; margin: 0 auto; padding: 120px 24px 80px; }
+        .lesson-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-tertiary); margin-bottom: 24px; }
+        .lesson-breadcrumb a { color: var(--origin-blue-light); text-decoration: none; }
+        .lesson-phase-tag { display: inline-block; background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); color: #7c3aed; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; margin-bottom: 16px; }
+        .lesson-title { font-family: 'DM Sans', sans-serif; font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; color: var(--text-primary); margin-bottom: 16px; line-height: 1.2; }
+        .lesson-meta { display: flex; align-items: center; gap: 20px; color: var(--text-tertiary); font-size: 0.95rem; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--border-light); flex-wrap: wrap; }
+        .lesson-content h2 { font-family: 'DM Sans', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin: 48px 0 20px; }
+        .lesson-content h3 { font-family: 'DM Sans', sans-serif; font-size: 1.25rem; font-weight: 600; color: var(--text-primary); margin: 32px 0 16px; }
+        .lesson-content p { font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 20px; }
+        .lesson-content ul, .lesson-content ol { margin: 20px 0; padding-left: 24px; }
+        .lesson-content li { font-size: 1.05rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 12px; }
+        .key-concept { background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); border-left: 4px solid #7c3aed; padding: 20px 24px; border-radius: 0 12px 12px 0; margin: 28px 0; }
+        .key-concept h4 { font-size: 1rem; font-weight: 700; color: #7c3aed; margin-bottom: 8px; }
+        .key-concept p { margin: 0; color: var(--text-primary); }
+        .takeaways-box { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 16px; padding: 28px; margin: 40px 0; }
+        .takeaways-box h4 { font-size: 1.1rem; font-weight: 700; color: #92400e; margin-bottom: 16px; }
+        .takeaways-box ul { list-style: none; padding: 0; }
+        .takeaways-box li { color: #92400e; padding-left: 28px; position: relative; margin-bottom: 12px; }
+        .takeaways-box li::before { content: '✓'; position: absolute; left: 0; color: #d97706; font-weight: 700; }
+        .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--border-light); gap: 16px; flex-wrap: wrap; }
+        .lesson-nav-btn { display: flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 12px; font-weight: 600; text-decoration: none; }
+        .lesson-nav-btn.prev { background: var(--bg-tertiary); color: var(--text-secondary); }
+        .lesson-nav-btn.next { background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%); color: white; }
+        .scamper-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 24px 0; }
+        .scamper-card { background: white; border: 1px solid var(--border-light); border-radius: 12px; padding: 20px; }
+        .scamper-card h4 { color: #7c3aed; margin-bottom: 8px; font-size: 1.1rem; }
+        .scamper-card p { color: var(--text-secondary); font-size: 0.95rem; margin: 0; }
+    </style>
 </head>
-<body>
+<body data-lesson-id="2-1-ideation">
+    <div class="points-display" id="points-display"><span class="points-icon">⭐</span><div><span class="points-value">0</span><span class="points-label">points</span></div></div>
+
     <nav class="nav">
         <div class="nav-container">
-            <div class="nav-logo">
-                <a href="../index.html">
-                    <img src="../assets/originlogo.svg" alt="Project Origin" class="nav-logo-img">
-                </a>
-            </div>
-            <div class="nav-links">
-                <a href="../index.html" class="nav-link">Home</a>
-                <a href="../cohort1.html" class="nav-link">Cohort 1</a>
-                <a href="../mentors.html" class="nav-link">Mentors</a>
-                <a href="../contact.html" class="nav-link">Contact</a>
-            </div>
-            <div class="nav-actions">
-                <a href="../genesis.html" class="nav-button active">Genesis</a>
-            </div>
+            <div class="nav-logo"><a href="../index.html"><img src="../assets/originlogo.svg" alt="Project Origin" class="nav-logo-img"></a></div>
+            <div class="nav-links"><a href="../index.html" class="nav-link">Home</a><a href="../cohort1.html" class="nav-link">Cohort 1</a><a href="../mentors.html" class="nav-link">Mentors</a><a href="../contact.html" class="nav-link">Contact</a></div>
+            <div class="nav-actions"><a href="../genesis.html" class="nav-button active">Genesis</a></div>
         </div>
     </nav>
 
     <main class="lesson-container">
-        <nav class="lesson-breadcrumb">
-            <a href="../genesis.html">Genesis</a>
-            <span>→</span>
-            <a href="../genesis.html#lessons">Phase 2</a>
-            <span>→</span>
-            <span>Lesson 2.1</span>
-        </nav>
+        <nav class="lesson-breadcrumb"><a href="../genesis.html">Genesis</a><span>→</span><a href="../genesis.html#lessons">Phase 2</a><span>→</span><span>Lesson 2.1</span></nav>
 
         <div class="lesson-phase-tag">Phase 2: Solution Design</div>
         <h1 class="lesson-title">Ideation & Brainstorming</h1>
         
         <div class="lesson-meta">
-            <div class="lesson-meta-item">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
-                30 min read
-            </div>
-            <div class="lesson-meta-item">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
-                Lesson 5 of 16
-            </div>
+            <div class="lesson-meta-item">⏱️ 30 min</div>
+            <div class="lesson-meta-item">Lesson 5 of 16</div>
+            <div class="lesson-meta-item">🎯 3 Activities</div>
         </div>
 
         <div class="lesson-content">
-            <p>You've identified and validated a problem worth solving. Now comes the fun part: generating ideas for how to solve it. In this lesson, you'll learn proven techniques to generate creative solutions and evaluate which ones are worth pursuing.</p>
+            <p>You've validated a problem worth solving. Now it's time to generate solutions! Great ideation is about quantity first, then quality. In this lesson, you'll learn proven techniques to generate creative solutions.</p>
 
-            <h2>The Ideation Mindset</h2>
-            
-            <p>Before diving into techniques, let's establish the right mindset for ideation:</p>
+            <div class="quiz-container" data-correct="B" data-explanation="In brainstorming, quantity beats quality initially. By generating many ideas without judgment, you often discover unexpected connections. Evaluation comes AFTER generation.">
+                <div class="quiz-header"><div class="quiz-icon">🧠</div><div><h4 class="quiz-title">Brainstorming Rules</h4></div></div>
+                <p class="quiz-question">What's the main rule of brainstorming?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-option="A"><span class="quiz-option-marker">A</span><span class="quiz-option-text">Only share your best ideas</span></div>
+                    <div class="quiz-option" data-option="B"><span class="quiz-option-marker">B</span><span class="quiz-option-text">Generate many ideas without judging them first</span></div>
+                    <div class="quiz-option" data-option="C"><span class="quiz-option-marker">C</span><span class="quiz-option-text">Criticize bad ideas quickly to save time</span></div>
+                    <div class="quiz-option" data-option="D"><span class="quiz-option-marker">D</span><span class="quiz-option-text">Copy competitors' solutions</span></div>
+                </div>
+                <button class="quiz-check-btn" disabled>Check Answer</button>
+                <div class="quiz-feedback"></div>
+            </div>
 
+            <h2>The SCAMPER Technique</h2>
+            <p>SCAMPER is a creativity checklist that helps you modify existing ideas:</p>
+
+            <div class="scamper-grid">
+                <div class="scamper-card"><h4>S - Substitute</h4><p>What can you replace? Different materials, people, processes?</p></div>
+                <div class="scamper-card"><h4>C - Combine</h4><p>What can you merge? Combine features, ideas, or purposes?</p></div>
+                <div class="scamper-card"><h4>A - Adapt</h4><p>What can you borrow from elsewhere? Other industries, contexts?</p></div>
+                <div class="scamper-card"><h4>M - Modify</h4><p>What can you change? Make bigger, smaller, faster, different?</p></div>
+                <div class="scamper-card"><h4>P - Put to Other Uses</h4><p>How else can it be used? Different audiences, contexts?</p></div>
+                <div class="scamper-card"><h4>E - Eliminate</h4><p>What can you remove? Simplify, streamline?</p></div>
+                <div class="scamper-card"><h4>R - Reverse/Rearrange</h4><p>What if you flip it? Change order, do the opposite?</p></div>
+            </div>
+
+            <div class="fill-blank-container">
+                <div class="fill-blank-header"><div class="fill-blank-icon">✏️</div><h4 class="fill-blank-title">SCAMPER Memory Check</h4></div>
+                <p class="fill-blank-sentence">
+                    S = <input type="text" class="blank-input" data-answer="Substitute">, C = <input type="text" class="blank-input" data-answer="Combine">, A = <input type="text" class="blank-input" data-answer="Adapt">, M = <input type="text" class="blank-input" data-answer="Modify">
+                </p>
+                <button class="quiz-check-btn fill-blank-check-btn">Check Answers</button>
+            </div>
+
+            <h2>Diverge, Then Converge</h2>
             <div class="key-concept">
-                <h4>Key Rule</h4>
-                <p>Separate idea generation from idea evaluation. First, generate as many ideas as possible without judgment. Then, evaluate them. Mixing these two phases kills creativity.</p>
+                <h4>The Double Diamond</h4>
+                <p><strong>Phase 1 - Diverge:</strong> Generate as many ideas as possible. No criticism allowed. Wild ideas welcome.</p>
+                <p><strong>Phase 2 - Converge:</strong> Evaluate, filter, and select the most promising ideas to develop further.</p>
             </div>
 
-            <p>During brainstorming:</p>
-            <ul>
-                <li><strong>Quantity over quality:</strong> More ideas = better chance of finding great ones</li>
-                <li><strong>No criticism:</strong> "That won't work" is banned. Every idea is valid.</li>
-                <li><strong>Wild ideas welcome:</strong> Crazy ideas often lead to practical breakthroughs</li>
-                <li><strong>Build on others:</strong> "Yes, and..." instead of "No, but..."</li>
-            </ul>
-
-            <h2>Brainstorming Techniques</h2>
-
-            <h3>1. The "How Might We" Method</h3>
-            <p>Reframe your problem as a "How Might We" (HMW) question. This opens up possibility instead of focusing on constraints.</p>
-
-            <div class="example-box">
-                <h4>Example: Reframing as HMW</h4>
-                <p><strong>Problem:</strong> First-generation college students don't have access to application advice from people who've been through it recently.</p>
-                <p><strong>HMW questions:</strong></p>
-                <ul style="margin: 10px 0 0 20px;">
-                    <li>How might we connect students with recent graduates?</li>
-                    <li>How might we make expert advice more accessible?</li>
-                    <li>How might we capture and share knowledge that exists but isn't documented?</li>
-                    <li>How might we make the application process less overwhelming?</li>
-                </ul>
+            <div class="scenario-container">
+                <div class="scenario-header"><div class="scenario-icon">💡</div><h4 class="scenario-title">Ideation Scenario</h4></div>
+                <div class="scenario-story">Your team is brainstorming solutions for helping first-gen students find internships. Someone says: "What if we had AI read their resume and automatically apply to 1000 jobs?"</div>
+                <p class="scenario-question">What's the best response during the DIVERGE phase?</p>
+                <div class="scenario-choices">
+                    <div class="scenario-choice" data-outcome="learning"><span class="scenario-choice-marker">A</span><span class="scenario-choice-text">"That's not technically feasible, let's move on."</span></div>
+                    <div class="scenario-choice" data-outcome="best"><span class="scenario-choice-marker">B</span><span class="scenario-choice-text">"Interesting! What if it also customized each application? What else?"</span></div>
+                    <div class="scenario-choice" data-outcome="good"><span class="scenario-choice-marker">C</span><span class="scenario-choice-text">"Let me write that down. Can we discuss the feasibility?"</span></div>
+                </div>
+                <div class="scenario-outcome best" data-outcome-id="best"><p class="scenario-outcome-title">🌟 Perfect Brainstorming!</p><p>In diverge mode, you build on ideas rather than judging them. "Yes, and..." keeps momentum. Even unrealistic ideas can spark realistic ones.</p></div>
+                <div class="scenario-outcome good" data-outcome-id="good"><p class="scenario-outcome-title">👍 Getting There</p><p>Good to capture the idea, but discussing feasibility should wait for the converge phase. Keep the creative energy flowing first!</p></div>
+                <div class="scenario-outcome learning" data-outcome-id="learning"><p class="scenario-outcome-title">⚠️ Brainstorm Killer</p><p>Criticizing ideas during diverge phase shuts down creativity. Even "bad" ideas can lead to great ones. Save judgment for later.</p></div>
             </div>
 
-            <h3>2. The 10x Brainstorm</h3>
-            <p>Force yourself to generate at least 10 different solutions. The first few will be obvious. By #7-10, you'll start thinking more creatively.</p>
-
-            <p>If you're stuck, try these prompts:</p>
+            <h2>How to Evaluate Ideas</h2>
+            <p>Once you have many ideas, evaluate them using these criteria:</p>
             <ul>
-                <li>What if it was a service instead of a product? (or vice versa)</li>
-                <li>What if it was free? How would we make money differently?</li>
-                <li>What if we only served 100 people really well?</li>
-                <li>What would the opposite solution look like?</li>
-                <li>What would [successful company] do?</li>
+                <li><strong>Impact:</strong> How much does this solve the problem?</li>
+                <li><strong>Feasibility:</strong> Can you actually build this?</li>
+                <li><strong>Differentiation:</strong> Is this meaningfully different from existing solutions?</li>
+                <li><strong>Scalability:</strong> Can this grow beyond the first few customers?</li>
             </ul>
 
-            <h3>3. SCAMPER Method</h3>
-            <p>SCAMPER helps you generate ideas by looking at existing solutions through different lenses:</p>
-
-            <ul>
-                <li><strong>S - Substitute:</strong> What can we substitute or swap?</li>
-                <li><strong>C - Combine:</strong> What can we combine or merge?</li>
-                <li><strong>A - Adapt:</strong> What can we adapt from other industries/contexts?</li>
-                <li><strong>M - Modify:</strong> What can we magnify, minimize, or change?</li>
-                <li><strong>P - Put to another use:</strong> How else could this be used?</li>
-                <li><strong>E - Eliminate:</strong> What can we remove or simplify?</li>
-                <li><strong>R - Reverse/Rearrange:</strong> What if we reversed the process?</li>
-            </ul>
-
-            <h3>4. Constraint-Based Ideation</h3>
-            <p>Paradoxically, adding constraints can boost creativity. Try generating solutions with artificial limitations:</p>
-
-            <ul>
-                <li>"What if we could only use text messages?"</li>
-                <li>"What if the entire product had to fit on one screen?"</li>
-                <li>"What if users could only spend 2 minutes a day on it?"</li>
-                <li>"What if we had to launch in one week?"</li>
-                <li>"What if it had to work without the internet?"</li>
-            </ul>
-
-            <h3>5. Reverse Brainstorming</h3>
-            <p>Instead of asking "How do we solve this?", ask "How do we make this problem WORSE?" Then reverse those ideas.</p>
-
-            <div class="example-box">
-                <h4>Example: Reverse Brainstorming</h4>
-                <p><strong>Problem:</strong> Students are stressed about college applications.</p>
-                <p><strong>How to make it worse:</strong></p>
-                <ul style="margin: 10px 0 0 20px;">
-                    <li>Give them more confusing, contradictory advice</li>
-                    <li>Make deadlines even more unclear</li>
-                    <li>Remove any human support</li>
-                </ul>
-                <p><strong>Reversed into solutions:</strong></p>
-                <ul style="margin: 10px 0 0 20px;">
-                    <li>Create a single, curated source of trusted advice</li>
-                    <li>Build a clear timeline with all deadlines in one place</li>
-                    <li>Provide personal mentorship from someone who's been there</li>
-                </ul>
+            <div class="interactive-activity" data-activity-id="2-1-brainstorm">
+                <div class="activity-header"><div class="activity-icon">💡</div><h4 class="activity-title">Rapid Ideation Challenge</h4><span class="activity-type">Brainstorm</span></div>
+                <p class="activity-prompt">Set a 10-minute timer. Generate at least 15 solution ideas for your problem. No judging—just write!</p>
+                <textarea class="activity-input" placeholder="PROBLEM I'M SOLVING:&#10;&#10;SOLUTION IDEAS (aim for 15+):&#10;1. &#10;2. &#10;3. &#10;4. &#10;5. &#10;6. &#10;7. &#10;8. &#10;9. &#10;10. &#10;11. &#10;12. &#10;13. &#10;14. &#10;15. "></textarea>
+                <div class="activity-actions">
+                    <button class="activity-btn activity-btn-primary save-activity-btn"><span>💾</span> Save Ideas</button>
+                    <button class="activity-btn activity-btn-secondary show-model-btn"><span>💡</span> Show Model</button>
+                </div>
+                <div class="model-response">
+                    <div class="model-response-header"><span class="model-response-icon">✨</span><h5 class="model-response-title">Example Ideation</h5></div>
+                    <div class="model-response-content">
+                        <p><strong>Problem:</strong> First-gen students don't know how to find internships</p>
+                        <p><strong>Ideas:</strong></p>
+                        <p>1. Peer mentorship app matching students with recent grads</p>
+                        <p>2. Company database filtered by "first-gen friendly"</p>
+                        <p>3. Weekly email with step-by-step recruiting timeline</p>
+                        <p>4. Resume templates from successful first-gen students</p>
+                        <p>5. Video interviews with first-gen professionals sharing their paths</p>
+                        <p>6. Chrome extension that simplifies job postings</p>
+                        <p>7. Group coaching calls with career coaches</p>
+                        <p>8. Slack community for first-gen job seekers</p>
+                        <p>9. AI that suggests companies based on your profile</p>
+                        <p>10. Partnership with companies for exclusive first-gen positions</p>
+                        <p>11. Virtual job shadowing platform</p>
+                        <p>12. "First-gen friendly" certification for companies</p>
+                        <p>13. Referral network where alumni refer students</p>
+                        <p>14. Application tracker with deadline reminders</p>
+                        <p>15. Cold email templates and scripts</p>
+                    </div>
+                </div>
             </div>
 
-            <h2>Evaluating Your Ideas</h2>
-
-            <p>Once you have a list of ideas (aim for 15-20+), it's time to evaluate them. Here are frameworks to help:</p>
-
-            <h3>The ICE Framework</h3>
-            <p>Score each idea 1-10 on three dimensions:</p>
-            <ul>
-                <li><strong>Impact:</strong> How big would the impact be if this works?</li>
-                <li><strong>Confidence:</strong> How confident are you that it will work?</li>
-                <li><strong>Ease:</strong> How easy is it to test or build?</li>
-            </ul>
-            <p>Multiply the scores (I × C × E) to get a priority score.</p>
-
-            <h3>The Feasibility-Desirability-Viability Test</h3>
-            <p>Every good solution needs to pass three tests:</p>
-
-            <ul>
-                <li><strong>Desirable:</strong> Do people actually want this? (You validated this in Phase 1)</li>
-                <li><strong>Feasible:</strong> Can you actually build/deliver this?</li>
-                <li><strong>Viable:</strong> Can you build a sustainable business around this?</li>
-            </ul>
-
-            <div class="key-concept">
-                <h4>Key Concept</h4>
-                <p>The best startup ideas sit at the intersection of desirability, feasibility, and viability. Missing any one of these means the idea won't work.</p>
-            </div>
-
-            <h3>Questions to Ask About Each Idea</h3>
-            <ul>
-                <li>Does this directly address the validated problem?</li>
-                <li>Could I build a simple version of this quickly?</li>
-                <li>Would my early adopters be excited about this?</li>
-                <li>Do I have any unfair advantage in executing this?</li>
-                <li>Does this feel different from what already exists?</li>
-                <li>Could this scale if it works?</li>
-            </ul>
-
-            <h2>When to Pivot vs. Persevere</h2>
-
-            <p>As you evaluate ideas, you might realize your initial direction isn't quite right. That's okay! Here's how to think about pivoting:</p>
-
-            <p><strong>Consider pivoting if:</strong></p>
-            <ul>
-                <li>Customer interviews reveal a different, more urgent problem</li>
-                <li>Your idea can't pass the feasibility or viability tests</li>
-                <li>Someone else is doing the exact same thing much better</li>
-                <li>You keep finding reasons why this won't work</li>
-            </ul>
-
-            <p><strong>Persevere if:</strong></p>
-            <ul>
-                <li>Customer excitement is high</li>
-                <li>You have a unique angle or advantage</li>
-                <li>The challenges are solvable with more effort/creativity</li>
-                <li>You feel genuinely excited about the solution</li>
-            </ul>
-
-            <div class="quote-box">
-                <blockquote>The only way to do great work is to love what you do.</blockquote>
-                <cite>— Steve Jobs</cite>
-            </div>
-
-            <h2>Narrowing Down to Your Best Idea</h2>
-
-            <p>After evaluation, you should have 2-3 promising ideas. To pick one:</p>
-
-            <ol>
-                <li><strong>Sleep on it.</strong> Let your subconscious process. Which idea do you keep thinking about?</li>
-                <li><strong>Talk to potential customers.</strong> Describe each idea briefly. Which one gets the strongest reaction?</li>
-                <li><strong>Consider your motivation.</strong> Which problem are you most passionate about solving? Startups are hard—passion helps you persist.</li>
-                <li><strong>Trust your gut.</strong> After all the analysis, sometimes you just know.</li>
-            </ol>
-
-            <div class="activity-box">
-                <h4>📝 Activity: HMW Brainstorm</h4>
-                <p>Take your validated problem and write 5 different "How Might We" questions:</p>
-                <textarea placeholder="My problem: &#10;&#10;HMW #1: How might we...&#10;&#10;HMW #2: How might we...&#10;&#10;HMW #3: How might we...&#10;&#10;HMW #4: How might we...&#10;&#10;HMW #5: How might we..."></textarea>
-            </div>
-
-            <div class="activity-box">
-                <h4>📝 Activity: 10x Brainstorm</h4>
-                <p>Generate at least 10 different solution ideas. Don't judge them—just write. Push past the obvious ones.</p>
-                <textarea placeholder="Solution idea #1:&#10;&#10;Solution idea #2:&#10;&#10;Solution idea #3:&#10;&#10;Solution idea #4:&#10;&#10;Solution idea #5:&#10;&#10;Solution idea #6:&#10;&#10;Solution idea #7:&#10;&#10;Solution idea #8:&#10;&#10;Solution idea #9:&#10;&#10;Solution idea #10:"></textarea>
-            </div>
-
-            <div class="activity-box">
-                <h4>📝 Activity: Evaluate Your Top 3</h4>
-                <p>Pick your 3 most promising ideas and score them:</p>
-                <textarea placeholder="IDEA 1: &#10;Impact (1-10):&#10;Confidence (1-10):&#10;Ease (1-10):&#10;Total ICE Score:&#10;&#10;IDEA 2:&#10;Impact (1-10):&#10;Confidence (1-10):&#10;Ease (1-10):&#10;Total ICE Score:&#10;&#10;IDEA 3:&#10;Impact (1-10):&#10;Confidence (1-10):&#10;Ease (1-10):&#10;Total ICE Score:&#10;&#10;Which idea will you pursue? Why?"></textarea>
+            <div class="interactive-activity" data-activity-id="2-1-evaluate">
+                <div class="activity-header"><div class="activity-icon">⚖️</div><h4 class="activity-title">Evaluate Your Top Ideas</h4><span class="activity-type">Analysis</span></div>
+                <p class="activity-prompt">Pick your 3 best ideas and score them:</p>
+                <textarea class="activity-input" placeholder="IDEA 1:&#10;- Impact (1-5): &#10;- Feasibility (1-5): &#10;- Differentiation (1-5): &#10;- Total: &#10;&#10;IDEA 2:&#10;- Impact (1-5): &#10;- Feasibility (1-5): &#10;- Differentiation (1-5): &#10;- Total: &#10;&#10;IDEA 3:&#10;- Impact (1-5): &#10;- Feasibility (1-5): &#10;- Differentiation (1-5): &#10;- Total: &#10;&#10;WINNER & WHY:"></textarea>
+                <div class="activity-actions">
+                    <button class="activity-btn activity-btn-primary save-activity-btn"><span>💾</span> Save</button>
+                    <button class="activity-btn activity-btn-secondary show-model-btn"><span>💡</span> Show Model</button>
+                </div>
+                <div class="model-response">
+                    <div class="model-response-header"><span class="model-response-icon">✨</span><h5 class="model-response-title">Example Evaluation</h5></div>
+                    <div class="model-response-content">
+                        <p><strong>Idea 1: Peer mentorship matching</strong> - Impact: 5, Feasibility: 3, Differentiation: 4 = 12</p>
+                        <p><strong>Idea 2: Weekly step-by-step email</strong> - Impact: 4, Feasibility: 5, Differentiation: 3 = 12</p>
+                        <p><strong>Idea 3: Alumni referral network</strong> - Impact: 5, Feasibility: 2, Differentiation: 5 = 12</p>
+                        <p><strong>Winner: Weekly email</strong> - Same score but highest feasibility. I can start this TOMORROW with no tech. Perfect MVP to test if content helps before building complex features.</p>
+                    </div>
+                </div>
             </div>
 
             <div class="takeaways-box">
                 <h4>🎯 Key Takeaways</h4>
                 <ul>
-                    <li>Separate idea generation from evaluation—don't judge while brainstorming</li>
-                    <li>Use techniques like HMW, SCAMPER, and constraints to think creatively</li>
-                    <li>Generate many ideas (15+) before evaluating</li>
-                    <li>Good ideas are desirable, feasible, AND viable</li>
-                    <li>Use frameworks like ICE to objectively compare ideas</li>
-                    <li>Trust your gut after doing the analysis</li>
+                    <li>Generate many ideas before judging any of them</li>
+                    <li>Use SCAMPER to systematically modify and improve ideas</li>
+                    <li>Diverge (create) first, then converge (evaluate)</li>
+                    <li>Score ideas on impact, feasibility, and differentiation</li>
+                    <li>Wild ideas can lead to breakthrough solutions</li>
                 </ul>
             </div>
         </div>
 
         <nav class="lesson-nav">
-            <a href="1-4-understanding-customers.html" class="lesson-nav-btn prev">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m0 0l7 7m-7-7l7-7"></path></svg>
-                Previous: Understanding Customers
-            </a>
-            <a href="2-2-value-proposition.html" class="lesson-nav-btn next">
-                Next: Value Proposition
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
-            </a>
+            <a href="1-4-understanding-customers.html" class="lesson-nav-btn prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m0 0l7 7m-7-7l7-7"></path></svg>Previous: Customers</a>
+            <a href="2-2-value-proposition.html" class="lesson-nav-btn next">Next: Value Proposition<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg></a>
         </nav>
     </main>
 
+    <script src="interactive.js"></script>
     <script src="../script.js"></script>
 </body>
 </html>

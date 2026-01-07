@@ -5,267 +5,184 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 4.2: Building Your Pitch Deck - Genesis</title>
     <link rel="stylesheet" href="../styles.css?v=1002">
+    <link rel="stylesheet" href="interactive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="lesson-styles.css">
+    <style>
+        .lesson-container { max-width: 800px; margin: 0 auto; padding: 120px 24px 80px; }
+        .lesson-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-tertiary); margin-bottom: 24px; }
+        .lesson-breadcrumb a { color: var(--origin-blue-light); text-decoration: none; }
+        .lesson-phase-tag { display: inline-block; background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); color: #16a34a; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; margin-bottom: 16px; }
+        .lesson-title { font-family: 'DM Sans', sans-serif; font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; color: var(--text-primary); margin-bottom: 16px; line-height: 1.2; }
+        .lesson-meta { display: flex; align-items: center; gap: 20px; color: var(--text-tertiary); font-size: 0.95rem; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--border-light); flex-wrap: wrap; }
+        .lesson-content h2 { font-family: 'DM Sans', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin: 48px 0 20px; }
+        .lesson-content h3 { font-family: 'DM Sans', sans-serif; font-size: 1.15rem; font-weight: 600; color: var(--text-primary); margin: 24px 0 12px; }
+        .lesson-content p { font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 20px; }
+        .lesson-content ul, .lesson-content ol { margin: 20px 0; padding-left: 24px; }
+        .lesson-content li { font-size: 1.05rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 12px; }
+        .key-concept { background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border-left: 4px solid #16a34a; padding: 20px 24px; border-radius: 0 12px 12px 0; margin: 28px 0; }
+        .key-concept h4 { font-size: 1rem; font-weight: 700; color: #16a34a; margin-bottom: 8px; }
+        .key-concept p { margin: 0 0 8px; color: #166534; }
+        .slide-list { display: grid; gap: 12px; margin: 24px 0; }
+        .slide-item { display: flex; gap: 16px; padding: 16px; background: white; border: 1px solid var(--border-light); border-radius: 12px; align-items: center; }
+        .slide-number { width: 32px; height: 32px; background: linear-gradient(135deg, #22c55e, #16a34a); color: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+        .slide-content h4 { color: var(--text-primary); margin: 0 0 4px; font-size: 1rem; }
+        .slide-content p { color: var(--text-tertiary); margin: 0; font-size: 0.9rem; }
+        .takeaways-box { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 16px; padding: 28px; margin: 40px 0; }
+        .takeaways-box h4 { font-size: 1.1rem; font-weight: 700; color: #92400e; margin-bottom: 16px; }
+        .takeaways-box ul { list-style: none; padding: 0; }
+        .takeaways-box li { color: #92400e; padding-left: 28px; position: relative; margin-bottom: 12px; }
+        .takeaways-box li::before { content: '✓'; position: absolute; left: 0; color: #d97706; font-weight: 700; }
+        .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--border-light); gap: 16px; flex-wrap: wrap; }
+        .lesson-nav-btn { display: flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 12px; font-weight: 600; text-decoration: none; }
+        .lesson-nav-btn.prev { background: var(--bg-tertiary); color: var(--text-secondary); }
+        .lesson-nav-btn.next { background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); color: white; }
+    </style>
 </head>
-<body>
+<body data-lesson-id="4-2-pitch">
+    <div class="points-display" id="points-display"><span class="points-icon">⭐</span><div><span class="points-value">0</span><span class="points-label">points</span></div></div>
+
     <nav class="nav">
         <div class="nav-container">
-            <div class="nav-logo">
-                <a href="../index.html">
-                    <img src="../assets/originlogo.svg" alt="Project Origin" class="nav-logo-img">
-                </a>
-            </div>
-            <div class="nav-links">
-                <a href="../index.html" class="nav-link">Home</a>
-                <a href="../cohort1.html" class="nav-link">Cohort 1</a>
-                <a href="../mentors.html" class="nav-link">Mentors</a>
-                <a href="../contact.html" class="nav-link">Contact</a>
-            </div>
-            <div class="nav-actions">
-                <a href="../genesis.html" class="nav-button active">Genesis</a>
-            </div>
+            <div class="nav-logo"><a href="../index.html"><img src="../assets/originlogo.svg" alt="Project Origin" class="nav-logo-img"></a></div>
+            <div class="nav-links"><a href="../index.html" class="nav-link">Home</a><a href="../cohort1.html" class="nav-link">Cohort 1</a><a href="../mentors.html" class="nav-link">Mentors</a><a href="../contact.html" class="nav-link">Contact</a></div>
+            <div class="nav-actions"><a href="../genesis.html" class="nav-button active">Genesis</a></div>
         </div>
     </nav>
 
     <main class="lesson-container">
-        <nav class="lesson-breadcrumb">
-            <a href="../genesis.html">Genesis</a>
-            <span>→</span>
-            <a href="../genesis.html#lessons">Phase 4</a>
-            <span>→</span>
-            <span>Lesson 4.2</span>
-        </nav>
+        <nav class="lesson-breadcrumb"><a href="../genesis.html">Genesis</a><span>→</span><span>Phase 4</span><span>→</span><span>Lesson 4.2</span></nav>
 
         <div class="lesson-phase-tag">Phase 4: Pitch & Launch</div>
         <h1 class="lesson-title">Building Your Pitch Deck</h1>
         
         <div class="lesson-meta">
-            <div class="lesson-meta-item">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
-                45 min read
-            </div>
-            <div class="lesson-meta-item">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
-                Lesson 14 of 16
-            </div>
+            <div class="lesson-meta-item">⏱️ 35 min</div>
+            <div class="lesson-meta-item">Lesson 14 of 16</div>
+            <div class="lesson-meta-item">🎯 2 Activities</div>
         </div>
 
         <div class="lesson-content">
-            <p>A pitch deck is your startup's story in visual form. Whether you're pitching to investors, entering a competition, or explaining your idea to partners, a great deck can open doors. In this lesson, you'll learn the structure and design principles that make pitch decks compelling.</p>
+            <p>A pitch deck is your visual story—slides that support your verbal pitch. Whether you're presenting to investors, demo days, or competition judges, a great deck makes your ideas clear and memorable.</p>
 
-            <h2>What Makes a Great Pitch Deck?</h2>
+            <div class="quiz-container" data-correct="B" data-explanation="10-15 slides is the sweet spot. Guy Kawasaki's famous 10-20-30 rule recommends 10 slides, 20 minutes, 30-point minimum font. Fewer slides = more focus.">
+                <div class="quiz-header"><div class="quiz-icon">🧠</div><div><h4 class="quiz-title">Deck Length</h4></div></div>
+                <p class="quiz-question">A typical pitch deck should have approximately how many slides?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-option="A"><span class="quiz-option-marker">A</span><span class="quiz-option-text">5-7 slides</span></div>
+                    <div class="quiz-option" data-option="B"><span class="quiz-option-marker">B</span><span class="quiz-option-text">10-15 slides</span></div>
+                    <div class="quiz-option" data-option="C"><span class="quiz-option-marker">C</span><span class="quiz-option-text">25-30 slides</span></div>
+                    <div class="quiz-option" data-option="D"><span class="quiz-option-marker">D</span><span class="quiz-option-text">50+ slides</span></div>
+                </div>
+                <button class="quiz-check-btn" disabled>Check Answer</button>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <h2>The 10-Slide Pitch Deck</h2>
             
-            <p>A great pitch deck:</p>
-            <ul>
-                <li>Tells a clear, compelling story</li>
-                <li>Can be understood in under 4 minutes</li>
-                <li>Is visually clean and professional</li>
-                <li>Addresses the key questions your audience has</li>
-                <li>Leaves them wanting to learn more</li>
-            </ul>
+            <div class="slide-list">
+                <div class="slide-item"><div class="slide-number">1</div><div class="slide-content"><h4>Title</h4><p>Company name, tagline, your name</p></div></div>
+                <div class="slide-item"><div class="slide-number">2</div><div class="slide-content"><h4>Problem</h4><p>The pain you're solving. Make them feel it.</p></div></div>
+                <div class="slide-item"><div class="slide-number">3</div><div class="slide-content"><h4>Solution</h4><p>What you built and how it works</p></div></div>
+                <div class="slide-item"><div class="slide-number">4</div><div class="slide-content"><h4>Traction</h4><p>Evidence it's working: users, revenue, growth</p></div></div>
+                <div class="slide-item"><div class="slide-number">5</div><div class="slide-content"><h4>Market</h4><p>How big is the opportunity? TAM/SAM/SOM</p></div></div>
+                <div class="slide-item"><div class="slide-number">6</div><div class="slide-content"><h4>Business Model</h4><p>How you make money</p></div></div>
+                <div class="slide-item"><div class="slide-number">7</div><div class="slide-content"><h4>Competition</h4><p>Landscape and your differentiation</p></div></div>
+                <div class="slide-item"><div class="slide-number">8</div><div class="slide-content"><h4>Team</h4><p>Why you're the right people to build this</p></div></div>
+                <div class="slide-item"><div class="slide-number">9</div><div class="slide-content"><h4>Roadmap</h4><p>What you'll accomplish with support</p></div></div>
+                <div class="slide-item"><div class="slide-number">10</div><div class="slide-content"><h4>Ask</h4><p>What you need: funding, partnerships, etc.</p></div></div>
+            </div>
 
             <div class="key-concept">
-                <h4>Key Concept</h4>
-                <p>A pitch deck isn't meant to explain everything—it's meant to spark interest and start a conversation. Save the details for the Q&A or follow-up meetings.</p>
+                <h4>Design Principles</h4>
+                <p><strong>One idea per slide:</strong> If you need more, add a slide</p>
+                <p><strong>Minimal text:</strong> Bullets, not paragraphs. You're the narrator.</p>
+                <p><strong>Visual hierarchy:</strong> Most important info should pop</p>
+                <p><strong>Consistent design:</strong> Same fonts, colors, style throughout</p>
             </div>
 
-            <h2>The 10-Slide Structure</h2>
-
-            <p>Here's a proven structure used by successful startups:</p>
-
-            <h3>Slide 1: Title</h3>
-            <ul>
-                <li>Company name and logo</li>
-                <li>One-line description of what you do</li>
-                <li>Your name and contact info</li>
-            </ul>
-            <p><em>Goal: Make a good first impression</em></p>
-
-            <h3>Slide 2: Problem</h3>
-            <ul>
-                <li>What problem are you solving?</li>
-                <li>Who has this problem?</li>
-                <li>Why is it painful/important?</li>
-                <li>Use a story or specific example</li>
-            </ul>
-            <p><em>Goal: Make them feel the pain</em></p>
-
-            <h3>Slide 3: Solution</h3>
-            <ul>
-                <li>How do you solve the problem?</li>
-                <li>What's your product?</li>
-                <li>Show a screenshot or demo if possible</li>
-                <li>Keep it simple—focus on the core value</li>
-            </ul>
-            <p><em>Goal: Show you have the answer</em></p>
-
-            <h3>Slide 4: Market Opportunity</h3>
-            <ul>
-                <li>How big is the market? (TAM/SAM/SOM)</li>
-                <li>What's the growth trend?</li>
-                <li>Why is now the right time?</li>
-            </ul>
-            <p><em>Goal: Show this is worth pursuing</em></p>
-
-            <h3>Slide 5: Business Model</h3>
-            <ul>
-                <li>How do you make money?</li>
-                <li>What's your pricing?</li>
-                <li>What are the unit economics (LTV, CAC)?</li>
-            </ul>
-            <p><em>Goal: Show you can build a business, not just a product</em></p>
-
-            <h3>Slide 6: Traction / Validation</h3>
-            <ul>
-                <li>What have you achieved so far?</li>
-                <li>Users, revenue, growth rate</li>
-                <li>Key milestones hit</li>
-                <li>Social proof (testimonials, press, partnerships)</li>
-            </ul>
-            <p><em>Goal: Prove you're making progress</em></p>
-
-            <h3>Slide 7: Competition</h3>
-            <ul>
-                <li>Who else is solving this problem?</li>
-                <li>What's your competitive advantage?</li>
-                <li>Use a positioning matrix to show differentiation</li>
-            </ul>
-            <p><em>Goal: Show you understand the landscape and can win</em></p>
-
-            <h3>Slide 8: Team</h3>
-            <ul>
-                <li>Who are the founders?</li>
-                <li>What's your relevant experience?</li>
-                <li>Why are you uniquely qualified?</li>
-                <li>Key advisors or team members</li>
-            </ul>
-            <p><em>Goal: Show you can execute</em></p>
-
-            <h3>Slide 9: The Ask</h3>
-            <ul>
-                <li>What do you need? (Investment, partnership, etc.)</li>
-                <li>How will you use it?</li>
-                <li>What will you achieve with it?</li>
-            </ul>
-            <p><em>Goal: Be clear about what you want</em></p>
-
-            <h3>Slide 10: Vision / Closing</h3>
-            <ul>
-                <li>Where is this going long-term?</li>
-                <li>End with an inspiring vision</li>
-                <li>Include contact information</li>
-            </ul>
-            <p><em>Goal: Leave them excited about the future</em></p>
-
-            <h2>Design Principles</h2>
-
-            <h3>Less is More</h3>
-            <ul>
-                <li>One idea per slide</li>
-                <li>No more than 6 bullets per slide</li>
-                <li>Use visuals over text when possible</li>
-                <li>Leave white space—don't crowd slides</li>
-            </ul>
-
-            <h3>Visual Consistency</h3>
-            <ul>
-                <li>Use 2-3 colors max (from your brand)</li>
-                <li>Stick to 1-2 fonts</li>
-                <li>Keep layouts consistent slide to slide</li>
-                <li>Use high-quality images (not clip art)</li>
-            </ul>
-
-            <h3>Font Guidelines</h3>
-            <ul>
-                <li>Title text: 28-36pt minimum</li>
-                <li>Body text: 18-24pt minimum</li>
-                <li>Must be readable from the back of a room</li>
-            </ul>
-
-            <h3>Tools for Design</h3>
-            <ul>
-                <li><strong>Google Slides:</strong> Free, collaborative, good enough</li>
-                <li><strong>Canva:</strong> Beautiful templates, easy to use</li>
-                <li><strong>Figma:</strong> More control, steeper learning curve</li>
-                <li><strong>PowerPoint/Keynote:</strong> Classic options</li>
-            </ul>
-
-            <div class="warning-box">
-                <h4>⚠️ Common Mistakes</h4>
-                <p><strong>Too much text:</strong> If you have to read your slides, you've failed. Slides support your story, they don't tell it.</p>
-                <p><strong>No clear ask:</strong> Always be clear about what you want from your audience.</p>
-                <p><strong>Weak problem statement:</strong> If the problem doesn't resonate, nothing else matters.</p>
+            <div class="matching-container" data-matches='{"problem":"pain","solution":"product","traction":"evidence"}'>
+                <div class="matching-header"><div class="matching-icon">🎯</div><h4 class="matching-title">Match the Slides</h4></div>
+                <p style="color: #155e75; margin-bottom: 20px;">Match each slide type to what it should convey:</p>
+                <div class="matching-grid">
+                    <div class="matching-column matching-left">
+                        <div class="matching-item" data-id="problem">Problem Slide</div>
+                        <div class="matching-item" data-id="solution">Solution Slide</div>
+                        <div class="matching-item" data-id="traction">Traction Slide</div>
+                    </div>
+                    <div class="matching-connector"><div class="matching-line"></div><div class="matching-line"></div><div class="matching-line"></div></div>
+                    <div class="matching-column matching-right">
+                        <div class="matching-item" data-id="evidence">Proof it's working</div>
+                        <div class="matching-item" data-id="pain">Make them feel the pain</div>
+                        <div class="matching-item" data-id="product">How your product works</div>
+                    </div>
+                </div>
             </div>
 
-            <h2>The Different Deck Versions</h2>
-
-            <h3>Presentation Deck</h3>
-            <p>Used when you're presenting live. Minimal text, you provide the narration.</p>
-
-            <h3>Email/Reading Deck</h3>
-            <p>Sent to be read without you present. Needs more context and explanation in the slides themselves.</p>
-
-            <h3>One-Pager</h3>
-            <p>A single page summary of your startup. Good for initial outreach.</p>
-
-            <h2>Pitch Deck Examples</h2>
-
-            <p>Study successful pitch decks from companies like:</p>
+            <h2>Common Pitch Deck Mistakes</h2>
             <ul>
-                <li>Airbnb (original seed deck)</li>
-                <li>Buffer (transparency deck)</li>
-                <li>Uber (early deck)</li>
-                <li>Mint (clean financial product deck)</li>
+                <li>❌ Too much text—slides aren't documents</li>
+                <li>❌ Vague problem that doesn't feel urgent</li>
+                <li>❌ No traction or evidence of progress</li>
+                <li>❌ Claiming "no competition" (shows lack of research)</li>
+                <li>❌ Ask that doesn't specify what you need</li>
             </ul>
-            <p>Search "[company] pitch deck" to find these examples online and learn from their structure.</p>
 
-            <div class="activity-box">
-                <h4>📝 Activity: Outline Your Deck</h4>
-                <p>Write the key message for each slide of your pitch deck:</p>
-                <textarea placeholder="SLIDE 1 - Title:&#10;Company name + one-liner:&#10;&#10;SLIDE 2 - Problem:&#10;Key message:&#10;&#10;SLIDE 3 - Solution:&#10;Key message:&#10;&#10;SLIDE 4 - Market:&#10;Key message:&#10;&#10;SLIDE 5 - Business Model:&#10;Key message:&#10;&#10;SLIDE 6 - Traction:&#10;Key message:&#10;&#10;SLIDE 7 - Competition:&#10;Key message:&#10;&#10;SLIDE 8 - Team:&#10;Key message:&#10;&#10;SLIDE 9 - Ask:&#10;Key message:&#10;&#10;SLIDE 10 - Vision:&#10;Key message:"></textarea>
+            <div class="scenario-container">
+                <div class="scenario-header"><div class="scenario-icon">📊</div><h4 class="scenario-title">Fix This Slide</h4></div>
+                <div class="scenario-story">Your Problem slide says: "Students have trouble finding jobs. Our research shows 45% of college students are unhappy with career services. The job market is competitive and first-gen students face additional challenges including lack of network, limited knowledge of recruiting timelines, and fewer resources at home."</div>
+                <p class="scenario-question">What's wrong with this slide?</p>
+                <div class="scenario-choices">
+                    <div class="scenario-choice" data-outcome="good"><span class="scenario-choice-marker">A</span><span class="scenario-choice-text">It needs more statistics</span></div>
+                    <div class="scenario-choice" data-outcome="learning"><span class="scenario-choice-marker">B</span><span class="scenario-choice-text">It needs a better font</span></div>
+                    <div class="scenario-choice" data-outcome="best"><span class="scenario-choice-marker">C</span><span class="scenario-choice-text">Too much text—simplify to one powerful statement</span></div>
+                </div>
+                <div class="scenario-outcome best" data-outcome-id="best"><p class="scenario-outcome-title">🌟 Exactly Right!</p><p>This slide has way too much text. Better: "First-gen students apply to 3x more jobs but get half the interviews." One punchy stat with a visual. YOU tell the story, the slide supports it.</p></div>
+                <div class="scenario-outcome good" data-outcome-id="good"><p class="scenario-outcome-title">💡 The Opposite, Actually</p><p>More statistics would make it worse! The problem is too much information. Simplify to one killer stat that makes the audience feel the problem.</p></div>
+                <div class="scenario-outcome learning" data-outcome-id="learning"><p class="scenario-outcome-title">💡 Missing the Point</p><p>Design matters, but the core issue is content overload. Even with a perfect font, no one will read a wall of text.</p></div>
             </div>
 
-            <div class="activity-box">
-                <h4>📝 Activity: Write Your Problem Slide</h4>
-                <p>The problem slide is the most important. Draft it here:</p>
-                <textarea placeholder="The problem in one sentence:&#10;&#10;Who has this problem (be specific):&#10;&#10;Why it matters / what's at stake:&#10;&#10;A story or example that illustrates the problem:&#10;&#10;Stats that show the scale:"></textarea>
-            </div>
-
-            <div class="activity-box">
-                <h4>📝 Activity: Create Your Competition Slide</h4>
-                <p>Show how you're different from alternatives:</p>
-                <textarea placeholder="Competitors to include:&#10;1.&#10;2.&#10;3.&#10;&#10;Key dimensions to compare:&#10;1.&#10;2.&#10;&#10;Why you win (your unique advantage):"></textarea>
+            <div class="interactive-activity" data-activity-id="4-2-slides">
+                <div class="activity-header"><div class="activity-icon">📊</div><h4 class="activity-title">Draft Your Key Slides</h4><span class="activity-type">Creation</span></div>
+                <p class="activity-prompt">Write the content for your most important slides:</p>
+                <textarea class="activity-input" placeholder="SLIDE 1 - TITLE:&#10;Company name:&#10;Tagline (one sentence):&#10;&#10;SLIDE 2 - PROBLEM:&#10;One powerful statement or stat:&#10;&#10;SLIDE 3 - SOLUTION:&#10;What you built (one sentence):&#10;How it works (3 bullets max):&#10;&#10;SLIDE 4 - TRACTION:&#10;Key metrics/evidence:&#10;&#10;SLIDE 10 - ASK:&#10;What you need:&#10;What you'll do with it:"></textarea>
+                <div class="activity-actions">
+                    <button class="activity-btn activity-btn-primary save-activity-btn"><span>💾</span> Save</button>
+                    <button class="activity-btn activity-btn-secondary show-model-btn"><span>💡</span> Show Model</button>
+                </div>
+                <div class="model-response">
+                    <div class="model-response-header"><span class="model-response-icon">✨</span><h5 class="model-response-title">Example Slides</h5></div>
+                    <div class="model-response-content">
+                        <p><strong>TITLE:</strong> MentorMatch | "Your network, unlocked" | Founded by Alex Chen</p>
+                        <p><strong>PROBLEM:</strong> "First-gen students apply to 3x more jobs but get half the interviews. The difference? Connections."</p>
+                        <p><strong>SOLUTION:</strong> MentorMatch connects first-gen students with alumni mentors at top companies. • Match in 48 hours • Monthly check-ins • Warm introductions to opportunities</p>
+                        <p><strong>TRACTION:</strong> 200 students signed up | 50 mentor meetings completed | 8.5/10 satisfaction | 3 students got internships</p>
+                        <p><strong>ASK:</strong> $25K to reach 1,000 students across 10 campuses by fall. We'll use it for: marketing partnerships with first-gen orgs, platform development, mentor incentives.</p>
+                    </div>
+                </div>
             </div>
 
             <div class="takeaways-box">
                 <h4>🎯 Key Takeaways</h4>
                 <ul>
-                    <li>A pitch deck tells your startup's story visually</li>
-                    <li>Follow the 10-slide structure: Problem → Solution → Market → Model → Traction → Competition → Team → Ask → Vision</li>
-                    <li>Less is more: one idea per slide, minimal text</li>
-                    <li>Design matters: consistent, clean, professional</li>
-                    <li>The problem slide is most important—make them feel the pain</li>
-                    <li>Always have a clear ask</li>
+                    <li>10-15 slides is the sweet spot</li>
+                    <li>One idea per slide, minimal text</li>
+                    <li>Problem slide should make them FEEL the pain</li>
+                    <li>Traction proves you're not just ideas—you execute</li>
+                    <li>Your Ask should be specific: what you need and why</li>
                 </ul>
             </div>
         </div>
 
         <nav class="lesson-nav">
-            <a href="4-1-storytelling.html" class="lesson-nav-btn prev">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m0 0l7 7m-7-7l7-7"></path></svg>
-                Previous: Storytelling
-            </a>
-            <a href="4-3-presentation-skills.html" class="lesson-nav-btn next">
-                Next: Presentation Skills
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
-            </a>
+            <a href="4-1-storytelling.html" class="lesson-nav-btn prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m0 0l7 7m-7-7l7-7"></path></svg>Previous: Storytelling</a>
+            <a href="4-3-presentation-skills.html" class="lesson-nav-btn next">Next: Presentation<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg></a>
         </nav>
     </main>
 
+    <script src="interactive.js"></script>
     <script src="../script.js"></script>
 </body>
 </html>

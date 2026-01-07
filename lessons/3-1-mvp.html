@@ -3,257 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lesson 3.1: What is an MVP? - Genesis</title>
+    <title>Lesson 3.1: Building Your MVP - Genesis</title>
     <link rel="stylesheet" href="../styles.css?v=1002">
+    <link rel="stylesheet" href="interactive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="lesson-styles.css">
+    <style>
+        .lesson-container { max-width: 800px; margin: 0 auto; padding: 120px 24px 80px; }
+        .lesson-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-tertiary); margin-bottom: 24px; }
+        .lesson-breadcrumb a { color: var(--origin-blue-light); text-decoration: none; }
+        .lesson-phase-tag { display: inline-block; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); color: #d97706; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; margin-bottom: 16px; }
+        .lesson-title { font-family: 'DM Sans', sans-serif; font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; color: var(--text-primary); margin-bottom: 16px; line-height: 1.2; }
+        .lesson-meta { display: flex; align-items: center; gap: 20px; color: var(--text-tertiary); font-size: 0.95rem; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--border-light); flex-wrap: wrap; }
+        .lesson-content h2 { font-family: 'DM Sans', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin: 48px 0 20px; }
+        .lesson-content p { font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 20px; }
+        .lesson-content ul { margin: 20px 0; padding-left: 24px; }
+        .lesson-content li { font-size: 1.05rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 12px; }
+        .key-concept { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #d97706; padding: 20px 24px; border-radius: 0 12px 12px 0; margin: 28px 0; }
+        .key-concept h4 { font-size: 1rem; font-weight: 700; color: #d97706; margin-bottom: 8px; }
+        .key-concept p { margin: 0 0 8px; color: #92400e; }
+        .mvp-types { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 24px 0; }
+        .mvp-card { background: white; border: 1px solid var(--border-light); border-radius: 12px; padding: 20px; }
+        .mvp-card h4 { color: #d97706; margin-bottom: 8px; }
+        .mvp-card p { color: var(--text-secondary); font-size: 0.95rem; margin: 0; }
+        .takeaways-box { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 16px; padding: 28px; margin: 40px 0; }
+        .takeaways-box h4 { font-size: 1.1rem; font-weight: 700; color: #92400e; margin-bottom: 16px; }
+        .takeaways-box ul { list-style: none; padding: 0; }
+        .takeaways-box li { color: #92400e; padding-left: 28px; position: relative; margin-bottom: 12px; }
+        .takeaways-box li::before { content: '✓'; position: absolute; left: 0; color: #d97706; font-weight: 700; }
+        .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--border-light); gap: 16px; flex-wrap: wrap; }
+        .lesson-nav-btn { display: flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 12px; font-weight: 600; text-decoration: none; }
+        .lesson-nav-btn.prev { background: var(--bg-tertiary); color: var(--text-secondary); }
+        .lesson-nav-btn.next { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; }
+    </style>
 </head>
-<body>
+<body data-lesson-id="3-1-mvp">
+    <div class="points-display" id="points-display"><span class="points-icon">⭐</span><div><span class="points-value">0</span><span class="points-label">points</span></div></div>
+
     <nav class="nav">
         <div class="nav-container">
-            <div class="nav-logo">
-                <a href="../index.html">
-                    <img src="../assets/originlogo.svg" alt="Project Origin" class="nav-logo-img">
-                </a>
-            </div>
-            <div class="nav-links">
-                <a href="../index.html" class="nav-link">Home</a>
-                <a href="../cohort1.html" class="nav-link">Cohort 1</a>
-                <a href="../mentors.html" class="nav-link">Mentors</a>
-                <a href="../contact.html" class="nav-link">Contact</a>
-            </div>
-            <div class="nav-actions">
-                <a href="../genesis.html" class="nav-button active">Genesis</a>
-            </div>
+            <div class="nav-logo"><a href="../index.html"><img src="../assets/originlogo.svg" alt="Project Origin" class="nav-logo-img"></a></div>
+            <div class="nav-links"><a href="../index.html" class="nav-link">Home</a><a href="../cohort1.html" class="nav-link">Cohort 1</a><a href="../mentors.html" class="nav-link">Mentors</a><a href="../contact.html" class="nav-link">Contact</a></div>
+            <div class="nav-actions"><a href="../genesis.html" class="nav-button active">Genesis</a></div>
         </div>
     </nav>
 
     <main class="lesson-container">
-        <nav class="lesson-breadcrumb">
-            <a href="../genesis.html">Genesis</a>
-            <span>→</span>
-            <a href="../genesis.html#lessons">Phase 3</a>
-            <span>→</span>
-            <span>Lesson 3.1</span>
-        </nav>
+        <nav class="lesson-breadcrumb"><a href="../genesis.html">Genesis</a><span>→</span><span>Phase 3</span><span>→</span><span>Lesson 3.1</span></nav>
 
         <div class="lesson-phase-tag">Phase 3: Build Your MVP</div>
         <h1 class="lesson-title">What is an MVP?</h1>
         
         <div class="lesson-meta">
-            <div class="lesson-meta-item">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
-                30 min read
-            </div>
-            <div class="lesson-meta-item">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
-                Lesson 9 of 16
-            </div>
+            <div class="lesson-meta-item">⏱️ 30 min</div>
+            <div class="lesson-meta-item">Lesson 9 of 16</div>
+            <div class="lesson-meta-item">🎯 3 Activities</div>
         </div>
 
         <div class="lesson-content">
-            <p>You've designed your solution. Now it's time to build something real. But don't spend months perfecting every detail—instead, build an MVP. In this lesson, you'll learn what an MVP really is and why building less can help you learn more.</p>
+            <p>An MVP (Minimum Viable Product) is the simplest version of your product that lets you test your core hypothesis with real users. It's not about launching something bad—it's about learning fast.</p>
 
-            <h2>What is an MVP?</h2>
-            
-            <p>MVP stands for Minimum Viable Product. It's the simplest version of your product that allows you to start learning from real customers.</p>
-
-            <div class="key-concept">
-                <h4>Key Concept</h4>
-                <p>An MVP is not a crappy product. It's the smallest thing you can build that delivers real value to customers and lets you test your most important assumptions.</p>
-            </div>
-
-            <p>The key words are:</p>
-            <ul>
-                <li><strong>Minimum:</strong> The smallest scope that can still be useful</li>
-                <li><strong>Viable:</strong> Actually delivers value to customers (not just a demo)</li>
-                <li><strong>Product:</strong> Something real that customers can use</li>
-            </ul>
-
-            <h2>The Lean Startup Philosophy</h2>
-
-            <p>The MVP concept comes from the Lean Startup methodology, popularized by Eric Ries. The core idea:</p>
-
-            <div class="quote-box">
-                <blockquote>The only way to win is to learn faster than anyone else.</blockquote>
-                <cite>— Eric Ries, The Lean Startup</cite>
-            </div>
-
-            <p>Traditional approach: Spend months building → Launch → Hope customers like it</p>
-            <p>Lean approach: Build small → Learn from customers → Iterate → Repeat</p>
-
-            <p>This is called the Build-Measure-Learn loop:</p>
-            <ol>
-                <li><strong>Build:</strong> Create the smallest thing that tests your assumption</li>
-                <li><strong>Measure:</strong> See how customers actually respond</li>
-                <li><strong>Learn:</strong> Decide what to do next based on data</li>
-            </ol>
-
-            <h2>Why Build an MVP?</h2>
-
-            <h3>1. You're Probably Wrong</h3>
-            <p>Most startup assumptions are wrong. The product you imagine customers want is rarely what they actually need. An MVP helps you discover this quickly and cheaply.</p>
-
-            <h3>2. Customers Can't Tell You What They Want</h3>
-            <p>People are bad at predicting their own behavior. Showing them something real gets you much better feedback than asking hypotheticals.</p>
-
-            <h3>3. Time is Your Scarcest Resource</h3>
-            <p>Every week you spend building features nobody wants is a week wasted. An MVP gets you to learning faster.</p>
-
-            <h3>4. Perfect is the Enemy of Good</h3>
-            <p>You'll never feel "ready" to launch. Waiting for perfection means waiting forever.</p>
-
-            <h2>Famous MVPs</h2>
-
-            <p>Even billion-dollar companies started with embarrassingly simple MVPs:</p>
-
-            <div class="example-box">
-                <h4>Dropbox</h4>
-                <p>Before building the actual product, Drew Houston made a 3-minute video demonstrating how Dropbox would work. The video got 75,000 signups overnight—proving demand before writing a single line of sync code.</p>
-            </div>
-
-            <div class="example-box">
-                <h4>Airbnb</h4>
-                <p>The founders rented out air mattresses in their own apartment and created a simple website with photos. No booking system, no payments—they just wanted to see if anyone would actually pay to stay.</p>
-            </div>
-
-            <div class="example-box">
-                <h4>Zappos</h4>
-                <p>Nick Swinmurn tested if people would buy shoes online by going to local stores, photographing shoes, and posting them on a website. When someone ordered, he'd go buy the shoes and ship them. No inventory needed.</p>
-            </div>
-
-            <div class="example-box">
-                <h4>Buffer</h4>
-                <p>Joel Gascoigne created a simple landing page describing Buffer's features with a pricing page. Before building anything, he tested if people would click "buy." They did—so he built it.</p>
+            <div class="quiz-container" data-correct="D" data-explanation="The MVP's purpose is to learn. It's a tool to test whether your solution actually solves the problem, with minimum wasted effort.">
+                <div class="quiz-header"><div class="quiz-icon">🧠</div><div><h4 class="quiz-title">MVP Purpose</h4></div></div>
+                <p class="quiz-question">The main purpose of an MVP is to:</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-option="A"><span class="quiz-option-marker">A</span><span class="quiz-option-text">Impress investors with a working product</span></div>
+                    <div class="quiz-option" data-option="B"><span class="quiz-option-marker">B</span><span class="quiz-option-text">Launch a perfect product from day one</span></div>
+                    <div class="quiz-option" data-option="C"><span class="quiz-option-marker">C</span><span class="quiz-option-text">Beat competitors to market</span></div>
+                    <div class="quiz-option" data-option="D"><span class="quiz-option-marker">D</span><span class="quiz-option-text">Learn whether your solution solves the problem</span></div>
+                </div>
+                <button class="quiz-check-btn" disabled>Check Answer</button>
+                <div class="quiz-feedback"></div>
             </div>
 
             <h2>Types of MVPs</h2>
-
-            <h3>1. Landing Page MVP</h3>
-            <p>A simple page that describes your product and captures email signups or pre-orders.</p>
-            <ul>
-                <li><strong>Tests:</strong> Is there interest? Will people give you their email?</li>
-                <li><strong>Example:</strong> Buffer's pricing page before the product existed</li>
-            </ul>
-
-            <h3>2. Explainer Video MVP</h3>
-            <p>A video showing how your product would work.</p>
-            <ul>
-                <li><strong>Tests:</strong> Do people understand the concept? Does it excite them?</li>
-                <li><strong>Example:</strong> Dropbox's demo video</li>
-            </ul>
-
-            <h3>3. Concierge MVP</h3>
-            <p>Deliver the service manually instead of building technology.</p>
-            <ul>
-                <li><strong>Tests:</strong> Will people pay? What do they actually need?</li>
-                <li><strong>Example:</strong> Manually matching users before building an algorithm</li>
-            </ul>
-
-            <h3>4. Wizard of Oz MVP</h3>
-            <p>Looks automated to customers, but you're actually doing the work manually behind the scenes.</p>
-            <ul>
-                <li><strong>Tests:</strong> Does the product concept work?</li>
-                <li><strong>Example:</strong> Zappos buying and shipping shoes manually</li>
-            </ul>
-
-            <h3>5. Piecemeal MVP</h3>
-            <p>Combine existing tools (Typeform, Zapier, Airtable) to create your product without coding.</p>
-            <ul>
-                <li><strong>Tests:</strong> Does the workflow solve the problem?</li>
-                <li><strong>Example:</strong> Using Calendly + Zoom + Stripe for a coaching service</li>
-            </ul>
-
-            <h3>6. Single-Feature MVP</h3>
-            <p>Build one core feature really well instead of many features poorly.</p>
-            <ul>
-                <li><strong>Tests:</strong> Is the core value proposition compelling?</li>
-                <li><strong>Example:</strong> Instagram started as just photo filters + sharing</li>
-            </ul>
-
-            <h2>Defining Your MVP Scope</h2>
-
-            <p>The hardest part of building an MVP is deciding what to include and what to leave out.</p>
-
-            <h3>Step 1: Identify Your Riskiest Assumption</h3>
-            <p>What's the biggest unknown that could kill your startup? Your MVP should test this first.</p>
-
-            <ul>
-                <li>Do people have this problem? (Should have tested in Phase 1)</li>
-                <li>Will they pay for a solution? (Test with pricing)</li>
-                <li>Can we actually deliver the value? (Test with a working product)</li>
-                <li>Will they use it repeatedly? (Test retention)</li>
-            </ul>
-
-            <h3>Step 2: Define the Core Value</h3>
-            <p>What's the ONE thing your product must do? If you had to describe your product with one verb, what would it be?</p>
+            
+            <div class="mvp-types">
+                <div class="mvp-card"><h4>🎬 Explainer Video</h4><p>Show what you'll build before building it. Dropbox did this.</p></div>
+                <div class="mvp-card"><h4>📄 Landing Page</h4><p>A page that describes your product and collects sign-ups.</p></div>
+                <div class="mvp-card"><h4>🧙 Wizard of Oz</h4><p>Looks automated, but humans do the work behind the scenes.</p></div>
+                <div class="mvp-card"><h4>🤵 Concierge</h4><p>Manually deliver the service before building technology.</p></div>
+                <div class="mvp-card"><h4>🏗️ Piecemeal</h4><p>Combine existing tools (Zapier, Airtable, etc.) to create your product.</p></div>
+                <div class="mvp-card"><h4>📱 Single-Feature</h4><p>Build just one core feature, nothing else.</p></div>
+            </div>
 
             <div class="key-concept">
-                <h4>The "One Thing" Test</h4>
-                <p>Your MVP should do ONE thing well. If a customer uses your MVP and that one thing works, they should feel value. Everything else can wait.</p>
+                <h4>The Build-Measure-Learn Loop</h4>
+                <p><strong>Build:</strong> Create the simplest thing that tests your hypothesis</p>
+                <p><strong>Measure:</strong> Collect data on how users interact with it</p>
+                <p><strong>Learn:</strong> Decide whether to pivot, persevere, or iterate</p>
             </div>
 
-            <h3>Step 3: Cut Everything Else</h3>
-            <p>Once you've identified the core value, be ruthless about cutting everything that isn't essential to delivering it.</p>
+            <div class="matching-container" data-matches='{"wizard":"automated","concierge":"manual","landing":"interest"}'>
+                <div class="matching-header"><div class="matching-icon">🎯</div><h4 class="matching-title">Match the MVP Types</h4></div>
+                <p style="color: #155e75; margin-bottom: 20px;">Match each MVP type to its approach:</p>
+                <div class="matching-grid">
+                    <div class="matching-column matching-left">
+                        <div class="matching-item" data-id="wizard">Wizard of Oz</div>
+                        <div class="matching-item" data-id="concierge">Concierge</div>
+                        <div class="matching-item" data-id="landing">Landing Page</div>
+                    </div>
+                    <div class="matching-connector"><div class="matching-line"></div><div class="matching-line"></div><div class="matching-line"></div></div>
+                    <div class="matching-column matching-right">
+                        <div class="matching-item" data-id="interest">Test interest before building</div>
+                        <div class="matching-item" data-id="automated">Looks automated, humans behind scenes</div>
+                        <div class="matching-item" data-id="manual">Openly manual service delivery</div>
+                    </div>
+                </div>
+            </div>
 
-            <p>Ask for each feature:</p>
+            <div class="scenario-container">
+                <div class="scenario-header"><div class="scenario-icon">🚀</div><h4 class="scenario-title">Choose Your MVP</h4></div>
+                <div class="scenario-story">You want to build an app that matches first-gen students with alumni mentors. You have no coding skills and need to test the idea fast.</div>
+                <p class="scenario-question">What's the best MVP approach?</p>
+                <div class="scenario-choices">
+                    <div class="scenario-choice" data-outcome="learning"><span class="scenario-choice-marker">A</span><span class="scenario-choice-text">Spend 6 months learning to code and build a full app</span></div>
+                    <div class="scenario-choice" data-outcome="best"><span class="scenario-choice-marker">B</span><span class="scenario-choice-text">Create a Google Form for students, manually match them with alumni mentors from your network</span></div>
+                    <div class="scenario-choice" data-outcome="good"><span class="scenario-choice-marker">C</span><span class="scenario-choice-text">Hire a developer to build the matching algorithm</span></div>
+                </div>
+                <div class="scenario-outcome best" data-outcome-id="best"><p class="scenario-outcome-title">🌟 Perfect MVP Thinking!</p><p>A concierge MVP! Google Form + manual matching lets you validate: Do students sign up? Do mentors participate? Is the matching valuable? You learn in days, not months.</p></div>
+                <div class="scenario-outcome good" data-outcome-id="good"><p class="scenario-outcome-title">👍 Works, But Slower</p><p>Hiring a developer is expensive and slow. You might build the wrong thing. Test manually first to know WHAT to build.</p></div>
+                <div class="scenario-outcome learning" data-outcome-id="learning"><p class="scenario-outcome-title">💡 Don't Do This!</p><p>6 months to learn to code means 6 months of assumptions untested. You might build something nobody wants. Test the concept first, learn to code later.</p></div>
+            </div>
+
+            <h2>What to Include in Your MVP</h2>
+            <p>Ask yourself: What's the ONE thing that must work for users to get value?</p>
             <ul>
-                <li>Can we launch without this? (If yes, cut it)</li>
-                <li>Does this test our riskiest assumption? (If no, cut it)</li>
-                <li>Would customers still get value without this? (If yes, cut it)</li>
+                <li>✅ Include: Core value proposition (the main thing)</li>
+                <li>✅ Include: Way to measure success (sign-ups, usage, feedback)</li>
+                <li>❌ Exclude: Nice-to-have features</li>
+                <li>❌ Exclude: Perfect design</li>
+                <li>❌ Exclude: Scalability (you'll rebuild later anyway)</li>
             </ul>
 
-            <div class="warning-box">
-                <h4>⚠️ Minimum ≠ Mediocre</h4>
-                <p>"Minimum" doesn't mean low quality. Your MVP should be small in scope but polished in execution. A single feature that works beautifully is better than five features that are all buggy.</p>
+            <div class="interactive-activity" data-activity-id="3-1-mvp-type">
+                <div class="activity-header"><div class="activity-icon">🏗️</div><h4 class="activity-title">Choose Your MVP Type</h4><span class="activity-type">Decision</span></div>
+                <p class="activity-prompt">Decide what type of MVP makes sense for your idea:</p>
+                <textarea class="activity-input" placeholder="MY SOLUTION:&#10;&#10;THE CORE HYPOTHESIS I NEED TO TEST:&#10;(What assumption, if wrong, would kill my idea?)&#10;&#10;MVP TYPE I'LL USE:&#10;&#10;WHY THIS TYPE:&#10;&#10;WHAT I'LL BUILD/CREATE:&#10;&#10;HOW I'LL MEASURE SUCCESS:&#10;&#10;TIMELINE TO LAUNCH:"></textarea>
+                <div class="activity-actions">
+                    <button class="activity-btn activity-btn-primary save-activity-btn"><span>💾</span> Save</button>
+                    <button class="activity-btn activity-btn-secondary show-model-btn"><span>💡</span> Show Model</button>
+                </div>
+                <div class="model-response">
+                    <div class="model-response-header"><span class="model-response-icon">✨</span><h5 class="model-response-title">Example MVP Plan</h5></div>
+                    <div class="model-response-content">
+                        <p><strong>Solution:</strong> Platform connecting first-gen students with alumni mentors</p>
+                        <p><strong>Core Hypothesis:</strong> First-gen students will actually follow through on mentor meetings (not just sign up and ghost)</p>
+                        <p><strong>MVP Type:</strong> Concierge + Piecemeal</p>
+                        <p><strong>Why:</strong> I can manually match and check in, while using Calendly + Slack to manage communications</p>
+                        <p><strong>What I'll Build:</strong> Typeform for intake, Airtable for matching, Calendly for scheduling, Slack for community</p>
+                        <p><strong>Success Metrics:</strong> 20+ students sign up, 10+ actually have mentor meetings, 8+ give positive feedback</p>
+                        <p><strong>Timeline:</strong> Launch this weekend!</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="activity-box">
-                <h4>📝 Activity: Identify Your Riskiest Assumption</h4>
-                <p>What's the biggest uncertainty that could kill your startup?</p>
-                <textarea placeholder="My riskiest assumption is:&#10;&#10;If this assumption is wrong, it means:&#10;&#10;I can test this assumption by:&#10;&#10;I'll know the assumption is valid if:"></textarea>
-            </div>
-
-            <div class="activity-box">
-                <h4>📝 Activity: Define Your MVP</h4>
-                <p>Scope your MVP by answering these questions:</p>
-                <textarea placeholder="The ONE thing my MVP must do:&#10;&#10;What type of MVP will I build? (Landing page, concierge, etc.)&#10;&#10;Features I'm INCLUDING:&#10;1.&#10;2.&#10;3.&#10;&#10;Features I'm CUTTING (for now):&#10;1.&#10;2.&#10;3.&#10;&#10;How long will this take to build?"></textarea>
-            </div>
-
-            <div class="activity-box">
-                <h4>📝 Activity: MVP Success Criteria</h4>
-                <p>Define what success looks like for your MVP:</p>
-                <textarea placeholder="I'll consider my MVP successful if:&#10;&#10;The specific metric I'll track:&#10;&#10;Target number:&#10;&#10;Timeframe to evaluate:&#10;&#10;If successful, my next step is:&#10;&#10;If unsuccessful, I will:"></textarea>
+            <div class="interactive-activity" data-activity-id="3-1-feature-cut">
+                <div class="activity-header"><div class="activity-icon">✂️</div><h4 class="activity-title">Cut It Down</h4><span class="activity-type">Focus</span></div>
+                <p class="activity-prompt">List everything you'd want in your product, then ruthlessly cut to MVP essentials:</p>
+                <textarea class="activity-input" placeholder="ALL FEATURES I'D WANT IN THE FULL VERSION:&#10;1. &#10;2. &#10;3. &#10;4. &#10;5. &#10;6. &#10;7. &#10;8. &#10;&#10;THE ONE CORE FEATURE FOR MVP (choose only one):&#10;&#10;WHY THIS ONE?&#10;&#10;FEATURES I'M CUTTING (and why that's okay):"></textarea>
+                <div class="activity-actions">
+                    <button class="activity-btn activity-btn-primary save-activity-btn"><span>💾</span> Save</button>
+                    <button class="activity-btn activity-btn-secondary show-model-btn"><span>💡</span> Show Model</button>
+                </div>
+                <div class="model-response">
+                    <div class="model-response-header"><span class="model-response-icon">✨</span><h5 class="model-response-title">Example Feature Cut</h5></div>
+                    <div class="model-response-content">
+                        <p><strong>Full Version Features:</strong></p>
+                        <p>1. AI-powered mentor matching 2. Video chat 3. Resource library 4. Resume review 5. Interview prep 6. Job board 7. Community forum 8. Progress tracking</p>
+                        <p><strong>MVP Core Feature:</strong> Mentor matching only</p>
+                        <p><strong>Why:</strong> If students and mentors don't connect and find value in conversations, nothing else matters. Fancy features won't fix a broken core.</p>
+                        <p><strong>Cutting:</strong> AI matching → manual works fine. Video → use Zoom. Resources → link to existing ones. Resume → maybe phase 2. Rest → later.</p>
+                    </div>
+                </div>
             </div>
 
             <div class="takeaways-box">
                 <h4>🎯 Key Takeaways</h4>
                 <ul>
-                    <li>An MVP is the smallest thing that delivers real value and tests key assumptions</li>
-                    <li>Build-Measure-Learn: iterate quickly instead of building in isolation</li>
-                    <li>Famous companies started with simple MVPs—you can too</li>
-                    <li>Choose an MVP type that matches what you need to learn</li>
-                    <li>Focus on ONE core thing; cut everything else</li>
-                    <li>Minimum scope, but not minimum quality</li>
+                    <li>MVP = simplest thing that tests your core hypothesis</li>
+                    <li>The purpose is learning, not launching a perfect product</li>
+                    <li>Start manual (concierge), then automate what works</li>
+                    <li>Include only the ONE feature that delivers core value</li>
+                    <li>Build-Measure-Learn: iterate based on real feedback</li>
                 </ul>
             </div>
         </div>
 
         <nav class="lesson-nav">
-            <a href="2-4-competitive-analysis.html" class="lesson-nav-btn prev">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m0 0l7 7m-7-7l7-7"></path></svg>
-                Previous: Competitive Analysis
-            </a>
-            <a href="3-2-no-code-tools.html" class="lesson-nav-btn next">
-                Next: No-Code MVP Tools
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
-            </a>
+            <a href="2-4-competitive-analysis.html" class="lesson-nav-btn prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m0 0l7 7m-7-7l7-7"></path></svg>Previous: Competition</a>
+            <a href="3-2-no-code-tools.html" class="lesson-nav-btn next">Next: No-Code Tools<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg></a>
         </nav>
     </main>
 
+    <script src="interactive.js"></script>
     <script src="../script.js"></script>
 </body>
 </html>

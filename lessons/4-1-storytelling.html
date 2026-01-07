@@ -5,255 +5,164 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 4.1: Storytelling for Startups - Genesis</title>
     <link rel="stylesheet" href="../styles.css?v=1002">
+    <link rel="stylesheet" href="interactive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="lesson-styles.css">
+    <style>
+        .lesson-container { max-width: 800px; margin: 0 auto; padding: 120px 24px 80px; }
+        .lesson-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-tertiary); margin-bottom: 24px; }
+        .lesson-breadcrumb a { color: var(--origin-blue-light); text-decoration: none; }
+        .lesson-phase-tag { display: inline-block; background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); color: #16a34a; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; margin-bottom: 16px; }
+        .lesson-title { font-family: 'DM Sans', sans-serif; font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; color: var(--text-primary); margin-bottom: 16px; line-height: 1.2; }
+        .lesson-meta { display: flex; align-items: center; gap: 20px; color: var(--text-tertiary); font-size: 0.95rem; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--border-light); flex-wrap: wrap; }
+        .lesson-content h2 { font-family: 'DM Sans', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin: 48px 0 20px; }
+        .lesson-content p { font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 20px; }
+        .lesson-content ul, .lesson-content ol { margin: 20px 0; padding-left: 24px; }
+        .lesson-content li { font-size: 1.05rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 12px; }
+        .key-concept { background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); border-left: 4px solid #16a34a; padding: 20px 24px; border-radius: 0 12px 12px 0; margin: 28px 0; }
+        .key-concept h4 { font-size: 1rem; font-weight: 700; color: #16a34a; margin-bottom: 8px; }
+        .key-concept p { margin: 0 0 8px; color: #166534; }
+        .takeaways-box { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 16px; padding: 28px; margin: 40px 0; }
+        .takeaways-box h4 { font-size: 1.1rem; font-weight: 700; color: #92400e; margin-bottom: 16px; }
+        .takeaways-box ul { list-style: none; padding: 0; }
+        .takeaways-box li { color: #92400e; padding-left: 28px; position: relative; margin-bottom: 12px; }
+        .takeaways-box li::before { content: '✓'; position: absolute; left: 0; color: #d97706; font-weight: 700; }
+        .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--border-light); gap: 16px; flex-wrap: wrap; }
+        .lesson-nav-btn { display: flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 12px; font-weight: 600; text-decoration: none; }
+        .lesson-nav-btn.prev { background: var(--bg-tertiary); color: var(--text-secondary); }
+        .lesson-nav-btn.next { background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); color: white; }
+    </style>
 </head>
-<body>
+<body data-lesson-id="4-1-storytelling">
+    <div class="points-display" id="points-display"><span class="points-icon">⭐</span><div><span class="points-value">0</span><span class="points-label">points</span></div></div>
+
     <nav class="nav">
         <div class="nav-container">
-            <div class="nav-logo">
-                <a href="../index.html">
-                    <img src="../assets/originlogo.svg" alt="Project Origin" class="nav-logo-img">
-                </a>
-            </div>
-            <div class="nav-links">
-                <a href="../index.html" class="nav-link">Home</a>
-                <a href="../cohort1.html" class="nav-link">Cohort 1</a>
-                <a href="../mentors.html" class="nav-link">Mentors</a>
-                <a href="../contact.html" class="nav-link">Contact</a>
-            </div>
-            <div class="nav-actions">
-                <a href="../genesis.html" class="nav-button active">Genesis</a>
-            </div>
+            <div class="nav-logo"><a href="../index.html"><img src="../assets/originlogo.svg" alt="Project Origin" class="nav-logo-img"></a></div>
+            <div class="nav-links"><a href="../index.html" class="nav-link">Home</a><a href="../cohort1.html" class="nav-link">Cohort 1</a><a href="../mentors.html" class="nav-link">Mentors</a><a href="../contact.html" class="nav-link">Contact</a></div>
+            <div class="nav-actions"><a href="../genesis.html" class="nav-button active">Genesis</a></div>
         </div>
     </nav>
 
     <main class="lesson-container">
-        <nav class="lesson-breadcrumb">
-            <a href="../genesis.html">Genesis</a>
-            <span>→</span>
-            <a href="../genesis.html#lessons">Phase 4</a>
-            <span>→</span>
-            <span>Lesson 4.1</span>
-        </nav>
+        <nav class="lesson-breadcrumb"><a href="../genesis.html">Genesis</a><span>→</span><span>Phase 4</span><span>→</span><span>Lesson 4.1</span></nav>
 
         <div class="lesson-phase-tag">Phase 4: Pitch & Launch</div>
         <h1 class="lesson-title">Storytelling for Startups</h1>
         
         <div class="lesson-meta">
-            <div class="lesson-meta-item">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
-                30 min read
-            </div>
-            <div class="lesson-meta-item">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
-                Lesson 13 of 16
-            </div>
+            <div class="lesson-meta-item">⏱️ 30 min</div>
+            <div class="lesson-meta-item">Lesson 13 of 16</div>
+            <div class="lesson-meta-item">🎯 2 Activities</div>
         </div>
 
         <div class="lesson-content">
-            <p>Great founders are great storytellers. Your story is how you connect with customers, inspire investors, recruit team members, and build a brand that people remember. In this lesson, you'll learn how to craft a compelling narrative that brings your startup to life.</p>
+            <p>Facts tell, stories sell. Whether you're pitching investors, recruiting users, or explaining your startup, a compelling story makes all the difference.</p>
 
-            <h2>Why Storytelling Matters</h2>
+            <div class="quiz-container" data-correct="C" data-explanation="Great storytelling creates emotional connection. People remember stories, not features or statistics. A relatable narrative helps audiences understand why your solution matters.">
+                <div class="quiz-header"><div class="quiz-icon">🧠</div><div><h4 class="quiz-title">Storytelling Power</h4></div></div>
+                <p class="quiz-question">The most important element of startup storytelling is:</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-option="A"><span class="quiz-option-marker">A</span><span class="quiz-option-text">Using complex technical jargon</span></div>
+                    <div class="quiz-option" data-option="B"><span class="quiz-option-marker">B</span><span class="quiz-option-text">Listing all your product features</span></div>
+                    <div class="quiz-option" data-option="C"><span class="quiz-option-marker">C</span><span class="quiz-option-text">Creating emotional connection through narrative</span></div>
+                    <div class="quiz-option" data-option="D"><span class="quiz-option-marker">D</span><span class="quiz-option-text">Showing complex financial projections</span></div>
+                </div>
+                <button class="quiz-check-btn" disabled>Check Answer</button>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <h2>The Startup Story Framework</h2>
             
-            <p>Facts tell. Stories sell.</p>
-
-            <p>People don't remember statistics—they remember stories. A good story:</p>
-            <ul>
-                <li>Makes your startup memorable</li>
-                <li>Creates emotional connection</li>
-                <li>Helps people understand complex ideas</li>
-                <li>Differentiates you from competitors</li>
-                <li>Inspires action (buying, investing, joining)</li>
-            </ul>
-
-            <div class="quote-box">
-                <blockquote>Marketing is no longer about the stuff that you make, but about the stories you tell.</blockquote>
-                <cite>— Seth Godin</cite>
-            </div>
-
-            <h2>The Elements of a Startup Story</h2>
-
-            <p>Every compelling startup story has these core elements:</p>
-
-            <h3>1. The Founder's Journey</h3>
-            <p>Why are YOU the one to solve this problem? Your personal connection to the problem makes your story authentic and credible.</p>
-
-            <p>Questions to answer:</p>
-            <ul>
-                <li>How did you discover this problem?</li>
-                <li>Why does it matter to you personally?</li>
-                <li>What unique experience or perspective do you bring?</li>
-                <li>What's your "aha moment"?</li>
-            </ul>
-
             <div class="key-concept">
-                <h4>Your Immigrant Story is Powerful</h4>
-                <p>Your background isn't a disadvantage—it's a unique part of your story. The challenges you've overcome, the perspectives you've gained, and the resilience you've built are all compelling narrative elements.</p>
+                <h4>The Hero's Journey for Startups</h4>
+                <p><strong>1. The Problem (The World Before):</strong> Paint a picture of the pain. Make them feel it.</p>
+                <p><strong>2. The Turning Point:</strong> Your "aha moment"—why you decided to solve this.</p>
+                <p><strong>3. The Solution (The Hero):</strong> What you built and how it works.</p>
+                <p><strong>4. The Transformation:</strong> What life looks like after using your product.</p>
+                <p><strong>5. The Vision:</strong> The bigger change you want to create in the world.</p>
             </div>
 
-            <h3>2. The Problem (The Villain)</h3>
-            <p>Every story needs a villain. In your startup story, the villain is the problem you're solving.</p>
+            <h2>Types of Startup Stories</h2>
+            
+            <h3>1. The Origin Story</h3>
+            <p>"Why did you start this?" People want to know what drives you. Your personal connection to the problem makes you credible and relatable.</p>
 
-            <p>Make the problem vivid:</p>
-            <ul>
-                <li>Who suffers from this problem?</li>
-                <li>What does that suffering look like?</li>
-                <li>What's at stake if the problem isn't solved?</li>
-                <li>Why has no one solved it before?</li>
-            </ul>
+            <h3>2. The Customer Story</h3>
+            <p>Show a real person (or composite) whose life improved because of your product. Concrete examples are more powerful than abstractions.</p>
 
-            <h3>3. The Solution (The Hero's Journey)</h3>
-            <p>Your product is the hero that defeats the villain. But more importantly, your CUSTOMER becomes the hero of their own story by using your product.</p>
+            <h3>3. The Vision Story</h3>
+            <p>Paint a picture of the future you're building toward. Inspire people to join your mission.</p>
 
-            <p>Frame your solution as transformation:</p>
-            <ul>
-                <li>Before: What life looks like without your solution</li>
-                <li>After: The better future you enable</li>
-                <li>The journey: How you take them from before to after</li>
-            </ul>
-
-            <h3>4. The Vision (The Promised Land)</h3>
-            <p>Where is all this going? What's the bigger picture you're working toward?</p>
-
-            <p>A compelling vision:</p>
-            <ul>
-                <li>Is ambitious but believable</li>
-                <li>Shows how the world will be better</li>
-                <li>Gives people something to rally around</li>
-                <li>Goes beyond just making money</li>
-            </ul>
-
-            <h2>Story Frameworks</h2>
-
-            <h3>The "Why" Framework (Simon Sinek)</h3>
-            <p>Start with why, then how, then what.</p>
-
-            <ol>
-                <li><strong>Why:</strong> Your purpose, cause, belief. Why does your company exist?</li>
-                <li><strong>How:</strong> Your process, your unique approach</li>
-                <li><strong>What:</strong> Your product or service</li>
-            </ol>
-
-            <div class="example-box">
-                <h4>Example: The "Why" Framework</h4>
-                <p><strong>What most say:</strong> "We make a platform that connects students with mentors."</p>
-                <p><strong>Starting with Why:</strong> "We believe every student deserves access to guidance that was once only available to the privileged few. That's why we connect first-generation students with mentors who've walked their exact path."</p>
+            <div class="scenario-container">
+                <div class="scenario-header"><div class="scenario-icon">📖</div><h4 class="scenario-title">Which Story Wins?</h4></div>
+                <div class="scenario-story">You're pitching your mentor matching platform. Which opening is most compelling?</div>
+                <p class="scenario-question">Choose the best approach:</p>
+                <div class="scenario-choices">
+                    <div class="scenario-choice" data-outcome="learning"><span class="scenario-choice-marker">A</span><span class="scenario-choice-text">"We built an AI-powered platform that uses machine learning to optimize mentor-mentee matching algorithms."</span></div>
+                    <div class="scenario-choice" data-outcome="good"><span class="scenario-choice-marker">B</span><span class="scenario-choice-text">"First-gen students are 40% of college students but get far fewer internships. We're solving that."</span></div>
+                    <div class="scenario-choice" data-outcome="best"><span class="scenario-choice-marker">C</span><span class="scenario-choice-text">"Sophomore year, I applied to 80 internships and got zero responses. My roommate's dad made one phone call and got him an interview at Goldman. That's when I knew the system was broken for students like me."</span></div>
+                </div>
+                <div class="scenario-outcome best" data-outcome-id="best"><p class="scenario-outcome-title">🌟 Compelling Story!</p><p>Personal, specific, and emotional. You feel the unfairness. You understand why this matters. Stories with real details stick with people.</p></div>
+                <div class="scenario-outcome good" data-outcome-id="good"><p class="scenario-outcome-title">👍 Good, But Cold</p><p>Statistics are useful but don't create emotional connection. This works as a supporting point, but shouldn't be your opening.</p></div>
+                <div class="scenario-outcome learning" data-outcome-id="learning"><p class="scenario-outcome-title">💡 Jargon Alert</p><p>Technical features don't tell people why they should care. "AI-powered" and "algorithms" don't create connection. Lead with the human story.</p></div>
             </div>
 
-            <h3>The "And, But, Therefore" Framework</h3>
-            <p>A simple structure for any story:</p>
-
-            <ul>
-                <li><strong>And:</strong> Set up the situation (things were going along...)</li>
-                <li><strong>But:</strong> Introduce the conflict/problem</li>
-                <li><strong>Therefore:</strong> Present the resolution/solution</li>
-            </ul>
-
-            <div class="example-box">
-                <h4>Example: And, But, Therefore</h4>
-                <p>"Every year, millions of first-generation students apply to college, <strong>AND</strong> they work harder than anyone to succeed. <strong>BUT</strong> they don't have access to the insider knowledge that prep school kids get from their networks. <strong>THEREFORE</strong>, we built a platform that matches them with recent graduates who navigated the same challenges."</p>
+            <h2>Story Structure in Practice</h2>
+            
+            <div class="fill-blank-container">
+                <div class="fill-blank-header"><div class="fill-blank-icon">✏️</div><h4 class="fill-blank-title">Complete the Story Arc</h4></div>
+                <p class="fill-blank-sentence">
+                    Start with the <input type="text" class="blank-input" data-answer="problem" data-alternatives="pain,challenge"> to make them feel the pain.<br><br>
+                    Share your personal <input type="text" class="blank-input" data-answer="connection" data-alternatives="story,experience"> to the problem.<br><br>
+                    Introduce your <input type="text" class="blank-input" data-answer="solution" data-alternatives="product,answer"> as the hero.<br><br>
+                    End with your <input type="text" class="blank-input" data-answer="vision" data-alternatives="mission,future"> for the future.
+                </p>
+                <button class="quiz-check-btn fill-blank-check-btn">Check Answers</button>
             </div>
 
-            <h3>The Hero's Journey (Simplified)</h3>
-            <ol>
-                <li><strong>Ordinary World:</strong> Life before your solution</li>
-                <li><strong>Call to Adventure:</strong> They discover the problem exists</li>
-                <li><strong>Meeting the Mentor:</strong> They find your product/company</li>
-                <li><strong>Crossing the Threshold:</strong> They decide to try your solution</li>
-                <li><strong>Transformation:</strong> Their life improves</li>
-                <li><strong>Return with Elixir:</strong> They share their success with others</li>
-            </ol>
-
-            <h2>Your Origin Story</h2>
-
-            <p>Every startup has an origin story. It's the "why this?" and "why now?" and "why you?"</p>
-
-            <p>Elements of a powerful origin story:</p>
-
-            <ul>
-                <li><strong>Personal experience:</strong> "I faced this problem myself when..."</li>
-                <li><strong>The moment of insight:</strong> "I realized that..."</li>
-                <li><strong>Early validation:</strong> "When I talked to others, they said..."</li>
-                <li><strong>The decision:</strong> "That's when I decided to build..."</li>
-            </ul>
-
-            <div class="example-box">
-                <h4>Example: Origin Story</h4>
-                <p>"When I applied to college, I was lost. My parents immigrated from India and couldn't help me navigate applications. I spent months searching Reddit and YouTube for advice, but nothing felt relevant to my situation.</p>
-                <p>Then I met a senior who had just gotten into my dream school. One 30-minute conversation gave me more clarity than months of research. I realized: this kind of peer guidance shouldn't be so hard to find.</p>
-                <p>That's why I built MentorMatch—to give every student access to someone who's been exactly where they are."</p>
-            </div>
-
-            <h2>Making Your Story Memorable</h2>
-
-            <h3>Use Specific Details</h3>
-            <p>Specifics are more believable and memorable than generalities.</p>
-            <ul>
-                <li>Instead of "many students," say "3.4 million first-gen students"</li>
-                <li>Instead of "I was stressed," describe a specific moment</li>
-                <li>Use names, places, numbers when possible</li>
-            </ul>
-
-            <h3>Show, Don't Tell</h3>
-            <ul>
-                <li>Don't say "our product is easy to use"—show someone using it</li>
-                <li>Don't say "customers love us"—share a specific testimonial</li>
-                <li>Don't say "the problem is big"—illustrate it with a story</li>
-            </ul>
-
-            <h3>Create Contrast</h3>
-            <p>The bigger the contrast between "before" and "after," the more compelling your story.</p>
-
-            <h3>Keep It Simple</h3>
-            <p>If you can't explain your story in 30 seconds, it's too complicated. Strip away anything that isn't essential.</p>
-
-            <div class="activity-box">
-                <h4>📝 Activity: Write Your Origin Story</h4>
-                <p>Craft your founder's origin story:</p>
-                <textarea placeholder="How did you first encounter this problem?&#10;&#10;What was your 'aha' moment?&#10;&#10;What personal experience makes you uniquely suited to solve this?&#10;&#10;Why did you decide to build this?&#10;&#10;Now write it as a 3-4 paragraph story:"></textarea>
-            </div>
-
-            <div class="activity-box">
-                <h4>📝 Activity: The 30-Second Story</h4>
-                <p>Write a 30-second version of your startup story using the "And, But, Therefore" framework:</p>
-                <textarea placeholder="AND (situation):&#10;&#10;BUT (problem):&#10;&#10;THEREFORE (solution):&#10;&#10;Full 30-second version:"></textarea>
-            </div>
-
-            <div class="activity-box">
-                <h4>📝 Activity: Your Vision Statement</h4>
-                <p>Write a compelling vision of the future you're building toward:</p>
-                <textarea placeholder="In 5-10 years, because of my startup...&#10;&#10;The world will be different because...&#10;&#10;My vision in one sentence:"></textarea>
+            <div class="interactive-activity" data-activity-id="4-1-origin">
+                <div class="activity-header"><div class="activity-icon">📖</div><h4 class="activity-title">Craft Your Origin Story</h4><span class="activity-type">Storytelling</span></div>
+                <p class="activity-prompt">Write the story of why you started this:</p>
+                <textarea class="activity-input" placeholder="THE PROBLEM (What pain did you or someone you know experience?):&#10;&#10;THE MOMENT (When did you realize this needed to be solved?):&#10;&#10;YOUR CONNECTION (Why are YOU the one to solve this?):&#10;&#10;THE SOLUTION (What did you build?):&#10;&#10;THE TRANSFORMATION (How do things change for users?):&#10;&#10;THE VISION (What world are you building toward?):&#10;&#10;PUT IT TOGETHER (Write your full 30-second origin story):"></textarea>
+                <div class="activity-actions">
+                    <button class="activity-btn activity-btn-primary save-activity-btn"><span>💾</span> Save</button>
+                    <button class="activity-btn activity-btn-secondary show-model-btn"><span>💡</span> Show Model</button>
+                </div>
+                <div class="model-response">
+                    <div class="model-response-header"><span class="model-response-icon">✨</span><h5 class="model-response-title">Example Origin Story</h5></div>
+                    <div class="model-response-content">
+                        <p><strong>Problem:</strong> Sophomore year, I applied to 80 internships. Zero responses. Meanwhile, my roommate's dad made one phone call and got him an interview at Goldman Sachs.</p>
+                        <p><strong>Moment:</strong> I realized: it's not that I wasn't qualified—I just didn't have connections. And millions of first-gen students face the same barrier.</p>
+                        <p><strong>Connection:</strong> As a first-gen student myself, I understand this problem personally. And I've now navigated the system and made it to the other side.</p>
+                        <p><strong>Solution:</strong> So I built MentorMatch—a platform that connects first-gen students with alumni mentors who can open doors.</p>
+                        <p><strong>Transformation:</strong> Now students get insider knowledge, warm introductions, and the confidence that comes from having someone in their corner.</p>
+                        <p><strong>Vision:</strong> We're building a world where your talent matters more than your parents' Rolodex.</p>
+                    </div>
+                </div>
             </div>
 
             <div class="takeaways-box">
                 <h4>🎯 Key Takeaways</h4>
                 <ul>
-                    <li>Stories connect emotionally; facts alone don't persuade</li>
-                    <li>Your personal journey is a core part of your startup story</li>
-                    <li>Use frameworks like "Start with Why" or "And, But, Therefore"</li>
-                    <li>Make your customer the hero who transforms using your product</li>
-                    <li>Specific details make stories believable and memorable</li>
-                    <li>Keep it simple enough to tell in 30 seconds</li>
+                    <li>Stories create emotional connection—facts alone don't persuade</li>
+                    <li>Use the framework: Problem → Turning Point → Solution → Transformation → Vision</li>
+                    <li>Your personal connection makes you credible</li>
+                    <li>Specific details are more powerful than generalizations</li>
+                    <li>Practice your story until it feels natural, not scripted</li>
                 </ul>
             </div>
         </div>
 
         <nav class="lesson-nav">
-            <a href="3-4-first-users.html" class="lesson-nav-btn prev">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m0 0l7 7m-7-7l7-7"></path></svg>
-                Previous: Getting First Users
-            </a>
-            <a href="4-2-pitch-deck.html" class="lesson-nav-btn next">
-                Next: Building Your Pitch Deck
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
-            </a>
+            <a href="3-4-first-users.html" class="lesson-nav-btn prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m0 0l7 7m-7-7l7-7"></path></svg>Previous: First Users</a>
+            <a href="4-2-pitch-deck.html" class="lesson-nav-btn next">Next: Pitch Deck<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg></a>
         </nav>
     </main>
 
+    <script src="interactive.js"></script>
     <script src="../script.js"></script>
 </body>
 </html>

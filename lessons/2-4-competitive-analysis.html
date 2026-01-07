@@ -5,297 +5,207 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 2.4: Competitive Analysis - Genesis</title>
     <link rel="stylesheet" href="../styles.css?v=1002">
+    <link rel="stylesheet" href="interactive.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="lesson-styles.css">
+    <style>
+        .lesson-container { max-width: 800px; margin: 0 auto; padding: 120px 24px 80px; }
+        .lesson-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-tertiary); margin-bottom: 24px; }
+        .lesson-breadcrumb a { color: var(--origin-blue-light); text-decoration: none; }
+        .lesson-phase-tag { display: inline-block; background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); color: #7c3aed; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; margin-bottom: 16px; }
+        .lesson-title { font-family: 'DM Sans', sans-serif; font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; color: var(--text-primary); margin-bottom: 16px; line-height: 1.2; }
+        .lesson-meta { display: flex; align-items: center; gap: 20px; color: var(--text-tertiary); font-size: 0.95rem; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--border-light); flex-wrap: wrap; }
+        .lesson-content h2 { font-family: 'DM Sans', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin: 48px 0 20px; }
+        .lesson-content p { font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 20px; }
+        .lesson-content ul { margin: 20px 0; padding-left: 24px; }
+        .lesson-content li { font-size: 1.05rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 12px; }
+        .key-concept { background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); border-left: 4px solid #7c3aed; padding: 20px 24px; border-radius: 0 12px 12px 0; margin: 28px 0; }
+        .key-concept h4 { font-size: 1rem; font-weight: 700; color: #7c3aed; margin-bottom: 8px; }
+        .key-concept p { margin: 0 0 8px; color: var(--text-primary); }
+        .takeaways-box { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 16px; padding: 28px; margin: 40px 0; }
+        .takeaways-box h4 { font-size: 1.1rem; font-weight: 700; color: #92400e; margin-bottom: 16px; }
+        .takeaways-box ul { list-style: none; padding: 0; }
+        .takeaways-box li { color: #92400e; padding-left: 28px; position: relative; margin-bottom: 12px; }
+        .takeaways-box li::before { content: '✓'; position: absolute; left: 0; color: #d97706; font-weight: 700; }
+        .phase-complete { text-align: center; margin-top: 40px; padding: 32px; background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); border-radius: 20px; border: 2px solid #7c3aed; }
+        .phase-complete h3 { color: #5b21b6; margin-bottom: 12px; }
+        .phase-complete p { color: #5b21b6; margin-bottom: 20px; }
+        .phase-complete a { display: inline-flex; align-items: center; gap: 8px; background: #7c3aed; color: white; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 600; }
+        .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--border-light); gap: 16px; flex-wrap: wrap; }
+        .lesson-nav-btn { display: flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 12px; font-weight: 600; text-decoration: none; }
+        .lesson-nav-btn.prev { background: var(--bg-tertiary); color: var(--text-secondary); }
+        .lesson-nav-btn.next { background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%); color: white; }
+    </style>
 </head>
-<body>
+<body data-lesson-id="2-4-competitive-analysis">
+    <div class="points-display" id="points-display"><span class="points-icon">⭐</span><div><span class="points-value">0</span><span class="points-label">points</span></div></div>
+
     <nav class="nav">
         <div class="nav-container">
-            <div class="nav-logo">
-                <a href="../index.html">
-                    <img src="../assets/originlogo.svg" alt="Project Origin" class="nav-logo-img">
-                </a>
-            </div>
-            <div class="nav-links">
-                <a href="../index.html" class="nav-link">Home</a>
-                <a href="../cohort1.html" class="nav-link">Cohort 1</a>
-                <a href="../mentors.html" class="nav-link">Mentors</a>
-                <a href="../contact.html" class="nav-link">Contact</a>
-            </div>
-            <div class="nav-actions">
-                <a href="../genesis.html" class="nav-button active">Genesis</a>
-            </div>
+            <div class="nav-logo"><a href="../index.html"><img src="../assets/originlogo.svg" alt="Project Origin" class="nav-logo-img"></a></div>
+            <div class="nav-links"><a href="../index.html" class="nav-link">Home</a><a href="../cohort1.html" class="nav-link">Cohort 1</a><a href="../mentors.html" class="nav-link">Mentors</a><a href="../contact.html" class="nav-link">Contact</a></div>
+            <div class="nav-actions"><a href="../genesis.html" class="nav-button active">Genesis</a></div>
         </div>
     </nav>
 
     <main class="lesson-container">
-        <nav class="lesson-breadcrumb">
-            <a href="../genesis.html">Genesis</a>
-            <span>→</span>
-            <a href="../genesis.html#lessons">Phase 2</a>
-            <span>→</span>
-            <span>Lesson 2.4</span>
-        </nav>
+        <nav class="lesson-breadcrumb"><a href="../genesis.html">Genesis</a><span>→</span><span>Phase 2</span><span>→</span><span>Lesson 2.4</span></nav>
 
         <div class="lesson-phase-tag">Phase 2: Solution Design</div>
         <h1 class="lesson-title">Competitive Analysis</h1>
         
         <div class="lesson-meta">
-            <div class="lesson-meta-item">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
-                35 min read
-            </div>
-            <div class="lesson-meta-item">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
-                Lesson 8 of 16
-            </div>
+            <div class="lesson-meta-item">⏱️ 30 min</div>
+            <div class="lesson-meta-item">Lesson 8 of 16</div>
+            <div class="lesson-meta-item">🎯 3 Activities</div>
         </div>
 
         <div class="lesson-content">
-            <p>Understanding your competition isn't about copying them—it's about finding where you can win. In this lesson, you'll learn how to research competitors, identify gaps in the market, and position your startup for success.</p>
+            <p>Competition isn't bad—it validates that a market exists. Understanding your competitors helps you find your unique position and avoid their mistakes.</p>
 
-            <h2>Why Competitive Analysis Matters</h2>
-            
-            <p>Many founders make two opposite mistakes:</p>
-            <ol>
-                <li><strong>Ignoring competition:</strong> "We don't have competitors" (you always do)</li>
-                <li><strong>Obsessing over competition:</strong> Copying everything they do instead of innovating</li>
-            </ol>
-
-            <div class="key-concept">
-                <h4>Key Concept</h4>
-                <p>Competition validates that a market exists. No competitors might mean no market. The goal isn't to avoid competition—it's to find where you can differentiate and win.</p>
+            <div class="quiz-container" data-correct="B" data-explanation="Competition validates market demand! If others are solving this problem, people are willing to pay. The key is finding your unique angle, not avoiding competition entirely.">
+                <div class="quiz-header"><div class="quiz-icon">🧠</div><div><h4 class="quiz-title">Competition Mindset</h4></div></div>
+                <p class="quiz-question">What does having competitors usually mean?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-option="A"><span class="quiz-option-marker">A</span><span class="quiz-option-text">Your idea is already taken, give up</span></div>
+                    <div class="quiz-option" data-option="B"><span class="quiz-option-marker">B</span><span class="quiz-option-text">There's validated demand for this type of solution</span></div>
+                    <div class="quiz-option" data-option="C"><span class="quiz-option-marker">C</span><span class="quiz-option-text">You need to copy everything they do</span></div>
+                    <div class="quiz-option" data-option="D"><span class="quiz-option-marker">D</span><span class="quiz-option-text">The market is completely saturated</span></div>
+                </div>
+                <button class="quiz-check-btn" disabled>Check Answer</button>
+                <div class="quiz-feedback"></div>
             </div>
-
-            <p>Good competitive analysis helps you:</p>
-            <ul>
-                <li>Understand what customers already have access to</li>
-                <li>Find gaps that aren't being addressed</li>
-                <li>Learn from competitors' successes and mistakes</li>
-                <li>Position your product to stand out</li>
-                <li>Anticipate competitive responses</li>
-            </ul>
 
             <h2>Types of Competitors</h2>
-
-            <h3>Direct Competitors</h3>
-            <p>Companies that solve the same problem for the same customers in a similar way.</p>
-            <p><em>Example: If you're building a meditation app, Headspace and Calm are direct competitors.</em></p>
-
-            <h3>Indirect Competitors</h3>
-            <p>Companies that solve the same problem but in a different way, or solve a related problem.</p>
-            <p><em>Example: For a meditation app, yoga studios, therapy apps, or even walks in nature are indirect competitors.</em></p>
-
-            <h3>Substitute Competitors</h3>
-            <p>Different solutions that customers might choose instead—including doing nothing.</p>
-            <p><em>Example: Customers might just listen to music to relax instead of using a meditation app.</em></p>
-
-            <div class="warning-box">
-                <h4>⚠️ "We Have No Competitors" is a Red Flag</h4>
-                <p>If you can't find any competitors, either: (1) there's no real market, (2) you haven't looked hard enough, or (3) you're defining your market too narrowly. At minimum, customers are doing SOMETHING today—even if it's nothing.</p>
+            
+            <div class="key-concept">
+                <h4>Direct Competitors</h4>
+                <p>Solve the same problem for the same customers in a similar way.</p>
+                <p><em>Example: If you're Uber, Lyft is a direct competitor.</em></p>
             </div>
 
-            <h2>How to Research Competitors</h2>
-
-            <h3>Step 1: Make a List</h3>
-            <p>Find all relevant competitors through:</p>
-            <ul>
-                <li><strong>Google searches:</strong> Search for the problem you solve, not just your solution type</li>
-                <li><strong>App stores:</strong> Search relevant categories</li>
-                <li><strong>Customer interviews:</strong> Ask "What do you currently use?"</li>
-                <li><strong>Review sites:</strong> G2, Capterra, TrustPilot</li>
-                <li><strong>Industry reports:</strong> Look for market research</li>
-                <li><strong>Startup databases:</strong> Crunchbase, AngelList</li>
-                <li><strong>Social media:</strong> What are people recommending?</li>
-            </ul>
-
-            <h3>Step 2: Analyze Each Competitor</h3>
-            <p>For each major competitor, research:</p>
-
-            <p><strong>Product/Service:</strong></p>
-            <ul>
-                <li>What features do they offer?</li>
-                <li>What's their user experience like?</li>
-                <li>What are customers saying in reviews?</li>
-                <li>What are common complaints?</li>
-            </ul>
-
-            <p><strong>Business Model:</strong></p>
-            <ul>
-                <li>How do they make money?</li>
-                <li>What do they charge?</li>
-                <li>Who are their customers?</li>
-            </ul>
-
-            <p><strong>Marketing & Positioning:</strong></p>
-            <ul>
-                <li>What's their value proposition?</li>
-                <li>What channels do they use?</li>
-                <li>What's their brand like?</li>
-            </ul>
-
-            <p><strong>Strengths & Weaknesses:</strong></p>
-            <ul>
-                <li>What do they do well?</li>
-                <li>Where do they fall short?</li>
-                <li>What are customers complaining about?</li>
-            </ul>
-
-            <h3>Step 3: Create a Competitive Matrix</h3>
-            <p>Organize your findings in a comparison table:</p>
-
-            <table>
-                <thead>
-                    <tr>
-                        <th>Feature/Factor</th>
-                        <th>Competitor A</th>
-                        <th>Competitor B</th>
-                        <th>Your Startup</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Price</td>
-                        <td>$50/mo</td>
-                        <td>$20/mo</td>
-                        <td>$30/mo</td>
-                    </tr>
-                    <tr>
-                        <td>Target Customer</td>
-                        <td>Enterprise</td>
-                        <td>SMBs</td>
-                        <td>Students</td>
-                    </tr>
-                    <tr>
-                        <td>Key Feature</td>
-                        <td>Advanced analytics</td>
-                        <td>Ease of use</td>
-                        <td>Personalization</td>
-                    </tr>
-                    <tr>
-                        <td>Main Weakness</td>
-                        <td>Complex setup</td>
-                        <td>Limited features</td>
-                        <td>New to market</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <h2>Finding Your Competitive Advantage</h2>
-
-            <p>Your competitive advantage is what makes you different and better for your target customers. It can come from:</p>
-
-            <h3>1. Underserved Customer Segments</h3>
-            <p>Is there a group that existing solutions don't serve well?</p>
-            <p><em>Example: Most task management tools are built for teams. Maybe you focus on solo creators.</em></p>
-
-            <h3>2. Feature Gaps</h3>
-            <p>Is there functionality that customers want but competitors don't offer?</p>
-            <p><em>Example: Competitors don't have mobile apps, but your customers need mobile access.</em></p>
-
-            <h3>3. Experience/Interface</h3>
-            <p>Can you make something significantly easier or more delightful to use?</p>
-            <p><em>Example: Existing solutions are clunky; you make a beautiful, intuitive interface.</em></p>
-
-            <h3>4. Price Point</h3>
-            <p>Can you serve the market at a significantly different price?</p>
-            <p><em>Example: Enterprise solutions cost $500/mo; you offer 80% of the value for $50/mo.</em></p>
-
-            <h3>5. Distribution/Access</h3>
-            <p>Can you reach customers in ways competitors can't?</p>
-            <p><em>Example: You have unique access to a community or partnership.</em></p>
-
-            <h3>6. Speed/Technology</h3>
-            <p>Can you leverage new technology for a better solution?</p>
-            <p><em>Example: Use AI to automate what competitors do manually.</em></p>
-
-            <h2>Creating a Positioning Map</h2>
-
-            <p>A positioning map visually shows where competitors sit relative to each other on two key dimensions. This helps you find open space in the market.</p>
-
-            <div class="example-box">
-                <h4>Example: Positioning Map</h4>
-                <p>For a meal delivery service, you might map competitors on:</p>
-                <p><strong>X-axis:</strong> Price (Low → High)</p>
-                <p><strong>Y-axis:</strong> Health Focus (Convenience → Healthy)</p>
-                <p>&nbsp;</p>
-                <p>• McDonald's: Low price, convenience-focused (bottom-left)</p>
-                <p>• Sweetgreen: Higher price, health-focused (top-right)</p>
-                <p>• Chipotle: Medium price, somewhat healthy (middle)</p>
-                <p>&nbsp;</p>
-                <p><strong>The gap:</strong> Low-price, health-focused options (top-left) might be underserved!</p>
+            <div class="key-concept">
+                <h4>Indirect Competitors</h4>
+                <p>Solve the same underlying problem differently or for different customers.</p>
+                <p><em>Example: If you're Uber, public transit, taxis, and bike rentals are indirect competitors.</em></p>
             </div>
 
-            <p>Choose dimensions that matter to your customers and where you can differentiate.</p>
-
-            <h2>Competitive Strategy for Startups</h2>
-
-            <p>As a startup, you can't compete head-on with established players. Instead:</p>
-
-            <ol>
-                <li><strong>Start narrow:</strong> Be the best solution for a specific niche before expanding</li>
-                <li><strong>Move fast:</strong> Ship features and improvements quickly while competitors are slow</li>
-                <li><strong>Focus on unmet needs:</strong> Solve problems competitors are ignoring</li>
-                <li><strong>Build relationships:</strong> Give customers personal attention big companies can't</li>
-                <li><strong>Tell a different story:</strong> Position yourself in a new category if possible</li>
-            </ol>
-
-            <div class="quote-box">
-                <blockquote>If you define the market as the sum of all your competitors' customers, you've lost already. Find the customers they're not serving.</blockquote>
-                <cite>— Ben Horowitz</cite>
+            <div class="key-concept">
+                <h4>Alternative Solutions</h4>
+                <p>The current workarounds people use, including "do nothing."</p>
+                <p><em>Example: If you're Uber, walking, asking a friend for a ride, or not going at all.</em></p>
             </div>
 
-            <div class="activity-box">
-                <h4>📝 Activity: Competitor Research</h4>
-                <p>List your competitors and analyze them:</p>
-                <textarea placeholder="DIRECT COMPETITORS:&#10;1. Name:&#10;   What they do:&#10;   Strengths:&#10;   Weaknesses:&#10;   Price:&#10;&#10;2. Name:&#10;   What they do:&#10;   Strengths:&#10;   Weaknesses:&#10;   Price:&#10;&#10;INDIRECT COMPETITORS:&#10;1.&#10;2.&#10;&#10;WHAT ARE CUSTOMERS USING TODAY?"></textarea>
+            <div class="fill-blank-container">
+                <div class="fill-blank-header"><div class="fill-blank-icon">✏️</div><h4 class="fill-blank-title">Competitor Types</h4></div>
+                <p class="fill-blank-sentence">
+                    <input type="text" class="blank-input" data-answer="Direct" data-alternatives="direct"> competitors solve the same problem the same way.<br><br>
+                    <input type="text" class="blank-input" data-answer="Indirect" data-alternatives="indirect"> competitors solve the same problem differently.<br><br>
+                    <input type="text" class="blank-input" data-answer="Alternative" data-alternatives="alternative,current"> solutions are current workarounds.
+                </p>
+                <button class="quiz-check-btn fill-blank-check-btn">Check Answers</button>
             </div>
 
-            <div class="activity-box">
-                <h4>📝 Activity: Find Your Competitive Advantage</h4>
-                <p>Based on your competitor research, identify where you can win:</p>
-                <textarea placeholder="Underserved customer segment I can focus on:&#10;&#10;Feature gap I can fill:&#10;&#10;Experience improvement I can make:&#10;&#10;Price positioning:&#10;&#10;Unique access or distribution I have:&#10;&#10;My main competitive advantage in one sentence:"></textarea>
+            <h2>Analyzing Competitors</h2>
+            <p>For each competitor, research:</p>
+            <ul>
+                <li><strong>Target customer:</strong> Who are they serving?</li>
+                <li><strong>Value proposition:</strong> What do they promise?</li>
+                <li><strong>Pricing:</strong> How much do they charge?</li>
+                <li><strong>Strengths:</strong> What do they do well?</li>
+                <li><strong>Weaknesses:</strong> Where do they fall short?</li>
+                <li><strong>Reviews:</strong> What do customers say?</li>
+            </ul>
+
+            <div class="scenario-container">
+                <div class="scenario-header"><div class="scenario-icon">🔍</div><h4 class="scenario-title">Competitive Insight</h4></div>
+                <div class="scenario-story">You're researching a competitor's app. Their reviews are mostly 4-5 stars, but you notice a pattern: multiple 1-star reviews complain "Great app but terrible customer support—waited 2 weeks for a response."</div>
+                <p class="scenario-question">What's the strategic insight?</p>
+                <div class="scenario-choices">
+                    <div class="scenario-choice" data-outcome="learning"><span class="scenario-choice-marker">A</span><span class="scenario-choice-text">They're doing fine, 4-5 stars means you can't compete</span></div>
+                    <div class="scenario-choice" data-outcome="good"><span class="scenario-choice-marker">B</span><span class="scenario-choice-text">You should invest heavily in marketing to overcome their brand</span></div>
+                    <div class="scenario-choice" data-outcome="best"><span class="scenario-choice-marker">C</span><span class="scenario-choice-text">Customer support is a weakness you can differentiate on</span></div>
+                </div>
+                <div class="scenario-outcome best" data-outcome-id="best"><p class="scenario-outcome-title">🌟 Competitive Intelligence!</p><p>Negative reviews reveal opportunities. If support is their weakness, you can differentiate with "24-hour response guarantee" or "real human support." Find gaps, not just features.</p></div>
+                <div class="scenario-outcome good" data-outcome-id="good"><p class="scenario-outcome-title">👍 Missing the Point</p><p>Marketing won't help if you're the same as competitors. Better to find a specific advantage than to try to out-spend them.</p></div>
+                <div class="scenario-outcome learning" data-outcome-id="learning"><p class="scenario-outcome-title">💡 Dig Deeper!</p><p>High overall ratings don't mean there's no opportunity. The 1-star reviews often contain the insights—they show where the competitor is failing their customers.</p></div>
             </div>
 
-            <div class="activity-box">
-                <h4>📝 Activity: Create a Positioning Map</h4>
-                <p>Create a simple positioning map for your market:</p>
-                <textarea placeholder="Dimension 1 (X-axis): ________________&#10;Dimension 2 (Y-axis): ________________&#10;&#10;Where does Competitor A sit?&#10;Where does Competitor B sit?&#10;Where does Competitor C sit?&#10;&#10;Where will YOU sit?&#10;&#10;What gap in the market does this reveal?"></textarea>
+            <h2>Finding Your Unique Position</h2>
+            <p>Differentiation strategies:</p>
+            <ul>
+                <li><strong>Niche focus:</strong> Serve one segment better than anyone</li>
+                <li><strong>Feature advantage:</strong> Do one thing dramatically better</li>
+                <li><strong>Price positioning:</strong> Be cheaper or more premium</li>
+                <li><strong>Experience:</strong> Make it easier, faster, more delightful</li>
+                <li><strong>Values:</strong> Stand for something competitors don't</li>
+            </ul>
+
+            <div class="interactive-activity" data-activity-id="2-4-competitors">
+                <div class="activity-header"><div class="activity-icon">🔍</div><h4 class="activity-title">Map Your Competitors</h4><span class="activity-type">Research</span></div>
+                <p class="activity-prompt">Research 3 competitors and analyze them:</p>
+                <textarea class="activity-input" placeholder="COMPETITOR 1:&#10;Name:&#10;Target customer:&#10;Pricing:&#10;Strengths:&#10;Weaknesses:&#10;Customer complaints (from reviews):&#10;&#10;COMPETITOR 2:&#10;Name:&#10;Target customer:&#10;Pricing:&#10;Strengths:&#10;Weaknesses:&#10;Customer complaints:&#10;&#10;COMPETITOR 3 (or alternative/workaround):&#10;Name:&#10;Target customer:&#10;Pricing:&#10;Strengths:&#10;Weaknesses:&#10;Customer complaints:"></textarea>
+                <div class="activity-actions">
+                    <button class="activity-btn activity-btn-primary save-activity-btn"><span>💾</span> Save</button>
+                    <button class="activity-btn activity-btn-secondary show-model-btn"><span>💡</span> Show Model</button>
+                </div>
+                <div class="model-response">
+                    <div class="model-response-header"><span class="model-response-icon">✨</span><h5 class="model-response-title">Example Analysis</h5></div>
+                    <div class="model-response-content">
+                        <p><strong>Competitor 1: LinkedIn Premium Career</strong> - Target: All job seekers. Price: $30/mo. Strengths: Huge network, InMail. Weaknesses: Generic, overwhelming. Complaints: "Not worth it," "Too broad"</p>
+                        <p><strong>Competitor 2: Handshake</strong> - Target: College students. Price: Free for students. Strengths: University partnerships. Weaknesses: Only on-campus jobs. Complaints: "Limited for non-target schools"</p>
+                        <p><strong>Alternative: Career Centers</strong> - Target: All students. Price: Free. Strengths: In-person help. Weaknesses: Overloaded, generic advice. Complaints: "Long wait times," "Advice not relevant to my situation"</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive-activity" data-activity-id="2-4-position">
+                <div class="activity-header"><div class="activity-icon">🎯</div><h4 class="activity-title">Define Your Positioning</h4><span class="activity-type">Strategy</span></div>
+                <p class="activity-prompt">Based on your analysis, define how you'll be different:</p>
+                <textarea class="activity-input" placeholder="MY UNIQUE POSITIONING:&#10;&#10;Unlike [Competitor A] who serves [broad audience], I focus specifically on [niche].&#10;&#10;Unlike [Competitor B] who does [X], I do [Y differently].&#10;&#10;The gap I'm filling that no one else addresses:&#10;&#10;My differentiation strategy (niche/feature/price/experience/values):&#10;&#10;One sentence positioning statement:"></textarea>
+                <div class="activity-actions">
+                    <button class="activity-btn activity-btn-primary save-activity-btn"><span>💾</span> Save</button>
+                    <button class="activity-btn activity-btn-secondary show-model-btn"><span>💡</span> Show Model</button>
+                </div>
+                <div class="model-response">
+                    <div class="model-response-header"><span class="model-response-icon">✨</span><h5 class="model-response-title">Example Positioning</h5></div>
+                    <div class="model-response-content">
+                        <p><strong>Unlike LinkedIn</strong> which serves everyone, I focus specifically on first-gen students at non-target schools.</p>
+                        <p><strong>Unlike Handshake</strong> which lists on-campus jobs, I connect students with alumni at Fortune 500 companies for referrals.</p>
+                        <p><strong>Gap:</strong> No one helps first-gen students from non-target schools get their foot in the door at competitive companies.</p>
+                        <p><strong>Strategy:</strong> Niche focus + relationship advantage (alumni referrals vs. cold applications)</p>
+                        <p><strong>Positioning:</strong> "The only career platform built by and for first-gen students breaking into competitive companies."</p>
+                    </div>
+                </div>
             </div>
 
             <div class="takeaways-box">
                 <h4>🎯 Key Takeaways</h4>
                 <ul>
-                    <li>Competition validates market demand—embrace it, don't fear it</li>
-                    <li>Consider direct, indirect, and substitute competitors</li>
-                    <li>Analyze competitors' products, business models, and positioning</li>
-                    <li>Find your competitive advantage: underserved segments, feature gaps, or better experience</li>
-                    <li>Use positioning maps to visualize market gaps</li>
-                    <li>As a startup, compete by being focused, fast, and personal</li>
+                    <li>Competition validates market demand—it's good!</li>
+                    <li>Analyze direct, indirect, and alternative competitors</li>
+                    <li>Read negative reviews for differentiation opportunities</li>
+                    <li>Find a gap that nobody else is filling</li>
+                    <li>Position yourself clearly: who you're for and why you're different</li>
                 </ul>
             </div>
 
-            <p style="text-align: center; margin-top: 40px; padding: 24px; background: var(--bg-accent); border-radius: 12px;">
-                <strong>🎉 Congratulations!</strong> You've completed Phase 2: Solution Design.<br>
-                In Phase 3, you'll learn how to build your Minimum Viable Product.
-            </p>
+            <div class="phase-complete">
+                <h3>🎉 Phase 2 Complete!</h3>
+                <p>You've learned Solution Design. Test your knowledge!</p>
+                <a href="quiz-phase-2.html">Take Phase 2 Quiz →</a>
+            </div>
         </div>
 
         <nav class="lesson-nav">
-            <a href="2-3-business-model.html" class="lesson-nav-btn prev">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m0 0l7 7m-7-7l7-7"></path></svg>
-                Previous: Business Model
-            </a>
-            <a href="3-1-mvp.html" class="lesson-nav-btn next">
-                Next: What is an MVP?
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
-            </a>
+            <a href="2-3-business-model.html" class="lesson-nav-btn prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m0 0l7 7m-7-7l7-7"></path></svg>Previous: Business Model</a>
+            <a href="3-1-mvp.html" class="lesson-nav-btn next">Next: MVP<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg></a>
         </nav>
     </main>
 
+    <script src="interactive.js"></script>
     <script src="../script.js"></script>
 </body>
 </html>
