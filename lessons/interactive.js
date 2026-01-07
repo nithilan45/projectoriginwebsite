@@ -442,3 +442,4 @@ window.GenesisInteractive = {
     showLessonComplete,
     updatePointsDisplay
 };
+
