@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../styles.css?v=1002">
     <link rel="stylesheet" href="interactive.css">
     <link rel="stylesheet" href="simulations.css">
+    <link rel="stylesheet" href="command-center.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -91,124 +92,236 @@
                 <div class="model-card"><h4>🔄 Transaction Fee</h4><p>Take % of each transaction</p><p class="example">Stripe, PayPal, Square</p></div>
             </div>
 
-            <!-- PRICING SLIDER SIMULATION -->
-            <div class="slider-simulation" id="pricing-sim">
-                <div class="slider-simulation-header">
-                    <div class="slider-simulation-icon">📊</div>
-                    <div>
-                        <h4 class="slider-simulation-title">Pricing Simulator</h4>
-                        <p class="slider-simulation-subtitle">Adjust your price and watch how metrics react</p>
-                    </div>
-                </div>
-                
-                <div class="slider-controls">
-                    <div class="slider-control">
-                        <div class="slider-label">
-                            <span class="slider-name">Monthly Price</span>
-                            <span class="slider-value" id="price-value">$15</span>
+            <!-- PRICING CONSOLE - Command Center Style -->
+            <div class="control-room" id="pricing-console">
+                <!-- Terminal Header -->
+                <div class="control-room-header">
+                    <div class="tool-identity">
+                        <div class="tool-icon">💹</div>
+                        <div>
+                            <div class="tool-name">Pricing Console</div>
+                            <div class="tool-type">Revenue Simulator</div>
                         </div>
-                        <input type="range" class="slider-input" id="price-slider" min="0" max="50" value="15">
+                    </div>
+                    <div class="status-indicators">
+                        <div class="status-badge">
+                            <div class="status-dot" id="system-status"></div>
+                            <span id="status-text">NOMINAL</span>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="slider-effects">
-                    <div class="effect-card" id="effect-signups">
-                        <div class="effect-icon">👥</div>
-                        <div class="effect-label">Monthly Signups</div>
-                        <div class="effect-value">850</div>
+                <!-- Health Bars - Business Vital Signs -->
+                <div class="health-bars">
+                    <div class="health-bar-item">
+                        <div class="health-bar-label">
+                            <span class="health-name"><span class="health-name-icon">💵</span> CASH FLOW</span>
+                            <span class="health-value" id="hb-cash">POSITIVE</span>
+                        </div>
+                        <div class="health-track">
+                            <div class="health-fill healthy" id="hb-cash-fill" style="width: 70%"></div>
+                        </div>
                     </div>
-                    <div class="effect-card" id="effect-revenue">
-                        <div class="effect-icon">💰</div>
-                        <div class="effect-label">Monthly Revenue</div>
-                        <div class="effect-value">$12,750</div>
+                    <div class="health-bar-item">
+                        <div class="health-bar-label">
+                            <span class="health-name"><span class="health-name-icon">👥</span> USER ACQUISITION</span>
+                            <span class="health-value" id="hb-acq">STABLE</span>
+                        </div>
+                        <div class="health-track">
+                            <div class="health-fill healthy" id="hb-acq-fill" style="width: 60%"></div>
+                        </div>
                     </div>
-                    <div class="effect-card" id="effect-churn">
-                        <div class="effect-icon">📉</div>
-                        <div class="effect-label">Monthly Churn</div>
-                        <div class="effect-value">5%</div>
-                    </div>
-                    <div class="effect-card" id="effect-ltv">
-                        <div class="effect-icon">⏳</div>
-                        <div class="effect-label">Customer LTV</div>
-                        <div class="effect-value">$300</div>
+                    <div class="health-bar-item">
+                        <div class="health-bar-label">
+                            <span class="health-name"><span class="health-name-icon">🔄</span> RETENTION</span>
+                            <span class="health-value" id="hb-ret">HEALTHY</span>
+                        </div>
+                        <div class="health-track">
+                            <div class="health-fill healthy" id="hb-ret-fill" style="width: 80%"></div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="slider-warning">
-                    <span class="slider-warning-icon">⚠️</span>
-                    <span class="slider-warning-text"></span>
+                <!-- KPI Grid -->
+                <div class="kpi-grid">
+                    <div class="kpi-card highlight" id="kpi-signups">
+                        <div class="kpi-label">Monthly Signups</div>
+                        <div class="kpi-value">850</div>
+                        <div class="kpi-delta up">▲ baseline</div>
+                    </div>
+                    <div class="kpi-card" id="kpi-revenue">
+                        <div class="kpi-label">MRR</div>
+                        <div class="kpi-value">$12.8K</div>
+                        <div class="kpi-delta up">▲ target</div>
+                    </div>
+                    <div class="kpi-card" id="kpi-churn">
+                        <div class="kpi-label">Churn Rate</div>
+                        <div class="kpi-value">5.0%</div>
+                        <div class="kpi-delta down">▼ acceptable</div>
+                    </div>
+                    <div class="kpi-card" id="kpi-ltv">
+                        <div class="kpi-label">Customer LTV</div>
+                        <div class="kpi-value">$300</div>
+                        <div class="kpi-delta up">▲ healthy</div>
+                    </div>
+                    <div class="kpi-card" id="kpi-runway">
+                        <div class="kpi-label">Runway</div>
+                        <div class="kpi-value">18mo</div>
+                        <div class="kpi-delta up">▲ safe</div>
+                    </div>
+                </div>
+                
+                <!-- Control Panel -->
+                <div class="control-panel">
+                    <div class="control-slider">
+                        <div class="slider-header">
+                            <span class="slider-label">Monthly Subscription Price</span>
+                            <span class="slider-readout" id="price-readout">$15</span>
+                        </div>
+                        <div class="slider-track" id="price-track">
+                            <div class="slider-danger-zone" style="right: 0; width: 30%;"></div>
+                            <div class="slider-fill" id="price-fill" style="width: 30%"></div>
+                            <div class="slider-thumb" id="price-thumb" style="left: 30%"></div>
+                        </div>
+                        <div class="slider-markers">
+                            <span class="slider-marker">$0 FREE</span>
+                            <span class="slider-marker">$25</span>
+                            <span class="slider-marker">$50 PREMIUM</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Alert System -->
+                <div class="system-alert" id="system-alert" style="display: none;">
+                    <span class="alert-icon">⚠️</span>
+                    <div class="alert-content">
+                        <div class="alert-title">SYSTEM WARNING</div>
+                        <div class="alert-message" id="alert-message"></div>
+                    </div>
                 </div>
             </div>
             
             <script>
             (function() {
-                const priceSlider = document.getElementById('price-slider');
-                const priceValue = document.getElementById('price-value');
-                const effectSignups = document.getElementById('effect-signups');
-                const effectRevenue = document.getElementById('effect-revenue');
-                const effectChurn = document.getElementById('effect-churn');
-                const effectLtv = document.getElementById('effect-ltv');
-                const warning = document.querySelector('#pricing-sim .slider-warning');
+                const track = document.getElementById('price-track');
+                const thumb = document.getElementById('price-thumb');
+                const fill = document.getElementById('price-fill');
+                const readout = document.getElementById('price-readout');
+                const alert = document.getElementById('system-alert');
+                const alertMsg = document.getElementById('alert-message');
+                const statusDot = document.getElementById('system-status');
+                const statusText = document.getElementById('status-text');
                 
-                priceSlider.addEventListener('input', updatePricing);
+                let price = 15;
+                let isDragging = false;
                 
-                function updatePricing() {
-                    const price = parseInt(priceSlider.value);
-                    priceValue.textContent = price === 0 ? 'Free' : '$' + price;
+                function updateConsole(p) {
+                    price = Math.max(0, Math.min(50, p));
+                    const pct = (price / 50) * 100;
                     
-                    // Pricing model: higher price = fewer signups but better quality
-                    let signups, churn, revenue, ltv;
+                    thumb.style.left = pct + '%';
+                    fill.style.width = pct + '%';
+                    readout.textContent = price === 0 ? 'FREE' : '$' + price;
                     
+                    // Calculate metrics
+                    let signups, churn, revenue, ltv, runway;
                     if (price === 0) {
-                        signups = 5000;
-                        churn = 0;
-                        revenue = 0;
-                        ltv = 0;
+                        signups = 5000; churn = 0; revenue = 0; ltv = 0; runway = 3;
                     } else {
-                        // Signups decrease as price increases
                         signups = Math.round(2000 * Math.exp(-0.03 * price));
-                        // Churn increases with price but committed users stay
                         churn = Math.min(25, 3 + (price * 0.4));
-                        // Revenue = signups * price
                         revenue = signups * price;
-                        // LTV = price / churn rate (in months)
                         ltv = Math.round(price * (100 / churn));
+                        runway = Math.round(Math.max(3, Math.min(24, revenue / 1000)));
                     }
                     
-                    // Update displays
-                    effectSignups.querySelector('.effect-value').textContent = signups.toLocaleString();
-                    effectRevenue.querySelector('.effect-value').textContent = '$' + revenue.toLocaleString();
-                    effectChurn.querySelector('.effect-value').textContent = churn.toFixed(1) + '%';
-                    effectLtv.querySelector('.effect-value').textContent = '$' + ltv.toLocaleString();
+                    // Update KPIs
+                    document.querySelector('#kpi-signups .kpi-value').textContent = signups.toLocaleString();
+                    document.querySelector('#kpi-revenue .kpi-value').textContent = revenue > 1000 ? '$' + (revenue/1000).toFixed(1) + 'K' : '$' + revenue;
+                    document.querySelector('#kpi-churn .kpi-value').textContent = churn.toFixed(1) + '%';
+                    document.querySelector('#kpi-ltv .kpi-value').textContent = '$' + ltv.toLocaleString();
+                    document.querySelector('#kpi-runway .kpi-value').textContent = runway + 'mo';
                     
-                    // Update card states
-                    updateCardState(effectSignups, signups, 1000, 300);
-                    updateCardState(effectRevenue, revenue, 15000, 5000);
-                    updateCardState(effectChurn, -churn, -5, -15); // Inverted - lower is better
-                    updateCardState(effectLtv, ltv, 200, 50);
+                    // Update KPI states
+                    updateKPI('kpi-signups', signups, 1000, 300);
+                    updateKPI('kpi-revenue', revenue, 15000, 5000);
+                    updateKPI('kpi-churn', 25 - churn, 20, 10); // Inverted
+                    updateKPI('kpi-ltv', ltv, 200, 50);
+                    updateKPI('kpi-runway', runway, 12, 6);
                     
-                    // Warnings
-                    warning.classList.remove('show');
+                    // Update health bars
+                    updateHealth('hb-cash', revenue > 10000 ? 'STRONG' : revenue > 5000 ? 'STABLE' : revenue > 0 ? 'WEAK' : 'ZERO', 
+                                 revenue / 200, revenue > 10000 ? 'healthy' : revenue > 5000 ? 'warning' : 'critical');
+                    updateHealth('hb-acq', signups > 800 ? 'STRONG' : signups > 400 ? 'MODERATE' : 'LOW',
+                                 signups / 30, signups > 800 ? 'healthy' : signups > 400 ? 'warning' : 'critical');
+                    updateHealth('hb-ret', churn < 8 ? 'HEALTHY' : churn < 15 ? 'DECLINING' : 'CRITICAL',
+                                 100 - churn * 3, churn < 8 ? 'healthy' : churn < 15 ? 'warning' : 'critical');
+                    
+                    // Update system status
+                    let issues = 0;
+                    if (revenue < 5000) issues++;
+                    if (signups < 400) issues++;
+                    if (churn > 15) issues++;
+                    
+                    statusDot.className = 'status-dot' + (issues >= 2 ? ' critical' : issues === 1 ? ' warning' : '');
+                    statusText.textContent = issues >= 2 ? 'CRITICAL' : issues === 1 ? 'WARNING' : 'NOMINAL';
+                    
+                    // Alerts
+                    alert.style.display = 'none';
+                    alert.className = 'system-alert';
                     if (price === 0) {
-                        warning.querySelector('.slider-warning-text').textContent = "Free = no revenue! You'll need another monetization strategy (ads, upsells, data).";
-                        warning.classList.add('show');
+                        showAlert('ZERO REVENUE MODEL', 'Free tier generates no cash flow. You need alternative monetization (ads, upsells, or investor runway).', true);
                     } else if (price > 35) {
-                        warning.querySelector('.slider-warning-text').textContent = "At $" + price + "/mo, you're losing 85%+ of potential customers. Only works with massive value delivery.";
-                        warning.classList.add('show');
+                        showAlert('PRICE BARRIER', 'At $' + price + '/mo you\'re losing 85%+ of potential market. Requires exceptional value delivery to justify.', true);
                     } else if (revenue < 3000) {
-                        warning.querySelector('.slider-warning-text').textContent = "Revenue too low to sustain operations. You need more signups OR higher prices.";
-                        warning.classList.add('show');
+                        showAlert('UNSUSTAINABLE BURN', 'Revenue insufficient to cover basic operations. Increase signups OR raise price point.', false);
                     }
                 }
                 
-                function updateCardState(card, value, goodThreshold, badThreshold) {
-                    card.classList.remove('positive', 'negative', 'warning');
-                    if (value >= goodThreshold) card.classList.add('positive');
-                    else if (value <= badThreshold) card.classList.add('negative');
-                    else card.classList.add('warning');
+                function updateKPI(id, val, good, bad) {
+                    const card = document.getElementById(id);
+                    card.classList.remove('positive', 'negative', 'warning', 'critical');
+                    if (val >= good) card.classList.add('positive');
+                    else if (val <= bad) card.classList.add('negative');
                 }
                 
-                updatePricing();
+                function updateHealth(id, text, pct, state) {
+                    document.getElementById(id).textContent = text;
+                    const fill = document.getElementById(id + '-fill');
+                    fill.style.width = Math.max(5, Math.min(100, pct)) + '%';
+                    fill.className = 'health-fill ' + state;
+                }
+                
+                function showAlert(title, msg, critical) {
+                    document.querySelector('#system-alert .alert-title').textContent = title;
+                    alertMsg.textContent = msg;
+                    alert.style.display = 'flex';
+                    if (critical) alert.classList.add('critical');
+                }
+                
+                // Mouse/touch drag
+                track.addEventListener('mousedown', startDrag);
+                track.addEventListener('touchstart', startDrag);
+                document.addEventListener('mousemove', drag);
+                document.addEventListener('touchmove', drag);
+                document.addEventListener('mouseup', () => isDragging = false);
+                document.addEventListener('touchend', () => isDragging = false);
+                
+                function startDrag(e) {
+                    isDragging = true;
+                    drag(e);
+                }
+                
+                function drag(e) {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                    const rect = track.getBoundingClientRect();
+                    const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+                    const pct = Math.max(0, Math.min(100, (x / rect.width) * 100));
+                    updateConsole(Math.round(pct * 0.5));
+                }
+                
+                updateConsole(15);
             })();
             </script>
 

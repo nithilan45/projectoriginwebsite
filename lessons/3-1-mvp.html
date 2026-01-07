@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../styles.css?v=1002">
     <link rel="stylesheet" href="interactive.css">
     <link rel="stylesheet" href="simulations.css">
+    <link rel="stylesheet" href="command-center.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -114,121 +115,151 @@
                 <p><strong>Learn:</strong> Decide whether to pivot, persevere, or iterate</p>
             </div>
 
-            <!-- WHAT-IF COMPARISON: MVP vs Full Build -->
-            <div class="whatif-comparison">
-                <div class="whatif-header">
-                    <h3 class="whatif-title">⚡ What If: Two Paths</h3>
-                    <p class="whatif-subtitle">Same idea, different approaches. Watch how the timelines diverge.</p>
-                </div>
-                
-                <div class="whatif-toggle">
-                    <div class="toggle-container">
-                        <div class="toggle-option active" data-path="a">MVP Approach</div>
-                        <div class="toggle-option" data-path="b">Full Build First</div>
+            <!-- PARALLEL FUTURES SIMULATOR - Command Center Style -->
+            <div class="control-room" id="futures-sim">
+                <div class="control-room-header">
+                    <div class="tool-identity">
+                        <div class="tool-icon">⚡</div>
+                        <div>
+                            <div class="tool-name">Futures Simulator</div>
+                            <div class="tool-type">Parallel Timeline Analysis</div>
+                        </div>
+                    </div>
+                    <div class="status-indicators">
+                        <div class="countdown-display">
+                            <span class="countdown-icon">📅</span>
+                            <span class="countdown-value" id="sim-month">Month 6</span>
+                            <span class="countdown-label">Projection</span>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="whatif-paths">
-                    <div class="whatif-path path-a active">
-                        <div class="path-header">
-                            <div class="path-icon">🚀</div>
-                            <div class="path-name">MVP Approach</div>
+                <!-- Split Reality View -->
+                <div class="parallel-futures">
+                    <div class="future-path active" id="path-mvp">
+                        <div class="path-label">
+                            <div class="path-indicator"></div>
+                            <span class="path-title">🚀 MVP First</span>
                         </div>
                         <div class="path-timeline">
-                            <div class="timeline-point">
-                                <div class="timeline-marker"></div>
-                                <div class="timeline-content">
-                                    <div class="timeline-time">Week 1</div>
-                                    <div class="timeline-event">Launch Google Form + manual matching. 15 students sign up.</div>
-                                </div>
+                            <div class="path-event">
+                                <span class="event-time">WK 1</span>
+                                <span class="event-content">Google Form live. <strong style="color:#22c55e">15 signups</strong> in 3 days.</span>
                             </div>
-                            <div class="timeline-point">
-                                <div class="timeline-marker"></div>
-                                <div class="timeline-content">
-                                    <div class="timeline-time">Week 3</div>
-                                    <div class="timeline-event">Discover students want career advice, not just mentorship. Pivot messaging.</div>
-                                </div>
+                            <div class="path-event">
+                                <span class="event-time">WK 3</span>
+                                <span class="event-content">User feedback: "Want career advice, not just mentors." <strong style="color:#38bdf8">Pivot.</strong></span>
                             </div>
-                            <div class="timeline-point">
-                                <div class="timeline-marker"></div>
-                                <div class="timeline-content">
-                                    <div class="timeline-time">Month 2</div>
-                                    <div class="timeline-event">100 users, clear product direction, ready to build real product.</div>
-                                </div>
+                            <div class="path-event">
+                                <span class="event-time">MO 2</span>
+                                <span class="event-content"><strong style="color:#22c55e">100 users.</strong> Clear product-market direction.</span>
+                            </div>
+                            <div class="path-event">
+                                <span class="event-time">MO 4</span>
+                                <span class="event-content">Build real product based on validated learnings.</span>
+                            </div>
+                            <div class="path-event">
+                                <span class="event-time">MO 6</span>
+                                <span class="event-content">Scale to <strong style="color:#22c55e">500 active users.</strong></span>
                             </div>
                         </div>
                         <div class="path-outcome">
-                            <div class="outcome-label">After 6 Months</div>
-                            <div class="outcome-metrics">
-                                <div class="outcome-metric">
-                                    <div class="metric-value" style="color: #22c55e;">500</div>
-                                    <div class="metric-label">Active Users</div>
+                            <div class="outcome-kpis">
+                                <div class="outcome-kpi">
+                                    <div class="outcome-kpi-value">500</div>
+                                    <div class="outcome-kpi-label">Users</div>
                                 </div>
-                                <div class="outcome-metric">
-                                    <div class="metric-value" style="color: #22c55e;">$2K</div>
-                                    <div class="metric-label">Spent</div>
+                                <div class="outcome-kpi">
+                                    <div class="outcome-kpi-value">$2K</div>
+                                    <div class="outcome-kpi-label">Spent</div>
+                                </div>
+                                <div class="outcome-kpi">
+                                    <div class="outcome-kpi-value">3</div>
+                                    <div class="outcome-kpi-label">Pivots</div>
+                                </div>
+                                <div class="outcome-kpi">
+                                    <div class="outcome-kpi-value">HIGH</div>
+                                    <div class="outcome-kpi-label">PMF Confidence</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="whatif-path path-b">
-                        <div class="path-header">
-                            <div class="path-icon">🏗️</div>
-                            <div class="path-name">Full Build First</div>
+                    <div class="future-path dimmed" id="path-full">
+                        <div class="path-label">
+                            <div class="path-indicator"></div>
+                            <span class="path-title">🏗️ Full Build First</span>
                         </div>
                         <div class="path-timeline">
-                            <div class="timeline-point">
-                                <div class="timeline-marker"></div>
-                                <div class="timeline-content">
-                                    <div class="timeline-time">Month 1-3</div>
-                                    <div class="timeline-event">Building features: AI matching, profiles, chat, scheduling...</div>
-                                </div>
+                            <div class="path-event">
+                                <span class="event-time">MO 1-3</span>
+                                <span class="event-content">Building: AI matching, profiles, chat, scheduling...</span>
                             </div>
-                            <div class="timeline-point">
-                                <div class="timeline-marker"></div>
-                                <div class="timeline-content">
-                                    <div class="timeline-time">Month 4</div>
-                                    <div class="timeline-event">Launch! 20 sign-ups. Discover users wanted something different.</div>
-                                </div>
+                            <div class="path-event">
+                                <span class="event-time">MO 4</span>
+                                <span class="event-content">Launch! <strong style="color:#ef4444">20 signups.</strong> Users confused.</span>
                             </div>
-                            <div class="timeline-point">
-                                <div class="timeline-marker"></div>
-                                <div class="timeline-content">
-                                    <div class="timeline-time">Month 5-6</div>
-                                    <div class="timeline-event">Rebuilding features based on feedback. Back to square one.</div>
-                                </div>
+                            <div class="path-event">
+                                <span class="event-time">MO 4.5</span>
+                                <span class="event-content"><strong style="color:#ef4444">Discovery:</strong> Users wanted something else entirely.</span>
+                            </div>
+                            <div class="path-event">
+                                <span class="event-time">MO 5-6</span>
+                                <span class="event-content">Rebuilding from scratch. <strong style="color:#ef4444">Back to zero.</strong></span>
                             </div>
                         </div>
                         <div class="path-outcome">
-                            <div class="outcome-label">After 6 Months</div>
-                            <div class="outcome-metrics">
-                                <div class="outcome-metric">
-                                    <div class="metric-value" style="color: #ef4444;">50</div>
-                                    <div class="metric-label">Active Users</div>
+                            <div class="outcome-kpis">
+                                <div class="outcome-kpi">
+                                    <div class="outcome-kpi-value" style="color:#ef4444">50</div>
+                                    <div class="outcome-kpi-label">Users</div>
                                 </div>
-                                <div class="outcome-metric">
-                                    <div class="metric-value" style="color: #ef4444;">$15K</div>
-                                    <div class="metric-label">Spent</div>
+                                <div class="outcome-kpi">
+                                    <div class="outcome-kpi-value" style="color:#ef4444">$15K</div>
+                                    <div class="outcome-kpi-label">Spent</div>
+                                </div>
+                                <div class="outcome-kpi">
+                                    <div class="outcome-kpi-value">0</div>
+                                    <div class="outcome-kpi-label">Pivots</div>
+                                </div>
+                                <div class="outcome-kpi">
+                                    <div class="outcome-kpi-value" style="color:#ef4444">LOW</div>
+                                    <div class="outcome-kpi-label">PMF Confidence</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                
+                <!-- System Alert -->
+                <div class="system-alert">
+                    <span class="alert-icon">💡</span>
+                    <div class="alert-content">
+                        <div class="alert-title">INSIGHT</div>
+                        <div class="alert-message">Same idea. Same founder. Different approach = <strong>10x difference in users, 7.5x less spend.</strong> The MVP path learns faster because feedback comes weekly, not after months of building.</div>
+                    </div>
+                </div>
             </div>
             
             <script>
-            document.querySelectorAll('.whatif-comparison .toggle-option').forEach(toggle => {
-                toggle.addEventListener('click', () => {
-                    const container = toggle.closest('.whatif-comparison');
-                    container.querySelectorAll('.toggle-option').forEach(t => t.classList.remove('active'));
-                    toggle.classList.add('active');
-                    const path = toggle.dataset.path;
-                    container.querySelectorAll('.whatif-path').forEach(p => {
-                        p.classList.toggle('active', p.classList.contains('path-' + path));
-                    });
+            (function() {
+                const pathMVP = document.getElementById('path-mvp');
+                const pathFull = document.getElementById('path-full');
+                
+                pathMVP.addEventListener('click', () => {
+                    pathMVP.classList.remove('dimmed');
+                    pathMVP.classList.add('active');
+                    pathFull.classList.add('dimmed');
+                    pathFull.classList.remove('active');
                 });
-            });
+                
+                pathFull.addEventListener('click', () => {
+                    pathFull.classList.remove('dimmed');
+                    pathFull.classList.add('active');
+                    pathMVP.classList.add('dimmed');
+                    pathMVP.classList.remove('active');
+                });
+            })();
             </script>
 
             <div class="matching-container" data-matches='{"wizard":"automated","concierge":"manual","landing":"interest"}'>
