@@ -14,7 +14,7 @@
     --cmd-border: #21262d;
     --cmd-border-glow: rgba(56, 189, 248, 0.3);
     --cmd-text: #e6edf3;
-    --cmd-text-dim: #7d8590;
+    --cmd-text-dim: #a8b2bc;
     --cmd-accent-blue: #38bdf8;
     --cmd-accent-green: #22c55e;
     --cmd-accent-red: #ef4444;
@@ -1015,3 +1015,4 @@
         align-items: flex-start;
     }
 }
+

@@ -42,7 +42,7 @@
 
 .slider-simulation-subtitle {
     font-size: 0.9rem;
-    color: #94a3b8;
+    color: #cbd5e1;
     margin: 4px 0 0;
 }
 
@@ -139,7 +139,7 @@
 
 .effect-label {
     font-size: 0.85rem;
-    color: #94a3b8;
+    color: #cbd5e1;
     margin-bottom: 4px;
 }
 
@@ -235,7 +235,7 @@
 
 .scenario-context {
     font-size: 0.9rem;
-    color: #94a3b8;
+    color: #cbd5e1;
     margin-bottom: 12px;
     display: flex;
     gap: 16px;
@@ -305,7 +305,7 @@
 
 .choice-description {
     font-size: 0.95rem;
-    color: #94a3b8;
+    color: #cbd5e1;
 }
 
 .scenario-result {
@@ -325,7 +325,7 @@
 
 .result-label {
     font-size: 0.85rem;
-    color: #94a3b8;
+    color: #cbd5e1;
     margin-bottom: 8px;
     display: flex;
     align-items: center;
@@ -482,7 +482,7 @@
 
 .dropzone-label {
     font-size: 0.85rem;
-    color: #64748b;
+    color: #94a3b8;
     margin-bottom: 8px;
 }
 
@@ -575,7 +575,7 @@
 }
 
 .whatif-subtitle {
-    color: #a5b4fc;
+    color: #e0e7ff;
     font-size: 0.95rem;
 }
 
@@ -676,7 +676,7 @@
 
 .timeline-time {
     font-size: 0.8rem;
-    color: #a5b4fc;
+    color: #c7d2fe;
     margin-bottom: 4px;
 }
 
@@ -694,7 +694,7 @@
 
 .outcome-label {
     font-size: 0.8rem;
-    color: #a5b4fc;
+    color: #c7d2fe;
     margin-bottom: 8px;
 }
 
@@ -716,7 +716,7 @@
 
 .metric-label {
     font-size: 0.8rem;
-    color: #a5b4fc;
+    color: #c7d2fe;
 }
 
 /* ============================================
@@ -1155,7 +1155,7 @@
 
 .context-metric-label {
     font-size: 0.8rem;
-    color: #93c5fd;
+    color: #bfdbfe;
 }
 
 .forecast-question {
@@ -1198,7 +1198,7 @@
 
 .your-prediction {
     font-size: 0.9rem;
-    color: #93c5fd;
+    color: #bfdbfe;
     margin-bottom: 4px;
 }
 
@@ -1289,7 +1289,7 @@
 
 .accuracy-label {
     font-size: 0.9rem;
-    color: #93c5fd;
+    color: #bfdbfe;
     margin-bottom: 8px;
 }
 
@@ -1381,7 +1381,7 @@
 
 .data-title {
     font-size: 0.9rem;
-    color: #c4b5fd;
+    color: #e0e7ff;
     margin-bottom: 16px;
 }
 
@@ -1406,7 +1406,7 @@
 
 .metric-box-label {
     font-size: 0.75rem;
-    color: #c4b5fd;
+    color: #e0e7ff;
     margin-top: 4px;
 }
 
@@ -1510,3 +1510,4 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
