@@ -6,6 +6,8 @@
     <title>Lesson 3.4: Getting Your First Users - Genesis</title>
     <link rel="stylesheet" href="../styles.css?v=1002">
     <link rel="stylesheet" href="interactive.css">
+    <link rel="stylesheet" href="simulations.css">
+    <link rel="stylesheet" href="command-center.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -149,6 +151,204 @@
                 <p><strong>3. Offer value:</strong> What's in it for them?</p>
                 <p><strong>4. Make it easy:</strong> Clear, simple ask</p>
             </div>
+            
+            <!-- AD SPEND CONSOLE - Command Center Style -->
+            <div class="control-room" id="ad-console">
+                <div class="control-room-header">
+                    <div class="tool-identity">
+                        <div class="tool-icon">📣</div>
+                        <div>
+                            <div class="tool-name">Ad Spend Analyzer</div>
+                            <div class="tool-type">CAC & Runway Simulator</div>
+                        </div>
+                    </div>
+                    <div class="status-indicators">
+                        <div class="status-badge">
+                            <div class="status-dot" id="ad-status"></div>
+                            <span id="ad-status-text">EFFICIENT</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Health Bars -->
+                <div class="health-bars">
+                    <div class="health-bar-item">
+                        <div class="health-bar-label">
+                            <span class="health-name"><span class="health-name-icon">🔥</span> BURN RATE</span>
+                            <span class="health-value" id="hb-burn">SUSTAINABLE</span>
+                        </div>
+                        <div class="health-track">
+                            <div class="health-fill healthy" id="hb-burn-fill" style="width: 30%"></div>
+                        </div>
+                    </div>
+                    <div class="health-bar-item">
+                        <div class="health-bar-label">
+                            <span class="health-name"><span class="health-name-icon">⏳</span> RUNWAY</span>
+                            <span class="health-value" id="hb-runway">SAFE</span>
+                        </div>
+                        <div class="health-track">
+                            <div class="health-fill healthy" id="hb-runway-fill" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- KPI Grid -->
+                <div class="kpi-grid">
+                    <div class="kpi-card highlight" id="kpi-spend">
+                        <div class="kpi-label">Weekly Ad Spend</div>
+                        <div class="kpi-value">$50</div>
+                    </div>
+                    <div class="kpi-card" id="kpi-impressions">
+                        <div class="kpi-label">Impressions</div>
+                        <div class="kpi-value">5K</div>
+                    </div>
+                    <div class="kpi-card" id="kpi-clicks">
+                        <div class="kpi-label">Clicks</div>
+                        <div class="kpi-value">100</div>
+                    </div>
+                    <div class="kpi-card" id="kpi-signups">
+                        <div class="kpi-label">Signups</div>
+                        <div class="kpi-value">8</div>
+                    </div>
+                    <div class="kpi-card" id="kpi-cac">
+                        <div class="kpi-label">CAC</div>
+                        <div class="kpi-value">$6.25</div>
+                    </div>
+                    <div class="kpi-card" id="kpi-weeks">
+                        <div class="kpi-label">Weeks of Budget</div>
+                        <div class="kpi-value">20</div>
+                    </div>
+                </div>
+                
+                <!-- Control Panel -->
+                <div class="control-panel">
+                    <div class="control-slider">
+                        <div class="slider-header">
+                            <span class="slider-label">Weekly Ad Budget (You have $1,000 total)</span>
+                            <span class="slider-readout" id="ad-readout">$50/wk</span>
+                        </div>
+                        <div class="slider-track" id="ad-track">
+                            <div class="slider-danger-zone" style="right: 0; width: 40%;"></div>
+                            <div class="slider-fill" id="ad-fill" style="width: 10%"></div>
+                            <div class="slider-thumb" id="ad-thumb" style="left: 10%"></div>
+                        </div>
+                        <div class="slider-markers">
+                            <span class="slider-marker">$0</span>
+                            <span class="slider-marker">$250</span>
+                            <span class="slider-marker">$500/wk</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Alert -->
+                <div class="system-alert" id="ad-alert" style="display: none;">
+                    <span class="alert-icon">⚠️</span>
+                    <div class="alert-content">
+                        <div class="alert-title">WARNING</div>
+                        <div class="alert-message" id="ad-alert-msg"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+            (function() {
+                const track = document.getElementById('ad-track');
+                const thumb = document.getElementById('ad-thumb');
+                const fill = document.getElementById('ad-fill');
+                const readout = document.getElementById('ad-readout');
+                const alert = document.getElementById('ad-alert');
+                const statusDot = document.getElementById('ad-status');
+                const statusText = document.getElementById('ad-status-text');
+                
+                let spend = 50;
+                let isDragging = false;
+                const totalBudget = 1000;
+                
+                function updateConsole(s) {
+                    spend = Math.max(0, Math.min(500, s));
+                    const pct = (spend / 500) * 100;
+                    
+                    thumb.style.left = pct + '%';
+                    fill.style.width = pct + '%';
+                    readout.textContent = spend === 0 ? '$0/wk' : '$' + spend + '/wk';
+                    
+                    // Calculate metrics - early stage paid ads are inefficient
+                    const ctr = 0.02 - (spend * 0.00002); // CTR drops as you scale
+                    const convRate = 0.08 - (spend * 0.00006); // Conv drops as you scale (less targeted)
+                    const impressions = Math.round(spend * 100);
+                    const clicks = Math.round(impressions * Math.max(0.005, ctr));
+                    const signups = Math.round(clicks * Math.max(0.02, convRate));
+                    const cac = signups > 0 ? (spend / signups).toFixed(2) : '∞';
+                    const weeks = spend > 0 ? Math.round(totalBudget / spend) : '∞';
+                    
+                    // Update KPIs
+                    document.querySelector('#kpi-spend .kpi-value').textContent = '$' + spend;
+                    document.querySelector('#kpi-impressions .kpi-value').textContent = impressions > 1000 ? (impressions/1000).toFixed(1) + 'K' : impressions;
+                    document.querySelector('#kpi-clicks .kpi-value').textContent = clicks;
+                    document.querySelector('#kpi-signups .kpi-value').textContent = signups;
+                    document.querySelector('#kpi-cac .kpi-value').textContent = cac === '∞' ? '∞' : '$' + cac;
+                    document.querySelector('#kpi-weeks .kpi-value').textContent = weeks;
+                    
+                    // Update states
+                    const cacNum = parseFloat(cac);
+                    document.getElementById('kpi-cac').className = 'kpi-card' + (cacNum < 10 ? ' positive' : cacNum < 25 ? '' : ' negative');
+                    document.getElementById('kpi-weeks').className = 'kpi-card' + (weeks > 10 ? ' positive' : weeks > 4 ? '' : ' negative');
+                    
+                    // Health bars
+                    document.getElementById('hb-burn').textContent = spend < 100 ? 'SUSTAINABLE' : spend < 250 ? 'MODERATE' : 'HIGH BURN';
+                    document.getElementById('hb-burn-fill').style.width = Math.min(100, spend / 5) + '%';
+                    document.getElementById('hb-burn-fill').className = 'health-fill ' + (spend < 100 ? 'healthy' : spend < 250 ? 'warning' : 'critical');
+                    
+                    document.getElementById('hb-runway').textContent = weeks > 10 ? 'SAFE' : weeks > 4 ? 'LIMITED' : 'CRITICAL';
+                    document.getElementById('hb-runway-fill').style.width = Math.min(100, weeks * 5) + '%';
+                    document.getElementById('hb-runway-fill').className = 'health-fill ' + (weeks > 10 ? 'healthy' : weeks > 4 ? 'warning' : 'critical');
+                    
+                    // Status
+                    statusDot.className = 'status-dot' + (cacNum > 25 || weeks < 4 ? ' critical' : cacNum > 15 || weeks < 8 ? ' warning' : '');
+                    statusText.textContent = cacNum > 25 || weeks < 4 ? 'INEFFICIENT' : cacNum > 15 || weeks < 8 ? 'CAUTION' : 'EFFICIENT';
+                    
+                    // Alert
+                    alert.style.display = 'none';
+                    alert.className = 'system-alert';
+                    if (spend === 0) {
+                        showAlert('ZERO SPEND', 'Paid acquisition disabled. Rely on organic growth only.');
+                    } else if (cacNum > 25) {
+                        showAlert('CAC UNSUSTAINABLE', 'At $' + cac + ' per user, you\'re burning cash faster than you\'re learning. Scale back and focus on targeting.', true);
+                    } else if (weeks < 4) {
+                        showAlert('RUNWAY CRITICAL', 'Only ' + weeks + ' weeks of budget remaining. You\'re spending too fast to iterate.', true);
+                    } else if (spend < 30 && signups < 3) {
+                        showAlert('INSUFFICIENT DATA', 'Too few signups to learn anything. Consider increasing spend OR switch to free organic methods.');
+                    }
+                }
+                
+                function showAlert(title, msg, critical) {
+                    document.querySelector('#ad-alert .alert-title').textContent = title;
+                    document.getElementById('ad-alert-msg').textContent = msg;
+                    alert.style.display = 'flex';
+                    if (critical) alert.classList.add('critical');
+                }
+                
+                track.addEventListener('mousedown', startDrag);
+                track.addEventListener('touchstart', startDrag);
+                document.addEventListener('mousemove', drag);
+                document.addEventListener('touchmove', drag);
+                document.addEventListener('mouseup', () => isDragging = false);
+                document.addEventListener('touchend', () => isDragging = false);
+                
+                function startDrag(e) { isDragging = true; drag(e); }
+                
+                function drag(e) {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                    const rect = track.getBoundingClientRect();
+                    const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+                    const pct = Math.max(0, Math.min(100, (x / rect.width) * 100));
+                    updateConsole(Math.round(pct * 5));
+                }
+                
+                updateConsole(50);
+            })();
+            </script>
 
             <div class="fill-blank-container">
                 <div class="fill-blank-header"><div class="fill-blank-icon">✏️</div><h4 class="fill-blank-title">Outreach Message Structure</h4></div>
@@ -228,6 +428,7 @@
     </main>
 
     <script src="interactive.js"></script>
+    <script src="simulations.js"></script>
     <script src="../script.js"></script>
 </body>
 </html>

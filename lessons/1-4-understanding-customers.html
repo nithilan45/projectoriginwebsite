@@ -6,6 +6,8 @@
     <title>Lesson 1.4: Understanding Your Customer - Genesis</title>
     <link rel="stylesheet" href="../styles.css?v=1002">
     <link rel="stylesheet" href="interactive.css">
+    <link rel="stylesheet" href="simulations.css">
+    <link rel="stylesheet" href="command-center.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -156,6 +158,142 @@
                 </p>
                 <button class="quiz-check-btn fill-blank-check-btn">Check Answers</button>
             </div>
+            
+            <!-- INBOX FROM REALITY - Customer Feedback Interface -->
+            <div class="control-room" id="customer-inbox">
+                <div class="control-room-header">
+                    <div class="tool-identity">
+                        <div class="tool-icon">📬</div>
+                        <div>
+                            <div class="tool-name">Customer Inbox</div>
+                            <div class="tool-type">Real Feedback Analyzer</div>
+                        </div>
+                    </div>
+                    <div class="status-indicators">
+                        <div class="status-badge">
+                            <div class="status-dot warning"></div>
+                            <span>3 UNREAD</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="inbox-container">
+                    <div class="inbox-header">
+                        <div class="inbox-title">
+                            📥 Incoming Messages
+                            <span class="unread-count">3</span>
+                        </div>
+                    </div>
+                    <div class="inbox-messages">
+                        <div class="inbox-message unread" onclick="this.classList.remove('unread'); document.querySelector('.unread-count').textContent = parseInt(document.querySelector('.unread-count').textContent) - 1;">
+                            <div class="message-header">
+                                <span class="message-sender">
+                                    Maya T.
+                                    <span class="sender-tag customer">User</span>
+                                </span>
+                                <span class="message-time">2 min ago</span>
+                            </div>
+                            <div class="message-preview">"I signed up but idk how this is different from just messaging alumni on LinkedIn? What's the actual value?"</div>
+                        </div>
+                        <div class="inbox-message unread" onclick="this.classList.remove('unread'); document.querySelector('.unread-count').textContent = parseInt(document.querySelector('.unread-count').textContent) - 1;">
+                            <div class="message-header">
+                                <span class="message-sender">
+                                    Jordan K.
+                                    <span class="sender-tag urgent">Churned</span>
+                                </span>
+                                <span class="message-time">1 hr ago</span>
+                            </div>
+                            <div class="message-preview">"Deleted my account. Got matched with a mentor but they never responded. Waited 2 weeks. Total waste of time."</div>
+                        </div>
+                        <div class="inbox-message unread" onclick="this.classList.remove('unread'); document.querySelector('.unread-count').textContent = parseInt(document.querySelector('.unread-count').textContent) - 1;">
+                            <div class="message-header">
+                                <span class="message-sender">
+                                    Alex P.
+                                    <span class="sender-tag customer">User</span>
+                                </span>
+                                <span class="message-time">3 hr ago</span>
+                            </div>
+                            <div class="message-preview">"Love the concept! But honestly I just want someone to review my resume, not a whole mentorship thing. Is that possible?"</div>
+                        </div>
+                        <div class="inbox-message" onclick="this.classList.add('read');">
+                            <div class="message-header">
+                                <span class="message-sender">
+                                    Sam W.
+                                    <span class="sender-tag team">Mentor</span>
+                                </span>
+                                <span class="message-time">Yesterday</span>
+                            </div>
+                            <div class="message-preview">"Hey, I want to help more students but I only have 30 min/week. Is there a way to do async feedback instead of calls?"</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Decision Zone -->
+                <div class="decision-zone">
+                    <div class="decision-prompt">
+                        <div class="prompt-label">📊 Pattern Recognition</div>
+                        <div class="prompt-text">You're seeing early feedback from your mentor matching platform. What's the most important insight from these messages?</div>
+                    </div>
+                    <div class="decision-options">
+                        <div class="decision-card" data-correct="false" onclick="handleInboxDecision(this)">
+                            <div class="decision-key">A</div>
+                            <div class="decision-content">
+                                <div class="decision-title">Need better marketing</div>
+                                <div class="decision-subtitle">Users don't understand the value proposition</div>
+                            </div>
+                        </div>
+                        <div class="decision-card" data-correct="true" onclick="handleInboxDecision(this)">
+                            <div class="decision-key">B</div>
+                            <div class="decision-content">
+                                <div class="decision-title">The "job" is wrong</div>
+                                <div class="decision-subtitle">Users want quick, specific help (resume review), not ongoing mentorship</div>
+                            </div>
+                        </div>
+                        <div class="decision-card" data-correct="false" onclick="handleInboxDecision(this)">
+                            <div class="decision-key">C</div>
+                            <div class="decision-content">
+                                <div class="decision-title">Need more mentors</div>
+                                <div class="decision-subtitle">Mentor responsiveness is the core issue</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="result-panel" id="inbox-result">
+                        <div class="result-header">
+                            <span class="result-icon" id="inbox-result-icon"></span>
+                            <span class="result-title" id="inbox-result-title"></span>
+                        </div>
+                        <div class="result-body" id="inbox-result-body"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+            function handleInboxDecision(card) {
+                if (card.classList.contains('selected') || card.classList.contains('correct') || card.classList.contains('incorrect')) return;
+                
+                const cards = card.parentElement.querySelectorAll('.decision-card');
+                cards.forEach(c => {
+                    c.classList.add(c.dataset.correct === 'true' ? 'correct' : 'incorrect');
+                });
+                
+                const result = document.getElementById('inbox-result');
+                const icon = document.getElementById('inbox-result-icon');
+                const title = document.getElementById('inbox-result-title');
+                const body = document.getElementById('inbox-result-body');
+                
+                if (card.dataset.correct === 'true') {
+                    icon.textContent = '🎯';
+                    title.textContent = 'Pattern Identified';
+                    body.innerHTML = '<strong>Jobs-to-be-Done insight:</strong> Your users\' real "job" isn\'t "find a mentor" — it\'s "get my resume reviewed" and "get quick career advice." The 2-week wait for a mentor call doesn\'t fit their urgency. Consider pivoting to async, task-specific help instead of relationship-based mentorship.';
+                } else {
+                    icon.textContent = '💡';
+                    title.textContent = 'Dig Deeper';
+                    body.innerHTML = 'Look at the <em>underlying needs</em> in each message. Maya wants to know the value, Jordan wanted faster help, Alex explicitly says they want resume review. Sam the mentor wants async. The common thread: <strong>users want quick, specific help — not long-term mentorship.</strong> That\'s a Jobs-to-be-Done insight.';
+                }
+                result.classList.add('show');
+            }
+            </script>
+            </div>
 
             <h2>Finding Early Adopters</h2>
             <p>Early adopters are people who have the problem so acutely they'll try new, unproven solutions:</p>
@@ -260,6 +398,7 @@
     </main>
 
     <script src="interactive.js"></script>
+    <script src="simulations.js"></script>
     <script src="../script.js"></script>
 </body>
 </html>
