@@ -941,6 +941,87 @@
 }
 
 /* ============================================
+   VIDEO EMBED STYLES
+   ============================================ */
+
+.video-container {
+    background: linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%);
+    border-radius: 20px;
+    padding: 24px;
+    margin: 40px 0;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.video-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.video-icon {
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.video-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+}
+
+.video-source {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin: 0;
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 12px;
+}
+
+.video-caption {
+    margin-top: 16px;
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border-left: 3px solid #f59e0b;
+}
+
+.video-caption p {
+    font-size: 0.95rem;
+    color: #cbd5e1;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.video-caption strong {
+    color: #f59e0b;
+}
+
+/* ============================================
    RESPONSIVE STYLES
    ============================================ */
 
