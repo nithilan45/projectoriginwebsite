@@ -6,6 +6,7 @@
     <title>Lesson 2.1: Ideation & Brainstorming - Genesis</title>
     <link rel="stylesheet" href="../styles.css?v=1002">
     <link rel="stylesheet" href="interactive.css">
+    <link rel="stylesheet" href="simulations.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -77,6 +78,58 @@
                 </div>
                 <button class="quiz-check-btn" disabled>Check Answer</button>
                 <div class="quiz-feedback"></div>
+            </div>
+
+            <!-- TIMED BRAINSTORM -->
+            <div class="timed-decision" data-time="60" style="background: linear-gradient(135deg, #4c1d95 0%, #6d28d9 100%);">
+                <div class="timed-header">
+                    <div class="timed-title-section">
+                        <div class="timed-icon" style="background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);">💡</div>
+                        <h4 class="timed-title">60-Second Idea Sprint</h4>
+                    </div>
+                    <div class="timer-display">
+                        <span class="timer-icon">⏰</span>
+                        <span class="timer-value">60s</span>
+                    </div>
+                </div>
+                
+                <div class="timed-scenario">
+                    <div class="incomplete-info">
+                        <span>🧠</span>
+                        <span>Quantity over quality—don't filter yourself!</span>
+                    </div>
+                    <p class="timed-prompt"><strong>Problem:</strong> First-gen college students don't have access to career mentorship that their peers with connected families have.</p>
+                    <p style="margin-top: 12px; color: #c4b5fd;">When the timer starts, pick the MOST creative solution direction:</p>
+                </div>
+                
+                <div class="timed-choices">
+                    <div class="timed-choice" data-correct="false" data-explanation="Safe but obvious. Building another mentorship platform is fine, but there are already many. Think bigger.">
+                        <strong>A.</strong> Build a standard mentorship matching app
+                    </div>
+                    <div class="timed-choice" data-correct="true" data-explanation="Creative! Reversing the model (mentors apply to students) could differentiate you and make students feel valued, not desperate.">
+                        <strong>B.</strong> Reverse it: Mentors apply to help specific students based on their profiles
+                    </div>
+                    <div class="timed-choice" data-correct="false" data-explanation="Useful but narrow. This is a feature, not a full solution. Think about the core problem.">
+                        <strong>C.</strong> Create a database of interview questions by company
+                    </div>
+                    <div class="timed-choice" data-correct="true" data-explanation="Innovative! Turning mentorship into a game with streaks could increase engagement. Duolingo for careers is compelling.">
+                        <strong>D.</strong> Gamify it: Daily 5-min career challenges with mentor feedback, Duolingo-style
+                    </div>
+                </div>
+                
+                <div class="timed-result">
+                    <div class="result-header">
+                        <span class="result-icon"></span>
+                        <span class="result-title"></span>
+                    </div>
+                    <p class="result-explanation"></p>
+                </div>
+                
+                <div class="time-expired-overlay">
+                    <div class="expired-icon">⏰</div>
+                    <div class="expired-text">Time's Up!</div>
+                    <p class="expired-lesson">Brainstorming requires speed. When you slow down, your inner critic takes over. Practice generating ideas fast.</p>
+                </div>
             </div>
 
             <h2>The SCAMPER Technique</h2>
@@ -200,6 +253,7 @@
     </main>
 
     <script src="interactive.js"></script>
+    <script src="simulations.js"></script>
     <script src="../script.js"></script>
 </body>
 </html>

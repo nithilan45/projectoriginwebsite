@@ -6,6 +6,7 @@
     <title>Lesson 1.2: Finding Problems in Your Community - Genesis</title>
     <link rel="stylesheet" href="../styles.css?v=1002">
     <link rel="stylesheet" href="interactive.css">
+    <link rel="stylesheet" href="simulations.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -343,6 +344,124 @@
                 </div>
             </div>
 
+            <!-- CONSTRAINT PUZZLE: Problem Prioritization -->
+            <div class="constraint-puzzle" data-budget="100">
+                <div class="puzzle-header">
+                    <div class="puzzle-icon">🎯</div>
+                    <h4 class="puzzle-title">Constraint Puzzle: 1 Week, Multiple Problems</h4>
+                </div>
+                
+                <div class="puzzle-constraint">
+                    <span class="constraint-icon">⏰</span>
+                    <div class="constraint-text">
+                        <div class="constraint-label">YOUR CONSTRAINT</div>
+                        <div class="constraint-value">100 hours this week</div>
+                    </div>
+                </div>
+                
+                <p style="color: #86efac; margin-bottom: 16px;">You've identified 6 potential problems. Choose which to investigate deeper—you can't do everything!</p>
+                
+                <div class="puzzle-budget-bar">
+                    <div class="budget-header">
+                        <span class="budget-label">Time Budget</span>
+                        <span class="budget-remaining">100 hours left</span>
+                    </div>
+                    <div class="budget-bar"><div class="budget-fill" style="width: 0%"></div></div>
+                </div>
+                
+                <div class="puzzle-options">
+                    <div class="puzzle-option" data-cost="35" data-impact="40">
+                        <div class="option-checkbox"></div>
+                        <div class="option-content">
+                            <div class="option-name">🎓 First-gen students lack mentorship</div>
+                            <div class="option-impact">High pain, personal experience, clear audience</div>
+                        </div>
+                        <div class="option-cost">35 hrs</div>
+                    </div>
+                    <div class="puzzle-option" data-cost="25" data-impact="15">
+                        <div class="option-checkbox"></div>
+                        <div class="option-content">
+                            <div class="option-name">🍕 Campus food ordering is slow</div>
+                            <div class="option-impact">Low pain, many competitors exist</div>
+                        </div>
+                        <div class="option-cost">25 hrs</div>
+                    </div>
+                    <div class="puzzle-option" data-cost="40" data-impact="35">
+                        <div class="option-checkbox"></div>
+                        <div class="option-content">
+                            <div class="option-name">📚 Textbooks are expensive</div>
+                            <div class="option-impact">Clear pain, but saturated market</div>
+                        </div>
+                        <div class="option-cost">40 hrs</div>
+                    </div>
+                    <div class="puzzle-option" data-cost="20" data-impact="25">
+                        <div class="option-checkbox"></div>
+                        <div class="option-content">
+                            <div class="option-name">🏠 Finding off-campus housing is hard</div>
+                            <div class="option-impact">Seasonal need, existing solutions</div>
+                        </div>
+                        <div class="option-cost">20 hrs</div>
+                    </div>
+                    <div class="puzzle-option" data-cost="30" data-impact="30">
+                        <div class="option-checkbox"></div>
+                        <div class="option-content">
+                            <div class="option-name">💼 Resumes don't stand out</div>
+                            <div class="option-impact">Connected to mentorship, good angle</div>
+                        </div>
+                        <div class="option-cost">30 hrs</div>
+                    </div>
+                    <div class="puzzle-option" data-cost="15" data-impact="10">
+                        <div class="option-checkbox"></div>
+                        <div class="option-content">
+                            <div class="option-name">🚗 Parking is a nightmare</div>
+                            <div class="option-impact">Universal complaint, hard to solve</div>
+                        </div>
+                        <div class="option-cost">15 hrs</div>
+                    </div>
+                </div>
+                
+                <div class="puzzle-result">
+                    <div class="result-score">0 pts</div>
+                    <div class="result-rating">Select problems to investigate</div>
+                    <div class="result-analysis">Best strategy: Focus on high-impact, personally relevant problems. The mentorship + resume combo (65 hrs, 70 pts) is optimal—they're related and you have insight.</div>
+                </div>
+            </div>
+            
+            <script>
+            (function() {
+                const puzzle = document.querySelector('.constraint-puzzle');
+                const budget = 100;
+                let spent = 0, score = 0;
+                
+                puzzle.querySelectorAll('.puzzle-option').forEach(opt => {
+                    opt.addEventListener('click', () => {
+                        const cost = parseInt(opt.dataset.cost);
+                        const impact = parseInt(opt.dataset.impact);
+                        
+                        if (opt.classList.contains('selected')) {
+                            opt.classList.remove('selected');
+                            spent -= cost;
+                            score -= impact;
+                        } else if (spent + cost <= budget) {
+                            opt.classList.add('selected');
+                            spent += cost;
+                            score += impact;
+                        } else {
+                            opt.style.animation = 'shake 0.3s ease';
+                            setTimeout(() => opt.style.animation = '', 300);
+                        }
+                        
+                        puzzle.querySelector('.budget-remaining').textContent = (budget - spent) + ' hours left';
+                        puzzle.querySelector('.budget-fill').style.width = (spent / budget * 100) + '%';
+                        puzzle.querySelector('.result-score').textContent = score + ' pts';
+                        
+                        let rating = score >= 65 ? '🌟 Excellent focus!' : score >= 50 ? '👍 Good prioritization' : '💡 Consider higher-impact problems';
+                        puzzle.querySelector('.result-rating').textContent = rating;
+                    });
+                });
+            })();
+            </script>
+
             <div class="takeaways-box">
                 <h4>🎯 Key Takeaways</h4>
                 <ul>
@@ -368,6 +487,7 @@
     </main>
 
     <script src="interactive.js"></script>
+    <script src="simulations.js"></script>
     <script src="../script.js"></script>
 </body>
 </html>

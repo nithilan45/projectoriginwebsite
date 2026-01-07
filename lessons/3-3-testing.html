@@ -6,6 +6,7 @@
     <title>Lesson 3.3: Testing & Iteration - Genesis</title>
     <link rel="stylesheet" href="../styles.css?v=1002">
     <link rel="stylesheet" href="interactive.css">
+    <link rel="stylesheet" href="simulations.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -118,6 +119,99 @@
                 <div class="scenario-outcome learning" data-outcome-id="learning"><p class="scenario-outcome-title">💡 Wrong Focus</p><p>More sign-ups won't help if 70% drop off before the core value (meeting). Fix the funnel leak before pouring more water in.</p></div>
             </div>
 
+            <!-- FORECASTING GAME -->
+            <div class="forecast-game" data-actual="12" data-format="percent">
+                <div class="forecast-header">
+                    <div class="forecast-icon">🎯</div>
+                    <h4 class="forecast-title">Prediction Game: Conversion Rate</h4>
+                </div>
+                
+                <div class="forecast-context">
+                    <div class="context-metrics">
+                        <div class="context-metric">
+                            <div class="context-metric-value">500</div>
+                            <div class="context-metric-label">Landing page visits</div>
+                        </div>
+                        <div class="context-metric">
+                            <div class="context-metric-value">$0</div>
+                            <div class="context-metric-label">Ad spend</div>
+                        </div>
+                        <div class="context-metric">
+                            <div class="context-metric-value">First-gen</div>
+                            <div class="context-metric-label">Target audience</div>
+                        </div>
+                        <div class="context-metric">
+                            <div class="context-metric-value">Mentorship</div>
+                            <div class="context-metric-label">Product type</div>
+                        </div>
+                    </div>
+                    <p style="color: #93c5fd; margin-top: 16px;">A new mentor matching landing page went live. Traffic came from posting in student Facebook groups (highly targeted). The page offers free mentor matching.</p>
+                </div>
+                
+                <p class="forecast-question">What % of visitors signed up?</p>
+                
+                <div class="forecast-input-section">
+                    <div class="forecast-slider-container">
+                        <input type="range" class="forecast-slider" min="1" max="50" value="10">
+                    </div>
+                    <div class="forecast-value-display">
+                        <div class="your-prediction">Your prediction:</div>
+                        <div class="prediction-value">10%</div>
+                    </div>
+                    <button class="lock-prediction-btn">Lock Prediction & Reveal</button>
+                </div>
+                
+                <div class="forecast-reveal">
+                    <div class="reveal-comparison">
+                        <div class="comparison-card prediction">
+                            <div class="comparison-label">Your Prediction</div>
+                            <div class="comparison-value">—</div>
+                        </div>
+                        <div class="comparison-card actual">
+                            <div class="comparison-label">Actual Result</div>
+                            <div class="comparison-value">12%</div>
+                        </div>
+                    </div>
+                    <div class="accuracy-meter">
+                        <div class="accuracy-label">Prediction Accuracy</div>
+                        <div class="accuracy-value"></div>
+                        <p class="accuracy-insight">Targeted traffic (student groups) + free offer + relevant product = 12% conversion. Cold traffic from ads typically converts 2-5%. Context matters enormously for predicting metrics!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+            (function() {
+                const game = document.querySelector('.forecast-game');
+                const slider = game.querySelector('.forecast-slider');
+                const valueDisplay = game.querySelector('.prediction-value');
+                const lockBtn = game.querySelector('.lock-prediction-btn');
+                const reveal = game.querySelector('.forecast-reveal');
+                const inputSection = game.querySelector('.forecast-input-section');
+                
+                slider.addEventListener('input', () => {
+                    valueDisplay.textContent = slider.value + '%';
+                });
+                
+                lockBtn.addEventListener('click', () => {
+                    const prediction = parseInt(slider.value);
+                    const actual = 12;
+                    
+                    game.querySelector('.comparison-card.prediction .comparison-value').textContent = prediction + '%';
+                    
+                    const diff = Math.abs(prediction - actual);
+                    const accuracy = Math.max(0, 100 - (diff * 5));
+                    
+                    const accuracyEl = game.querySelector('.accuracy-value');
+                    accuracyEl.textContent = Math.round(accuracy) + '% accurate';
+                    accuracyEl.className = 'accuracy-value ' + (accuracy >= 80 ? 'excellent' : accuracy >= 60 ? 'good' : accuracy >= 40 ? 'fair' : 'poor');
+                    
+                    inputSection.style.display = 'none';
+                    reveal.classList.add('show');
+                });
+            })();
+            </script>
+
             <h2>The Iteration Cycle</h2>
             <div class="key-concept">
                 <h4>Weekly Iteration Loop</h4>
@@ -178,6 +272,7 @@
     </main>
 
     <script src="interactive.js"></script>
+    <script src="simulations.js"></script>
     <script src="../script.js"></script>
 </body>
 </html>

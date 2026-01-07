@@ -6,6 +6,7 @@
     <title>Lesson 3.2: No-Code Tools - Genesis</title>
     <link rel="stylesheet" href="../styles.css?v=1002">
     <link rel="stylesheet" href="interactive.css">
+    <link rel="stylesheet" href="simulations.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -125,6 +126,142 @@
                 <p><strong>Slack:</strong> Community discussions</p>
                 <p><strong>Carrd:</strong> Landing page explaining the program</p>
             </div>
+            
+            <!-- CONSTRAINT PUZZLE: Budget Stack -->
+            <div class="constraint-puzzle" data-budget="50" style="background: linear-gradient(135deg, #0c4a6e 0%, #075985 100%);">
+                <div class="puzzle-header">
+                    <div class="puzzle-icon" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);">💸</div>
+                    <h4 class="puzzle-title">Build Your Stack: $50/month Budget</h4>
+                </div>
+                
+                <div class="puzzle-constraint">
+                    <span class="constraint-icon">💰</span>
+                    <div class="constraint-text">
+                        <div class="constraint-label">YOUR BUDGET</div>
+                        <div class="constraint-value">$50/month</div>
+                    </div>
+                </div>
+                
+                <p style="color: #7dd3fc; margin-bottom: 16px;">Build the most powerful MVP stack within budget. Some tools overlap—choose wisely!</p>
+                
+                <div class="puzzle-budget-bar">
+                    <div class="budget-header">
+                        <span class="budget-label">Monthly Budget</span>
+                        <span class="budget-remaining">$50 left</span>
+                    </div>
+                    <div class="budget-bar"><div class="budget-fill" style="width: 0%; background: linear-gradient(90deg, #06b6d4 0%, #0891b2 100%);"></div></div>
+                </div>
+                
+                <div class="puzzle-options">
+                    <div class="puzzle-option" data-cost="0" data-impact="20">
+                        <div class="option-checkbox"></div>
+                        <div class="option-content">
+                            <div class="option-name">📄 Carrd (Landing Page)</div>
+                            <div class="option-impact">Simple, fast, professional</div>
+                        </div>
+                        <div class="option-cost">FREE</div>
+                    </div>
+                    <div class="puzzle-option" data-cost="19" data-impact="15">
+                        <div class="option-checkbox"></div>
+                        <div class="option-content">
+                            <div class="option-name">🌐 Framer (Website)</div>
+                            <div class="option-impact">Beautiful, more features than Carrd</div>
+                        </div>
+                        <div class="option-cost">$19/mo</div>
+                    </div>
+                    <div class="puzzle-option" data-cost="0" data-impact="25">
+                        <div class="option-checkbox"></div>
+                        <div class="option-content">
+                            <div class="option-name">📊 Airtable (Database)</div>
+                            <div class="option-impact">Essential for any data-driven MVP</div>
+                        </div>
+                        <div class="option-cost">FREE</div>
+                    </div>
+                    <div class="puzzle-option" data-cost="0" data-impact="15">
+                        <div class="option-checkbox"></div>
+                        <div class="option-content">
+                            <div class="option-name">📝 Tally (Forms)</div>
+                            <div class="option-impact">Free forms, unlimited responses</div>
+                        </div>
+                        <div class="option-cost">FREE</div>
+                    </div>
+                    <div class="puzzle-option" data-cost="29" data-impact="20">
+                        <div class="option-checkbox"></div>
+                        <div class="option-content">
+                            <div class="option-name">✨ Typeform (Forms)</div>
+                            <div class="option-impact">Beautiful but pricey for MVP</div>
+                        </div>
+                        <div class="option-cost">$29/mo</div>
+                    </div>
+                    <div class="puzzle-option" data-cost="20" data-impact="30">
+                        <div class="option-checkbox"></div>
+                        <div class="option-content">
+                            <div class="option-name">⚡ Zapier (Automation)</div>
+                            <div class="option-impact">Connect everything, save hours</div>
+                        </div>
+                        <div class="option-cost">$20/mo</div>
+                    </div>
+                    <div class="puzzle-option" data-cost="0" data-impact="10">
+                        <div class="option-checkbox"></div>
+                        <div class="option-content">
+                            <div class="option-name">📅 Calendly (Scheduling)</div>
+                            <div class="option-impact">Free tier covers basics</div>
+                        </div>
+                        <div class="option-cost">FREE</div>
+                    </div>
+                    <div class="puzzle-option" data-cost="0" data-impact="10">
+                        <div class="option-checkbox"></div>
+                        <div class="option-content">
+                            <div class="option-name">💬 Slack (Community)</div>
+                            <div class="option-impact">Free for small communities</div>
+                        </div>
+                        <div class="option-cost">FREE</div>
+                    </div>
+                </div>
+                
+                <div class="puzzle-result">
+                    <div class="result-score">0 pts</div>
+                    <div class="result-rating">Build your stack!</div>
+                    <div class="result-analysis">Pro tip: All the free tools (Carrd + Airtable + Tally + Calendly + Slack) = 80 pts for $0! Add Zapier at $20 for automation. Don't pay for Typeform or Framer until you have revenue.</div>
+                </div>
+            </div>
+            
+            <script>
+            (function() {
+                const puzzle = document.querySelectorAll('.constraint-puzzle')[0];
+                if (!puzzle || puzzle.dataset.budget !== '50') return;
+                const p = document.querySelector('[data-budget="50"]');
+                const budget = 50;
+                let spent = 0, score = 0;
+                
+                p.querySelectorAll('.puzzle-option').forEach(opt => {
+                    opt.addEventListener('click', () => {
+                        const cost = parseInt(opt.dataset.cost);
+                        const impact = parseInt(opt.dataset.impact);
+                        
+                        if (opt.classList.contains('selected')) {
+                            opt.classList.remove('selected');
+                            spent -= cost;
+                            score -= impact;
+                        } else if (spent + cost <= budget) {
+                            opt.classList.add('selected');
+                            spent += cost;
+                            score += impact;
+                        } else {
+                            opt.style.animation = 'shake 0.3s ease';
+                            setTimeout(() => opt.style.animation = '', 300);
+                        }
+                        
+                        p.querySelector('.budget-remaining').textContent = '$' + (budget - spent) + ' left';
+                        p.querySelector('.budget-fill').style.width = (spent / budget * 100) + '%';
+                        p.querySelector('.result-score').textContent = score + ' pts';
+                        
+                        let rating = score >= 100 ? '🌟 Maximum value!' : score >= 80 ? '👍 Great stack' : score >= 50 ? '🤔 Can you get more free tools?' : '💡 Add more tools';
+                        p.querySelector('.result-rating').textContent = rating;
+                    });
+                });
+            })();
+            </script>
 
             <div class="matching-container" data-matches='{"landing":"carrd","database":"airtable","automation":"zapier"}'>
                 <div class="matching-header"><div class="matching-icon">🎯</div><h4 class="matching-title">Match Tools to Jobs</h4></div>
@@ -206,6 +343,7 @@
     </main>
 
     <script src="interactive.js"></script>
+    <script src="simulations.js"></script>
     <script src="../script.js"></script>
 </body>
 </html>

@@ -6,6 +6,7 @@
     <title>Lesson 4.3: Presentation Skills - Genesis</title>
     <link rel="stylesheet" href="../styles.css?v=1002">
     <link rel="stylesheet" href="interactive.css">
+    <link rel="stylesheet" href="simulations.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -135,6 +136,57 @@
                 <div class="scenario-outcome learning" data-outcome-id="learning"><p class="scenario-outcome-title">💡 Sounds Defensive</p><p>Dismissing the question makes you seem unprepared or in denial. Every startup has competition—acknowledge it and explain why you'll win anyway.</p></div>
             </div>
 
+            <!-- TIMED Q&A GAUNTLET -->
+            <div class="timed-decision" data-time="30" style="background: linear-gradient(135deg, #1e3a5f 0%, #1e40af 100%);">
+                <div class="timed-header">
+                    <div class="timed-title-section">
+                        <div class="timed-icon" style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);">🎤</div>
+                        <h4 class="timed-title">Rapid-Fire Q&A: Investor Grilling</h4>
+                    </div>
+                    <div class="timer-display">
+                        <span class="timer-icon">⏰</span>
+                        <span class="timer-value">30s</span>
+                    </div>
+                </div>
+                
+                <div class="timed-scenario">
+                    <div class="incomplete-info">
+                        <span>🔥</span>
+                        <span>The investor is skeptical. Your response matters.</span>
+                    </div>
+                    <p class="timed-prompt"><strong>Investor:</strong> "I've seen 5 other mentorship platforms this month. What makes you think you'll be the one that works? Convince me in 30 seconds."</p>
+                </div>
+                
+                <div class="timed-choices">
+                    <div class="timed-choice" data-correct="false" data-explanation="Arrogance without evidence. Investors have heard this a hundred times. You need specifics.">
+                        <strong>A.</strong> "We just have a better product. Once you try it, you'll see."
+                    </div>
+                    <div class="timed-choice" data-correct="true" data-explanation="Strong! You acknowledged competition (credibility), showed specific insight (first-gen focus), and backed it with data (retention). This shows you've done your homework.">
+                        <strong>B.</strong> "Those 5 are generalist platforms. We're the only one built BY first-gen students FOR first-gen students. Our 40% monthly retention is 4x industry average because we understand what they actually need—not what career centers think they need."
+                    </div>
+                    <div class="timed-choice" data-correct="false" data-explanation="Deflection. They asked about differentiation, not team. While team matters, this doesn't answer their specific concern.">
+                        <strong>C.</strong> "What sets us apart is our team. We have deep expertise in education and student success."
+                    </div>
+                    <div class="timed-choice" data-correct="false" data-explanation="Self-deprecating won't inspire confidence. You need to believe you can win, and articulate why.">
+                        <strong>D.</strong> "Honestly, most will probably fail including us. But we're going to try our best."
+                    </div>
+                </div>
+                
+                <div class="timed-result">
+                    <div class="result-header">
+                        <span class="result-icon"></span>
+                        <span class="result-title"></span>
+                    </div>
+                    <p class="result-explanation"></p>
+                </div>
+                
+                <div class="time-expired-overlay">
+                    <div class="expired-icon">⏰</div>
+                    <div class="expired-text">Time's Up!</div>
+                    <p class="expired-lesson">In investor Q&A, hesitation = doubt. You need crisp, confident answers ready. Practice until they're automatic.</p>
+                </div>
+            </div>
+
             <h2>Preparing for Common Questions</h2>
             <p>Prepare answers for these frequently asked questions:</p>
             <ul>
@@ -205,6 +257,7 @@
     </main>
 
     <script src="interactive.js"></script>
+    <script src="simulations.js"></script>
     <script src="../script.js"></script>
 </body>
 </html>

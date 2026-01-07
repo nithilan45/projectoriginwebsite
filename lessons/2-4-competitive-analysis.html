@@ -6,6 +6,7 @@
     <title>Lesson 2.4: Competitive Analysis - Genesis</title>
     <link rel="stylesheet" href="../styles.css?v=1002">
     <link rel="stylesheet" href="interactive.css">
+    <link rel="stylesheet" href="simulations.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -142,6 +143,79 @@
                 <li><strong>Experience:</strong> Make it easier, faster, more delightful</li>
                 <li><strong>Values:</strong> Stand for something competitors don't</li>
             </ul>
+            
+            <!-- DEBUG MODE: Startup Autopsy -->
+            <div class="pattern-drill" style="background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);">
+                <div class="pattern-header">
+                    <div class="pattern-title-section">
+                        <div class="pattern-icon" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">🔧</div>
+                        <h4 class="pattern-title">Debug Mode: Why Did This Startup Fail?</h4>
+                    </div>
+                </div>
+                
+                <div class="pattern-data">
+                    <div class="data-title">🪦 Failed Startup: "StudyBuddy" - Peer Tutoring App</div>
+                    <div class="metrics-display">
+                        <div class="metric-box">
+                            <div class="metric-box-value">$2M</div>
+                            <div class="metric-box-label">Raised</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-box-value">50K</div>
+                            <div class="metric-box-label">Downloads</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-box-value">2%</div>
+                            <div class="metric-box-label">Monthly Active</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-box-value">$0</div>
+                            <div class="metric-box-label">Revenue</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 16px; color: #fca5a5; font-size: 0.95rem;"><strong>Context:</strong> Launched as "Uber for tutoring" — match students who need help with peer tutors. Competitors: Chegg Tutors ($40M revenue), Wyzant, Varsity Tutors. Free for students, planned to monetize later.</p>
+                </div>
+                
+                <p class="pattern-question">What was the fatal flaw?</p>
+                
+                <div class="pattern-answers">
+                    <div class="pattern-answer" data-correct="false" data-explanation="$2M is plenty for an MVP. The problem wasn't capital—they had resources.">
+                        Not enough funding to compete with Chegg
+                    </div>
+                    <div class="pattern-answer" data-correct="false" data-explanation="50K downloads is solid traction. Getting users wasn't the problem.">
+                        Poor marketing—not enough users discovered it
+                    </div>
+                    <div class="pattern-answer" data-correct="true" data-explanation="Correct! 2% monthly active users = 98% churned. They got downloads but no one stuck around. Free product with no monetization meant they couldn't invest in retention. Competitors had paying customers who were committed.">
+                        No business model—free users had no commitment, leading to 98% churn
+                    </div>
+                    <div class="pattern-answer" data-correct="false" data-explanation="'Uber for X' can work. The positioning wasn't the issue—the business fundamentals were.">
+                        The "Uber for tutoring" positioning was wrong
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+            document.querySelectorAll('.pattern-drill .pattern-answer').forEach(answer => {
+                answer.addEventListener('click', function() {
+                    if (this.closest('.pattern-drill').querySelector('.pattern-answer.disabled')) return;
+                    
+                    const drill = this.closest('.pattern-drill');
+                    drill.querySelectorAll('.pattern-answer').forEach(a => a.classList.add('disabled'));
+                    
+                    if (this.dataset.correct === 'true') {
+                        this.classList.add('correct');
+                    } else {
+                        this.classList.add('incorrect');
+                        drill.querySelector('[data-correct="true"]').classList.add('correct');
+                    }
+                    
+                    const expl = document.createElement('div');
+                    expl.style.cssText = 'margin-top:16px;padding:16px;background:rgba(0,0,0,0.3);border-radius:10px;font-size:0.95rem;line-height:1.6;color:#fecaca;';
+                    expl.innerHTML = '<strong>Lesson:</strong> ' + this.dataset.explanation;
+                    drill.querySelector('.pattern-answers').after(expl);
+                });
+            });
+            </script>
 
             <div class="interactive-activity" data-activity-id="2-4-competitors">
                 <div class="activity-header"><div class="activity-icon">🔍</div><h4 class="activity-title">Map Your Competitors</h4><span class="activity-type">Research</span></div>
@@ -206,6 +280,7 @@
     </main>
 
     <script src="interactive.js"></script>
+    <script src="simulations.js"></script>
     <script src="../script.js"></script>
 </body>
 </html>
