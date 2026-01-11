@@ -922,12 +922,8 @@
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 @keyframes shake {
@@ -941,15 +937,14 @@
 }
 
 /* ============================================
-   VIDEO EMBED STYLES
+   VIDEO EMBED STYLES - LIGHT THEME
    ============================================ */
 
 .video-container {
-    background: linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%);
+    background: transparent;
     border-radius: 20px;
     padding: 24px;
     margin: 40px 0;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
 }
 
 .video-header {
@@ -974,13 +969,13 @@
     font-family: 'DM Sans', sans-serif;
     font-size: 1.1rem;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--text-primary, #0f172a);
     margin: 0;
 }
 
 .video-source {
     font-size: 0.85rem;
-    color: #ffffff;
+    color: var(--text-secondary, #64748b);
     margin: 0;
 }
 
@@ -1005,20 +1000,20 @@
 .video-caption {
     margin-top: 16px;
     padding: 16px 20px;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--bg-accent, #f0f9ff);
     border-radius: 12px;
     border-left: 3px solid #f59e0b;
 }
 
 .video-caption p {
     font-size: 0.95rem;
-    color: #ffffff;
+    color: var(--text-secondary, #334155);
     margin: 0;
     line-height: 1.6;
 }
 
 .video-caption strong {
-    color: #fbbf24;
+    color: var(--text-primary, #0f172a);
     font-weight: 600;
 }
 
@@ -1035,7 +1030,7 @@
         padding: 24px 20px;
         margin: 30px 0;
     }
-    
+
     .quiz-header,
     .activity-header,
     .scenario-header,
@@ -1043,31 +1038,31 @@
     .matching-header {
         flex-wrap: wrap;
     }
-    
+
     .activity-type {
         margin-left: 0;
         margin-top: 8px;
     }
-    
+
     .matching-grid {
         grid-template-columns: 1fr;
         gap: 24px;
     }
-    
+
     .matching-connector {
         display: none;
     }
-    
+
     .points-display {
         top: auto;
         bottom: 24px;
         right: 24px;
     }
-    
+
     .activity-actions {
         flex-direction: column;
     }
-    
+
     .activity-btn {
         width: 100%;
         justify-content: center;
