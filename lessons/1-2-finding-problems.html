@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1.2: Finding Problems in Your Community - Genesis</title>
+    <link rel="stylesheet" href="../styles.css?v=1002">
+    <link rel="stylesheet" href="interactive.css">
+    <link rel="stylesheet" href="simulations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .lesson-container { max-width: 800px; margin: 0 auto; padding: 120px 24px 80px; }
+        .lesson-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-tertiary); margin-bottom: 24px; }
+        .lesson-breadcrumb a { color: var(--origin-blue-light); text-decoration: none; }
+        .lesson-phase-tag { display: inline-block; background: var(--bg-accent); color: var(--origin-blue); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; margin-bottom: 16px; }
+        .lesson-title { font-family: 'DM Sans', sans-serif; font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; color: var(--text-primary); margin-bottom: 16px; line-height: 1.2; }
+        .lesson-meta { display: flex; align-items: center; gap: 20px; color: var(--text-tertiary); font-size: 0.95rem; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--border-light); flex-wrap: wrap; }
+        .lesson-meta-item { display: flex; align-items: center; gap: 6px; }
+        .lesson-content h2 { font-family: 'DM Sans', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin: 48px 0 20px; }
+        .lesson-content h3 { font-family: 'DM Sans', sans-serif; font-size: 1.25rem; font-weight: 600; color: var(--text-primary); margin: 32px 0 16px; }
+        .lesson-content p { font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 20px; }
+        .lesson-content ul, .lesson-content ol { margin: 20px 0; padding-left: 24px; }
+        .lesson-content li { font-size: 1.05rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 12px; }
+        .key-concept { background: var(--bg-accent); border-left: 4px solid var(--origin-blue); padding: 20px 24px; border-radius: 0 12px 12px 0; margin: 28px 0; }
+        .key-concept h4 { font-size: 1rem; font-weight: 700; color: var(--origin-blue); margin-bottom: 8px; text-transform: uppercase; }
+        .key-concept p { margin: 0; color: var(--text-primary); }
+        .quote-box { background: var(--bg-tertiary); border-radius: 16px; padding: 28px; margin: 28px 0; position: relative; }
+        .quote-box::before { content: '"'; font-family: Georgia, serif; font-size: 4rem; color: var(--origin-blue-light); opacity: 0.3; position: absolute; top: 10px; left: 20px; }
+        .quote-box blockquote { font-size: 1.15rem; font-style: italic; color: var(--text-primary); margin: 0 0 12px; padding-left: 30px; }
+        .quote-box cite { font-size: 0.95rem; color: var(--text-tertiary); padding-left: 30px; }
+        .takeaways-box { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 16px; padding: 28px; margin: 40px 0; }
+        .takeaways-box h4 { font-size: 1.1rem; font-weight: 700; color: #92400e; margin-bottom: 16px; }
+        .takeaways-box ul { list-style: none; padding: 0; margin: 0; }
+        .takeaways-box li { color: #92400e; padding-left: 28px; position: relative; margin-bottom: 12px; }
+        .takeaways-box li::before { content: '✓'; position: absolute; left: 0; color: #d97706; font-weight: 700; }
+        .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--border-light); gap: 16px; flex-wrap: wrap; }
+        .lesson-nav-btn { display: flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 12px; font-weight: 600; text-decoration: none; }
+        .lesson-nav-btn.prev { background: var(--bg-tertiary); color: var(--text-secondary); }
+        .lesson-nav-btn.next { background: var(--gradient-primary); color: white; }
+        .problem-table { width: 100%; border-collapse: collapse; margin: 24px 0; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm); }
+        .problem-table th { background: var(--gradient-primary); color: white; padding: 16px; text-align: left; }
+        .problem-table td { padding: 14px 16px; border-bottom: 1px solid var(--border-light); background: white; }
+        @media (max-width: 768px) { .lesson-container { padding: 100px 16px 60px; } .lesson-nav { flex-direction: column; } .lesson-nav-btn { width: 100%; justify-content: center; } }
+    </style>
+</head>
+<body data-lesson-id="1-2-finding-problems">
+    <div class="points-display" id="points-display">
+        <span class="points-icon">⭐</span>
+        <div><span class="points-value">0</span><span class="points-label">points</span></div>
+    </div>
+
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo"><a href="../index.html"><img src="../assets/originlogo.svg" alt="Project Origin" class="nav-logo-img"></a></div>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../cohort1.html" class="nav-link">Cohort 1</a>
+                <a href="../mentors.html" class="nav-link">Mentors</a>
+                <a href="../contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-actions"><a href="../genesis.html" class="nav-button active">Genesis</a></div>
+        </div>
+    </nav>
+
+    <main class="lesson-container">
+        <nav class="lesson-breadcrumb">
+            <a href="../genesis.html">Genesis</a><span>→</span><a href="../genesis.html#lessons">Phase 1</a><span>→</span><span>Lesson 1.2</span>
+        </nav>
+
+        <div class="lesson-phase-tag">Phase 1: Problem Discovery</div>
+        <h1 class="lesson-title">Finding Problems in Your Community</h1>
+        
+        <div class="lesson-meta">
+            <div class="lesson-meta-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+                30 min
+            </div>
+            <div class="lesson-meta-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+                Lesson 2 of 16
+            </div>
+            <div class="lesson-meta-item">🎯 4 Activities</div>
+        </div>
+
+        <div class="lesson-content">
+            <p>The best startup ideas don't come from trying to think of "the next big thing." They come from deeply understanding problems that real people face every day. In this lesson, you'll learn systematic ways to discover problems worth solving.</p>
+
+            <div class="quiz-container" data-correct="B" data-explanation="Starting with problems ensures demand exists before you build. Many founders make the mistake of building solutions first, then struggling to find customers. Problem-first approach validates the market.">
+                <div class="quiz-header">
+                    <div class="quiz-icon">🧠</div>
+                    <div><h4 class="quiz-title">Quick Check</h4><p class="quiz-subtitle">Why problems first?</p></div>
+                </div>
+                <p class="quiz-question">Why is it better to start with problems rather than solutions?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-option="A"><span class="quiz-option-marker">A</span><span class="quiz-option-text">Because problems are easier to find than solutions</span></div>
+                    <div class="quiz-option" data-option="B"><span class="quiz-option-marker">B</span><span class="quiz-option-text">Because you know there's demand before building anything</span></div>
+                    <div class="quiz-option" data-option="C"><span class="quiz-option-marker">C</span><span class="quiz-option-text">Because investors prefer problem-focused startups</span></div>
+                    <div class="quiz-option" data-option="D"><span class="quiz-option-marker">D</span><span class="quiz-option-text">Because it's faster to launch</span></div>
+                </div>
+                <button class="quiz-check-btn" disabled>Check Answer</button>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <h2>Why Start with Problems?</h2>
+            
+            <p>Many first-time entrepreneurs fall in love with a solution before understanding the problem. They think of a cool app, build it, and wonder why no one uses it.</p>
+
+            <div class="key-concept">
+                <h4>Key Concept</h4>
+                <p>Successful startups solve real problems for real people. The bigger and more painful the problem, the more valuable the solution.</p>
+            </div>
+
+            <h2>Where to Find Problems</h2>
+
+            <h3>1. Your Own Life</h3>
+            <p>The problems you experience firsthand are your best starting point. You understand them deeply and feel the pain directly.</p>
+
+            <div class="quote-box">
+                <blockquote>The best problems to solve are the ones you have yourself. You'll understand them better, and you'll be more motivated to solve them.</blockquote>
+                <cite>— Paul Graham, Y Combinator</cite>
+            </div>
+
+            <!-- Drag and Drop Ranking Activity -->
+            <div class="matching-container" data-matches='{"own":"best","community":"great","industry":"good","random":"avoid"}'>
+                <div class="matching-header">
+                    <div class="matching-icon">🎯</div>
+                    <h4 class="matching-title">Rank Problem Sources</h4>
+                </div>
+                <p style="color: #155e75; margin-bottom: 20px;">Match each problem source with how valuable it typically is for founders:</p>
+                <div class="matching-grid">
+                    <div class="matching-column matching-left">
+                        <div class="matching-item" data-id="own">Problems you experience personally</div>
+                        <div class="matching-item" data-id="community">Problems in your community</div>
+                        <div class="matching-item" data-id="industry">Problems in an industry you know</div>
+                        <div class="matching-item" data-id="random">Random ideas with no connection</div>
+                    </div>
+                    <div class="matching-connector"><div class="matching-line"></div><div class="matching-line"></div><div class="matching-line"></div><div class="matching-line"></div></div>
+                    <div class="matching-column matching-right">
+                        <div class="matching-item" data-id="avoid">Avoid - hard to validate</div>
+                        <div class="matching-item" data-id="best">Best - deep understanding</div>
+                        <div class="matching-item" data-id="good">Good - have context</div>
+                        <div class="matching-item" data-id="great">Great - unique insights</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>2. Your Community</h3>
+            <p>Your family, friends, school, and neighborhood are rich sources of problems. Your immigrant community may face unique challenges that mainstream solutions don't address:</p>
+            <ul>
+                <li>Language barriers in accessing services</li>
+                <li>Navigating unfamiliar systems (healthcare, banking, education)</li>
+                <li>Finding culturally appropriate products or services</li>
+                <li>Career challenges unique to your community</li>
+            </ul>
+
+            <!-- Scenario Activity -->
+            <div class="scenario-container">
+                <div class="scenario-header">
+                    <div class="scenario-icon">🎯</div>
+                    <h4 class="scenario-title">Problem Discovery Scenario</h4>
+                </div>
+                <div class="scenario-story">
+                    <strong>Situation:</strong> Your aunt recently immigrated and needs to send money to family back home. She's confused by the fees and exchange rates at different services. She asks you for help comparing options, and you spend 2 hours creating a spreadsheet for her.
+                </div>
+                <p class="scenario-question">What's the most entrepreneurial response?</p>
+                <div class="scenario-choices">
+                    <div class="scenario-choice" data-outcome="learning"><span class="scenario-choice-marker">A</span><span class="scenario-choice-text">Help her this once and move on with your day</span></div>
+                    <div class="scenario-choice" data-outcome="good"><span class="scenario-choice-marker">B</span><span class="scenario-choice-text">Share your spreadsheet with other family members who might need it</span></div>
+                    <div class="scenario-choice" data-outcome="best"><span class="scenario-choice-marker">C</span><span class="scenario-choice-text">Ask if other immigrants face this problem and research how big this market is</span></div>
+                </div>
+                <div class="scenario-outcome best" data-outcome-id="best">
+                    <p class="scenario-outcome-title">🌟 Excellent Problem Recognition!</p>
+                    <p>This is exactly how Remitly was born! The founder noticed immigrants struggling with remittance fees and built a $7B+ company. Your aunt's problem could be shared by millions of people worldwide.</p>
+                </div>
+                <div class="scenario-outcome good" data-outcome-id="good">
+                    <p class="scenario-outcome-title">👍 Good instinct!</p>
+                    <p>Sharing helps others, but you're missing the bigger opportunity. If this problem affects your family, it probably affects thousands of other immigrant families too.</p>
+                </div>
+                <div class="scenario-outcome learning" data-outcome-id="learning">
+                    <p class="scenario-outcome-title">💡 Missed Opportunity</p>
+                    <p>You solved the problem, but didn't recognize the entrepreneurial potential. Whenever you find yourself building a workaround, ask: "Who else has this problem?"</p>
+                </div>
+            </div>
+
+            <h2>The 5 Whys Technique</h2>
+            <p>When you spot a problem, don't stop at the surface. Dig deeper using the "5 Whys" technique:</p>
+
+            <div class="key-concept">
+                <h4>Example: The 5 Whys in Action</h4>
+                <p><strong>Problem:</strong> Students are stressed about college applications.</p>
+                <p><strong>Why #1:</strong> They don't know if they're doing the right things.</p>
+                <p><strong>Why #2:</strong> College advice is confusing and contradictory.</p>
+                <p><strong>Why #3:</strong> Most advice comes from people who applied decades ago.</p>
+                <p><strong>Why #4:</strong> The process has changed dramatically.</p>
+                <p><strong>Why #5:</strong> No easy way for recent applicants to share what worked.</p>
+                <p><strong>Root Problem:</strong> Students lack access to relevant, up-to-date advice from peers.</p>
+            </div>
+
+            <!-- 5 Whys Activity -->
+            <div class="interactive-activity" data-activity-id="1-2-five-whys">
+                <div class="activity-header">
+                    <div class="activity-icon">🔍</div>
+                    <h4 class="activity-title">Practice the 5 Whys</h4>
+                    <span class="activity-type">Analysis</span>
+                </div>
+                <p class="activity-prompt">Pick a problem you've noticed and dig deeper with 5 Whys:</p>
+                <textarea class="activity-input" placeholder="Problem: &#10;&#10;Why #1: &#10;&#10;Why #2: &#10;&#10;Why #3: &#10;&#10;Why #4: &#10;&#10;Why #5: &#10;&#10;Root Problem: "></textarea>
+                <div class="activity-actions">
+                    <button class="activity-btn activity-btn-primary save-activity-btn"><span>💾</span> Save My Response</button>
+                    <button class="activity-btn activity-btn-secondary show-model-btn"><span>💡</span> Show Model Response</button>
+                </div>
+                <div class="model-response">
+                    <div class="model-response-header"><span class="model-response-icon">✨</span><h5 class="model-response-title">Example 5 Whys</h5></div>
+                    <div class="model-response-content">
+                        <p><strong>Problem:</strong> I waste 30 minutes every morning deciding what to eat.</p>
+                        <p><strong>Why #1:</strong> I open the fridge and nothing looks appealing.</p>
+                        <p><strong>Why #2:</strong> I buy random groceries without a meal plan.</p>
+                        <p><strong>Why #3:</strong> I don't know what I want to eat for the week ahead.</p>
+                        <p><strong>Why #4:</strong> Planning meals feels overwhelming with so many options.</p>
+                        <p><strong>Why #5:</strong> There's no easy system that suggests meals based on my preferences and what's on sale.</p>
+                        <p><strong>Root Problem:</strong> People need personalized, simple meal planning that reduces decision fatigue and connects to grocery shopping.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Problem Interview Basics</h2>
+            <p>The best way to understand problems is to talk to people. Here's how:</p>
+
+            <div class="fill-blank-container">
+                <div class="fill-blank-header">
+                    <div class="fill-blank-icon">✏️</div>
+                    <h4 class="fill-blank-title">Complete the Interview Framework</h4>
+                </div>
+                <p class="fill-blank-sentence">
+                    During problem interviews, your job is to <input type="text" class="blank-input" data-answer="listen" data-alternatives="learn,understand"> more than you talk. Never <input type="text" class="blank-input" data-answer="pitch" data-alternatives="sell,present"> your solution—focus only on understanding the <input type="text" class="blank-input" data-answer="problem" data-alternatives="pain,issue">.
+                </p>
+                <button class="quiz-check-btn fill-blank-check-btn">Check Answers</button>
+            </div>
+
+            <h3>Good Interview Questions</h3>
+            <ul>
+                <li>"Tell me about the last time you experienced [problem]."</li>
+                <li>"What's the hardest part about [situation]?"</li>
+                <li>"What have you tried to solve this?"</li>
+                <li>"How often does this happen?"</li>
+            </ul>
+
+            <div class="quiz-container" data-correct="A" data-explanation="Asking 'would you pay' leads to unreliable answers—people say yes to be polite. Focus on understanding current behavior and pain, not hypothetical future actions.">
+                <div class="quiz-header">
+                    <div class="quiz-icon">🧠</div>
+                    <div><h4 class="quiz-title">Interview Question Check</h4></div>
+                </div>
+                <p class="quiz-question">Which question should you AVOID in problem interviews?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-option="A"><span class="quiz-option-marker">A</span><span class="quiz-option-text">"Would you pay $10/month for this app?"</span></div>
+                    <div class="quiz-option" data-option="B"><span class="quiz-option-marker">B</span><span class="quiz-option-text">"What solutions have you tried?"</span></div>
+                    <div class="quiz-option" data-option="C"><span class="quiz-option-marker">C</span><span class="quiz-option-text">"How often does this happen?"</span></div>
+                    <div class="quiz-option" data-option="D"><span class="quiz-option-marker">D</span><span class="quiz-option-text">"What's the hardest part?"</span></div>
+                </div>
+                <button class="quiz-check-btn" disabled>Check Answer</button>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <h2>What Makes a Good Problem?</h2>
+            <table class="problem-table">
+                <thead>
+                    <tr><th>Factor</th><th>What to Look For</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Painful</strong></td><td>People actively complain and seek solutions</td></tr>
+                    <tr><td><strong>Frequent</strong></td><td>Happens regularly, not just once in a while</td></tr>
+                    <tr><td><strong>Urgent</strong></td><td>People want to solve it now, not "someday"</td></tr>
+                    <tr><td><strong>Expensive</strong></td><td>Costs time, money, or emotional energy</td></tr>
+                    <tr><td><strong>Widespread</strong></td><td>Many people have this problem</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Problem Discovery Activity -->
+            <div class="interactive-activity" data-activity-id="1-2-problem-discovery">
+                <div class="activity-header">
+                    <div class="activity-icon">📝</div>
+                    <h4 class="activity-title">Problem Discovery Challenge</h4>
+                    <span class="activity-type">Discovery</span>
+                </div>
+                <p class="activity-prompt">List 9 problems in three categories, then rate each 1-5 on how painful, frequent, and urgent they are:</p>
+                <textarea class="activity-input" placeholder="MY PERSONAL PROBLEMS:&#10;1. &#10;2. &#10;3. &#10;&#10;PROBLEMS I'VE HEARD OTHERS COMPLAIN ABOUT:&#10;1. &#10;2. &#10;3. &#10;&#10;PROBLEMS IN MY COMMUNITY:&#10;1. &#10;2. &#10;3. &#10;&#10;MOST PROMISING PROBLEM (explain why):"></textarea>
+                <div class="activity-actions">
+                    <button class="activity-btn activity-btn-primary save-activity-btn"><span>💾</span> Save My Response</button>
+                    <button class="activity-btn activity-btn-secondary show-model-btn"><span>💡</span> Show Model Response</button>
+                </div>
+                <div class="model-response">
+                    <div class="model-response-header"><span class="model-response-icon">✨</span><h5 class="model-response-title">Example Problem Discovery</h5></div>
+                    <div class="model-response-content">
+                        <p><strong>My Personal Problems:</strong></p>
+                        <p>1. Can't find parking at school (Pain: 4, Frequency: 5, Urgency: 4)</p>
+                        <p>2. Lose track of assignment due dates (Pain: 5, Frequency: 4, Urgency: 5)</p>
+                        <p>3. Hard to split bills with roommates (Pain: 3, Frequency: 3, Urgency: 2)</p>
+                        <p><strong>Problems Others Complain About:</strong></p>
+                        <p>1. Parents struggle with school communication apps (Pain: 4, Frequency: 5, Urgency: 3)</p>
+                        <p>2. Friends can't find internships without connections (Pain: 5, Frequency: 4, Urgency: 4)</p>
+                        <p>3. Neighbors don't know about local events (Pain: 2, Frequency: 3, Urgency: 1)</p>
+                        <p><strong>Community Problems:</strong></p>
+                        <p>1. New immigrants struggle with credit building (Pain: 5, Frequency: 4, Urgency: 5)</p>
+                        <p>2. Language barriers at medical appointments (Pain: 5, Frequency: 3, Urgency: 5)</p>
+                        <p>3. Finding culturally familiar food in suburbs (Pain: 3, Frequency: 4, Urgency: 2)</p>
+                        <p><strong>Most Promising:</strong> Internships without connections—high pain, affects millions of first-gen students, and they're actively searching for solutions (willingness to pay).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interview Planning Activity -->
+            <div class="interactive-activity" data-activity-id="1-2-interview-plan">
+                <div class="activity-header">
+                    <div class="activity-icon">🎤</div>
+                    <h4 class="activity-title">Plan Your First Interviews</h4>
+                    <span class="activity-type">Action</span>
+                </div>
+                <p class="activity-prompt">Plan how you'll validate your most promising problem by talking to real people:</p>
+                <textarea class="activity-input" placeholder="PROBLEM I'M EXPLORING:&#10;&#10;WHO I'LL INTERVIEW (3 people):&#10;1. &#10;2. &#10;3. &#10;&#10;WHERE I'LL FIND THEM:&#10;&#10;MY 5 INTERVIEW QUESTIONS:&#10;1. &#10;2. &#10;3. &#10;4. &#10;5. &#10;&#10;WHEN I'LL DO THIS:"></textarea>
+                <div class="activity-actions">
+                    <button class="activity-btn activity-btn-primary save-activity-btn"><span>💾</span> Save My Plan</button>
+                    <button class="activity-btn activity-btn-secondary show-model-btn"><span>💡</span> Show Model Response</button>
+                </div>
+                <div class="model-response">
+                    <div class="model-response-header"><span class="model-response-icon">✨</span><h5 class="model-response-title">Example Interview Plan</h5></div>
+                    <div class="model-response-content">
+                        <p><strong>Problem:</strong> First-gen students can't find internships without family connections</p>
+                        <p><strong>Who I'll interview:</strong></p>
+                        <p>1. My friend Sarah who's been applying with no luck</p>
+                        <p>2. Students at the first-gen club meeting Tuesday</p>
+                        <p>3. Career counselor who works with first-gen students</p>
+                        <p><strong>Where:</strong> Coffee shop, club meeting, career center office hours</p>
+                        <p><strong>Questions:</strong></p>
+                        <p>1. "Tell me about your last internship search—walk me through it."</p>
+                        <p>2. "What was the hardest part of the process?"</p>
+                        <p>3. "How did you find opportunities to apply to?"</p>
+                        <p>4. "Did you feel like you had the same resources as other students?"</p>
+                        <p>5. "What have you tried that didn't work?"</p>
+                        <p><strong>Timeline:</strong> Complete all 3 interviews by this weekend</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONSTRAINT PUZZLE: Problem Prioritization -->
+            <div class="constraint-puzzle" data-budget="100">
+                <div class="puzzle-header">
+                    <div class="puzzle-icon">🎯</div>
+                    <h4 class="puzzle-title">Constraint Puzzle: 1 Week, Multiple Problems</h4>
+                </div>
+                
+                <div class="puzzle-constraint">
+                    <span class="constraint-icon">⏰</span>
+                    <div class="constraint-text">
+                        <div class="constraint-label">YOUR CONSTRAINT</div>
+                        <div class="constraint-value">100 hours this week</div>
+                    </div>
+                </div>
+                
+                <p style="color: #86efac; margin-bottom: 16px;">You've identified 6 potential problems. Choose which to investigate deeper—you can't do everything!</p>
+                
+                <div class="puzzle-budget-bar">
+                    <div class="budget-header">
+                        <span class="budget-label">Time Budget</span>
+                        <span class="budget-remaining">100 hours left</span>
+                    </div>
+                    <div class="budget-bar"><div class="budget-fill" style="width: 0%"></div></div>
+                </div>
+                
+                <div class="puzzle-options">
+                    <div class="puzzle-option" data-cost="35" data-impact="40">
+                        <div class="option-checkbox"></div>
+                        <div class="option-content">
+                            <div class="option-name">🎓 First-gen students lack mentorship</div>
+                            <div class="option-impact">High pain, personal experience, clear audience</div>
+                        </div>
+                        <div class="option-cost">35 hrs</div>
+                    </div>
+                    <div class="puzzle-option" data-cost="25" data-impact="15">
+                        <div class="option-checkbox"></div>
+                        <div class="option-content">
+                            <div class="option-name">🍕 Campus food ordering is slow</div>
+                            <div class="option-impact">Low pain, many competitors exist</div>
+                        </div>
+                        <div class="option-cost">25 hrs</div>
+                    </div>
+                    <div class="puzzle-option" data-cost="40" data-impact="35">
+                        <div class="option-checkbox"></div>
+                        <div class="option-content">
+                            <div class="option-name">📚 Textbooks are expensive</div>
+                            <div class="option-impact">Clear pain, but saturated market</div>
+                        </div>
+                        <div class="option-cost">40 hrs</div>
+                    </div>
+                    <div class="puzzle-option" data-cost="20" data-impact="25">
+                        <div class="option-checkbox"></div>
+                        <div class="option-content">
+                            <div class="option-name">🏠 Finding off-campus housing is hard</div>
+                            <div class="option-impact">Seasonal need, existing solutions</div>
+                        </div>
+                        <div class="option-cost">20 hrs</div>
+                    </div>
+                    <div class="puzzle-option" data-cost="30" data-impact="30">
+                        <div class="option-checkbox"></div>
+                        <div class="option-content">
+                            <div class="option-name">💼 Resumes don't stand out</div>
+                            <div class="option-impact">Connected to mentorship, good angle</div>
+                        </div>
+                        <div class="option-cost">30 hrs</div>
+                    </div>
+                    <div class="puzzle-option" data-cost="15" data-impact="10">
+                        <div class="option-checkbox"></div>
+                        <div class="option-content">
+                            <div class="option-name">🚗 Parking is a nightmare</div>
+                            <div class="option-impact">Universal complaint, hard to solve</div>
+                        </div>
+                        <div class="option-cost">15 hrs</div>
+                    </div>
+                </div>
+                
+                <div class="puzzle-result">
+                    <div class="result-score">0 pts</div>
+                    <div class="result-rating">Select problems to investigate</div>
+                    <div class="result-analysis">Best strategy: Focus on high-impact, personally relevant problems. The mentorship + resume combo (65 hrs, 70 pts) is optimal—they're related and you have insight.</div>
+                </div>
+            </div>
+            
+            <script>
+            (function() {
+                const puzzle = document.querySelector('.constraint-puzzle');
+                const budget = 100;
+                let spent = 0, score = 0;
+                
+                puzzle.querySelectorAll('.puzzle-option').forEach(opt => {
+                    opt.addEventListener('click', () => {
+                        const cost = parseInt(opt.dataset.cost);
+                        const impact = parseInt(opt.dataset.impact);
+                        
+                        if (opt.classList.contains('selected')) {
+                            opt.classList.remove('selected');
+                            spent -= cost;
+                            score -= impact;
+                        } else if (spent + cost <= budget) {
+                            opt.classList.add('selected');
+                            spent += cost;
+                            score += impact;
+                        } else {
+                            opt.style.animation = 'shake 0.3s ease';
+                            setTimeout(() => opt.style.animation = '', 300);
+                        }
+                        
+                        puzzle.querySelector('.budget-remaining').textContent = (budget - spent) + ' hours left';
+                        puzzle.querySelector('.budget-fill').style.width = (spent / budget * 100) + '%';
+                        puzzle.querySelector('.result-score').textContent = score + ' pts';
+                        
+                        let rating = score >= 65 ? '🌟 Excellent focus!' : score >= 50 ? '👍 Good prioritization' : '💡 Consider higher-impact problems';
+                        puzzle.querySelector('.result-rating').textContent = rating;
+                    });
+                });
+            })();
+            </script>
+
+            <div class="takeaways-box">
+                <h4>🎯 Key Takeaways</h4>
+                <ul>
+                    <li>Start with problems, not solutions—validate demand first</li>
+                    <li>Your own life and community are the best sources for problems</li>
+                    <li>Use the 5 Whys to dig from symptoms to root causes</li>
+                    <li>In problem interviews, listen more than you talk—never pitch</li>
+                    <li>Good problems are painful, frequent, urgent, expensive, and widespread</li>
+                </ul>
+            </div>
+        </div>
+
+        <nav class="lesson-nav">
+            <a href="1-1-entrepreneurial-mindset.html" class="lesson-nav-btn prev">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m0 0l7 7m-7-7l7-7"></path></svg>
+                Previous: Mindset
+            </a>
+            <a href="1-3-validating-problems.html" class="lesson-nav-btn next">
+                Next: Validating Problems
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg>
+            </a>
+        </nav>
+    </main>
+
+    <script src="interactive.js"></script>
+    <script src="simulations.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>
+

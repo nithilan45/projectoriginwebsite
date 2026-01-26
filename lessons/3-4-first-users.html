@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 3.4: Getting Your First Users - Genesis</title>
+    <link rel="stylesheet" href="../styles.css?v=1002">
+    <link rel="stylesheet" href="interactive.css">
+    <link rel="stylesheet" href="simulations.css">
+    <link rel="stylesheet" href="command-center.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .lesson-container { max-width: 800px; margin: 0 auto; padding: 120px 24px 80px; }
+        .lesson-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-tertiary); margin-bottom: 24px; }
+        .lesson-breadcrumb a { color: var(--origin-blue-light); text-decoration: none; }
+        .lesson-phase-tag { display: inline-block; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); color: #d97706; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; margin-bottom: 16px; }
+        .lesson-title { font-family: 'DM Sans', sans-serif; font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; color: var(--text-primary); margin-bottom: 16px; line-height: 1.2; }
+        .lesson-meta { display: flex; align-items: center; gap: 20px; color: var(--text-tertiary); font-size: 0.95rem; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--border-light); flex-wrap: wrap; }
+        .lesson-content h2 { font-family: 'DM Sans', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin: 48px 0 20px; }
+        .lesson-content p { font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 20px; }
+        .lesson-content ul { margin: 20px 0; padding-left: 24px; }
+        .lesson-content li { font-size: 1.05rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 12px; }
+        .key-concept { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #d97706; padding: 20px 24px; border-radius: 0 12px 12px 0; margin: 28px 0; }
+        .key-concept h4 { font-size: 1rem; font-weight: 700; color: #d97706; margin-bottom: 8px; }
+        .key-concept p { margin: 0 0 8px; color: #92400e; }
+        .quote-box { background: var(--bg-tertiary); border-radius: 16px; padding: 28px; margin: 28px 0; }
+        .quote-box blockquote { font-size: 1.15rem; font-style: italic; color: var(--text-primary); margin: 0 0 12px; }
+        .quote-box cite { font-size: 0.95rem; color: var(--text-tertiary); }
+        .takeaways-box { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 16px; padding: 28px; margin: 40px 0; }
+        .takeaways-box h4 { font-size: 1.1rem; font-weight: 700; color: #92400e; margin-bottom: 16px; }
+        .takeaways-box ul { list-style: none; padding: 0; }
+        .takeaways-box li { color: #92400e; padding-left: 28px; position: relative; margin-bottom: 12px; }
+        .takeaways-box li::before { content: '✓'; position: absolute; left: 0; color: #d97706; font-weight: 700; }
+        .phase-complete { text-align: center; margin-top: 40px; padding: 32px; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 20px; border: 2px solid #f59e0b; }
+        .phase-complete h3 { color: #92400e; margin-bottom: 12px; }
+        .phase-complete p { color: #92400e; margin-bottom: 20px; }
+        .phase-complete a { display: inline-flex; align-items: center; gap: 8px; background: #f59e0b; color: white; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 600; }
+        .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--border-light); gap: 16px; flex-wrap: wrap; }
+        .lesson-nav-btn { display: flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 12px; font-weight: 600; text-decoration: none; }
+        .lesson-nav-btn.prev { background: var(--bg-tertiary); color: var(--text-secondary); }
+        .lesson-nav-btn.next { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; }
+    </style>
+</head>
+<body data-lesson-id="3-4-users">
+    <div class="points-display" id="points-display"><span class="points-icon">⭐</span><div><span class="points-value">0</span><span class="points-label">points</span></div></div>
+
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo"><a href="../index.html"><img src="../assets/originlogo.svg" alt="Project Origin" class="nav-logo-img"></a></div>
+            <div class="nav-links"><a href="../index.html" class="nav-link">Home</a><a href="../cohort1.html" class="nav-link">Cohort 1</a><a href="../mentors.html" class="nav-link">Mentors</a><a href="../contact.html" class="nav-link">Contact</a></div>
+            <div class="nav-actions"><a href="../genesis.html" class="nav-button active">Genesis</a></div>
+        </div>
+    </nav>
+
+    <main class="lesson-container">
+        <nav class="lesson-breadcrumb"><a href="../genesis.html">Genesis</a><span>→</span><span>Phase 3</span><span>→</span><span>Lesson 3.4</span></nav>
+
+        <div class="lesson-phase-tag">Phase 3: Build Your MVP</div>
+        <h1 class="lesson-title">Getting Your First Users</h1>
+        
+        <div class="lesson-meta">
+            <div class="lesson-meta-item">⏱️ 30 min</div>
+            <div class="lesson-meta-item">Lesson 12 of 16</div>
+            <div class="lesson-meta-item">🎯 2 Activities</div>
+        </div>
+
+        <div class="lesson-content">
+            <p>Your first 10-100 users are the hardest to get—and the most important. They'll give you feedback, become your advocates, and shape your product. Here's how to find them.</p>
+
+            <div class="quote-box">
+                <blockquote>"Do things that don't scale. Recruit users manually. It's not glamorous, but it works."</blockquote>
+                <cite>— Paul Graham, Y Combinator</cite>
+            </div>
+
+            <div class="quiz-container" data-correct="D" data-explanation="'Do things that don't scale' means using manual, high-touch methods to acquire early users. It works because you learn what users need and build genuine relationships.">
+                <div class="quiz-header"><div class="quiz-icon">🧠</div><div><h4 class="quiz-title">Early Users</h4></div></div>
+                <p class="quiz-question">What's a "do things that don't scale" strategy for getting first users?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-option="A"><span class="quiz-option-marker">A</span><span class="quiz-option-text">Running national TV ads</span></div>
+                    <div class="quiz-option" data-option="B"><span class="quiz-option-marker">B</span><span class="quiz-option-text">Building a viral referral system</span></div>
+                    <div class="quiz-option" data-option="C"><span class="quiz-option-marker">C</span><span class="quiz-option-text">Optimizing SEO for organic traffic</span></div>
+                    <div class="quiz-option" data-option="D"><span class="quiz-option-marker">D</span><span class="quiz-option-text">Personally reaching out to potential users one by one</span></div>
+                </div>
+                <button class="quiz-check-btn" disabled>Check Answer</button>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <h2>Where to Find First Users</h2>
+            
+            <div class="key-concept">
+                <h4>Start With Your Network</h4>
+                <p><strong>Friends & family:</strong> Ask them to try it (and be honest!)</p>
+                <p><strong>Your community:</strong> School clubs, local groups, online communities you're part of</p>
+                <p><strong>People from your interviews:</strong> They already know about the problem</p>
+            </div>
+
+            <h3>Online Communities</h3>
+            <ul>
+                <li><strong>Reddit:</strong> Find subreddits where your users hang out</li>
+                <li><strong>Facebook Groups:</strong> Join relevant communities</li>
+                <li><strong>Discord/Slack:</strong> Niche communities for your audience</li>
+                <li><strong>Twitter/LinkedIn:</strong> Share your journey publicly</li>
+            </ul>
+
+            <h3>In-Person</h3>
+            <ul>
+                <li><strong>Campus events:</strong> Club meetings, career fairs</li>
+                <li><strong>Meetups:</strong> Industry or interest-based gatherings</li>
+                <li><strong>Coffee chats:</strong> 1-on-1 conversations with potential users</li>
+            </ul>
+
+            <!-- VIDEO: Gustaf Alströmer -->
+            <div class="video-container">
+                <div class="video-header">
+                    <div class="video-icon">▶️</div>
+                    <div>
+                        <h4 class="video-label">How to Get Your First Customers</h4>
+                        <p class="video-source">Gustaf Alströmer • Y Combinator</p>
+                    </div>
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/hyYCn_kAngI" title="How to Get Your First Customers - Gustaf Alströmer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-caption">
+                    <p><strong>Why watch this:</strong> Gustaf (former Head of Growth at Airbnb) shares tactical advice for early customer acquisition—from doing things that don't scale to charging your first customer.</p>
+                </div>
+            </div>
+
+            <div class="scenario-container">
+                <div class="scenario-header"><div class="scenario-icon">🚀</div><h4 class="scenario-title">User Acquisition</h4></div>
+                <div class="scenario-story">You've built your mentor matching MVP and need your first 20 student sign-ups. You have one week.</div>
+                <p class="scenario-question">What's the most effective approach?</p>
+                <div class="scenario-choices">
+                    <div class="scenario-choice" data-outcome="learning"><span class="scenario-choice-marker">A</span><span class="scenario-choice-text">Post on Instagram and wait for sign-ups</span></div>
+                    <div class="scenario-choice" data-outcome="good"><span class="scenario-choice-marker">B</span><span class="scenario-choice-text">Email the first-gen student club and ask them to share</span></div>
+                    <div class="scenario-choice" data-outcome="best"><span class="scenario-choice-marker">C</span><span class="scenario-choice-text">Attend the first-gen club meeting, present for 2 minutes, then sign people up on the spot</span></div>
+                </div>
+                <div class="scenario-outcome best" data-outcome-id="best"><p class="scenario-outcome-title">🌟 Direct and Effective!</p><p>In-person is powerful for early users. You can explain the value, answer questions, and sign up people immediately. This is "doing things that don't scale"—and it works.</p></div>
+                <div class="scenario-outcome good" data-outcome-id="good"><p class="scenario-outcome-title">👍 Good Start</p><p>Email outreach can work, but you're relying on someone else to share. Going in person gives you more control and higher conversion.</p></div>
+                <div class="scenario-outcome learning" data-outcome-id="learning"><p class="scenario-outcome-title">💡 Too Passive</p><p>Posting and waiting rarely works for early users. You need to proactively reach out and convince people to try something new.</p></div>
+            </div>
+
+            <h2>Outreach That Works</h2>
+            <div class="key-concept">
+                <h4>The Formula for Cold Outreach</h4>
+                <p><strong>1. Personalize:</strong> Show you know who they are</p>
+                <p><strong>2. Relate:</strong> Mention the problem they have</p>
+                <p><strong>3. Offer value:</strong> What's in it for them?</p>
+                <p><strong>4. Make it easy:</strong> Clear, simple ask</p>
+            </div>
+            
+            <!-- AD SPEND CONSOLE - Command Center Style -->
+            <div class="control-room" id="ad-console">
+                <div class="control-room-header">
+                    <div class="tool-identity">
+                        <div class="tool-icon">📣</div>
+                        <div>
+                            <div class="tool-name">Ad Spend Analyzer</div>
+                            <div class="tool-type">CAC & Runway Simulator</div>
+                        </div>
+                    </div>
+                    <div class="status-indicators">
+                        <div class="status-badge">
+                            <div class="status-dot" id="ad-status"></div>
+                            <span id="ad-status-text">EFFICIENT</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Health Bars -->
+                <div class="health-bars">
+                    <div class="health-bar-item">
+                        <div class="health-bar-label">
+                            <span class="health-name"><span class="health-name-icon">🔥</span> BURN RATE</span>
+                            <span class="health-value" id="hb-burn">SUSTAINABLE</span>
+                        </div>
+                        <div class="health-track">
+                            <div class="health-fill healthy" id="hb-burn-fill" style="width: 30%"></div>
+                        </div>
+                    </div>
+                    <div class="health-bar-item">
+                        <div class="health-bar-label">
+                            <span class="health-name"><span class="health-name-icon">⏳</span> RUNWAY</span>
+                            <span class="health-value" id="hb-runway">SAFE</span>
+                        </div>
+                        <div class="health-track">
+                            <div class="health-fill healthy" id="hb-runway-fill" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- KPI Grid -->
+                <div class="kpi-grid">
+                    <div class="kpi-card highlight" id="kpi-spend">
+                        <div class="kpi-label">Weekly Ad Spend</div>
+                        <div class="kpi-value">$50</div>
+                    </div>
+                    <div class="kpi-card" id="kpi-impressions">
+                        <div class="kpi-label">Impressions</div>
+                        <div class="kpi-value">5K</div>
+                    </div>
+                    <div class="kpi-card" id="kpi-clicks">
+                        <div class="kpi-label">Clicks</div>
+                        <div class="kpi-value">100</div>
+                    </div>
+                    <div class="kpi-card" id="kpi-signups">
+                        <div class="kpi-label">Signups</div>
+                        <div class="kpi-value">8</div>
+                    </div>
+                    <div class="kpi-card" id="kpi-cac">
+                        <div class="kpi-label">CAC</div>
+                        <div class="kpi-value">$6.25</div>
+                    </div>
+                    <div class="kpi-card" id="kpi-weeks">
+                        <div class="kpi-label">Weeks of Budget</div>
+                        <div class="kpi-value">20</div>
+                    </div>
+                </div>
+                
+                <!-- Control Panel -->
+                <div class="control-panel">
+                    <div class="control-slider">
+                        <div class="slider-header">
+                            <span class="slider-label">Weekly Ad Budget (You have $1,000 total)</span>
+                            <span class="slider-readout" id="ad-readout">$50/wk</span>
+                        </div>
+                        <div class="slider-track" id="ad-track">
+                            <div class="slider-danger-zone" style="right: 0; width: 40%;"></div>
+                            <div class="slider-fill" id="ad-fill" style="width: 10%"></div>
+                            <div class="slider-thumb" id="ad-thumb" style="left: 10%"></div>
+                        </div>
+                        <div class="slider-markers">
+                            <span class="slider-marker">$0</span>
+                            <span class="slider-marker">$250</span>
+                            <span class="slider-marker">$500/wk</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Alert -->
+                <div class="system-alert" id="ad-alert" style="display: none;">
+                    <span class="alert-icon">⚠️</span>
+                    <div class="alert-content">
+                        <div class="alert-title">WARNING</div>
+                        <div class="alert-message" id="ad-alert-msg"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+            (function() {
+                const track = document.getElementById('ad-track');
+                const thumb = document.getElementById('ad-thumb');
+                const fill = document.getElementById('ad-fill');
+                const readout = document.getElementById('ad-readout');
+                const alert = document.getElementById('ad-alert');
+                const statusDot = document.getElementById('ad-status');
+                const statusText = document.getElementById('ad-status-text');
+                
+                let spend = 50;
+                let isDragging = false;
+                const totalBudget = 1000;
+                
+                function updateConsole(s) {
+                    spend = Math.max(0, Math.min(500, s));
+                    const pct = (spend / 500) * 100;
+                    
+                    thumb.style.left = pct + '%';
+                    fill.style.width = pct + '%';
+                    readout.textContent = spend === 0 ? '$0/wk' : '$' + spend + '/wk';
+                    
+                    // Calculate metrics - early stage paid ads are inefficient
+                    const ctr = 0.02 - (spend * 0.00002); // CTR drops as you scale
+                    const convRate = 0.08 - (spend * 0.00006); // Conv drops as you scale (less targeted)
+                    const impressions = Math.round(spend * 100);
+                    const clicks = Math.round(impressions * Math.max(0.005, ctr));
+                    const signups = Math.round(clicks * Math.max(0.02, convRate));
+                    const cac = signups > 0 ? (spend / signups).toFixed(2) : '∞';
+                    const weeks = spend > 0 ? Math.round(totalBudget / spend) : '∞';
+                    
+                    // Update KPIs
+                    document.querySelector('#kpi-spend .kpi-value').textContent = '$' + spend;
+                    document.querySelector('#kpi-impressions .kpi-value').textContent = impressions > 1000 ? (impressions/1000).toFixed(1) + 'K' : impressions;
+                    document.querySelector('#kpi-clicks .kpi-value').textContent = clicks;
+                    document.querySelector('#kpi-signups .kpi-value').textContent = signups;
+                    document.querySelector('#kpi-cac .kpi-value').textContent = cac === '∞' ? '∞' : '$' + cac;
+                    document.querySelector('#kpi-weeks .kpi-value').textContent = weeks;
+                    
+                    // Update states
+                    const cacNum = parseFloat(cac);
+                    document.getElementById('kpi-cac').className = 'kpi-card' + (cacNum < 10 ? ' positive' : cacNum < 25 ? '' : ' negative');
+                    document.getElementById('kpi-weeks').className = 'kpi-card' + (weeks > 10 ? ' positive' : weeks > 4 ? '' : ' negative');
+                    
+                    // Health bars
+                    document.getElementById('hb-burn').textContent = spend < 100 ? 'SUSTAINABLE' : spend < 250 ? 'MODERATE' : 'HIGH BURN';
+                    document.getElementById('hb-burn-fill').style.width = Math.min(100, spend / 5) + '%';
+                    document.getElementById('hb-burn-fill').className = 'health-fill ' + (spend < 100 ? 'healthy' : spend < 250 ? 'warning' : 'critical');
+                    
+                    document.getElementById('hb-runway').textContent = weeks > 10 ? 'SAFE' : weeks > 4 ? 'LIMITED' : 'CRITICAL';
+                    document.getElementById('hb-runway-fill').style.width = Math.min(100, weeks * 5) + '%';
+                    document.getElementById('hb-runway-fill').className = 'health-fill ' + (weeks > 10 ? 'healthy' : weeks > 4 ? 'warning' : 'critical');
+                    
+                    // Status
+                    statusDot.className = 'status-dot' + (cacNum > 25 || weeks < 4 ? ' critical' : cacNum > 15 || weeks < 8 ? ' warning' : '');
+                    statusText.textContent = cacNum > 25 || weeks < 4 ? 'INEFFICIENT' : cacNum > 15 || weeks < 8 ? 'CAUTION' : 'EFFICIENT';
+                    
+                    // Alert
+                    alert.style.display = 'none';
+                    alert.className = 'system-alert';
+                    if (spend === 0) {
+                        showAlert('ZERO SPEND', 'Paid acquisition disabled. Rely on organic growth only.');
+                    } else if (cacNum > 25) {
+                        showAlert('CAC UNSUSTAINABLE', 'At $' + cac + ' per user, you\'re burning cash faster than you\'re learning. Scale back and focus on targeting.', true);
+                    } else if (weeks < 4) {
+                        showAlert('RUNWAY CRITICAL', 'Only ' + weeks + ' weeks of budget remaining. You\'re spending too fast to iterate.', true);
+                    } else if (spend < 30 && signups < 3) {
+                        showAlert('INSUFFICIENT DATA', 'Too few signups to learn anything. Consider increasing spend OR switch to free organic methods.');
+                    }
+                }
+                
+                function showAlert(title, msg, critical) {
+                    document.querySelector('#ad-alert .alert-title').textContent = title;
+                    document.getElementById('ad-alert-msg').textContent = msg;
+                    alert.style.display = 'flex';
+                    if (critical) alert.classList.add('critical');
+                }
+                
+                track.addEventListener('mousedown', startDrag);
+                track.addEventListener('touchstart', startDrag);
+                document.addEventListener('mousemove', drag);
+                document.addEventListener('touchmove', drag);
+                document.addEventListener('mouseup', () => isDragging = false);
+                document.addEventListener('touchend', () => isDragging = false);
+                
+                function startDrag(e) { isDragging = true; drag(e); }
+                
+                function drag(e) {
+                    if (!isDragging) return;
+                    e.preventDefault();
+                    const rect = track.getBoundingClientRect();
+                    const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+                    const pct = Math.max(0, Math.min(100, (x / rect.width) * 100));
+                    updateConsole(Math.round(pct * 5));
+                }
+                
+                updateConsole(50);
+            })();
+            </script>
+
+            <div class="fill-blank-container">
+                <div class="fill-blank-header"><div class="fill-blank-icon">✏️</div><h4 class="fill-blank-title">Outreach Message Structure</h4></div>
+                <p class="fill-blank-sentence">
+                    Start with <input type="text" class="blank-input" data-answer="personalization" data-alternatives="context,connection"> to show you're not sending mass emails.<br><br>
+                    Then describe the <input type="text" class="blank-input" data-answer="problem" data-alternatives="pain,challenge"> they're facing.<br><br>
+                    Offer your <input type="text" class="blank-input" data-answer="solution" data-alternatives="product,help"> as the answer.<br><br>
+                    End with a clear <input type="text" class="blank-input" data-answer="CTA" data-alternatives="ask,action">.
+                </p>
+                <button class="quiz-check-btn fill-blank-check-btn">Check Answers</button>
+            </div>
+
+            <div class="interactive-activity" data-activity-id="3-4-plan">
+                <div class="activity-header"><div class="activity-icon">🎯</div><h4 class="activity-title">First 20 Users Plan</h4><span class="activity-type">Strategy</span></div>
+                <p class="activity-prompt">Create your plan to get your first 20 users:</p>
+                <textarea class="activity-input" placeholder="WHERE I'LL FIND USERS:&#10;1. &#10;2. &#10;3. &#10;&#10;MY OUTREACH STRATEGY FOR EACH:&#10;&#10;MY PITCH (2-3 sentences explaining the value):&#10;&#10;MY GOAL FOR THIS WEEK:&#10;&#10;SPECIFIC ACTIONS I'LL TAKE:&#10;- Today: &#10;- Tomorrow: &#10;- This week: "></textarea>
+                <div class="activity-actions">
+                    <button class="activity-btn activity-btn-primary save-activity-btn"><span>💾</span> Save</button>
+                    <button class="activity-btn activity-btn-secondary show-model-btn"><span>💡</span> Show Model</button>
+                </div>
+                <div class="model-response">
+                    <div class="model-response-header"><span class="model-response-icon">✨</span><h5 class="model-response-title">Example Plan</h5></div>
+                    <div class="model-response-content">
+                        <p><strong>Where:</strong> 1) First-gen student org meeting (Tues) 2) r/firstgen subreddit 3) Friends from my problem interviews</p>
+                        <p><strong>Strategy:</strong> Org meeting = present and sign up on spot. Reddit = value-first post sharing the problem. Friends = personal DM with link.</p>
+                        <p><strong>Pitch:</strong> "Getting internships as a first-gen student is hard when you don't have connections. We match you with alumni mentors who've been there. Free, takes 2 minutes to sign up."</p>
+                        <p><strong>Goal:</strong> 20 sign-ups by Sunday</p>
+                        <p><strong>Actions:</strong> Today = DM 10 friends. Tomorrow = attend org meeting. Wednesday = Reddit post. Thursday-Sunday = follow up with everyone.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive-activity" data-activity-id="3-4-message">
+                <div class="activity-header"><div class="activity-icon">💬</div><h4 class="activity-title">Write Your Outreach Message</h4><span class="activity-type">Creation</span></div>
+                <p class="activity-prompt">Draft a message to send to potential first users:</p>
+                <textarea class="activity-input" placeholder="SUBJECT LINE (if email):&#10;&#10;MESSAGE:&#10;&#10;Hey [Name],&#10;&#10;[Personalization - why you're reaching out to them specifically]&#10;&#10;[Problem - the challenge they face]&#10;&#10;[Solution - what you've built]&#10;&#10;[Ask - what you want them to do]&#10;&#10;[Sign-off]"></textarea>
+                <div class="activity-actions">
+                    <button class="activity-btn activity-btn-primary save-activity-btn"><span>💾</span> Save</button>
+                    <button class="activity-btn activity-btn-secondary show-model-btn"><span>💡</span> Show Model</button>
+                </div>
+                <div class="model-response">
+                    <div class="model-response-header"><span class="model-response-icon">✨</span><h5 class="model-response-title">Example Message</h5></div>
+                    <div class="model-response-content">
+                        <p><strong>Subject:</strong> Quick question about internship recruiting</p>
+                        <p>Hey Maria,</p>
+                        <p>I saw your post in the First-Gen Alliance group about struggling with recruiting season—I totally relate!</p>
+                        <p>As a first-gen student myself, I know how hard it is to navigate internships without family connections. So I built something to help: a free platform that matches first-gen students with alumni mentors at top companies.</p>
+                        <p>Would you be willing to try it out and give me feedback? It takes 2 minutes to sign up: [link]</p>
+                        <p>Either way, happy to chat about recruiting tips!</p>
+                        <p>- Alex</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="takeaways-box">
+                <h4>🎯 Key Takeaways</h4>
+                <ul>
+                    <li>"Do things that don't scale"—personally recruit early users</li>
+                    <li>Start with your network and communities you're already in</li>
+                    <li>Personalize your outreach, don't mass-blast</li>
+                    <li>In-person is often more effective than online for first users</li>
+                    <li>Your first users are your most valuable—treat them well!</li>
+                </ul>
+            </div>
+
+            <div class="phase-complete">
+                <h3>🎉 Phase 3 Complete!</h3>
+                <p>You've learned how to build and launch your MVP. Test your knowledge!</p>
+                <a href="quiz-phase-3.html">Take Phase 3 Quiz →</a>
+            </div>
+        </div>
+
+        <nav class="lesson-nav">
+            <a href="3-3-testing.html" class="lesson-nav-btn prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m0 0l7 7m-7-7l7-7"></path></svg>Previous: Testing</a>
+            <a href="4-1-storytelling.html" class="lesson-nav-btn next">Next: Storytelling<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg></a>
+        </nav>
+    </main>
+
+    <script src="interactive.js"></script>
+    <script src="simulations.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>
+

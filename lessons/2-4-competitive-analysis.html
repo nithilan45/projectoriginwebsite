@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 2.4: Competitive Analysis - Genesis</title>
+    <link rel="stylesheet" href="../styles.css?v=1002">
+    <link rel="stylesheet" href="interactive.css">
+    <link rel="stylesheet" href="simulations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .lesson-container { max-width: 800px; margin: 0 auto; padding: 120px 24px 80px; }
+        .lesson-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-tertiary); margin-bottom: 24px; }
+        .lesson-breadcrumb a { color: var(--origin-blue-light); text-decoration: none; }
+        .lesson-phase-tag { display: inline-block; background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); color: #7c3aed; padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; margin-bottom: 16px; }
+        .lesson-title { font-family: 'DM Sans', sans-serif; font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; color: var(--text-primary); margin-bottom: 16px; line-height: 1.2; }
+        .lesson-meta { display: flex; align-items: center; gap: 20px; color: var(--text-tertiary); font-size: 0.95rem; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--border-light); flex-wrap: wrap; }
+        .lesson-content h2 { font-family: 'DM Sans', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin: 48px 0 20px; }
+        .lesson-content p { font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 20px; }
+        .lesson-content ul { margin: 20px 0; padding-left: 24px; }
+        .lesson-content li { font-size: 1.05rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 12px; }
+        .key-concept { background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); border-left: 4px solid #7c3aed; padding: 20px 24px; border-radius: 0 12px 12px 0; margin: 28px 0; }
+        .key-concept h4 { font-size: 1rem; font-weight: 700; color: #7c3aed; margin-bottom: 8px; }
+        .key-concept p { margin: 0 0 8px; color: var(--text-primary); }
+        .takeaways-box { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 16px; padding: 28px; margin: 40px 0; }
+        .takeaways-box h4 { font-size: 1.1rem; font-weight: 700; color: #92400e; margin-bottom: 16px; }
+        .takeaways-box ul { list-style: none; padding: 0; }
+        .takeaways-box li { color: #92400e; padding-left: 28px; position: relative; margin-bottom: 12px; }
+        .takeaways-box li::before { content: '✓'; position: absolute; left: 0; color: #d97706; font-weight: 700; }
+        .phase-complete { text-align: center; margin-top: 40px; padding: 32px; background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); border-radius: 20px; border: 2px solid #7c3aed; }
+        .phase-complete h3 { color: #5b21b6; margin-bottom: 12px; }
+        .phase-complete p { color: #5b21b6; margin-bottom: 20px; }
+        .phase-complete a { display: inline-flex; align-items: center; gap: 8px; background: #7c3aed; color: white; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: 600; }
+        .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--border-light); gap: 16px; flex-wrap: wrap; }
+        .lesson-nav-btn { display: flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 12px; font-weight: 600; text-decoration: none; }
+        .lesson-nav-btn.prev { background: var(--bg-tertiary); color: var(--text-secondary); }
+        .lesson-nav-btn.next { background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%); color: white; }
+    </style>
+</head>
+<body data-lesson-id="2-4-competitive-analysis">
+    <div class="points-display" id="points-display"><span class="points-icon">⭐</span><div><span class="points-value">0</span><span class="points-label">points</span></div></div>
+
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo"><a href="../index.html"><img src="../assets/originlogo.svg" alt="Project Origin" class="nav-logo-img"></a></div>
+            <div class="nav-links"><a href="../index.html" class="nav-link">Home</a><a href="../cohort1.html" class="nav-link">Cohort 1</a><a href="../mentors.html" class="nav-link">Mentors</a><a href="../contact.html" class="nav-link">Contact</a></div>
+            <div class="nav-actions"><a href="../genesis.html" class="nav-button active">Genesis</a></div>
+        </div>
+    </nav>
+
+    <main class="lesson-container">
+        <nav class="lesson-breadcrumb"><a href="../genesis.html">Genesis</a><span>→</span><span>Phase 2</span><span>→</span><span>Lesson 2.4</span></nav>
+
+        <div class="lesson-phase-tag">Phase 2: Solution Design</div>
+        <h1 class="lesson-title">Competitive Analysis</h1>
+        
+        <div class="lesson-meta">
+            <div class="lesson-meta-item">⏱️ 30 min</div>
+            <div class="lesson-meta-item">Lesson 8 of 16</div>
+            <div class="lesson-meta-item">🎯 3 Activities</div>
+        </div>
+
+        <div class="lesson-content">
+            <p>Competition isn't bad—it validates that a market exists. Understanding your competitors helps you find your unique position and avoid their mistakes.</p>
+
+            <div class="quiz-container" data-correct="B" data-explanation="Competition validates market demand! If others are solving this problem, people are willing to pay. The key is finding your unique angle, not avoiding competition entirely.">
+                <div class="quiz-header"><div class="quiz-icon">🧠</div><div><h4 class="quiz-title">Competition Mindset</h4></div></div>
+                <p class="quiz-question">What does having competitors usually mean?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-option="A"><span class="quiz-option-marker">A</span><span class="quiz-option-text">Your idea is already taken, give up</span></div>
+                    <div class="quiz-option" data-option="B"><span class="quiz-option-marker">B</span><span class="quiz-option-text">There's validated demand for this type of solution</span></div>
+                    <div class="quiz-option" data-option="C"><span class="quiz-option-marker">C</span><span class="quiz-option-text">You need to copy everything they do</span></div>
+                    <div class="quiz-option" data-option="D"><span class="quiz-option-marker">D</span><span class="quiz-option-text">The market is completely saturated</span></div>
+                </div>
+                <button class="quiz-check-btn" disabled>Check Answer</button>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <h2>Types of Competitors</h2>
+            
+            <div class="key-concept">
+                <h4>Direct Competitors</h4>
+                <p>Solve the same problem for the same customers in a similar way.</p>
+                <p><em>Example: If you're Uber, Lyft is a direct competitor.</em></p>
+            </div>
+
+            <div class="key-concept">
+                <h4>Indirect Competitors</h4>
+                <p>Solve the same underlying problem differently or for different customers.</p>
+                <p><em>Example: If you're Uber, public transit, taxis, and bike rentals are indirect competitors.</em></p>
+            </div>
+
+            <div class="key-concept">
+                <h4>Alternative Solutions</h4>
+                <p>The current workarounds people use, including "do nothing."</p>
+                <p><em>Example: If you're Uber, walking, asking a friend for a ride, or not going at all.</em></p>
+            </div>
+
+            <div class="fill-blank-container">
+                <div class="fill-blank-header"><div class="fill-blank-icon">✏️</div><h4 class="fill-blank-title">Competitor Types</h4></div>
+                <p class="fill-blank-sentence">
+                    <input type="text" class="blank-input" data-answer="Direct" data-alternatives="direct"> competitors solve the same problem the same way.<br><br>
+                    <input type="text" class="blank-input" data-answer="Indirect" data-alternatives="indirect"> competitors solve the same problem differently.<br><br>
+                    <input type="text" class="blank-input" data-answer="Alternative" data-alternatives="alternative,current"> solutions are current workarounds.
+                </p>
+                <button class="quiz-check-btn fill-blank-check-btn">Check Answers</button>
+            </div>
+
+            <h2>Analyzing Competitors</h2>
+            <p>For each competitor, research:</p>
+            <ul>
+                <li><strong>Target customer:</strong> Who are they serving?</li>
+                <li><strong>Value proposition:</strong> What do they promise?</li>
+                <li><strong>Pricing:</strong> How much do they charge?</li>
+                <li><strong>Strengths:</strong> What do they do well?</li>
+                <li><strong>Weaknesses:</strong> Where do they fall short?</li>
+                <li><strong>Reviews:</strong> What do customers say?</li>
+            </ul>
+
+            <div class="scenario-container">
+                <div class="scenario-header"><div class="scenario-icon">🔍</div><h4 class="scenario-title">Competitive Insight</h4></div>
+                <div class="scenario-story">You're researching a competitor's app. Their reviews are mostly 4-5 stars, but you notice a pattern: multiple 1-star reviews complain "Great app but terrible customer support—waited 2 weeks for a response."</div>
+                <p class="scenario-question">What's the strategic insight?</p>
+                <div class="scenario-choices">
+                    <div class="scenario-choice" data-outcome="learning"><span class="scenario-choice-marker">A</span><span class="scenario-choice-text">They're doing fine, 4-5 stars means you can't compete</span></div>
+                    <div class="scenario-choice" data-outcome="good"><span class="scenario-choice-marker">B</span><span class="scenario-choice-text">You should invest heavily in marketing to overcome their brand</span></div>
+                    <div class="scenario-choice" data-outcome="best"><span class="scenario-choice-marker">C</span><span class="scenario-choice-text">Customer support is a weakness you can differentiate on</span></div>
+                </div>
+                <div class="scenario-outcome best" data-outcome-id="best"><p class="scenario-outcome-title">🌟 Competitive Intelligence!</p><p>Negative reviews reveal opportunities. If support is their weakness, you can differentiate with "24-hour response guarantee" or "real human support." Find gaps, not just features.</p></div>
+                <div class="scenario-outcome good" data-outcome-id="good"><p class="scenario-outcome-title">👍 Missing the Point</p><p>Marketing won't help if you're the same as competitors. Better to find a specific advantage than to try to out-spend them.</p></div>
+                <div class="scenario-outcome learning" data-outcome-id="learning"><p class="scenario-outcome-title">💡 Dig Deeper!</p><p>High overall ratings don't mean there's no opportunity. The 1-star reviews often contain the insights—they show where the competitor is failing their customers.</p></div>
+            </div>
+
+            <h2>Finding Your Unique Position</h2>
+            <p>Differentiation strategies:</p>
+            <ul>
+                <li><strong>Niche focus:</strong> Serve one segment better than anyone</li>
+                <li><strong>Feature advantage:</strong> Do one thing dramatically better</li>
+                <li><strong>Price positioning:</strong> Be cheaper or more premium</li>
+                <li><strong>Experience:</strong> Make it easier, faster, more delightful</li>
+                <li><strong>Values:</strong> Stand for something competitors don't</li>
+            </ul>
+            
+            <!-- DEBUG MODE: Startup Autopsy -->
+            <div class="pattern-drill" style="background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);">
+                <div class="pattern-header">
+                    <div class="pattern-title-section">
+                        <div class="pattern-icon" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">🔧</div>
+                        <h4 class="pattern-title">Debug Mode: Why Did This Startup Fail?</h4>
+                    </div>
+                </div>
+                
+                <div class="pattern-data">
+                    <div class="data-title">🪦 Failed Startup: "StudyBuddy" - Peer Tutoring App</div>
+                    <div class="metrics-display">
+                        <div class="metric-box">
+                            <div class="metric-box-value">$2M</div>
+                            <div class="metric-box-label">Raised</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-box-value">50K</div>
+                            <div class="metric-box-label">Downloads</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-box-value">2%</div>
+                            <div class="metric-box-label">Monthly Active</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-box-value">$0</div>
+                            <div class="metric-box-label">Revenue</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 16px; color: #fca5a5; font-size: 0.95rem;"><strong>Context:</strong> Launched as "Uber for tutoring" — match students who need help with peer tutors. Competitors: Chegg Tutors ($40M revenue), Wyzant, Varsity Tutors. Free for students, planned to monetize later.</p>
+                </div>
+                
+                <p class="pattern-question">What was the fatal flaw?</p>
+                
+                <div class="pattern-answers">
+                    <div class="pattern-answer" data-correct="false" data-explanation="$2M is plenty for an MVP. The problem wasn't capital—they had resources.">
+                        Not enough funding to compete with Chegg
+                    </div>
+                    <div class="pattern-answer" data-correct="false" data-explanation="50K downloads is solid traction. Getting users wasn't the problem.">
+                        Poor marketing—not enough users discovered it
+                    </div>
+                    <div class="pattern-answer" data-correct="true" data-explanation="Correct! 2% monthly active users = 98% churned. They got downloads but no one stuck around. Free product with no monetization meant they couldn't invest in retention. Competitors had paying customers who were committed.">
+                        No business model—free users had no commitment, leading to 98% churn
+                    </div>
+                    <div class="pattern-answer" data-correct="false" data-explanation="'Uber for X' can work. The positioning wasn't the issue—the business fundamentals were.">
+                        The "Uber for tutoring" positioning was wrong
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+            document.querySelectorAll('.pattern-drill .pattern-answer').forEach(answer => {
+                answer.addEventListener('click', function() {
+                    if (this.closest('.pattern-drill').querySelector('.pattern-answer.disabled')) return;
+                    
+                    const drill = this.closest('.pattern-drill');
+                    drill.querySelectorAll('.pattern-answer').forEach(a => a.classList.add('disabled'));
+                    
+                    if (this.dataset.correct === 'true') {
+                        this.classList.add('correct');
+                    } else {
+                        this.classList.add('incorrect');
+                        drill.querySelector('[data-correct="true"]').classList.add('correct');
+                    }
+                    
+                    const expl = document.createElement('div');
+                    expl.style.cssText = 'margin-top:16px;padding:16px;background:rgba(0,0,0,0.3);border-radius:10px;font-size:0.95rem;line-height:1.6;color:#fecaca;';
+                    expl.innerHTML = '<strong>Lesson:</strong> ' + this.dataset.explanation;
+                    drill.querySelector('.pattern-answers').after(expl);
+                });
+            });
+            </script>
+
+            <div class="interactive-activity" data-activity-id="2-4-competitors">
+                <div class="activity-header"><div class="activity-icon">🔍</div><h4 class="activity-title">Map Your Competitors</h4><span class="activity-type">Research</span></div>
+                <p class="activity-prompt">Research 3 competitors and analyze them:</p>
+                <textarea class="activity-input" placeholder="COMPETITOR 1:&#10;Name:&#10;Target customer:&#10;Pricing:&#10;Strengths:&#10;Weaknesses:&#10;Customer complaints (from reviews):&#10;&#10;COMPETITOR 2:&#10;Name:&#10;Target customer:&#10;Pricing:&#10;Strengths:&#10;Weaknesses:&#10;Customer complaints:&#10;&#10;COMPETITOR 3 (or alternative/workaround):&#10;Name:&#10;Target customer:&#10;Pricing:&#10;Strengths:&#10;Weaknesses:&#10;Customer complaints:"></textarea>
+                <div class="activity-actions">
+                    <button class="activity-btn activity-btn-primary save-activity-btn"><span>💾</span> Save</button>
+                    <button class="activity-btn activity-btn-secondary show-model-btn"><span>💡</span> Show Model</button>
+                </div>
+                <div class="model-response">
+                    <div class="model-response-header"><span class="model-response-icon">✨</span><h5 class="model-response-title">Example Analysis</h5></div>
+                    <div class="model-response-content">
+                        <p><strong>Competitor 1: LinkedIn Premium Career</strong> - Target: All job seekers. Price: $30/mo. Strengths: Huge network, InMail. Weaknesses: Generic, overwhelming. Complaints: "Not worth it," "Too broad"</p>
+                        <p><strong>Competitor 2: Handshake</strong> - Target: College students. Price: Free for students. Strengths: University partnerships. Weaknesses: Only on-campus jobs. Complaints: "Limited for non-target schools"</p>
+                        <p><strong>Alternative: Career Centers</strong> - Target: All students. Price: Free. Strengths: In-person help. Weaknesses: Overloaded, generic advice. Complaints: "Long wait times," "Advice not relevant to my situation"</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive-activity" data-activity-id="2-4-position">
+                <div class="activity-header"><div class="activity-icon">🎯</div><h4 class="activity-title">Define Your Positioning</h4><span class="activity-type">Strategy</span></div>
+                <p class="activity-prompt">Based on your analysis, define how you'll be different:</p>
+                <textarea class="activity-input" placeholder="MY UNIQUE POSITIONING:&#10;&#10;Unlike [Competitor A] who serves [broad audience], I focus specifically on [niche].&#10;&#10;Unlike [Competitor B] who does [X], I do [Y differently].&#10;&#10;The gap I'm filling that no one else addresses:&#10;&#10;My differentiation strategy (niche/feature/price/experience/values):&#10;&#10;One sentence positioning statement:"></textarea>
+                <div class="activity-actions">
+                    <button class="activity-btn activity-btn-primary save-activity-btn"><span>💾</span> Save</button>
+                    <button class="activity-btn activity-btn-secondary show-model-btn"><span>💡</span> Show Model</button>
+                </div>
+                <div class="model-response">
+                    <div class="model-response-header"><span class="model-response-icon">✨</span><h5 class="model-response-title">Example Positioning</h5></div>
+                    <div class="model-response-content">
+                        <p><strong>Unlike LinkedIn</strong> which serves everyone, I focus specifically on first-gen students at non-target schools.</p>
+                        <p><strong>Unlike Handshake</strong> which lists on-campus jobs, I connect students with alumni at Fortune 500 companies for referrals.</p>
+                        <p><strong>Gap:</strong> No one helps first-gen students from non-target schools get their foot in the door at competitive companies.</p>
+                        <p><strong>Strategy:</strong> Niche focus + relationship advantage (alumni referrals vs. cold applications)</p>
+                        <p><strong>Positioning:</strong> "The only career platform built by and for first-gen students breaking into competitive companies."</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="takeaways-box">
+                <h4>🎯 Key Takeaways</h4>
+                <ul>
+                    <li>Competition validates market demand—it's good!</li>
+                    <li>Analyze direct, indirect, and alternative competitors</li>
+                    <li>Read negative reviews for differentiation opportunities</li>
+                    <li>Find a gap that nobody else is filling</li>
+                    <li>Position yourself clearly: who you're for and why you're different</li>
+                </ul>
+            </div>
+
+            <div class="phase-complete">
+                <h3>🎉 Phase 2 Complete!</h3>
+                <p>You've learned Solution Design. Test your knowledge!</p>
+                <a href="quiz-phase-2.html">Take Phase 2 Quiz →</a>
+            </div>
+        </div>
+
+        <nav class="lesson-nav">
+            <a href="2-3-business-model.html" class="lesson-nav-btn prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m0 0l7 7m-7-7l7-7"></path></svg>Previous: Business Model</a>
+            <a href="3-1-mvp.html" class="lesson-nav-btn next">Next: MVP<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg></a>
+        </nav>
+    </main>
+
+    <script src="interactive.js"></script>
+    <script src="simulations.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>
+

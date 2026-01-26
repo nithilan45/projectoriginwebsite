@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 2 Quiz: Solution Design - Genesis</title>
+    <link rel="stylesheet" href="../styles.css?v=1002">
+    <link rel="stylesheet" href="interactive.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="quiz-styles.css">
+    <style>
+        .quiz-page-container { max-width: 800px; margin: 0 auto; padding: 120px 24px 80px; }
+        .quiz-page-header { text-align: center; margin-bottom: 48px; }
+        .quiz-phase-badge { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); color: white; padding: 8px 16px; border-radius: 100px; font-size: 0.875rem; font-weight: 600; margin-bottom: 20px; }
+        .quiz-page-title { font-family: 'DM Sans', sans-serif; font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; color: var(--text-primary); margin-bottom: 16px; }
+        .quiz-page-subtitle { font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+        .quiz-progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; padding: 16px 20px; background: var(--bg-secondary); border-radius: 12px; }
+        .quiz-progress-text { font-weight: 600; color: var(--text-primary); }
+        .quiz-score { font-size: 1.25rem; font-weight: 700; color: #8b5cf6; }
+        .quiz-question-card { background: white; border: 2px solid var(--border-light); border-radius: 20px; padding: 32px; margin-bottom: 24px; transition: all 0.3s ease; }
+        .quiz-question-card.answered { opacity: 0.7; }
+        .quiz-question-card.correct { border-color: #22c55e; }
+        .quiz-question-card.incorrect { border-color: #ef4444; }
+        .question-number { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); color: white; font-weight: 700; border-radius: 10px; font-size: 0.9rem; margin-bottom: 16px; }
+        .question-text { font-size: 1.15rem; font-weight: 600; color: var(--text-primary); margin-bottom: 20px; line-height: 1.5; }
+        .question-options { display: flex; flex-direction: column; gap: 12px; }
+        .question-option { display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: var(--bg-secondary); border: 2px solid transparent; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; }
+        .question-option:hover { background: var(--bg-tertiary); transform: translateX(4px); }
+        .question-option.selected { border-color: #8b5cf6; background: #f5f3ff; }
+        .question-option.correct { border-color: #22c55e; background: #f0fdf4; }
+        .question-option.incorrect { border-color: #ef4444; background: #fef2f2; }
+        .question-option.disabled { pointer-events: none; }
+        .option-marker { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--border-medium); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.85rem; color: var(--text-tertiary); flex-shrink: 0; }
+        .question-option.selected .option-marker { border-color: #8b5cf6; background: #8b5cf6; color: white; }
+        .question-option.correct .option-marker { border-color: #22c55e; background: #22c55e; color: white; }
+        .question-option.incorrect .option-marker { border-color: #ef4444; background: #ef4444; color: white; }
+        .option-text { flex: 1; color: var(--text-secondary); }
+        .question-explanation { display: none; margin-top: 16px; padding: 16px; background: var(--bg-tertiary); border-radius: 12px; font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; }
+        .question-explanation.show { display: block; animation: slideIn 0.3s ease; }
+        .quiz-actions { display: flex; justify-content: center; gap: 16px; margin-top: 40px; }
+        .quiz-submit-btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 40px; background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); color: white; border: none; border-radius: 14px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+        .quiz-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3); }
+        .quiz-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .quiz-results { display: none; text-align: center; padding: 48px; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 2px solid #22c55e; border-radius: 24px; margin-top: 40px; }
+        .quiz-results.show { display: block; animation: slideIn 0.3s ease; }
+        .results-icon { font-size: 4rem; margin-bottom: 20px; }
+        .results-title { font-family: 'DM Sans', sans-serif; font-size: 2rem; font-weight: 700; color: #166534; margin-bottom: 12px; }
+        .results-score { font-size: 3rem; font-weight: 800; color: #22c55e; margin-bottom: 16px; }
+        .results-message { font-size: 1.1rem; color: #15803d; margin-bottom: 32px; }
+        .results-actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+        .lesson-nav-btn { display: flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 12px; font-weight: 600; text-decoration: none; transition: all 0.2s ease; }
+        .lesson-nav-btn.prev { background: var(--bg-tertiary); color: var(--text-secondary); }
+        .lesson-nav-btn.next { background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); color: white; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo"><a href="../index.html"><img src="../assets/originlogo.svg" alt="Project Origin" class="nav-logo-img"></a></div>
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../cohort1.html" class="nav-link">Cohort 1</a>
+                <a href="../mentors.html" class="nav-link">Mentors</a>
+                <a href="../contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-actions"><a href="../genesis.html" class="nav-button active">Genesis</a></div>
+        </div>
+    </nav>
+
+    <main class="quiz-page-container">
+        <div class="quiz-page-header">
+            <div class="quiz-phase-badge">📝 Unit Quiz</div>
+            <h1 class="quiz-page-title">Phase 2: Solution Design</h1>
+            <p class="quiz-page-subtitle">Test your knowledge of ideation, value propositions, business models, and competitive analysis!</p>
+        </div>
+
+        <div class="quiz-progress-header">
+            <span class="quiz-progress-text">Question <span id="current-q">1</span> of 10</span>
+            <span class="quiz-score">Score: <span id="score">0</span>/10</span>
+        </div>
+
+        <div class="quiz-question-card" data-question="1" data-correct="C">
+            <div class="question-number">1</div>
+            <p class="question-text">What is the main purpose of brainstorming during ideation?</p>
+            <div class="question-options">
+                <div class="question-option" data-option="A"><span class="option-marker">A</span><span class="option-text">To immediately find the perfect solution</span></div>
+                <div class="question-option" data-option="B"><span class="option-marker">B</span><span class="option-text">To criticize and eliminate bad ideas quickly</span></div>
+                <div class="question-option" data-option="C"><span class="option-marker">C</span><span class="option-text">To generate many ideas without judgment before evaluating</span></div>
+                <div class="question-option" data-option="D"><span class="option-marker">D</span><span class="option-text">To copy successful solutions from competitors</span></div>
+            </div>
+            <div class="question-explanation">Brainstorming is about quantity over quality initially. By separating idea generation from evaluation, you allow creative thinking without premature criticism killing potentially innovative ideas.</div>
+        </div>
+
+        <div class="quiz-question-card" data-question="2" data-correct="B">
+            <div class="question-number">2</div>
+            <p class="question-text">A value proposition should clearly communicate:</p>
+            <div class="question-options">
+                <div class="question-option" data-option="A"><span class="option-marker">A</span><span class="option-text">How much your product costs</span></div>
+                <div class="question-option" data-option="B"><span class="option-marker">B</span><span class="option-text">Why customers should choose your solution over alternatives</span></div>
+                <div class="question-option" data-option="C"><span class="option-marker">C</span><span class="option-text">Your company's mission statement</span></div>
+                <div class="question-option" data-option="D"><span class="option-marker">D</span><span class="option-text">The technical features of your product</span></div>
+            </div>
+            <div class="question-explanation">A value proposition answers "why you?" It clearly articulates the unique benefit you provide and why customers should choose your solution over other options, including doing nothing.</div>
+        </div>
+
+        <div class="quiz-question-card" data-question="3" data-correct="D">
+            <div class="question-number">3</div>
+            <p class="question-text">What is a business model?</p>
+            <div class="question-options">
+                <div class="question-option" data-option="A"><span class="option-marker">A</span><span class="option-text">A detailed financial spreadsheet</span></div>
+                <div class="question-option" data-option="B"><span class="option-marker">B</span><span class="option-text">A legal document for registering your company</span></div>
+                <div class="question-option" data-option="C"><span class="option-marker">C</span><span class="option-text">A marketing strategy</span></div>
+                <div class="question-option" data-option="D"><span class="option-marker">D</span><span class="option-text">How your business creates, delivers, and captures value</span></div>
+            </div>
+            <div class="question-explanation">A business model describes the logic of how your company creates value for customers, delivers that value, and captures some of that value as revenue. It's the foundation of your business strategy.</div>
+        </div>
+
+        <div class="quiz-question-card" data-question="4" data-correct="A">
+            <div class="question-number">4</div>
+            <p class="question-text">In SCAMPER brainstorming, what does the "S" stand for?</p>
+            <div class="question-options">
+                <div class="question-option" data-option="A"><span class="option-marker">A</span><span class="option-text">Substitute</span></div>
+                <div class="question-option" data-option="B"><span class="option-marker">B</span><span class="option-text">Simplify</span></div>
+                <div class="question-option" data-option="C"><span class="option-marker">C</span><span class="option-text">Streamline</span></div>
+                <div class="question-option" data-option="D"><span class="option-marker">D</span><span class="option-text">Strengthen</span></div>
+            </div>
+            <div class="question-explanation">SCAMPER stands for Substitute, Combine, Adapt, Modify, Put to other uses, Eliminate, and Reverse/Rearrange. It's a checklist of idea-generation techniques.</div>
+        </div>
+
+        <div class="quiz-question-card" data-question="5" data-correct="C">
+            <div class="question-number">5</div>
+            <p class="question-text">Which is an example of a subscription business model?</p>
+            <div class="question-options">
+                <div class="question-option" data-option="A"><span class="option-marker">A</span><span class="option-text">A grocery store selling food</span></div>
+                <div class="question-option" data-option="B"><span class="option-marker">B</span><span class="option-text">A car dealership selling cars</span></div>
+                <div class="question-option" data-option="C"><span class="option-marker">C</span><span class="option-text">Netflix charging monthly for streaming access</span></div>
+                <div class="question-option" data-option="D"><span class="option-marker">D</span><span class="option-text">A consulting firm billing by the hour</span></div>
+            </div>
+            <div class="question-explanation">Subscription models charge customers on a recurring basis for continued access to a product or service. Netflix, Spotify, and SaaS companies use this model to generate predictable recurring revenue.</div>
+        </div>
+
+        <div class="quiz-question-card" data-question="6" data-correct="B">
+            <div class="question-number">6</div>
+            <p class="question-text">What's the primary purpose of competitive analysis?</p>
+            <div class="question-options">
+                <div class="question-option" data-option="A"><span class="option-marker">A</span><span class="option-text">To copy what competitors are doing</span></div>
+                <div class="question-option" data-option="B"><span class="option-marker">B</span><span class="option-text">To understand the market landscape and find your unique position</span></div>
+                <div class="question-option" data-option="C"><span class="option-marker">C</span><span class="option-text">To prove that your idea is completely original</span></div>
+                <div class="question-option" data-option="D"><span class="option-marker">D</span><span class="option-text">To discourage yourself from starting</span></div>
+            </div>
+            <div class="question-explanation">Competitive analysis helps you understand who else is solving similar problems, what they do well/poorly, and where opportunities exist for differentiation. Competition often validates that a market exists.</div>
+        </div>
+
+        <div class="quiz-question-card" data-question="7" data-correct="D">
+            <div class="question-number">7</div>
+            <p class="question-text">"We help [customer] who wants [job to be done] by [how you're different] unlike [alternatives]" is a template for:</p>
+            <div class="question-options">
+                <div class="question-option" data-option="A"><span class="option-marker">A</span><span class="option-text">A mission statement</span></div>
+                <div class="question-option" data-option="B"><span class="option-marker">B</span><span class="option-text">An elevator pitch</span></div>
+                <div class="question-option" data-option="C"><span class="option-marker">C</span><span class="option-text">A business plan</span></div>
+                <div class="question-option" data-option="D"><span class="option-marker">D</span><span class="option-text">A positioning statement / value proposition</span></div>
+            </div>
+            <div class="question-explanation">This template helps craft a clear positioning statement that defines your target customer, the job you help them accomplish, your differentiation, and your competitive alternatives.</div>
+        </div>
+
+        <div class="quiz-question-card" data-question="8" data-correct="A">
+            <div class="question-number">8</div>
+            <p class="question-text">A "freemium" business model means:</p>
+            <div class="question-options">
+                <div class="question-option" data-option="A"><span class="option-marker">A</span><span class="option-text">Basic features are free, premium features require payment</span></div>
+                <div class="question-option" data-option="B"><span class="option-marker">B</span><span class="option-text">Everything is free and funded by investors</span></div>
+                <div class="question-option" data-option="C"><span class="option-marker">C</span><span class="option-text">Free trial period followed by mandatory payment</span></div>
+                <div class="question-option" data-option="D"><span class="option-marker">D</span><span class="option-text">Free for the first 100 customers only</span></div>
+            </div>
+            <div class="question-explanation">Freemium offers a basic product for free while charging for premium features, capacity, or support. It's a way to acquire users with low friction while monetizing power users.</div>
+        </div>
+
+        <div class="quiz-question-card" data-question="9" data-correct="C">
+            <div class="question-number">9</div>
+            <p class="question-text">When analyzing competitors, "indirect competitors" are:</p>
+            <div class="question-options">
+                <div class="question-option" data-option="A"><span class="option-marker">A</span><span class="option-text">Companies in different countries</span></div>
+                <div class="question-option" data-option="B"><span class="option-marker">B</span><span class="option-text">Companies with similar names</span></div>
+                <div class="question-option" data-option="C"><span class="option-marker">C</span><span class="option-text">Alternative solutions that solve the same underlying problem differently</span></div>
+                <div class="question-option" data-option="D"><span class="option-marker">D</span><span class="option-text">Companies that might become competitors in the future</span></div>
+            </div>
+            <div class="question-explanation">Indirect competitors solve the same customer problem but in a different way. For a meal delivery service, indirect competitors include grocery stores, cooking classes, and restaurants—not just other delivery services.</div>
+        </div>
+
+        <div class="quiz-question-card" data-question="10" data-correct="B">
+            <div class="question-number">10</div>
+            <p class="question-text">The Value Proposition Canvas connects your value proposition to:</p>
+            <div class="question-options">
+                <div class="question-option" data-option="A"><span class="option-marker">A</span><span class="option-text">Your company's revenue goals</span></div>
+                <div class="question-option" data-option="B"><span class="option-marker">B</span><span class="option-text">Customer jobs, pains, and gains</span></div>
+                <div class="question-option" data-option="C"><span class="option-marker">C</span><span class="option-text">Your competitor's weaknesses</span></div>
+                <div class="question-option" data-option="D"><span class="option-marker">D</span><span class="option-text">Your team's skills and experience</span></div>
+            </div>
+            <div class="question-explanation">The Value Proposition Canvas maps how your products and services (pain relievers and gain creators) connect to what customers are trying to accomplish (jobs), their frustrations (pains), and desired outcomes (gains).</div>
+        </div>
+
+        <div class="quiz-actions">
+            <button class="quiz-submit-btn" id="submit-quiz" disabled>Submit Quiz →</button>
+        </div>
+
+        <div class="quiz-results" id="quiz-results">
+            <div class="results-icon">🎉</div>
+            <h2 class="results-title">Quiz Complete!</h2>
+            <div class="results-score" id="final-score">0/10</div>
+            <p class="results-message" id="results-message">Great job!</p>
+            <div class="results-actions">
+                <a href="../genesis.html#lessons" class="lesson-nav-btn prev">Back to Lessons</a>
+                <a href="3-1-mvp.html" class="lesson-nav-btn next">Start Phase 3 →</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let score = 0;
+        let answeredQuestions = new Set();
+        
+        document.querySelectorAll('.question-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const card = this.closest('.quiz-question-card');
+                const questionNum = card.dataset.question;
+                if (answeredQuestions.has(questionNum)) return;
+                card.querySelectorAll('.question-option').forEach(o => o.classList.remove('selected'));
+                this.classList.add('selected');
+                const correct = card.dataset.correct;
+                const selected = this.dataset.option;
+                answeredQuestions.add(questionNum);
+                card.querySelectorAll('.question-option').forEach(o => o.classList.add('disabled'));
+                if (selected === correct) {
+                    this.classList.add('correct');
+                    card.classList.add('correct');
+                    score++;
+                } else {
+                    this.classList.add('incorrect');
+                    card.classList.add('incorrect');
+                    card.querySelector(`[data-option="${correct}"]`).classList.add('correct');
+                }
+                card.querySelector('.question-explanation').classList.add('show');
+                card.classList.add('answered');
+                document.getElementById('score').textContent = score;
+                document.getElementById('current-q').textContent = Math.min(answeredQuestions.size + 1, 10);
+                if (answeredQuestions.size === 10) {
+                    document.getElementById('submit-quiz').disabled = false;
+                }
+            });
+        });
+        
+        document.getElementById('submit-quiz').addEventListener('click', function() {
+            const results = document.getElementById('quiz-results');
+            document.getElementById('final-score').textContent = `${score}/10`;
+            let message = score >= 9 ? "Outstanding! You've mastered Solution Design! 🌟" : 
+                         score >= 7 ? "Great job! You're ready for Phase 3! 🎉" : 
+                         score >= 5 ? "Good effort! Consider reviewing the lessons." : 
+                         "Keep learning! Review Phase 2 lessons and try again.";
+            document.getElementById('results-message').textContent = message;
+            results.classList.add('show');
+            this.style.display = 'none';
+            results.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
+

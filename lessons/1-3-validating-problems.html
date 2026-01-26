@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 1.3: Validating Your Problem - Genesis</title>
+    <link rel="stylesheet" href="../styles.css?v=1002">
+    <link rel="stylesheet" href="interactive.css">
+    <link rel="stylesheet" href="simulations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .lesson-container { max-width: 800px; margin: 0 auto; padding: 120px 24px 80px; }
+        .lesson-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-tertiary); margin-bottom: 24px; }
+        .lesson-breadcrumb a { color: var(--origin-blue-light); text-decoration: none; }
+        .lesson-phase-tag { display: inline-block; background: var(--bg-accent); color: var(--origin-blue); padding: 6px 12px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; margin-bottom: 16px; }
+        .lesson-title { font-family: 'DM Sans', sans-serif; font-size: clamp(2rem, 4vw, 2.75rem); font-weight: 700; color: var(--text-primary); margin-bottom: 16px; line-height: 1.2; }
+        .lesson-meta { display: flex; align-items: center; gap: 20px; color: var(--text-tertiary); font-size: 0.95rem; margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--border-light); flex-wrap: wrap; }
+        .lesson-meta-item { display: flex; align-items: center; gap: 6px; }
+        .lesson-content h2 { font-family: 'DM Sans', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text-primary); margin: 48px 0 20px; }
+        .lesson-content h3 { font-family: 'DM Sans', sans-serif; font-size: 1.25rem; font-weight: 600; color: var(--text-primary); margin: 32px 0 16px; }
+        .lesson-content p { font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 20px; }
+        .lesson-content ul, .lesson-content ol { margin: 20px 0; padding-left: 24px; }
+        .lesson-content li { font-size: 1.05rem; line-height: 1.7; color: var(--text-secondary); margin-bottom: 12px; }
+        .key-concept { background: var(--bg-accent); border-left: 4px solid var(--origin-blue); padding: 20px 24px; border-radius: 0 12px 12px 0; margin: 28px 0; }
+        .key-concept h4 { font-size: 1rem; font-weight: 700; color: var(--origin-blue); margin-bottom: 8px; }
+        .key-concept p { margin: 0; color: var(--text-primary); }
+        .quote-box { background: var(--bg-tertiary); border-radius: 16px; padding: 28px; margin: 28px 0; position: relative; }
+        .quote-box::before { content: '"'; font-family: Georgia, serif; font-size: 4rem; color: var(--origin-blue-light); opacity: 0.3; position: absolute; top: 10px; left: 20px; }
+        .quote-box blockquote { font-size: 1.15rem; font-style: italic; color: var(--text-primary); margin: 0 0 12px; padding-left: 30px; }
+        .quote-box cite { font-size: 0.95rem; color: var(--text-tertiary); padding-left: 30px; }
+        .warning-box { background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); border-left: 4px solid #ef4444; padding: 20px 24px; border-radius: 0 12px 12px 0; margin: 28px 0; }
+        .warning-box h4 { color: #991b1b; margin-bottom: 8px; }
+        .warning-box p, .warning-box li { color: #991b1b; }
+        .takeaways-box { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 16px; padding: 28px; margin: 40px 0; }
+        .takeaways-box h4 { font-size: 1.1rem; font-weight: 700; color: #92400e; margin-bottom: 16px; }
+        .takeaways-box ul { list-style: none; padding: 0; margin: 0; }
+        .takeaways-box li { color: #92400e; padding-left: 28px; position: relative; margin-bottom: 12px; }
+        .takeaways-box li::before { content: '✓'; position: absolute; left: 0; color: #d97706; font-weight: 700; }
+        .lesson-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--border-light); gap: 16px; flex-wrap: wrap; }
+        .lesson-nav-btn { display: flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 12px; font-weight: 600; text-decoration: none; }
+        .lesson-nav-btn.prev { background: var(--bg-tertiary); color: var(--text-secondary); }
+        .lesson-nav-btn.next { background: var(--gradient-primary); color: white; }
+    </style>
+</head>
+<body data-lesson-id="1-3-validating-problems">
+    <div class="points-display" id="points-display"><span class="points-icon">⭐</span><div><span class="points-value">0</span><span class="points-label">points</span></div></div>
+
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo"><a href="../index.html"><img src="../assets/originlogo.svg" alt="Project Origin" class="nav-logo-img"></a></div>
+            <div class="nav-links"><a href="../index.html" class="nav-link">Home</a><a href="../cohort1.html" class="nav-link">Cohort 1</a><a href="../mentors.html" class="nav-link">Mentors</a><a href="../contact.html" class="nav-link">Contact</a></div>
+            <div class="nav-actions"><a href="../genesis.html" class="nav-button active">Genesis</a></div>
+        </div>
+    </nav>
+
+    <main class="lesson-container">
+        <nav class="lesson-breadcrumb"><a href="../genesis.html">Genesis</a><span>→</span><a href="../genesis.html#lessons">Phase 1</a><span>→</span><span>Lesson 1.3</span></nav>
+
+        <div class="lesson-phase-tag">Phase 1: Problem Discovery</div>
+        <h1 class="lesson-title">Validating Your Problem</h1>
+        
+        <div class="lesson-meta">
+            <div class="lesson-meta-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>35 min</div>
+            <div class="lesson-meta-item">Lesson 3 of 16</div>
+            <div class="lesson-meta-item">🎯 4 Activities</div>
+        </div>
+
+        <div class="lesson-content">
+            <p>You've identified a problem. But is it worth solving? In this lesson, you'll learn how to validate that your problem is real, significant, and worth building a solution for.</p>
+
+            <!-- VIDEO: Kevin Hale -->
+            <div class="video-container">
+                <div class="video-header">
+                    <div class="video-icon">▶️</div>
+                    <div>
+                        <h4 class="video-label">How to Evaluate Startup Ideas</h4>
+                        <p class="video-source">Kevin Hale • Y Combinator</p>
+                    </div>
+                </div>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/DOtCl5PU8F0" title="How to Evaluate Startup Ideas - Kevin Hale" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div class="video-caption">
+                    <p><strong>Why watch this:</strong> Kevin Hale, YC Partner and founder of Wufoo, shares the exact framework Y Combinator uses to evaluate startup ideas. Learn what makes a problem worth solving.</p>
+                </div>
+            </div>
+
+            <div class="quiz-container" data-correct="D" data-explanation="The #1 reason startups fail is building something nobody wants. Validation helps you avoid this by gathering evidence BEFORE you invest time building.">
+                <div class="quiz-header"><div class="quiz-icon">🧠</div><div><h4 class="quiz-title">Why Validate?</h4></div></div>
+                <p class="quiz-question">What is the #1 reason startups fail?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-option="A"><span class="quiz-option-marker">A</span><span class="quiz-option-text">Running out of money</span></div>
+                    <div class="quiz-option" data-option="B"><span class="quiz-option-marker">B</span><span class="quiz-option-text">Bad team dynamics</span></div>
+                    <div class="quiz-option" data-option="C"><span class="quiz-option-marker">C</span><span class="quiz-option-text">Strong competition</span></div>
+                    <div class="quiz-option" data-option="D"><span class="quiz-option-marker">D</span><span class="quiz-option-text">Building something nobody wants</span></div>
+                </div>
+                <button class="quiz-check-btn" disabled>Check Answer</button>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <h2>"Nice to Have" vs. "Must Have"</h2>
+            
+            <div class="key-concept">
+                <h4>Critical Distinction</h4>
+                <p><strong>"Nice to Have":</strong> People acknowledge the problem but aren't actively trying to solve it. They'll say "that would be cool" but won't pay.</p>
+                <p><strong>"Must Have":</strong> People are actively searching for solutions. They're spending time or money RIGHT NOW to fix it.</p>
+            </div>
+
+            <div class="quote-box">
+                <blockquote>If you're not solving a hair-on-fire problem, you're going to have a hard time getting anyone to pay attention.</blockquote>
+                <cite>— Michael Seibel, Y Combinator</cite>
+            </div>
+
+            <!-- Scenario: Nice to Have vs Must Have -->
+            <div class="scenario-container">
+                <div class="scenario-header"><div class="scenario-icon">🔥</div><h4 class="scenario-title">Hair on Fire Test</h4></div>
+                <div class="scenario-story">You interview 10 people about your problem. Here's what you hear:</div>
+                <p class="scenario-question">Which response indicates a "must have" problem?</p>
+                <div class="scenario-choices">
+                    <div class="scenario-choice" data-outcome="learning"><span class="scenario-choice-marker">A</span><span class="scenario-choice-text">"Yeah, that's annoying. I've just learned to deal with it."</span></div>
+                    <div class="scenario-choice" data-outcome="good"><span class="scenario-choice-marker">B</span><span class="scenario-choice-text">"That would be cool to have! Let me know when you build it."</span></div>
+                    <div class="scenario-choice" data-outcome="best"><span class="scenario-choice-marker">C</span><span class="scenario-choice-text">"I spent 3 hours last week building a spreadsheet to try to solve this. When can I get your solution?"</span></div>
+                </div>
+                <div class="scenario-outcome best" data-outcome-id="best"><p class="scenario-outcome-title">🔥 That's a Hair-on-Fire Problem!</p><p>When people are already investing time/money on workarounds AND ask when they can get your solution, you've found real demand. This is the gold standard of validation.</p></div>
+                <div class="scenario-outcome good" data-outcome-id="good"><p class="scenario-outcome-title">⚠️ Polite Interest ≠ Demand</p><p>"That would be cool" is a red flag. People say yes to be nice. Without evidence they're actively trying to solve it, this is probably a "nice to have."</p></div>
+                <div class="scenario-outcome learning" data-outcome-id="learning"><p class="scenario-outcome-title">💡 Not Painful Enough</p><p>If people have "learned to deal with it," the problem isn't urgent enough. They won't pay for a solution when they've already adapted.</p></div>
+            </div>
+
+            <h2>Market Sizing: TAM, SAM, SOM</h2>
+            
+            <div class="fill-blank-container">
+                <div class="fill-blank-header"><div class="fill-blank-icon">📊</div><h4 class="fill-blank-title">Market Sizing Terms</h4></div>
+                <p class="fill-blank-sentence">
+                    <input type="text" class="blank-input" data-answer="TAM" data-alternatives="tam"> = Total Addressable Market (the whole pie)<br><br>
+                    <input type="text" class="blank-input" data-answer="SAM" data-alternatives="sam"> = Serviceable Addressable Market (your slice)<br><br>
+                    <input type="text" class="blank-input" data-answer="SOM" data-alternatives="som"> = Serviceable Obtainable Market (realistic near-term target)
+                </p>
+                <button class="quiz-check-btn fill-blank-check-btn">Check Answers</button>
+            </div>
+
+            <h2>The Validation Sprint</h2>
+            <p>Here's how to validate your problem in one week:</p>
+
+            <div class="matching-container" data-matches='{"day1":"hypothesis","day3":"interviews","day6":"analyze"}'>
+                <div class="matching-header"><div class="matching-icon">📅</div><h4 class="matching-title">Match the Sprint Days</h4></div>
+                <p style="color: #155e75; margin-bottom: 20px;">Match each phase to its activity:</p>
+                <div class="matching-grid">
+                    <div class="matching-column matching-left">
+                        <div class="matching-item" data-id="day1">Day 1-2</div>
+                        <div class="matching-item" data-id="day3">Day 3-5</div>
+                        <div class="matching-item" data-id="day6">Day 6-7</div>
+                    </div>
+                    <div class="matching-connector"><div class="matching-line"></div><div class="matching-line"></div><div class="matching-line"></div></div>
+                    <div class="matching-column matching-right">
+                        <div class="matching-item" data-id="interviews">Talk to 10-15 people</div>
+                        <div class="matching-item" data-id="hypothesis">Define your hypothesis</div>
+                        <div class="matching-item" data-id="analyze">Analyze & decide</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚠️ Red Flags: Signs to Pivot</h4>
+                <ul>
+                    <li><strong>"That's interesting, but..."</strong> — Polite disinterest</li>
+                    <li><strong>Can't find people to interview</strong> — Market too small</li>
+                    <li><strong>No current solutions</strong> — Not painful enough</li>
+                    <li><strong>"I'd use it if it was free"</strong> — Not validation!</li>
+                </ul>
+            </div>
+
+            <div class="quiz-container" data-correct="C" data-explanation="'I'd use it if it was free' is a major red flag. Everyone likes free stuff! Real validation is when people are already PAYING (time or money) to solve the problem.">
+                <div class="quiz-header"><div class="quiz-icon">🚩</div><div><h4 class="quiz-title">Spot the Red Flag</h4></div></div>
+                <p class="quiz-question">Which interview response is a RED FLAG?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" data-option="A"><span class="quiz-option-marker">A</span><span class="quiz-option-text">"I've tried three different apps to solve this"</span></div>
+                    <div class="quiz-option" data-option="B"><span class="quiz-option-marker">B</span><span class="quiz-option-text">"When can I sign up?"</span></div>
+                    <div class="quiz-option" data-option="C"><span class="quiz-option-marker">C</span><span class="quiz-option-text">"I'd definitely use it if it was free"</span></div>
+                    <div class="quiz-option" data-option="D"><span class="quiz-option-marker">D</span><span class="quiz-option-text">"I spent $50 last month on this problem"</span></div>
+                </div>
+                <button class="quiz-check-btn" disabled>Check Answer</button>
+                <div class="quiz-feedback"></div>
+            </div>
+
+            <!-- Validation Hypothesis Activity -->
+            <div class="interactive-activity" data-activity-id="1-3-hypothesis">
+                <div class="activity-header"><div class="activity-icon">📝</div><h4 class="activity-title">Define Your Validation Hypothesis</h4><span class="activity-type">Planning</span></div>
+                <p class="activity-prompt">Write out exactly what you're trying to validate:</p>
+                <textarea class="activity-input" placeholder="WHO has this problem? (Be specific about demographics, behaviors)&#10;&#10;WHAT is the problem? (In their words, not yours)&#10;&#10;WHY does it matter? (What are the consequences?)&#10;&#10;WHAT are they doing now? (Current solutions/workarounds)&#10;&#10;MY HYPOTHESIS: I believe that [who] struggles with [what] because [why], and they currently [workaround]."></textarea>
+                <div class="activity-actions">
+                    <button class="activity-btn activity-btn-primary save-activity-btn"><span>💾</span> Save</button>
+                    <button class="activity-btn activity-btn-secondary show-model-btn"><span>💡</span> Show Model</button>
+                </div>
+                <div class="model-response">
+                    <div class="model-response-header"><span class="model-response-icon">✨</span><h5 class="model-response-title">Example Hypothesis</h5></div>
+                    <div class="model-response-content">
+                        <p><strong>WHO:</strong> First-generation college students at large state universities, typically 18-22, whose parents didn't attend college in the US</p>
+                        <p><strong>WHAT:</strong> They don't know how to navigate internship recruiting—when to apply, how to network, what companies look for</p>
+                        <p><strong>WHY:</strong> Without family connections or knowledge of "the game," they miss opportunities and fall behind peers</p>
+                        <p><strong>CURRENT WORKAROUND:</strong> They Google random advice, ask overwhelmed career counselors, or just skip internships altogether</p>
+                        <p><strong>HYPOTHESIS:</strong> I believe first-gen students at large universities struggle with internship recruiting because they lack the informal knowledge that students with connected families have, and they currently rely on generic online advice that doesn't address their specific challenges.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Market Sizing Activity -->
+            <div class="interactive-activity" data-activity-id="1-3-market-size">
+                <div class="activity-header"><div class="activity-icon">📊</div><h4 class="activity-title">Size Your Market</h4><span class="activity-type">Analysis</span></div>
+                <p class="activity-prompt">Estimate your market size using TAM, SAM, SOM:</p>
+                <textarea class="activity-input" placeholder="TAM (Total Addressable Market):&#10;Calculation: &#10;&#10;SAM (Serviceable Addressable Market):&#10;Calculation: &#10;&#10;SOM (Serviceable Obtainable Market - Year 1):&#10;Calculation: &#10;&#10;Is this market big enough? Why?"></textarea>
+                <div class="activity-actions">
+                    <button class="activity-btn activity-btn-primary save-activity-btn"><span>💾</span> Save</button>
+                    <button class="activity-btn activity-btn-secondary show-model-btn"><span>💡</span> Show Model</button>
+                </div>
+                <div class="model-response">
+                    <div class="model-response-header"><span class="model-response-icon">✨</span><h5 class="model-response-title">Example Market Sizing</h5></div>
+                    <div class="model-response-content">
+                        <p><strong>TAM:</strong> All US college students seeking internships = ~8 million × $200 avg spend on career prep = $1.6B</p>
+                        <p><strong>SAM:</strong> First-gen students actively job searching = ~2 million × $100 realistic price = $200M</p>
+                        <p><strong>SOM:</strong> Students at 20 target universities in Year 1 = 50,000 × $50 = $2.5M</p>
+                        <p><strong>Assessment:</strong> Yes, big enough. $2.5M year 1 can sustain a small team, and there's room to expand to $200M+ if we nail the value prop.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interview Results Tracker -->
+            <div class="interactive-activity" data-activity-id="1-3-interview-tracker">
+                <div class="activity-header"><div class="activity-icon">📋</div><h4 class="activity-title">Interview Results Tracker</h4><span class="activity-type">Validation</span></div>
+                <p class="activity-prompt">Track your validation interviews and look for patterns:</p>
+                <textarea class="activity-input" placeholder="INTERVIEW 1:&#10;Who: &#10;Key quotes: &#10;Pain level (1-10): &#10;Current solution: &#10;&#10;INTERVIEW 2:&#10;Who: &#10;Key quotes: &#10;Pain level (1-10): &#10;Current solution: &#10;&#10;INTERVIEW 3:&#10;Who: &#10;Key quotes: &#10;Pain level (1-10): &#10;Current solution: &#10;&#10;PATTERNS I'M SEEING:&#10;&#10;DECISION: Should I continue? Why?"></textarea>
+                <div class="activity-actions">
+                    <button class="activity-btn activity-btn-primary save-activity-btn"><span>💾</span> Save</button>
+                    <button class="activity-btn activity-btn-secondary show-model-btn"><span>💡</span> Show Model</button>
+                </div>
+                <div class="model-response">
+                    <div class="model-response-header"><span class="model-response-icon">✨</span><h5 class="model-response-title">Example Interview Tracker</h5></div>
+                    <div class="model-response-content">
+                        <p><strong>Interview 1 - Maria (junior, first-gen):</strong> "I had no idea companies start recruiting in fall of sophomore year. I missed the whole cycle." Pain: 9/10. Currently: nothing, gave up on big companies.</p>
+                        <p><strong>Interview 2 - James (senior, first-gen):</strong> "My roommate's dad got him an internship. I applied to 80 places cold—got nothing." Pain: 8/10. Currently: mass-applying online.</p>
+                        <p><strong>Interview 3 - Sarah (career counselor):</strong> "First-gen students are 40% of our school but 10% of who gets internships. We can't give them enough 1-on-1 time." Pain: 7/10. Currently: group workshops.</p>
+                        <p><strong>Patterns:</strong> Consistent high pain (8+/10). Problem is timing/knowledge, not effort. Current solutions aren't working. Strong emotional responses.</p>
+                        <p><strong>Decision:</strong> YES, continue. Clear pattern of pain, people are trying to solve it, and existing solutions are failing them.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PATTERN RECOGNITION DRILL -->
+            <div class="pattern-drill">
+                <div class="pattern-header">
+                    <div class="pattern-title-section">
+                        <div class="pattern-icon">🔍</div>
+                        <h4 class="pattern-title">Pattern Recognition: Red Flags</h4>
+                    </div>
+                    <div class="pattern-score">
+                        <span class="score-label">Score:</span>
+                        <span class="score-value">0</span>
+                    </div>
+                </div>
+                
+                <div class="pattern-data">
+                    <div class="data-title">Interview Feedback Summary</div>
+                    <div class="metrics-display">
+                        <div class="metric-box">
+                            <div class="metric-box-value">12</div>
+                            <div class="metric-box-label">Interviews</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-box-value">9</div>
+                            <div class="metric-box-label">Said "sounds cool"</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-box-value">2</div>
+                            <div class="metric-box-label">Asked to pay now</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-box-value">0</div>
+                            <div class="metric-box-label">Using alternatives</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="pattern-question">Based on this data, what's the biggest red flag?</p>
+                
+                <div class="pattern-answers">
+                    <div class="pattern-answer" data-correct="false" data-explanation="'Sounds cool' is polite encouragement, not validation. It's actually a warning sign—real pain gets stronger reactions.">
+                        Only 9 out of 12 said "sounds cool" — need more positive feedback
+                    </div>
+                    <div class="pattern-answer" data-correct="true" data-explanation="Correct! If zero people are actively trying to solve this problem, it might not be painful enough. Real problems have people cobbling together workarounds. No alternatives = 'nice to have' territory.">
+                        Zero people are using alternatives — no one is trying to solve this
+                    </div>
+                    <div class="pattern-answer" data-correct="false" data-explanation="Only 12 interviews is fine for early validation. Quality matters more than quantity. You can learn a lot from 5-10 good interviews.">
+                        Only 12 interviews — need a bigger sample size
+                    </div>
+                    <div class="pattern-answer" data-correct="false" data-explanation="2 out of 12 willing to pay immediately is actually good signal! That's 16%—a strong conversion indicator. The bigger issue is no one currently solving the problem.">
+                        Only 2 offered to pay — not enough demand
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+            document.querySelectorAll('.pattern-drill .pattern-answer').forEach(answer => {
+                answer.addEventListener('click', function() {
+                    if (this.classList.contains('selected')) return;
+                    
+                    const drill = this.closest('.pattern-drill');
+                    drill.querySelectorAll('.pattern-answer').forEach(a => a.classList.add('disabled'));
+                    
+                    if (this.dataset.correct === 'true') {
+                        this.classList.add('correct');
+                        const scoreEl = drill.querySelector('.score-value');
+                        scoreEl.textContent = parseInt(scoreEl.textContent) + 10;
+                    } else {
+                        this.classList.add('incorrect');
+                        drill.querySelector('[data-correct="true"]').classList.add('correct');
+                    }
+                    
+                    // Show explanation
+                    const expl = document.createElement('div');
+                    expl.style.cssText = 'margin-top:16px;padding:16px;background:rgba(255,255,255,0.1);border-radius:10px;font-size:0.95rem;line-height:1.6;';
+                    expl.textContent = this.dataset.explanation;
+                    drill.querySelector('.pattern-answers').after(expl);
+                });
+            });
+            </script>
+
+            <div class="takeaways-box">
+                <h4>🎯 Key Takeaways</h4>
+                <ul>
+                    <li>Validation prevents building something nobody wants</li>
+                    <li>"Must have" problems show active solution-seeking behavior</li>
+                    <li>Talk to 10-15 people before deciding if a problem is worth solving</li>
+                    <li>Red flags are valuable—they save you time</li>
+                    <li>Document interviews to make objective decisions</li>
+                </ul>
+            </div>
+        </div>
+
+        <nav class="lesson-nav">
+            <a href="1-2-finding-problems.html" class="lesson-nav-btn prev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5m0 0l7 7m-7-7l7-7"></path></svg>Previous: Finding Problems</a>
+            <a href="1-4-understanding-customers.html" class="lesson-nav-btn next">Next: Understanding Customers<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-7-7m7 7l-7 7"></path></svg></a>
+        </nav>
+    </main>
+
+    <script src="interactive.js"></script>
+    <script src="simulations.js"></script>
+    <script src="../script.js"></script>
+</body>
+</html>
+
