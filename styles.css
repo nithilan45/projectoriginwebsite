@@ -2031,37 +2031,38 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
 }
 
 /* ========================================
-   AI PREVIEW SECTION - LIGHT THEME
+   AI PREVIEW SECTION - DARK THEME
    ======================================== */
 
 .ai-preview {
     padding: 100px 0 120px;
-    background: #ffffff;
-    color: var(--text-primary);
+    background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+    color: white;
     overflow: hidden;
     position: relative;
     z-index: 600;
 }
 
-/* Subtle background accent */
+/* Vibrant background accent for dark mode */
 .ai-preview::before {
     content: '';
     position: absolute;
     top: 20%;
     left: 50%;
-    width: 1000px;
-    height: 600px;
+    width: 1200px;
+    height: 800px;
     transform: translateX(-50%);
     background: radial-gradient(
         ellipse at center,
-        rgba(59, 130, 246, 0.06) 0%,
-        rgba(59, 130, 246, 0.02) 40%,
+        rgba(99, 102, 241, 0.15) 0%,
+        rgba(59, 130, 246, 0.10) 30%,
+        rgba(168, 85, 247, 0.08) 50%,
         transparent 70%
     );
     pointer-events: none;
     z-index: 0;
     opacity: 1;
-    filter: blur(80px);
+    filter: blur(100px);
 }
 
 /* Content wrapper */
@@ -2216,14 +2217,14 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
 
 .coming-soon-badge {
     display: inline-block;
-    background: rgba(59, 130, 246, 0.1);
-    color: var(--origin-blue);
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
     padding: 8px 16px;
     border-radius: 50px;
     font-size: 13px;
     font-weight: 600;
     margin-bottom: 24px;
-    border: 1px solid rgba(59, 130, 246, 0.2);
+    border: 1px solid rgba(59, 130, 246, 0.3);
 }
 
 .ai-preview-text h2 {
@@ -2232,12 +2233,12 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     font-weight: 700;
     margin-bottom: 20px;
     letter-spacing: -0.02em;
-    color: var(--text-primary);
+    color: white;
 }
 
 .ai-description {
     font-size: 18px;
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.8);
     line-height: 1.7;
     margin-bottom: 32px;
 }
@@ -2263,21 +2264,24 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     display: block;
     font-size: 16px;
     margin-bottom: 4px;
-    color: var(--text-primary);
+    color: white;
 }
 
 .ai-features li p {
     font-size: 14px;
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.7);
     margin: 0;
 }
 
 .ai-preview .btn-primary {
-    background: var(--origin-blue);
+    background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
 }
 
 .ai-preview .btn-primary:hover {
-    background: var(--origin-blue-dark);
+    background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+    box-shadow: 0 12px 32px rgba(59, 130, 246, 0.4);
+    transform: translateY(-2px);
 }
 
 /* AI Mockup - Light theme */
