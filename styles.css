@@ -2313,95 +2313,30 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     background: var(--origin-blue-dark);
 }
 
-/* AI Mockup - Light theme */
-.ai-mockup {
-    background: #ffffff;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+/* Genesis Screenshot - 3D Effect */
+.genesis-screenshot-3d {
+    perspective: 1500px;
+    perspective-origin: left center;
+}
+
+.genesis-screenshot {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 
+        0 50px 100px -20px rgba(0, 0, 0, 0.25),
+        0 30px 60px -30px rgba(0, 0, 0, 0.30);
+    transform: rotateY(-15deg) rotateX(5deg) translateZ(0);
+    transform-style: preserve-3d;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     border: 1px solid var(--border-light);
 }
 
-.mockup-header {
-    background: var(--bg-tertiary);
-    padding: 16px 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    border-bottom: 1px solid var(--border-light);
-}
-
-.mockup-dots {
-    display: flex;
-    gap: 6px;
-}
-
-.mockup-dots span {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--border-medium);
-}
-
-.mockup-dots span:first-child { background: #ef4444; }
-.mockup-dots span:nth-child(2) { background: #eab308; }
-.mockup-dots span:last-child { background: #22c55e; }
-
-.mockup-title {
-    font-size: 13px;
-    color: var(--text-tertiary);
-    margin-left: auto;
-}
-
-.mockup-content {
-    padding: 24px;
-    min-height: 300px;
-    background: #ffffff;
-}
-
-.chat-message {
-    margin-bottom: 16px;
-    max-width: 85%;
-}
-
-.chat-message.ai {
-    background: rgba(59, 130, 246, 0.1);
-    border-radius: 16px 16px 16px 4px;
-    padding: 14px 18px;
-}
-
-.chat-message.user {
-    background: var(--origin-blue);
-    border-radius: 16px 16px 4px 16px;
-    padding: 14px 18px;
-    margin-left: auto;
-}
-
-.chat-message.ai p {
-    font-size: 14px;
-    line-height: 1.5;
-    margin: 0;
-    color: var(--text-primary);
-}
-
-.chat-message.user p {
-    font-size: 14px;
-    line-height: 1.5;
-    margin: 0;
-    color: #ffffff;
-}
-
-.chat-input {
-    background: var(--bg-tertiary);
-    border: 1px solid var(--border-light);
-    border-radius: 12px;
-    padding: 14px 18px;
-    margin-top: 20px;
-}
-
-.chat-input span {
-    font-size: 14px;
-    color: var(--text-muted);
+.genesis-screenshot-3d:hover .genesis-screenshot {
+    transform: rotateY(-8deg) rotateX(2deg) translateZ(20px);
+    box-shadow: 
+        0 60px 120px -20px rgba(0, 0, 0, 0.30),
+        0 40px 70px -30px rgba(0, 0, 0, 0.35);
 }
 
 /* Responsive for new sections */
@@ -2433,9 +2368,26 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     .ai-preview-visual {
         order: -1;
     }
+    
+    .genesis-screenshot {
+        transform: rotateY(-8deg) rotateX(3deg) translateZ(0);
+    }
+    
+    .genesis-screenshot-3d:hover .genesis-screenshot {
+        transform: rotateY(-5deg) rotateX(1deg) translateZ(10px);
+    }
 }
 
 @media (max-width: 600px) {
+    .genesis-screenshot {
+        transform: rotateY(0deg) rotateX(0deg) translateZ(0);
+        border-radius: 12px;
+    }
+    
+    .genesis-screenshot-3d:hover .genesis-screenshot {
+        transform: rotateY(0deg) rotateX(0deg) translateZ(0);
+    }
+    
     .winners-header h2,
     .gallery-header h2 {
         font-size: 32px;
