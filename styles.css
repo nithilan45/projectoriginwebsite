@@ -1248,36 +1248,38 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
 /* Carousel Controls */
 .carousel-controls {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 0;
     right: 0;
     transform: translateY(-50%);
     display: flex;
     justify-content: space-between;
-    padding: 0 20px;
+    padding: 0 -10px;
     pointer-events: none;
+    z-index: 10;
 }
 
 .carousel-btn {
     pointer-events: all;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     border: none;
-    width: 50px;
-    height: 50px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
-    font-size: 20px;
+    font-size: 22px;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    color: var(--text-primary);
 }
 
 .carousel-btn:hover {
     background: white;
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    transform: scale(1.15);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
 }
 
 /* Carousel Indicators */
