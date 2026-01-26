@@ -1608,6 +1608,93 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     font-weight: 500;
 }
 
+/* Expert Webinar Section */
+.expert-webinar {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #eef3fa 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.expert-webinar::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.webinar-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.webinar-image {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
+
+.webinar-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.webinar-badge {
+    display: inline-block;
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--origin-blue);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.webinar-text h2 {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+    line-height: 1.2;
+}
+
+.webinar-description {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+.webinar-description strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+@media (max-width: 900px) {
+    .webinar-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .webinar-text h2 {
+        font-size: 32px;
+    }
+}
+
 /* Cohort CTA */
 .cohort-cta {
     padding: 100px 0;
