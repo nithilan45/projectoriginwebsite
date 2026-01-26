@@ -2046,59 +2046,15 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     z-index: 2;
 }
 
-/* Scroll-linked content reveal - elements start hidden */
+/* Simple fade-up animations for AI section */
 .ai-preview .coming-soon-badge,
 .ai-preview h2,
 .ai-preview .ai-description,
 .ai-preview .ai-features,
-.ai-preview .ai-features li,
 .ai-preview .btn-primary,
 .ai-preview-visual {
-    opacity: 0;
-    transform: translateY(60px);
-    transition: none;
-}
-
-/* Scroll-controlled transforms via CSS custom properties */
-.ai-preview .coming-soon-badge {
-    opacity: var(--badge-opacity, 0);
-    transform: translateY(calc(60px * (1 - var(--badge-progress, 0))));
-    transition: transform 0.1s linear;
-}
-
-.ai-preview h2 {
-    opacity: var(--title-opacity, 0);
-    transform: translateY(calc(60px * (1 - var(--title-progress, 0))));
-    transition: transform 0.1s linear;
-}
-
-.ai-preview .ai-description {
-    opacity: var(--desc-opacity, 0);
-    transform: translateY(calc(50px * (1 - var(--desc-progress, 0))));
-    transition: transform 0.1s linear;
-}
-
-.ai-preview .ai-features {
-    opacity: var(--features-opacity, 0);
-    transform: translateY(calc(40px * (1 - var(--features-progress, 0))));
-    transition: transform 0.1s linear;
-}
-
-.ai-preview .ai-features li {
-    opacity: var(--features-opacity, 0);
-    transform: translateY(calc(30px * (1 - var(--features-progress, 0))));
-}
-
-.ai-preview .btn-primary {
-    opacity: var(--btn-opacity, 0);
-    transform: translateY(calc(40px * (1 - var(--btn-progress, 0))));
-    transition: transform 0.1s linear;
-}
-
-.ai-preview-visual {
-    opacity: var(--visual-opacity, 0);
-    transform: translateY(calc(50px * (1 - var(--visual-progress, 0)))) scale(calc(0.95 + 0.05 * var(--visual-progress, 0)));
-    transition: transform 0.1s linear;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* ========================================
