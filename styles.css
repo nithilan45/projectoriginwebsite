@@ -979,8 +979,8 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     left: 0;
     right: 0;
     bottom: 0;
-    background-size: cover;
-    background-position: center;
+    background-size: 140%;
+    background-position: center center;
     background-repeat: no-repeat;
     opacity: 0;
     transition: opacity 0.5s var(--ease-out-expo);
@@ -1892,12 +1892,12 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
 }
 
 /* ========================================
-   AI PREVIEW SECTION - IMMERSIVE DARK
+   AI PREVIEW SECTION - LIGHT THEME
    ======================================== */
 
 .ai-preview {
     padding: 100px 0 120px;
-    background: var(--bg-secondary);
+    background: #ffffff;
     color: var(--text-primary);
     overflow: hidden;
     position: relative;
