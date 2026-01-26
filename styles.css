@@ -795,7 +795,7 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     margin-bottom: 80px;
 }
 
-.stat-card {
+.problem-section .stat-card {
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(0, 0, 0, 0.06);
@@ -806,13 +806,13 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
 }
 
-.stat-card:hover {
+.problem-section .stat-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
     border-color: rgba(30, 58, 138, 0.1);
 }
 
-.stat-number {
+.problem-section .stat-number {
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
     font-size: clamp(56px, 6vw, 72px);
     font-weight: 700;
@@ -824,17 +824,20 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     margin-bottom: 16px;
 }
 
-.stat-label {
+.problem-section .stat-label {
     font-size: 16px;
     line-height: 1.5;
-    color: var(--text-primary);
+    color: var(--text-primary) !important;
     font-weight: 500;
     margin-bottom: 12px;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    opacity: 1 !important;
 }
 
-.stat-source {
+.problem-section .stat-source {
     font-size: 13px;
-    color: var(--text-tertiary);
+    color: var(--text-tertiary) !important;
     font-style: italic;
 }
 
