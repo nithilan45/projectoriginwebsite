@@ -370,6 +370,7 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     min-height: 100vh;
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     overflow: hidden;
 }
 
@@ -380,7 +381,7 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     right: 0;
     bottom: 0;
     background-size: cover;
-    background-position: 40% center;
+    background-position: 25% center;
     background-repeat: no-repeat;
     z-index: 1;
 }
@@ -406,8 +407,10 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     z-index: 3;
     max-width: 550px;
     padding: 0;
-    padding-left: 40px;
+    padding-left: 24px;
     padding-top: 72px;
+    text-align: left;
+    align-self: flex-start;
 }
 
 .hero-headline {
@@ -483,7 +486,7 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     }
     
     .hero-bg {
-        background-position: 65% center;
+        background-position: 45% center;
     }
     
     .hero-overlay {
