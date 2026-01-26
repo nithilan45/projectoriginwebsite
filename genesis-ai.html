@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genesis AI Mentor - Project Origin</title>
+    <link rel="stylesheet" href="styles.css?v=1037">
+    <style>
+        /* AI Chat Interface Styles */
+        .ai-chat-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding-top: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-wrapper {
+            width: 100%;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .chat-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 32px;
+        }
+
+        .chat-header h1 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .chat-header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .chat-box {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+
+        .message {
+            display: flex;
+            gap: 12px;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .message.ai .message-avatar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .message.user .message-avatar {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .message-content {
+            flex: 1;
+            max-width: 70%;
+        }
+
+        .message.ai .message-bubble {
+            background: #f3f4f6;
+            color: #1f2937;
+        }
+
+        .message.user .message-bubble {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .message-bubble {
+            padding: 14px 18px;
+            border-radius: 16px;
+            font-size: 15px;
+            line-height: 1.6;
+            word-wrap: break-word;
+        }
+
+        .message.ai .message-bubble {
+            border-radius: 16px 16px 16px 4px;
+        }
+
+        .message.user .message-bubble {
+            border-radius: 16px 16px 4px 16px;
+        }
+
+        .typing-indicator {
+            display: none;
+            gap: 4px;
+            padding: 16px;
+        }
+
+        .typing-indicator.active {
+            display: flex;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #9ca3af;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .chat-input-wrapper {
+            padding: 20px 24px;
+            border-top: 1px solid #e5e7eb;
+            background: #fafafa;
+        }
+
+        .chat-input-container {
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+        }
+
+        .chat-input {
+            flex: 1;
+            border: 2px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 14px 18px;
+            font-size: 15px;
+            font-family: inherit;
+            resize: none;
+            max-height: 120px;
+            transition: all 0.2s ease;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .send-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            padding: 14px 24px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .send-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .send-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .quick-prompts {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .quick-prompt {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 14px;
+            color: #374151;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quick-prompt:hover {
+            border-color: #667eea;
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .welcome-message {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6b7280;
+        }
+
+        .welcome-message h3 {
+            font-size: 20px;
+            color: #374151;
+            margin-bottom: 12px;
+        }
+
+        .welcome-message p {
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .ai-chat-container {
+                padding-top: 60px;
+            }
+
+            .chat-wrapper {
+                margin: 20px auto;
+            }
+
+            .chat-box {
+                height: calc(100vh - 180px);
+                border-radius: 16px;
+            }
+
+            .chat-header h1 {
+                font-size: 28px;
+            }
+
+            .chat-header p {
+                font-size: 16px;
+            }
+
+            .chat-messages {
+                padding: 20px;
+            }
+
+            .message-content {
+                max-width: 80%;
+            }
+
+            .quick-prompts {
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .quick-prompts::-webkit-scrollbar {
+                display: none;
+            }
+
+            .quick-prompt {
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">
+                    <img src="assets/originlogo.svg" alt="Project Origin" class="nav-logo-img">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="cohort1.html" class="nav-link">Cohort 1</a>
+                <a href="mentors.html" class="nav-link">Mentors</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <a href="genesis.html" class="nav-button">Back to Modules</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- AI Chat Interface -->
+    <div class="ai-chat-container">
+        <div class="chat-wrapper">
+            <div class="chat-header">
+                <h1>🤖 Genesis AI Mentor</h1>
+                <p>Your personal entrepreneurship coach, available 24/7</p>
+            </div>
+
+            <div class="chat-box">
+                <div class="chat-messages" id="chatMessages">
+                    <div class="welcome-message">
+                        <h3>👋 Welcome to Genesis AI!</h3>
+                        <p>I'm your AI mentor, here to help you with entrepreneurship questions, business ideas, pitch feedback, and more. Try one of the quick prompts below or ask me anything!</p>
+                    </div>
+                </div>
+
+                <div class="chat-input-wrapper">
+                    <div class="quick-prompts" id="quickPrompts">
+                        <div class="quick-prompt" data-prompt="How do I validate my business idea?">💡 Validate my idea</div>
+                        <div class="quick-prompt" data-prompt="Help me create a pitch deck">📊 Create pitch deck</div>
+                        <div class="quick-prompt" data-prompt="How do I find my target customers?">🎯 Find customers</div>
+                        <div class="quick-prompt" data-prompt="What should my MVP include?">🚀 Build MVP</div>
+                    </div>
+                    <div class="chat-input-container">
+                        <textarea 
+                            id="chatInput" 
+                            class="chat-input" 
+                            placeholder="Ask me anything about entrepreneurship..."
+                            rows="1"
+                        ></textarea>
+                        <button id="sendButton" class="send-button">
+                            <span>Send</span>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M15 1L7 9M15 1L10 15L7 9M15 1L1 6L7 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendButton = document.getElementById('sendButton');
+        const quickPrompts = document.querySelectorAll('.quick-prompt');
+
+        // Auto-resize textarea
+        chatInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+        });
+
+        // Handle quick prompts
+        quickPrompts.forEach(prompt => {
+            prompt.addEventListener('click', () => {
+                const promptText = prompt.getAttribute('data-prompt');
+                chatInput.value = promptText;
+                sendMessage();
+            });
+        });
+
+        // Handle send button
+        sendButton.addEventListener('click', sendMessage);
+
+        // Handle enter key (shift+enter for new line)
+        chatInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            // Clear welcome message on first interaction
+            const welcomeMsg = document.querySelector('.welcome-message');
+            if (welcomeMsg) {
+                welcomeMsg.remove();
+                document.getElementById('quickPrompts').style.display = 'none';
+            }
+
+            // Add user message
+            addMessage(message, 'user');
+
+            // Clear input
+            chatInput.value = '';
+            chatInput.style.height = 'auto';
+
+            // Disable input while processing
+            chatInput.disabled = true;
+            sendButton.disabled = true;
+
+            // Show typing indicator
+            showTyping();
+
+            // Simulate AI response (in production, this would call your AI API)
+            setTimeout(() => {
+                hideTyping();
+                const response = generateAIResponse(message);
+                addMessage(response, 'ai');
+                chatInput.disabled = false;
+                sendButton.disabled = false;
+                chatInput.focus();
+            }, 1500 + Math.random() * 1000);
+        }
+
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.textContent = sender === 'ai' ? '🤖' : '👤';
+            
+            const content = document.createElement('div');
+            content.className = 'message-content';
+            
+            const bubble = document.createElement('div');
+            bubble.className = 'message-bubble';
+            bubble.textContent = text;
+            
+            content.appendChild(bubble);
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(content);
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showTyping() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message ai';
+            typingDiv.id = 'typingIndicator';
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.textContent = '🤖';
+            
+            const content = document.createElement('div');
+            content.className = 'message-content';
+            
+            const bubble = document.createElement('div');
+            bubble.className = 'message-bubble';
+            
+            const indicator = document.createElement('div');
+            indicator.className = 'typing-indicator active';
+            indicator.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+            
+            bubble.appendChild(indicator);
+            content.appendChild(bubble);
+            typingDiv.appendChild(avatar);
+            typingDiv.appendChild(content);
+            
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function hideTyping() {
+            const typing = document.getElementById('typingIndicator');
+            if (typing) typing.remove();
+        }
+
+        function generateAIResponse(userMessage) {
+            const responses = {
+                'validate': "Great question! To validate your business idea:\n\n1. **Talk to potential customers** - Interview at least 20 people in your target market\n2. **Test your value proposition** - Can you clearly explain the problem you're solving?\n3. **Create a simple landing page** - Gauge interest with email signups\n4. **Run small experiments** - Try to pre-sell or get commitments\n\nWhat's your business idea? I can help you create a validation plan!",
+                
+                'pitch': "Perfect! Here's a pitch deck framework:\n\n1. **Problem** - What pain point are you solving?\n2. **Solution** - Your product/service\n3. **Market Size** - How big is the opportunity?\n4. **Business Model** - How will you make money?\n5. **Traction** - Early wins and metrics\n6. **Team** - Why are you the right people?\n7. **Ask** - What do you need?\n\nKeep it to 10-12 slides max. Want help with a specific slide?",
+                
+                'customer': "Finding your target customers:\n\n1. **Define your ICP** (Ideal Customer Profile)\n   - Demographics, behaviors, pain points\n2. **Where do they hang out?**\n   - Online communities, forums, social media\n3. **Start conversations**\n   - Join relevant groups, add value first\n4. **Use customer discovery**\n   - Ask open-ended questions about their problems\n\nWho is your target customer? Let's narrow it down!",
+                
+                'mvp': "Your MVP should include:\n\n1. **Core features only** - The minimum needed to solve the main problem\n2. **One clear value proposition** - What's the #1 benefit?\n3. **Feedback mechanism** - How will users tell you what works?\n4. **Simple onboarding** - Get users to value fast\n\nRemember: MVP = Minimum **Viable** Product, not Minimum **Perfect** Product!\n\nWhat problem does your product solve?",
+                
+                'default': "That's a great question! As your AI mentor, I'm here to help you with:\n\n• Validating business ideas\n• Creating pitch decks\n• Finding customers\n• Building MVPs\n• Fundraising strategies\n• Market research\n• Business planning\n\nCould you tell me more about what you're working on? The more context you provide, the better I can help!"
+            };
+
+            const lowerMessage = userMessage.toLowerCase();
+            
+            if (lowerMessage.includes('validate') || lowerMessage.includes('idea')) {
+                return responses.validate;
+            } else if (lowerMessage.includes('pitch') || lowerMessage.includes('deck')) {
+                return responses.pitch;
+            } else if (lowerMessage.includes('customer') || lowerMessage.includes('target')) {
+                return responses.customer;
+            } else if (lowerMessage.includes('mvp') || lowerMessage.includes('build')) {
+                return responses.mvp;
+            } else {
+                return responses.default;
+            }
+        }
+
+        // Focus input on load
+        window.addEventListener('load', () => {
+            chatInput.focus();
+        });
+    </script>
+</body>
+</html>
