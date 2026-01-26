@@ -1059,18 +1059,6 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     opacity: 1;
 }
 
-/* Online Learning - no gradient */
-.help-circle[data-image=""] {
-    background: #ffffff;
-}
-
-.help-circle[data-image=""] .circle-label {
-    color: var(--text-primary);
-}
-
-.help-circle[data-image=""]:hover {
-    border-color: var(--origin-blue);
-}
 
 /* Mobile responsive */
 @media (max-width: 768px) {
