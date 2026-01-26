@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Origin - Empowering Immigrant Entrepreneurs</title>
-    <link rel="stylesheet" href="styles.css?v=1010">
+    <link rel="stylesheet" href="styles.css?v=1011">
 </head>
 <body>
     <!-- Mobile Navigation -->
@@ -50,6 +50,48 @@
                     Learn more
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v6M5 8l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="container">
+            <div class="problem-content">
+                <div class="problem-intro fade-in-up">
+                    <h2>The immigrant entrepreneurship gap is real.</h2>
+                    <p class="problem-subtitle">First-generation and immigrant students have the drive, the ideas, and the potential. But the system isn't built for them.</p>
+                </div>
+
+                <div class="problem-stats">
+                    <div class="stat-card fade-in-up delay-1">
+                        <div class="stat-number">55%</div>
+                        <div class="stat-label">of billion-dollar startups in the U.S. were founded by immigrants</div>
+                        <div class="stat-source">— National Foundation for American Policy</div>
+                    </div>
+                    <div class="stat-card fade-in-up delay-2">
+                        <div class="stat-number">2x</div>
+                        <div class="stat-label">more likely to start a business than native-born Americans</div>
+                        <div class="stat-source">— Kauffman Foundation</div>
+                    </div>
+                    <div class="stat-card fade-in-up delay-3">
+                        <div class="stat-number">80%</div>
+                        <div class="stat-label">lack access to mentorship networks and startup resources</div>
+                        <div class="stat-source">— Project Origin Research</div>
+                    </div>
+                </div>
+
+                <div class="problem-narrative fade-in-up delay-4">
+                    <div class="narrative-block">
+                        <h3>The barriers are invisible, but very real.</h3>
+                        <p>No family network to call for advice. No alumni connections to help you find your first investor. No safety net if your startup fails.</p>
+                        <p>You're told to "just start," but no one shows you how to navigate a system built for people with resources you don't have.</p>
+                    </div>
+                    <div class="narrative-block">
+                        <h3>That's where we come in.</h3>
+                        <p>Project Origin was built by immigrants, for immigrants. We understand the unique challenges because we've lived them. And we're here to level the playing field.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -423,6 +465,26 @@
             // Click on dots to change slide
             dots.forEach((dot, i) => {
                 dot.addEventListener('click', () => showSlide(i));
+            });
+            
+            // Scroll-triggered animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all fade-in elements
+            document.querySelectorAll('.fade-in-up').forEach(el => {
+                observer.observe(el);
             });
         });
         window.addEventListener('resize', toggleNavigation);
