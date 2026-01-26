@@ -917,242 +917,160 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     }
 }
 
-/* Two Pillars Section */
-.two-pillars {
-    padding: 100px 0;
-    background: linear-gradient(180deg, 
-        #ffffff 0%,
-        #f5f8fc 30%,
-        #eef3fa 70%,
-        #e8f0f8 100%);
+/* ============================================
+   HOW WE HELP SECTION - Circle Hover Design
+   ============================================ */
+.how-we-help {
+    padding: 120px 0;
+    background: #ffffff;
     position: relative;
 }
 
-/* Colored orbs for glass visibility */
-.two-pillars::before {
-    content: '';
-    position: absolute;
-    top: 20%;
-    left: 10%;
-    width: 30%;
-    height: 40%;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
-    pointer-events: none;
-}
-
-.two-pillars::after {
-    content: '';
-    position: absolute;
-    bottom: 10%;
-    right: 15%;
-    width: 25%;
-    height: 35%;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
-    pointer-events: none;
-}
-
-.pillars-header {
+.how-we-help-header {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 80px;
 }
 
-.pillars-header h2 {
+.how-we-help-header h2 {
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
-    font-size: 40px;
-    font-weight: 700;
+    font-size: clamp(36px, 4vw, 48px);
+    font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: 16px;
     letter-spacing: -0.02em;
 }
 
-.pillars-header p {
-    font-size: 18px;
-    color: var(--text-secondary);
-    max-width: 500px;
+.help-circles-grid {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-.pillars-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
-    max-width: 1000px;
-    margin: 0 auto;
+.help-circle-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
 }
 
-.pillar-card {
-    background: var(--bg-primary);
-    border: 1px solid var(--border-light);
-    border-radius: 24px;
-    padding: 40px;
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+.help-circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 2px solid var(--text-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
+    transition: all 0.5s var(--ease-out-expo);
+    background-color: #ffffff;
 }
 
-/* Subtle glow effect - only on hover */
-.pillar-card::before {
+.help-circle::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 100%;
-    background: linear-gradient(180deg, 
-        rgba(59, 130, 246, 0.04) 0%, 
-        rgba(59, 130, 246, 0.01) 50%,
-        transparent 100%);
-    border-radius: 24px;
-    pointer-events: none;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     opacity: 0;
-    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.5s var(--ease-out-expo);
+    z-index: 1;
 }
 
-.pillar-card:hover {
-    border-color: rgba(59, 130, 246, 0.2);
-    box-shadow: 
-        0 8px 32px rgba(59, 130, 246, 0.08),
-        0 0 0 1px rgba(59, 130, 246, 0.05);
-    transform: translateY(-4px);
-}
-
-.pillar-card:hover::before {
+.help-circle:hover::before {
     opacity: 1;
 }
 
-/* Bootcamp card - blue glow */
-.pillar-bootcamp:hover {
-    border-color: rgba(59, 130, 246, 0.25);
-    box-shadow: 
-        0 8px 32px rgba(59, 130, 246, 0.1),
-        0 0 0 1px rgba(59, 130, 246, 0.08);
+.help-circle[data-image]:not([data-image=""])::before {
+    background-image: var(--bg-image);
 }
 
-/* AI card - purple glow */
-.pillar-ai::before {
-    background: linear-gradient(180deg, 
-        rgba(139, 92, 246, 0.04) 0%, 
-        rgba(139, 92, 246, 0.01) 50%,
-        transparent 100%);
+/* Set background images dynamically via inline style or JavaScript */
+.help-circle:hover {
+    border-color: var(--origin-blue);
+    box-shadow: 0 8px 24px rgba(30, 58, 138, 0.15);
+    transform: scale(1.05);
 }
 
-.pillar-ai:hover {
-    border-color: rgba(139, 92, 246, 0.25);
-    box-shadow: 
-        0 8px 32px rgba(139, 92, 246, 0.1),
-        0 0 0 1px rgba(139, 92, 246, 0.08);
-}
-
-.pillar-label {
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--origin-blue);
-    margin-bottom: 20px;
-    position: relative;
-    z-index: 1;
-}
-
-.pillar-icon {
-    width: 64px;
-    height: 64px;
-    position: relative;
-    z-index: 1;
-    background: var(--bg-secondary);
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 24px;
-    color: var(--origin-blue);
-}
-
-.pillar-card h3 {
-    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
-    font-size: 28px;
-    font-weight: 700;
+.circle-label {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 500;
     color: var(--text-primary);
-    margin-bottom: 16px;
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+    transition: all 0.5s var(--ease-out-expo);
 }
 
-.pillar-description {
-    font-size: 16px;
-    line-height: 1.6;
-    color: var(--text-secondary);
-    margin-bottom: 24px;
+.help-circle:hover .circle-label {
+    opacity: 0;
+    transform: translateY(-10px);
 }
 
-.pillar-features {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 24px 0;
-}
-
-.pillar-features li {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
+.help-description {
+    margin-top: 20px;
+    text-align: center;
     font-size: 15px;
+    line-height: 1.5;
     color: var(--text-secondary);
-    margin-bottom: 12px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.5s var(--ease-out-expo);
 }
 
-.pillar-features li svg {
-    flex-shrink: 0;
-    color: #22c55e;
-    margin-top: 2px;
+.help-circle-item:hover .help-description {
+    max-height: 200px;
+    opacity: 1;
 }
 
-.pillar-meta {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    color: var(--text-tertiary);
-    padding-top: 20px;
-    border-top: 1px solid var(--border-light);
-    margin-bottom: 20px;
+/* Genesis AI placeholder style */
+.help-circle[data-image=""] {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
-.meta-divider {
-    color: var(--border-medium);
+.help-circle[data-image=""] .circle-label {
+    color: #ffffff;
 }
 
-.pillar-cta {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--origin-blue);
-    text-decoration: none;
-    transition: color 0.2s ease;
+.help-circle[data-image=""]:hover {
+    border-color: #764ba2;
 }
 
-.pillar-cta:hover {
-    color: var(--origin-blue-dark);
-}
-
-/* Bootcamp specific styling */
-.pillar-bootcamp .pillar-icon {
-    background: linear-gradient(135deg, rgba(30, 58, 138, 0.08) 0%, rgba(59, 130, 246, 0.08) 100%);
-}
-
-/* AI Platform specific styling */
-.pillar-ai .pillar-label {
-    color: #8b5cf6;
-}
-
-.pillar-ai .pillar-icon {
-    color: #8b5cf6;
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(167, 139, 250, 0.1) 100%);
-}
-
-.pillar-ai .pillar-cta {
-    color: #8b5cf6;
-}
-
-.pillar-ai .pillar-cta:hover {
-    color: #7c3aed;
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .how-we-help {
+        padding: 80px 0;
+    }
+    
+    .help-circles-grid {
+        gap: 32px;
+    }
+    
+    .help-circle-item {
+        width: 160px;
+    }
+    
+    .help-circle {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .circle-label {
+        font-size: 16px;
+        padding: 15px;
+    }
 }
 
 /* Social Proof Section */
