@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Origin - Empowering Immigrant Entrepreneurs</title>
-    <link rel="stylesheet" href="styles.css?v=1019">
+    <link rel="stylesheet" href="styles.css?v=1020">
 </head>
 <body>
     <!-- Mobile Navigation -->
@@ -157,48 +157,87 @@
         </div>
     </section>
 
-    <!-- Social Proof / Cohort 1 Section -->
-    <section class="social-proof">
+    <!-- Cohort 1 Winners Section -->
+    <section class="cohort-winners">
         <div class="container">
-            <div class="proof-content">
-                <div class="proof-stats">
-                    <div class="proof-stat">
-                        <span class="stat-value">50+</span>
-                        <span class="stat-label">Participants in Cohort 1</span>
-                    </div>
-                    <div class="proof-stat">
-                        <span class="stat-value">$1000</span>
-                        <span class="stat-label">Given to Cohort 1 Winner</span>
-                    </div>
-                    <div class="proof-stat">
-                        <span class="stat-value">3</span>
-                        <span class="stat-label">Entrepreneur Mentors</span>
+            <div class="cohort-header">
+                <h2>Cohort 1 Success Stories</h2>
+                <p>Meet the innovative founders who turned their ideas into reality</p>
+            </div>
+
+            <div class="cohort-stats">
+                <div class="cohort-stat">
+                    <span class="stat-value">50+</span>
+                    <span class="stat-label">Participants in Cohort 1</span>
+                </div>
+                <div class="cohort-stat">
+                    <span class="stat-value">$1000</span>
+                    <span class="stat-label">Given to Cohort 1 Winner</span>
+                </div>
+                <div class="cohort-stat">
+                    <span class="stat-value">3</span>
+                    <span class="stat-label">Entrepreneur Mentors</span>
+                </div>
+            </div>
+
+            <div class="winners-carousel">
+                <!-- First Place -->
+                <div class="winner-slide active">
+                    <div class="winner-image-container">
+                        <img src="assets/20251119_210436_281B3E.jpg" alt="Roshan Arai - 1st Place" class="winner-image">
+                        <div class="winner-overlay">
+                            <div class="winner-badge">1st Place</div>
+                            <h3 class="winner-business">SwimSense</h3>
+                            <p class="winner-tagline">AI-Powered Swimming Performance Coach</p>
+                            <div class="winner-story">
+                                <p class="founder-name">Roshan Arai</p>
+                                <p class="journey-text">Coming to Project Origin with just an idea, Roshan transformed his passion for competitive swimming into a revolutionary app. Through our intensive bootcamp, he learned to validate his market, build an MVP, and pitch to investors—ultimately developing SwimSense, which uses AI to analyze swimming videos and provide personalized training plans, diet recommendations, and performance insights based on technique analysis.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="proof-quotes-carousel">
-                    <div class="quote-slide active">
-                        <blockquote>
-                            "For the first time, I felt like my background was an advantage, not a barrier. The mentors actually understood my journey."
-                        </blockquote>
-                        <cite>— Roshan Arai, Cohort 1 Winner</cite>
+
+                <!-- Second Place -->
+                <div class="winner-slide">
+                    <div class="winner-image-container">
+                        <img src="assets/20251119_210436_232480.jpg" alt="Rhea Pujari - 2nd Place" class="winner-image">
+                        <div class="winner-overlay">
+                            <div class="winner-badge">2nd Place</div>
+                            <h3 class="winner-business">NextDoor Digital Marketing</h3>
+                            <p class="winner-tagline">Hyperlocal AI Marketing for Small Business</p>
+                            <div class="winner-story">
+                                <p class="founder-name">Rhea Pujari</p>
+                                <p class="journey-text">Rhea entered Project Origin with marketing experience but no technical background. Through our mentorship program, she learned to leverage AI and innovative geolocation technology to create NextDoor Digital Marketing—a platform that combines AI-powered SEO with geocaching strategies to help local businesses dominate their neighborhoods. Her unique approach to hyperlocal marketing caught investors' attention immediately.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="quote-slide">
-                        <blockquote>
-                            "Project Origin gave me the confidence to pursue my startup idea. The mentorship was invaluable."
-                        </blockquote>
-                        <cite>— Ritika Singh, Cohort 1 3rd Place</cite>
+                </div>
+
+                <!-- Third Place -->
+                <div class="winner-slide">
+                    <div class="winner-image-container">
+                        <img src="assets/20251119_210436_2E8FD0.jpg" alt="Alina Ji & Ritika Singh - 3rd Place" class="winner-image">
+                        <div class="winner-overlay">
+                            <div class="winner-badge">3rd Place</div>
+                            <h3 class="winner-business">Sweetly Unique</h3>
+                            <p class="winner-tagline">Smart Health Monitoring for Kids with Diabetes</p>
+                            <div class="winner-story">
+                                <p class="founder-name">Alina Ji & Ritika Singh</p>
+                                <p class="journey-text">Both having family members with Type 1 diabetes, Alina and Ritika joined Project Origin determined to make a difference. They learned about hardware-software integration, medical device regulations, and child-focused UX design. The result? Sweetly Unique—a kid-friendly wristband that continuously monitors glucose levels, activity, and diet, providing real-time alerts and insights in a fun, engaging way that children actually want to wear.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="quote-slide">
-                        <blockquote>
-                            "I learned more in 4 weeks than I did in a year of trying to figure it out on my own."
-                        </blockquote>
-                        <cite>— Ganesh Gowda, Cohort 1 Participant</cite>
-                    </div>
-                    <div class="carousel-dots">
-                        <button class="dot active" data-slide="0"></button>
-                        <button class="dot" data-slide="1"></button>
-                        <button class="dot" data-slide="2"></button>
-                    </div>
+                </div>
+
+                <div class="carousel-controls">
+                    <button class="carousel-btn prev" onclick="changeWinner(-1)">&#10094;</button>
+                    <button class="carousel-btn next" onclick="changeWinner(1)">&#10095;</button>
+                </div>
+                
+                <div class="carousel-indicators">
+                    <span class="indicator active" onclick="setWinner(0)"></span>
+                    <span class="indicator" onclick="setWinner(1)"></span>
+                    <span class="indicator" onclick="setWinner(2)"></span>
                 </div>
             </div>
         </div>
@@ -410,31 +449,34 @@
             redirectToMobile();
             toggleNavigation();
             
-            // Quote carousel
-            const slides = document.querySelectorAll('.quote-slide');
-            const dots = document.querySelectorAll('.carousel-dots .dot');
-            let currentSlide = 0;
+            // Winners carousel - no auto-rotate, manual only
+            window.currentWinner = 0;
             
-            function showSlide(index) {
-                slides.forEach((slide, i) => {
-                    slide.classList.toggle('active', i === index);
-                });
-                dots.forEach((dot, i) => {
-                    dot.classList.toggle('active', i === index);
-                });
-                currentSlide = index;
-            }
+            window.changeWinner = function(direction) {
+                const slides = document.querySelectorAll('.winner-slide');
+                const indicators = document.querySelectorAll('.indicator');
+                
+                slides[window.currentWinner].classList.remove('active');
+                indicators[window.currentWinner].classList.remove('active');
+                
+                window.currentWinner = (window.currentWinner + direction + slides.length) % slides.length;
+                
+                slides[window.currentWinner].classList.add('active');
+                indicators[window.currentWinner].classList.add('active');
+            };
             
-            // Auto-rotate every 5 seconds
-            setInterval(() => {
-                const nextSlide = (currentSlide + 1) % slides.length;
-                showSlide(nextSlide);
-            }, 5000);
-            
-            // Click on dots to change slide
-            dots.forEach((dot, i) => {
-                dot.addEventListener('click', () => showSlide(i));
-            });
+            window.setWinner = function(index) {
+                const slides = document.querySelectorAll('.winner-slide');
+                const indicators = document.querySelectorAll('.indicator');
+                
+                slides[window.currentWinner].classList.remove('active');
+                indicators[window.currentWinner].classList.remove('active');
+                
+                window.currentWinner = index;
+                
+                slides[window.currentWinner].classList.add('active');
+                indicators[window.currentWinner].classList.add('active');
+            };
             
             // Scroll-triggered animations
             const observerOptions = {

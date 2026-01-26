@@ -1091,132 +1091,253 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     }
 }
 
-/* Social Proof Section */
-.social-proof {
-    padding: 80px 0;
-    background: var(--bg-secondary);
+/* ============================================
+   COHORT 1 WINNERS SECTION
+   ============================================ */
+.cohort-winners {
+    padding: 100px 0;
+    background: #ffffff;
 }
 
-.proof-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-    max-width: 1000px;
-    margin: 0 auto;
+.cohort-header {
+    text-align: center;
+    margin-bottom: 60px;
 }
 
-.proof-stats {
+.cohort-header h2 {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    font-size: clamp(36px, 4vw, 48px);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+}
+
+.cohort-header p {
+    font-size: 18px;
+    color: var(--text-secondary);
+}
+
+.cohort-stats {
     display: flex;
-    gap: 40px;
+    justify-content: center;
+    gap: 80px;
+    margin-bottom: 80px;
+    flex-wrap: wrap;
 }
 
-.proof-stat {
+.cohort-stat {
     text-align: center;
 }
 
-.stat-value {
+.cohort-stat .stat-value {
     display: block;
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
-    font-size: 48px;
+    font-size: 56px;
     font-weight: 700;
     color: var(--origin-blue);
     line-height: 1;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
-.social-proof .stat-label {
-    font-size: 13px;
-    color: #1e293b !important;
-    font-weight: 600;
+.cohort-stat .stat-label {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
-.proof-quote blockquote {
-    font-size: 20px;
-    font-style: italic;
-    color: var(--text-primary);
-    line-height: 1.6;
-    margin: 0 0 16px 0;
+/* Winners Carousel */
+.winners-carousel {
     position: relative;
-    padding-left: 24px;
-    border-left: 3px solid var(--origin-blue);
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.proof-quote cite {
-    font-size: 14px;
-    color: var(--text-tertiary);
-    font-style: normal;
-    padding-left: 24px;
+.winner-slide {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Quotes Carousel */
-.proof-quotes-carousel {
+.winner-slide.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.winner-image-container {
     position: relative;
-    min-height: 180px;
+    width: 100%;
+    height: 600px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
-.quote-slide {
+.winner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.winner-overlay {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.95) 0%,
+        rgba(0, 0, 0, 0.85) 50%,
+        rgba(0, 0, 0, 0.3) 80%,
+        transparent 100%
+    );
+    padding: 60px 40px 40px;
+    color: white;
 }
 
-.quote-slide.active {
-    opacity: 1;
-    visibility: visible;
-    position: relative;
-}
-
-.quote-slide blockquote {
-    font-size: 20px;
-    font-style: italic;
-    color: var(--text-primary);
-    line-height: 1.6;
-    margin: 0 0 16px 0;
-    padding-left: 24px;
-    border-left: 3px solid var(--origin-blue);
-}
-
-.quote-slide cite {
+.winner-badge {
+    display: inline-block;
+    background: var(--origin-blue);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 30px;
     font-size: 14px;
-    color: var(--text-secondary);
-    font-style: normal;
-    padding-left: 24px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 20px;
+}
+
+.winner-business {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+}
+
+.winner-tagline {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 24px;
     font-weight: 500;
 }
 
-.carousel-dots {
-    display: flex;
-    gap: 8px;
-    margin-top: 24px;
-    padding-left: 24px;
+.winner-story {
+    max-width: 800px;
 }
 
-.carousel-dots .dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--border-medium);
+.founder-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.journey-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Carousel Controls */
+.carousel-controls {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    pointer-events: none;
+}
+
+.carousel-btn {
+    pointer-events: all;
+    background: rgba(255, 255, 255, 0.9);
     border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
     cursor: pointer;
     transition: all 0.3s ease;
-    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.carousel-dots .dot:hover {
+.carousel-btn:hover {
+    background: white;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Carousel Indicators */
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--border-medium);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator:hover {
     background: var(--origin-blue-light);
 }
 
-.carousel-dots .dot.active {
+.indicator.active {
     background: var(--origin-blue);
-    width: 24px;
-    border-radius: 5px;
+    width: 32px;
+    border-radius: 6px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .cohort-stats {
+        gap: 40px;
+    }
+    
+    .winner-image-container {
+        height: 500px;
+    }
+    
+    .winner-overlay {
+        padding: 40px 24px 24px;
+    }
+    
+    .winner-business {
+        font-size: 28px;
+    }
+    
+    .winner-tagline {
+        font-size: 16px;
+    }
+    
+    .journey-text {
+        font-size: 14px;
+    }
+    
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
 }
 
 /* ============================================
