@@ -386,7 +386,7 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     right: 0;
     bottom: 0;
     background-size: cover;
-    background-position: 15% 50%;
+    background-position: 15% 42%;
     background-repeat: no-repeat;
     z-index: 1;
 }
@@ -412,21 +412,22 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     z-index: 3;
     max-width: 550px;
     padding: 0;
-    padding-left: 20px;
+    padding-left: 60px;
     padding-top: 72px;
-    text-align: left;
+    text-align: left !important;
     margin-left: 0;
 }
 
 .hero-headline {
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-size: clamp(36px, 4.5vw, 56px);
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.1;
     color: #ffffff;
     margin-bottom: 32px;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
     text-transform: uppercase;
+    text-align: left !important;
 }
 
 .hero-ctas {
@@ -434,6 +435,7 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     gap: 16px;
     align-items: center;
     flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
 .hero-btn-primary {
