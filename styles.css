@@ -490,6 +490,7 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
 @media (max-width: 768px) {
     .hero-fullwidth {
         align-items: flex-end;
+        min-height: 70vh;
     }
     
     .hero-bg {
@@ -506,19 +507,36 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     }
     
     .hero-content {
-        padding: 0 24px;
-        padding-bottom: 60px;
+        padding: 0 20px;
+        padding-bottom: 50px;
         padding-top: 0;
         max-width: 100%;
     }
     
     .hero-headline {
-        font-size: 28px;
+        font-size: 32px;
+        line-height: 1.2;
+        margin-bottom: 24px;
     }
     
     .hero-ctas {
         flex-direction: column;
         align-items: flex-start;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-fullwidth {
+        min-height: 60vh;
+    }
+    
+    .hero-content {
+        padding: 0 16px;
+        padding-bottom: 40px;
+    }
+    
+    .hero-headline {
+        font-size: 26px;
     }
 }
 
@@ -6691,6 +6709,263 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     }
     
     .faq-preview p {
+        font-size: 16px;
+    }
+}
+
+/* ============================================
+   ENHANCED MOBILE IMPROVEMENTS
+   ============================================ */
+
+/* Additional mobile improvements for better UX */
+@media (max-width: 768px) {
+    /* Container padding adjustments */
+    .container {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    /* How We Help section improvements */
+    .how-we-help {
+        padding: 60px 0;
+    }
+    
+    .how-we-help-header h2 {
+        font-size: 36px;
+        padding: 0 20px;
+    }
+    
+    .help-circle {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .circle-label {
+        font-size: 22px;
+        padding: 24px;
+    }
+    
+    .help-description {
+        font-size: 16px;
+        max-width: 260px;
+    }
+    
+    /* Cohort Winners improvements */
+    .cohort-winners {
+        padding: 60px 0;
+    }
+    
+    .cohort-header {
+        padding: 0 20px;
+        margin-bottom: 40px;
+    }
+    
+    .cohort-header h2 {
+        font-size: 36px;
+    }
+    
+    .cohort-header p {
+        font-size: 17px;
+    }
+    
+    .cohort-stats {
+        flex-direction: column;
+        gap: 30px;
+        padding: 0 20px;
+        margin-bottom: 50px;
+    }
+    
+    .cohort-stat {
+        min-width: 100%;
+    }
+    
+    .stat-value {
+        font-size: 44px;
+    }
+    
+    .stat-label {
+        font-size: 16px;
+    }
+    
+    .winner-image-container {
+        height: 400px;
+    }
+    
+    .carousel-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 32px;
+    }
+    
+    .cohort-cta-button {
+        margin-top: 40px;
+        padding: 0 20px;
+    }
+    
+    .cohort-cta-button .btn-primary {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    /* Genesis/AI Preview section improvements */
+    .ai-preview {
+        padding: 60px 0;
+    }
+    
+    .ai-preview-text {
+        padding: 0 20px;
+    }
+    
+    .coming-soon-badge {
+        font-size: 12px;
+        padding: 6px 14px;
+    }
+    
+    .ai-preview-text h2 {
+        font-size: 36px;
+    }
+    
+    .ai-description {
+        font-size: 17px;
+    }
+    
+    .ai-features li strong {
+        font-size: 15px;
+    }
+    
+    .ai-features li p {
+        font-size: 14px;
+    }
+    
+    .ai-preview .btn-primary {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    /* Why Origin section */
+    .why-origin {
+        padding: 60px 0;
+    }
+    
+    .why-header {
+        padding: 0 20px;
+        margin-bottom: 40px;
+    }
+    
+    .why-header h2 {
+        font-size: 36px;
+    }
+    
+    .why-header p {
+        font-size: 17px;
+    }
+    
+    .why-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 0 20px;
+    }
+    
+    .why-card {
+        padding: 28px;
+    }
+    
+    .why-number {
+        font-size: 40px;
+    }
+    
+    .why-card h3 {
+        font-size: 22px;
+    }
+    
+    .why-card p {
+        font-size: 16px;
+    }
+    
+    /* Final CTA */
+    .final-cta-new {
+        padding: 60px 0;
+    }
+    
+    .cta-new-content {
+        padding: 0 20px;
+    }
+    
+    .cta-new-content h2 {
+        font-size: 36px;
+    }
+    
+    .cta-new-content p {
+        font-size: 17px;
+    }
+    
+    .cta-new-buttons {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .btn-large {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Extra small screens */
+    .container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    
+    .how-we-help-header h2,
+    .cohort-header h2,
+    .ai-preview-text h2,
+    .why-header h2,
+    .cta-new-content h2 {
+        font-size: 28px;
+    }
+    
+    .help-circle {
+        width: 240px;
+        height: 240px;
+    }
+    
+    .circle-label {
+        font-size: 20px;
+        padding: 20px;
+    }
+    
+    .help-description {
+        font-size: 15px;
+        max-width: 220px;
+    }
+    
+    .cohort-stats {
+        gap: 24px;
+    }
+    
+    .stat-value {
+        font-size: 36px;
+    }
+    
+    .stat-label {
+        font-size: 14px;
+    }
+    
+    .winner-image-container {
+        height: 350px;
+    }
+    
+    .carousel-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 24px;
+    }
+    
+    .ai-description,
+    .problem-subtitle,
+    .why-header p,
+    .cta-new-content p {
         font-size: 16px;
     }
 }
