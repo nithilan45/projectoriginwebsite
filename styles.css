@@ -941,26 +941,49 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
 
 .help-circles-grid {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
-    gap: 40px;
-    flex-wrap: wrap;
-    max-width: 1200px;
+    gap: 60px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 20px 40px;
     margin: 0 auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.help-circles-grid::-webkit-scrollbar {
+    height: 8px;
+}
+
+.help-circles-grid::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: 4px;
+}
+
+.help-circles-grid::-webkit-scrollbar-thumb {
+    background: var(--text-tertiary);
+    border-radius: 4px;
+}
+
+.help-circles-grid::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
 }
 
 .help-circle-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 200px;
+    min-width: 320px;
+    flex-shrink: 0;
 }
 
 .help-circle {
-    width: 200px;
-    height: 200px;
+    width: 320px;
+    height: 320px;
     border-radius: 50%;
-    border: 2px solid var(--text-tertiary);
+    border: 3px solid var(--text-tertiary);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -979,8 +1002,8 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     left: 0;
     right: 0;
     bottom: 0;
-    background-size: 140%;
-    background-position: center center;
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
     opacity: 0;
     transition: opacity 0.5s var(--ease-out-expo);
@@ -1004,10 +1027,10 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
 
 .circle-label {
     font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 24px;
+    font-weight: 600;
     color: var(--text-primary);
-    padding: 20px;
+    padding: 30px;
     position: relative;
     z-index: 2;
     transition: all 0.5s var(--ease-out-expo);
@@ -1019,11 +1042,12 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
 }
 
 .help-description {
-    margin-top: 20px;
+    margin-top: 30px;
     text-align: center;
-    font-size: 15px;
-    line-height: 1.5;
+    font-size: 17px;
+    line-height: 1.6;
     color: var(--text-secondary);
+    max-width: 280px;
     max-height: 0;
     opacity: 0;
     overflow: hidden;
@@ -1055,21 +1079,27 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     }
     
     .help-circles-grid {
-        gap: 32px;
+        gap: 40px;
+        padding: 20px;
     }
     
     .help-circle-item {
-        width: 160px;
+        min-width: 280px;
     }
     
     .help-circle {
-        width: 160px;
-        height: 160px;
+        width: 280px;
+        height: 280px;
     }
     
     .circle-label {
-        font-size: 16px;
-        padding: 15px;
+        font-size: 20px;
+        padding: 25px;
+    }
+    
+    .help-description {
+        font-size: 15px;
+        max-width: 240px;
     }
 }
 
