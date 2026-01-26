@@ -362,14 +362,14 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
    ============================================ */
 
 /* ============================================
-   FULLWIDTH HERO SECTION - DECA Style
+   FULLWIDTH HERO SECTION - Apple Style
    ============================================ */
 .hero-fullwidth {
     position: relative;
     width: 100%;
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     overflow: hidden;
 }
 
@@ -380,7 +380,7 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     right: 0;
     bottom: 0;
     background-size: cover;
-    background-position: center;
+    background-position: center 30%;
     background-repeat: no-repeat;
     z-index: 1;
 }
@@ -392,10 +392,10 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     right: 0;
     bottom: 0;
     background: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0.65) 0%,
-        rgba(0, 0, 0, 0.4) 50%,
-        rgba(0, 0, 0, 0.2) 100%
+        to top,
+        rgba(0, 0, 0, 0.75) 0%,
+        rgba(0, 0, 0, 0.4) 40%,
+        rgba(0, 0, 0, 0.15) 100%
     );
     z-index: 2;
 }
@@ -403,20 +403,21 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
 .hero-content {
     position: relative;
     z-index: 3;
-    max-width: 800px;
+    max-width: 900px;
     padding: 0 60px;
-    padding-top: 72px; /* Account for fixed nav */
+    padding-bottom: 80px;
 }
 
 .hero-headline {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(36px, 5vw, 56px);
-    font-weight: 700;
-    line-height: 1.15;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+    font-size: clamp(40px, 5.5vw, 64px);
+    font-weight: 600;
+    line-height: 1.08;
     color: #ffffff;
-    margin-bottom: 40px;
-    letter-spacing: -0.01em;
+    margin-bottom: 32px;
+    letter-spacing: -0.025em;
     text-transform: uppercase;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
 }
 
 .hero-ctas {
@@ -435,8 +436,9 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     padding: 14px 32px;
     border-radius: 50px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
     transition: all 0.3s ease;
     border: 2px solid var(--origin-blue);
 }
@@ -455,26 +457,29 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
     text-decoration: none;
     font-weight: 500;
     font-size: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
     padding: 14px 24px;
     border-radius: 50px;
-    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
     transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .hero-btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.2);
     border-color: #fff;
 }
 
 .hero-btn-secondary svg {
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 /* Mobile responsiveness for hero */
 @media (max-width: 768px) {
     .hero-content {
         padding: 0 24px;
-        padding-top: 100px;
+        padding-bottom: 60px;
     }
     
     .hero-headline {
