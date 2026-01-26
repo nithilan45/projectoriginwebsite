@@ -2007,30 +2007,6 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
    AI PLATFORM PREVIEW SECTION
    ============================================ */
 /* ========================================
-   FULL-SCREEN SCROLL TRANSITION
-   Apple visionOS-style immersive effect
-   ======================================== */
-
-/* Fixed overlay that fades to black */
-.transition-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: #000;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 500; /* Above page content, below nav (1000) */
-    transition: opacity 0.08s linear;
-}
-
-/* When active, allow clicks through */
-.transition-overlay.active {
-    pointer-events: none;
-}
-
-/* ========================================
    AI PREVIEW SECTION - LIGHT THEME
    ======================================== */
 
@@ -2180,10 +2156,6 @@ p, body, .nav-link, .cta-button, .hero-description, .page-subtitle {
 
 /* Respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-    .transition-overlay {
-        display: none !important;
-    }
-    
     .fade-up,
     .pillar-card,
     .proof-stat,
