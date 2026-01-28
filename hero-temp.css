@@ -1,0 +1,235 @@
+/* ===== HERO SECTION ===== */
+.hero-fullwidth {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: 15% 42%;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.85) 0%,
+        rgba(0, 0, 0, 0.7) 35%,
+        rgba(0, 0, 0, 0.3) 60%,
+        rgba(0, 0, 0, 0.1) 100%
+    );
+    z-index: 2;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 550px;
+    padding: 0 60px;
+    padding-top: 72px;
+    text-align: left;
+    margin-left: 0;
+}
+
+.hero-headline {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 700;
+    color: white;
+    line-height: 1.15;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+/* Responsive Hero */
+@media (max-width: 768px) {
+    .hero-fullwidth {
+        min-height: 85vh;
+    }
+    
+    .hero-bg {
+        background-position: 20% center;
+    }
+    
+    .hero-content {
+        padding-left: 24px;
+        padding-right: 24px;
+        padding-top: 60px;
+        max-width: 90%;
+    }
+    
+    .hero-headline {
+        font-size: clamp(28px, 7vw, 40px);
+        line-height: 1.15;
+    }
+}
+
+/* ===== STORY SECTION ===== */
+.story-section {
+    position: relative;
+    width: 100%;
+}
+
+.story-slide {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.story-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+    opacity: 0;
+    transform: scale(1.1);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+.story-slide.active .story-bg {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.story-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+/* Stronger overlay for slide 1 to keep text readable */
+.story-slide[data-slide="1"] .story-overlay {
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.72) 0%,
+        rgba(0, 0, 0, 0.58) 50%,
+        rgba(0, 0, 0, 0.42) 100%
+    );
+}
+
+.story-text-wrapper {
+    position: relative;
+    z-index: 3;
+    max-width: 900px;
+    padding: 0 48px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease 0.3s, transform 1s ease 0.3s;
+}
+
+.story-slide.active .story-text-wrapper {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.story-title {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 700;
+    color: white;
+    line-height: 1.2;
+    margin: 0 0 24px 0;
+    letter-spacing: -0.02em;
+}
+
+.story-description {
+    font-size: clamp(18px, 2.5vw, 28px);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Responsive Story */
+@media (max-width: 768px) {
+    .story-slide {
+        min-height: 85vh;
+    }
+    
+    .story-text-wrapper {
+        padding: 0 24px;
+    }
+    
+    .story-title {
+        font-size: 32px;
+        margin-bottom: 16px;
+    }
+    
+    .story-description {
+        font-size: 18px;
+    }
+}
+
+/* ===== PROGRAMS HEADER SECTION ===== */
+.programs-header {
+    padding: 80px 0 40px 0;
+    background: #ffffff;
+}
+
+.programs-header-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.programs-title {
+    font-size: clamp(40px, 5vw, 56px);
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.2;
+    margin: 0 0 20px 0;
+    letter-spacing: -0.02em;
+}
+
+.programs-description {
+    font-size: clamp(18px, 2.5vw, 24px);
+    font-weight: 400;
+    color: #64748b;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Responsive Programs Header */
+@media (max-width: 768px) {
+    .programs-header {
+        padding: 60px 24px 30px 24px;
+    }
+    
+    .programs-title {
+        font-size: 36px;
+        margin-bottom: 16px;
+    }
+    
+    .programs-description {
+        font-size: 18px;
+    }
+}
