@@ -1,28 +1,27 @@
 # Project Origin Website
 
-A youth-led initiative to give immigrant and first-generation students the chance to explore entrepreneurship, leadership, and innovation.
+Static marketing site for Project Origin: cohort results, mentor network, and community calls-to-action. The stack is pure HTML/CSS/JS—no build tooling required.
 
-## Features
+## Current State (Technical)
+- **Responsive single codebase**: One HTML/CSS set with media queries (no separate mobile site).
+- **Story/hero sliders**: Implemented with CSS/JS; see `hero-temp.css` and `script.js`.
+- **Image-heavy content**: Assets live in `assets/` and `assets/optimized/`; referenced directly from HTML.
+- **Cohort pages**: `cohort1.html` documents the program timeline, winners, and pitch sections.
+- **Genesis AI (in development)**: The Genesis AI mentor experience is under active development and not production-ready.
 
-- **Responsive Design**: Separate mobile and desktop versions
-- **Origin Challenge**: 4-week program with one intensive session per weekend
-- **Mentor Network**: Connect with successful immigrant entrepreneurs
-- **Community**: Join thousands of immigrant students building the future
-
-## Pages
-
-- **Home**: Main landing page with program overview
-- **Challenge**: Details about the Origin Challenge program
-- **Mentors**: Meet our mentor network
-- **FAQ**: Frequently asked questions
-- **Contact**: Get in touch with us
+## Key Pages
+- `index.html` – Home/landing + story slider and CTA
+- `cohort1.html` – Cohort 1 timeline, winners, pitch competition
+- `mentors.html` – Mentor network
+- `faq.html` – FAQs
+- `contact.html` – Contact entry point
+- `genesis.html` / `genesis-ai.html` – Genesis and AI experience (AI work-in-progress)
 
 ## Technology
-
-- Pure HTML, CSS, and JavaScript
-- Mobile-first responsive design
-- Server-side mobile detection via redirects
+- Vanilla HTML, CSS, JavaScript
+- CSS: `styles.css` (global) and `hero-temp.css` (hero/story styling)
+- JS: `script.js` (nav behavior, sliders, animations)
 
 ## Deployment
-
-This site is deployed on GitHub Pages with automatic mobile/desktop detection.
+- Deployed via GitHub Pages from the `main` branch.
+- All assets are static; no build or server step is required—push to `main` to publish.
