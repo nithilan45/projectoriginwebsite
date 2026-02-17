@@ -2,644 +2,656 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genesis AI Mentor - Project Origin</title>
-    <link rel="stylesheet" href="styles.css?v=1059">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Ori - Genesis AI Mentor</title>
+    <link rel="stylesheet" href="styles.css?v=1080">
     <style>
-        /* AI Chat Interface Styles */
-        .ai-chat-container {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding-top: 72px;
+        * { box-sizing: border-box; }
+
+        body.imessage-page {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+            color: #fff;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* Hide site nav on this page */
+        body.imessage-page .nav { display: none; }
+
+        .ios-container {
+            width: 100%;
+            max-width: 480px;
+            height: 100vh;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            background: #000;
+            position: relative;
+        }
+
+        /* iOS-style top bar */
+        .ios-topbar {
             display: flex;
             align-items: center;
-            justify-content: center;
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+            flex-shrink: 0;
+            z-index: 10;
+            padding-top: max(12px, env(safe-area-inset-top));
         }
 
-        .chat-wrapper {
-            width: 100%;
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .chat-header {
-            text-align: center;
-            color: white;
-            margin-bottom: 32px;
-        }
-
-        .chat-header h1 {
-            font-size: clamp(32px, 5vw, 48px);
-            font-weight: 700;
-            margin-bottom: 12px;
-            letter-spacing: -0.02em;
-        }
-
-        .chat-header p {
-            font-size: 18px;
-            opacity: 0.9;
-        }
-
-        .chat-box {
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
+        .ios-back {
             display: flex;
-            flex-direction: column;
-            height: 600px;
+            align-items: center;
+            gap: 4px;
+            color: #0a84ff;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 400;
+            flex-shrink: 0;
         }
 
-        .chat-messages {
+        .ios-back svg {
+            width: 12px;
+            height: 20px;
+        }
+
+        .ios-contact {
             flex: 1;
-            overflow-y: auto;
-            padding: 32px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            align-items: center;
+            gap: 2px;
         }
 
-        .chat-messages::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .chat-messages::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        .chat-messages::-webkit-scrollbar-thumb {
-            background: #c1c1c1;
-            border-radius: 3px;
-        }
-
-        .message {
-            display: flex;
-            gap: 12px;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .message.user {
-            flex-direction: row-reverse;
-        }
-
-        .message-avatar {
+        .ios-avatar {
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            flex-shrink: 0;
+            background: linear-gradient(135deg, #667eea 0%, #a855f7 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.5px;
         }
 
-        .message.ai .message-avatar {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+        .ios-contact-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
         }
 
-        .message.user .message-avatar {
-            background: #e5e7eb;
-            color: #374151;
+        .ios-contact-status {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.4);
         }
 
-        .message-content {
+        .ios-topbar-right {
+            width: 50px;
+            flex-shrink: 0;
+        }
+
+        /* Messages area */
+        .ios-messages {
             flex: 1;
-            max-width: 75%;
+            overflow-y: auto;
+            padding: 12px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            -webkit-overflow-scrolling: touch;
         }
 
-        .message.ai .message-bubble {
-            background: #f3f4f6;
-            color: #1f2937;
+        .ios-messages::-webkit-scrollbar { display: none; }
+
+        /* Timestamp */
+        .ios-timestamp {
+            text-align: center;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.35);
+            padding: 8px 0;
+            font-weight: 400;
         }
 
-        .message.user .message-bubble {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+        /* Message rows */
+        .ios-msg {
+            display: flex;
+            max-width: 78%;
+            animation: msgIn 0.25s ease-out;
         }
 
-        .message-bubble {
-            padding: 14px 18px;
-            border-radius: 16px;
-            font-size: 15px;
-            line-height: 1.6;
+        @keyframes msgIn {
+            from { opacity: 0; transform: translateY(8px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .ios-msg.sent {
+            align-self: flex-end;
+        }
+
+        .ios-msg.received {
+            align-self: flex-start;
+        }
+
+        /* Bubbles */
+        .ios-bubble {
+            padding: 8px 14px;
+            font-size: 16px;
+            line-height: 1.4;
             word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
-        .message.ai .message-bubble {
-            border-radius: 16px 16px 16px 4px;
+        .ios-msg.sent .ios-bubble {
+            background: #0b84fe;
+            color: #fff;
+            border-radius: 18px 18px 4px 18px;
         }
 
-        .message.user .message-bubble {
-            border-radius: 16px 16px 4px 16px;
+        .ios-msg.received .ios-bubble {
+            background: #3a3a3c;
+            color: #fff;
+            border-radius: 18px 18px 18px 4px;
         }
 
-        /* Formatted AI response styles */
-        .message-bubble h4 {
+        /* Bubble tail spacing for consecutive messages */
+        .ios-msg.sent + .ios-msg.sent { margin-top: -2px; }
+        .ios-msg.received + .ios-msg.received { margin-top: -2px; }
+        .ios-msg.sent + .ios-msg.received,
+        .ios-msg.received + .ios-msg.sent { margin-top: 8px; }
+
+        /* Read receipt */
+        .ios-read {
+            align-self: flex-end;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.35);
+            padding: 2px 4px 0 0;
+        }
+
+        /* Formatted AI response inside bubble */
+        .ios-bubble h4 {
             font-size: 15px;
             font-weight: 700;
-            color: #1f2937;
-            margin: 16px 0 6px 0;
+            color: #fff;
+            margin: 14px 0 4px 0;
         }
 
-        .message-bubble h4:first-child {
-            margin-top: 0;
+        .ios-bubble h4:first-child { margin-top: 2px; }
+
+        .ios-bubble p {
+            margin: 0 0 8px 0;
+            font-size: 15px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.92);
         }
 
-        .message-bubble p {
-            margin: 0 0 10px 0;
-            font-size: 14.5px;
-            line-height: 1.65;
-            color: #374151;
+        .ios-bubble p:last-child { margin-bottom: 0; }
+
+        .ios-bubble ul {
+            margin: 4px 0 8px 0;
+            padding-left: 16px;
         }
 
-        .message-bubble p:last-child {
-            margin-bottom: 0;
+        .ios-bubble ul li {
+            font-size: 15px;
+            line-height: 1.45;
+            color: rgba(255, 255, 255, 0.88);
+            margin-bottom: 3px;
         }
 
-        .message-bubble ul {
-            margin: 6px 0 10px 0;
-            padding-left: 18px;
-        }
-
-        .message-bubble ul li {
-            font-size: 14.5px;
-            line-height: 1.6;
-            color: #374151;
-            margin-bottom: 4px;
-        }
-
-        .message-bubble strong {
-            color: #1f2937;
+        .ios-bubble strong {
             font-weight: 600;
+            color: #fff;
         }
 
-        .message-bubble em {
-            color: #6b7280;
+        .ios-bubble em {
             font-style: italic;
+            color: rgba(255, 255, 255, 0.6);
         }
 
-        .message-bubble .ai-section {
-            padding: 10px 14px;
-            background: rgba(102, 126, 234, 0.06);
-            border-left: 3px solid #667eea;
-            border-radius: 0 8px 8px 0;
-            margin: 12px 0;
+        .ios-bubble .ai-callout {
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.08);
+            border-left: 2px solid #0a84ff;
+            border-radius: 0 6px 6px 0;
+            margin: 8px 0;
         }
 
-        .message-bubble .ai-section p {
+        .ios-bubble .ai-callout p {
             margin: 0;
             font-size: 14px;
         }
 
-        .message-bubble .ai-takeaway {
-            margin-top: 14px;
-            padding: 12px 14px;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.08));
-            border-radius: 10px;
+        .ios-bubble .ai-bottom {
+            margin-top: 10px;
+            padding: 8px 12px;
+            background: rgba(10, 132, 255, 0.12);
+            border-radius: 8px;
         }
 
-        .message-bubble .ai-takeaway p {
+        .ios-bubble .ai-bottom p {
             margin: 0;
-            font-weight: 500;
-            color: #4c1d95;
             font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
         }
 
-        .typing-indicator {
+        /* Typing indicator (iMessage style) */
+        .ios-typing {
+            align-self: flex-start;
             display: none;
+            animation: msgIn 0.25s ease-out;
+        }
+
+        .ios-typing.active { display: flex; }
+
+        .ios-typing-bubble {
+            background: #3a3a3c;
+            border-radius: 18px 18px 18px 4px;
+            padding: 12px 16px;
+            display: flex;
             gap: 4px;
-            padding: 16px;
-        }
-
-        .typing-indicator.active {
-            display: flex;
-        }
-
-        .typing-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #9ca3af;
-            animation: typing 1.4s infinite;
-        }
-
-        .typing-dot:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .typing-dot:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes typing {
-            0%, 60%, 100% {
-                transform: translateY(0);
-            }
-            30% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .chat-input-wrapper {
-            padding: 20px 24px;
-            border-top: 1px solid #e5e7eb;
-            background: #fafafa;
-        }
-
-        .chat-input-container {
-            display: flex;
-            gap: 12px;
-            align-items: flex-end;
-        }
-
-        .chat-input {
-            flex: 1;
-            border: 2px solid #e5e7eb;
-            border-radius: 16px;
-            padding: 14px 18px;
-            font-size: 15px;
-            font-family: inherit;
-            resize: none;
-            max-height: 120px;
-            transition: all 0.2s ease;
-        }
-
-        .chat-input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .send-button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 14px;
-            padding: 14px 24px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
             align-items: center;
-            gap: 8px;
         }
 
-        .send-button:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        .ios-typing-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            animation: iosTyping 1.4s infinite;
         }
 
-        .send-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+        .ios-typing-dot:nth-child(2) { animation-delay: 0.15s; }
+        .ios-typing-dot:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes iosTyping {
+            0%, 60%, 100% { opacity: 0.3; transform: scale(1); }
+            30% { opacity: 1; transform: scale(1.15); }
         }
 
-        .quick-prompts {
+        /* Quick prompt chips */
+        .ios-suggestions {
             display: flex;
             gap: 8px;
-            flex-wrap: wrap;
-            margin-bottom: 16px;
+            padding: 8px 16px;
+            overflow-x: auto;
+            flex-shrink: 0;
+            -webkit-overflow-scrolling: touch;
         }
 
-        .quick-prompt {
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 20px;
+        .ios-suggestions::-webkit-scrollbar { display: none; }
+
+        .ios-chip {
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 18px;
             padding: 8px 16px;
             font-size: 14px;
-            color: #374151;
+            color: #0a84ff;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.15s ease;
+            white-space: nowrap;
         }
 
-        .quick-prompt:hover {
-            border-color: #667eea;
-            color: #667eea;
-            transform: translateY(-2px);
+        .ios-chip:hover {
+            background: rgba(10, 132, 255, 0.15);
+            border-color: rgba(10, 132, 255, 0.3);
         }
 
-        .welcome-message {
-            text-align: center;
-            padding: 40px 20px;
-            color: #6b7280;
+        /* Bottom input area */
+        .ios-input-bar {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            padding: 8px 12px;
+            padding-bottom: max(8px, env(safe-area-inset-bottom));
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 0.5px solid rgba(255, 255, 255, 0.1);
+            flex-shrink: 0;
         }
 
-        .welcome-message h3 {
-            font-size: 20px;
-            color: #374151;
-            margin-bottom: 12px;
+        .ios-input-plus {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            border: none;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            cursor: default;
         }
 
-        .welcome-message p {
-            font-size: 15px;
-            line-height: 1.6;
+        .ios-input-field {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.08);
+            border: 0.5px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 9px 16px;
+            font-size: 16px;
+            color: #fff;
+            font-family: inherit;
+            resize: none;
+            max-height: 100px;
+            outline: none;
+            line-height: 1.35;
         }
 
-        @media (max-width: 768px) {
-            .ai-chat-container {
-                padding-top: 60px;
+        .ios-input-field::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .ios-send-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #0a84ff;
+            border: none;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: opacity 0.15s;
+        }
+
+        .ios-send-btn:disabled {
+            background: rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.2);
+            cursor: default;
+        }
+
+        .ios-send-btn svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Desktop: phone frame */
+        @media (min-width: 520px) {
+            body.imessage-page {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #111;
             }
 
-            .chat-wrapper {
-                margin: 20px auto;
+            .ios-container {
+                height: min(92vh, 860px);
+                border-radius: 40px;
+                border: 3px solid #2a2a2a;
+                overflow: hidden;
+                box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
             }
+        }
 
-            .chat-box {
-                height: calc(100vh - 180px);
-                border-radius: 16px;
-            }
-
-            .chat-header h1 {
-                font-size: 28px;
-            }
-
-            .chat-header p {
-                font-size: 16px;
-            }
-
-            .chat-messages {
-                padding: 20px;
-            }
-
-            .message-content {
-                max-width: 85%;
-            }
-
-            .quick-prompts {
-                overflow-x: auto;
-                flex-wrap: nowrap;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .quick-prompts::-webkit-scrollbar {
-                display: none;
-            }
-
-            .quick-prompt {
-                white-space: nowrap;
-                flex-shrink: 0;
+        /* Larger desktop */
+        @media (min-width: 900px) {
+            .ios-container {
+                max-width: 420px;
             }
         }
     </style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="index.html">
-                    <img src="assets/originlogo.svg" alt="Project Origin" class="nav-logo-img">
-                </a>
+<body class="imessage-page">
+
+    <nav class="nav" style="display:none;"></nav>
+
+    <div class="ios-container">
+        <!-- Top bar -->
+        <div class="ios-topbar">
+            <a href="genesis.html" class="ios-back">
+                <svg viewBox="0 0 12 20" fill="none">
+                    <path d="M10 2L2 10L10 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+            <div class="ios-contact">
+                <div class="ios-avatar">Ori</div>
+                <span class="ios-contact-name">Ori</span>
+                <span class="ios-contact-status">Genesis AI</span>
             </div>
-            <div class="nav-links">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="cohort1.html" class="nav-link">Cohort 1</a>
-                <a href="mentors.html" class="nav-link">Mentors</a>
-                <a href="contact.html" class="nav-link">Contact</a>
-            </div>
-            <div class="nav-actions">
-                <a href="genesis.html" class="nav-button">Back to Modules</a>
+            <div class="ios-topbar-right"></div>
+        </div>
+
+        <!-- Messages -->
+        <div class="ios-messages" id="chatMessages">
+            <div class="ios-timestamp">Today</div>
+        </div>
+
+        <!-- Typing indicator -->
+        <div class="ios-typing" id="typingIndicator">
+            <div class="ios-typing-bubble">
+                <div class="ios-typing-dot"></div>
+                <div class="ios-typing-dot"></div>
+                <div class="ios-typing-dot"></div>
             </div>
         </div>
-    </nav>
 
-    <!-- AI Chat Interface -->
-    <div class="ai-chat-container">
-        <div class="chat-wrapper">
-            <div class="chat-header">
-                <h1>Genesis AI Mentor</h1>
-                <p>Your personal entrepreneurship coach, available 24/7</p>
-            </div>
+        <!-- Suggestion chips -->
+        <div class="ios-suggestions" id="suggestions">
+            <div class="ios-chip" data-prompt="I have a startup idea to help immigrant families navigate financial aid. How do I turn this into a real business?">turn my idea into a business</div>
+            <div class="ios-chip" data-prompt="How do I validate my business idea?">validate my idea</div>
+            <div class="ios-chip" data-prompt="Help me create a pitch deck">create a pitch deck</div>
+            <div class="ios-chip" data-prompt="What should my MVP include?">build an MVP</div>
+        </div>
 
-            <div class="chat-box">
-                <div class="chat-messages" id="chatMessages">
-                    <div class="welcome-message">
-                        <h3>Welcome to Genesis AI!</h3>
-                        <p>I'm your AI mentor, here to help you with entrepreneurship questions, business ideas, pitch feedback, and more. Try one of the quick prompts below or ask me anything!</p>
-                    </div>
-                </div>
-
-                <div class="chat-input-wrapper">
-                    <div class="quick-prompts" id="quickPrompts">
-                        <div class="quick-prompt" data-prompt="I'm a first-gen college student with a startup idea to help immigrant families navigate financial aid. How do I turn this into a real business?">Turn my idea into a business</div>
-                        <div class="quick-prompt" data-prompt="How do I validate my business idea?">Validate my idea</div>
-                        <div class="quick-prompt" data-prompt="Help me create a pitch deck">Create pitch deck</div>
-                        <div class="quick-prompt" data-prompt="What should my MVP include?">Build MVP</div>
-                    </div>
-                    <div class="chat-input-container">
-                        <textarea 
-                            id="chatInput" 
-                            class="chat-input" 
-                            placeholder="Ask me anything about entrepreneurship..."
-                            rows="1"
-                        ></textarea>
-                        <button id="sendButton" class="send-button">
-                            <span>Send</span>
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                <path d="M15 1L7 9M15 1L10 15L7 9M15 1L1 6L7 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
+        <!-- Input bar -->
+        <div class="ios-input-bar">
+            <div class="ios-input-plus">+</div>
+            <textarea id="chatInput" class="ios-input-field" placeholder="iMessage" rows="1"></textarea>
+            <button id="sendBtn" class="ios-send-btn" disabled>
+                <svg viewBox="0 0 16 16" fill="none">
+                    <path d="M14.5 1.5L7 9M14.5 1.5L10 14.5L7 9M14.5 1.5L1.5 6L7 9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
         </div>
     </div>
 
     <script>
-        const chatMessages = document.getElementById('chatMessages');
-        const chatInput = document.getElementById('chatInput');
-        const sendButton = document.getElementById('sendButton');
-        const quickPrompts = document.querySelectorAll('.quick-prompt');
+    (function() {
+        var msgs = document.getElementById('chatMessages');
+        var input = document.getElementById('chatInput');
+        var sendBtn = document.getElementById('sendBtn');
+        var suggestions = document.getElementById('suggestions');
+        var typingEl = document.getElementById('typingIndicator');
+        var hasInteracted = false;
 
-        chatInput.addEventListener('input', function() {
+        // Auto-resize input
+        input.addEventListener('input', function() {
             this.style.height = 'auto';
-            this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+            this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+            sendBtn.disabled = this.value.trim().length === 0;
         });
 
-        quickPrompts.forEach(prompt => {
-            prompt.addEventListener('click', () => {
-                const promptText = prompt.getAttribute('data-prompt');
-                chatInput.value = promptText;
-                sendMessage();
+        // Send on enter
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                send();
+            }
+        });
+
+        sendBtn.addEventListener('click', send);
+
+        // Chip clicks
+        document.querySelectorAll('.ios-chip').forEach(function(chip) {
+            chip.addEventListener('click', function() {
+                input.value = chip.getAttribute('data-prompt');
+                sendBtn.disabled = false;
+                send();
             });
         });
 
-        sendButton.addEventListener('click', sendMessage);
-
-        chatInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                sendMessage();
-            }
-        });
-
-        function sendMessage() {
-            const message = chatInput.value.trim();
-            if (!message) return;
-
-            const welcomeMsg = document.querySelector('.welcome-message');
-            if (welcomeMsg) {
-                welcomeMsg.remove();
-                document.getElementById('quickPrompts').style.display = 'none';
-            }
-
-            addMessage(message, 'user');
-
-            chatInput.value = '';
-            chatInput.style.height = 'auto';
-            chatInput.disabled = true;
-            sendButton.disabled = true;
-
-            showTyping();
-
-            setTimeout(() => {
-                hideTyping();
-                const response = generateAIResponse(message);
-                addMessage(response, 'ai');
-                chatInput.disabled = false;
-                sendButton.disabled = false;
-                chatInput.focus();
-            }, 1800 + Math.random() * 1200);
-        }
-
-        function addMessage(text, sender) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'message ' + sender;
-            
-            const avatar = document.createElement('div');
-            avatar.className = 'message-avatar';
-            avatar.textContent = sender === 'ai' ? '\uD83E\uDD16' : '\uD83D\uDC64';
-            
-            const content = document.createElement('div');
-            content.className = 'message-content';
-            
-            const bubble = document.createElement('div');
-            bubble.className = 'message-bubble';
-
-            if (sender === 'ai') {
+        function addBubble(text, type, isHtml) {
+            var row = document.createElement('div');
+            row.className = 'ios-msg ' + type;
+            var bubble = document.createElement('div');
+            bubble.className = 'ios-bubble';
+            if (isHtml) {
                 bubble.innerHTML = text;
             } else {
                 bubble.textContent = text;
             }
-            
-            content.appendChild(bubble);
-            messageDiv.appendChild(avatar);
-            messageDiv.appendChild(content);
-            
-            chatMessages.appendChild(messageDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            row.appendChild(bubble);
+            msgs.appendChild(row);
+            msgs.scrollTop = msgs.scrollHeight;
+        }
+
+        function addRead() {
+            var r = document.createElement('div');
+            r.className = 'ios-read';
+            var now = new Date();
+            var h = now.getHours();
+            var m = now.getMinutes();
+            var ampm = h >= 12 ? 'PM' : 'AM';
+            h = h % 12 || 12;
+            m = m < 10 ? '0' + m : m;
+            r.textContent = 'Read ' + h + ':' + m + ' ' + ampm;
+            msgs.appendChild(r);
+            msgs.scrollTop = msgs.scrollHeight;
         }
 
         function showTyping() {
-            const typingDiv = document.createElement('div');
-            typingDiv.className = 'message ai';
-            typingDiv.id = 'typingIndicator';
-            
-            const avatar = document.createElement('div');
-            avatar.className = 'message-avatar';
-            avatar.textContent = '\uD83E\uDD16';
-            
-            const content = document.createElement('div');
-            content.className = 'message-content';
-            
-            const bubble = document.createElement('div');
-            bubble.className = 'message-bubble';
-            
-            const indicator = document.createElement('div');
-            indicator.className = 'typing-indicator active';
-            indicator.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
-            
-            bubble.appendChild(indicator);
-            content.appendChild(bubble);
-            typingDiv.appendChild(avatar);
-            typingDiv.appendChild(content);
-            
-            chatMessages.appendChild(typingDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            typingEl.classList.add('active');
+            msgs.scrollTop = msgs.scrollHeight;
         }
 
         function hideTyping() {
-            const typing = document.getElementById('typingIndicator');
-            if (typing) typing.remove();
+            typingEl.classList.remove('active');
         }
 
-        function generateAIResponse(userMessage) {
-            return '<p>I love this idea. Financial aid is one of the most broken, confusing systems for first-gen families, and <strong>you have lived experience</strong> that gives you a massive advantage over anyone else trying to solve this. Here is exactly how I would approach turning this into a real business.</p>' +
+        function send() {
+            var text = input.value.trim();
+            if (!text) return;
 
-                '<h4>1. Define the Specific Problem You Solve</h4>' +
-                '<p>The financial aid space is huge, so you need to get razor-sharp on <strong>which part</strong> you are tackling. Ask yourself:</p>' +
-                '<ul>' +
-                    '<li>Is the problem that families don\'t <em>know</em> aid exists?</li>' +
-                    '<li>Is it that the FAFSA is too confusing to fill out correctly?</li>' +
-                    '<li>Is it that families miss deadlines or don\'t appeal bad packages?</li>' +
-                    '<li>Is it that undocumented families think they don\'t qualify for anything?</li>' +
-                '</ul>' +
-                '<div class="ai-section"><p>Pick one. You can expand later, but starting narrow lets you build something people actually rely on instead of a surface-level tool that tries to do everything.</p></div>' +
+            if (!hasInteracted) {
+                hasInteracted = true;
+                suggestions.style.display = 'none';
+            }
 
-                '<h4>2. Interview 20 Families This Month</h4>' +
-                '<p>Before you build anything, talk to real families. Reach out through community centers, church groups, high school counselor networks, or WhatsApp groups. Ask:</p>' +
-                '<ul>' +
-                    '<li>"What was the hardest part about figuring out financial aid?"</li>' +
-                    '<li>"Where did you go for help? Did it actually work?"</li>' +
-                    '<li>"What would have made the biggest difference for your family?"</li>' +
-                '</ul>' +
-                '<p>Write down their <strong>exact words</strong>. Those phrases become your marketing copy, your landing page headline, and your pitch deck\'s problem slide.</p>' +
+            addBubble(text, 'sent', false);
+            input.value = '';
+            input.style.height = 'auto';
+            sendBtn.disabled = true;
+            input.disabled = true;
 
-                '<h4>3. Build a Free MVP in One Weekend</h4>' +
-                '<p>You don\'t need code or money to start. Here is a realistic MVP stack:</p>' +
-                '<ul>' +
-                    '<li><strong>Carrd or Google Sites</strong> &mdash; free landing page explaining what you offer</li>' +
-                    '<li><strong>Calendly (free tier)</strong> &mdash; let families book a 20-minute walkthrough with you</li>' +
-                    '<li><strong>Google Sheets</strong> &mdash; track every family you help, what questions they have, and their outcomes</li>' +
-                    '<li><strong>WhatsApp or Discord group</strong> &mdash; create a community where families can ask questions and help each other</li>' +
-                '</ul>' +
-                '<p>Your MVP is <strong>you personally helping 10 families</strong> navigate financial aid. That\'s it. The product is the service, delivered by hand.</p>' +
+            // Show read receipt
+            setTimeout(function() {
+                addRead();
+            }, 400);
 
-                '<h4>4. Prove Traction With Real Numbers</h4>' +
-                '<p>After helping those first 10 families, you will have data that matters:</p>' +
-                '<ul>' +
-                    '<li>How much additional aid did families receive after your help?</li>' +
-                    '<li>How many families completed FAFSA who wouldn\'t have otherwise?</li>' +
-                    '<li>What was the most common mistake you caught?</li>' +
-                '</ul>' +
-                '<p>These numbers are your <strong>traction metrics</strong>. "$47,000 in additional aid secured for 10 families in 3 weeks" is more powerful than any slide deck.</p>' +
+            // Show typing after short pause
+            setTimeout(function() {
+                showTyping();
+            }, 800);
 
-                '<h4>5. Turn It Into a Scalable Product</h4>' +
-                '<p>Once you understand the patterns, start automating the repetitive parts:</p>' +
-                '<ul>' +
-                    '<li>A <strong>step-by-step FAFSA guide</strong> in plain language (or in Spanish, Vietnamese, etc.)</li>' +
-                    '<li>A <strong>deadline tracker</strong> that texts families reminders</li>' +
-                    '<li>An <strong>aid package comparison tool</strong> that tells families if their offer is below average</li>' +
-                '</ul>' +
-                '<p>This is where you can eventually introduce no-code tools like <strong>Softr</strong>, <strong>Airtable</strong>, or <strong>Glide</strong> to turn your spreadsheet into an app.</p>' +
-
-                '<h4>6. Funding and Growth</h4>' +
-                '<p>With proven impact, you are now in a strong position to apply for:</p>' +
-                '<ul>' +
-                    '<li><strong>University entrepreneurship grants</strong> (most schools have $1K&ndash;$10K available)</li>' +
-                    '<li><strong>Social impact accelerators</strong> like Echoing Green, Fast Forward, or Camelback Ventures</li>' +
-                    '<li><strong>Pitch competitions</strong> &mdash; your story plus real impact data will stand out</li>' +
-                '</ul>' +
-
-                '<div class="ai-takeaway"><p><strong>Key Takeaway:</strong> You already have the hardest thing to get in entrepreneurship &mdash; <em>authentic understanding of your customer\'s pain</em>. Start by helping 10 families this month. Everything else builds from there.</p></div>';
+            // Send response
+            setTimeout(function() {
+                hideTyping();
+                var response = getResponse();
+                addBubble(response, 'received', true);
+                input.disabled = false;
+                input.focus();
+            }, 2200 + Math.random() * 1200);
         }
 
-        window.addEventListener('load', () => {
-            chatInput.focus();
+        function getResponse() {
+            return '<p>yo, I love this question. financial aid is one of the most broken systems for first-gen families, and <strong>you have lived experience</strong> that gives you a massive edge. here is exactly how I would approach it:</p>' +
+
+                '<h4>1. get specific about the problem</h4>' +
+                '<p>the financial aid space is huge. which part are you tackling?</p>' +
+                '<ul>' +
+                    '<li>families don\'t <em>know</em> aid exists?</li>' +
+                    '<li>FAFSA is too confusing to fill out?</li>' +
+                    '<li>people miss deadlines or don\'t appeal bad packages?</li>' +
+                    '<li>undocumented families think they don\'t qualify?</li>' +
+                '</ul>' +
+                '<div class="ai-callout"><p>pick one. you can expand later but starting narrow means you actually build something people rely on.</p></div>' +
+
+                '<h4>2. talk to 20 families this month</h4>' +
+                '<p>before you build anything, reach out through community centers, church groups, counselor networks, or WhatsApp groups. ask:</p>' +
+                '<ul>' +
+                    '<li>"what was the hardest part about figuring out financial aid?"</li>' +
+                    '<li>"where did you go for help? did it actually work?"</li>' +
+                    '<li>"what would have made the biggest difference?"</li>' +
+                '</ul>' +
+                '<p>write down their <strong>exact words</strong>. those become your marketing copy and your pitch deck.</p>' +
+
+                '<h4>3. build a free MVP in one weekend</h4>' +
+                '<p>you don\'t need code or money:</p>' +
+                '<ul>' +
+                    '<li><strong>Carrd</strong> or <strong>Google Sites</strong> for a landing page</li>' +
+                    '<li><strong>Calendly</strong> (free) so families can book time with you</li>' +
+                    '<li><strong>Google Sheets</strong> to track who you help and their outcomes</li>' +
+                    '<li><strong>WhatsApp group</strong> for a community where families help each other</li>' +
+                '</ul>' +
+                '<p>your MVP is literally <strong>you helping 10 families by hand</strong>. that\'s it.</p>' +
+
+                '<h4>4. prove traction with real numbers</h4>' +
+                '<p>after those 10 families you\'ll have data that actually matters:</p>' +
+                '<ul>' +
+                    '<li>how much extra aid did families get?</li>' +
+                    '<li>how many completed FAFSA who wouldn\'t have otherwise?</li>' +
+                    '<li>what was the most common mistake you caught?</li>' +
+                '</ul>' +
+                '<p>"$47K in additional aid secured for 10 families in 3 weeks" hits harder than any slide deck.</p>' +
+
+                '<h4>5. scale it</h4>' +
+                '<p>once you see the patterns, automate the repetitive stuff:</p>' +
+                '<ul>' +
+                    '<li>a <strong>step-by-step FAFSA guide</strong> in plain language</li>' +
+                    '<li>a <strong>deadline tracker</strong> that texts reminders</li>' +
+                    '<li>an <strong>aid comparison tool</strong> that flags below-average offers</li>' +
+                '</ul>' +
+                '<p>use no-code tools like <strong>Softr</strong>, <strong>Airtable</strong>, or <strong>Glide</strong> to turn your spreadsheet into an app.</p>' +
+
+                '<h4>6. funding</h4>' +
+                '<p>with proven impact you can go after:</p>' +
+                '<ul>' +
+                    '<li><strong>university grants</strong> ($1K-$10K at most schools)</li>' +
+                    '<li><strong>social impact accelerators</strong> like Echoing Green or Camelback Ventures</li>' +
+                    '<li><strong>pitch competitions</strong> &mdash; your story + real data = unstoppable</li>' +
+                '</ul>' +
+
+                '<div class="ai-bottom"><p><strong>bottom line:</strong> you already have the hardest thing in entrepreneurship &mdash; real understanding of your customer\'s pain. start by helping 10 families this month. everything else builds from there.</p></div>';
+        }
+
+        // Intro sequence: Ori introduces herself
+        function introSequence() {
+            setTimeout(function() {
+                addBubble('hey! i\'m Ori, your Genesis AI mentor', 'received', false);
+            }, 500);
+
+            setTimeout(function() {
+                addBubble('think of me as that friend who\'s way too into startups', 'received', false);
+            }, 1400);
+
+            setTimeout(function() {
+                addBubble('ask me anything about entrepreneurship \u2014 validating ideas, building MVPs, pitch decks, finding customers. whatever you need, i got you', 'received', false);
+            }, 2500);
+        }
+
+        introSequence();
+
+        window.addEventListener('load', function() {
+            input.focus();
         });
+    })();
     </script>
 </body>
 </html>
