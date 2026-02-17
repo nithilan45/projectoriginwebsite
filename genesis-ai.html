@@ -134,12 +134,7 @@
         .ios-msg {
             display: flex;
             max-width: 78%;
-            animation: msgIn 0.25s ease-out;
-        }
-
-        @keyframes msgIn {
-            from { opacity: 0; transform: translateY(8px) scale(0.97); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+            will-change: transform, opacity;
         }
 
         .ios-msg.sent {
@@ -148,6 +143,49 @@
 
         .ios-msg.received {
             align-self: flex-start;
+        }
+
+        /* Sent: bubble floats up from the input bar */
+        .ios-msg.sent.float-up {
+            animation: bubbleFloat 0.45s cubic-bezier(0.17, 0.89, 0.32, 1.15) forwards;
+        }
+
+        @keyframes bubbleFloat {
+            0% {
+                opacity: 0;
+                transform: translateY(var(--float-y, 80px)) scale(0.85);
+            }
+            30% {
+                opacity: 1;
+                transform: translateY(calc(var(--float-y, 80px) * 0.3)) scale(1.03, 0.97);
+            }
+            60% {
+                transform: translateY(-4px) scale(0.99, 1.01);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Received: soft pop from the left */
+        .ios-msg.received.pop-in {
+            animation: bubblePop 0.38s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes bubblePop {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px) scale(0.88);
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(4px) scale(1.02);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
         }
 
         /* Bubbles */
@@ -183,6 +221,12 @@
             font-size: 11px;
             color: rgba(255, 255, 255, 0.35);
             padding: 2px 4px 0 0;
+            animation: readFade 0.3s ease forwards;
+        }
+
+        @keyframes readFade {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Formatted AI response inside bubble */
@@ -255,14 +299,16 @@
         /* Typing indicator (iMessage style) */
         .ios-typing {
             display: none;
-            animation: msgIn 0.25s ease-out;
             max-width: 700px;
             width: 100%;
             margin: 0 auto;
             padding: 0 16px 6px;
         }
 
-        .ios-typing.active { display: flex; }
+        .ios-typing.active {
+            display: flex;
+            animation: bubblePop 0.38s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
 
         .ios-typing-bubble {
             background: #3a3a3c;
@@ -518,8 +564,28 @@
                 bubble.textContent = text;
             }
             row.appendChild(bubble);
-            msgs.appendChild(row);
-            msgs.scrollTop = msgs.scrollHeight;
+
+            if (type === 'sent') {
+                // Calculate distance from input bar to where bubble will land
+                var inputRect = input.getBoundingClientRect();
+                var msgsRect = msgs.getBoundingClientRect();
+                var floatDist = inputRect.top - msgsRect.bottom + 40;
+                row.style.setProperty('--float-y', Math.max(floatDist, 60) + 'px');
+                row.style.opacity = '0';
+                msgs.appendChild(row);
+                msgs.scrollTop = msgs.scrollHeight;
+                // Trigger reflow then animate
+                row.offsetHeight;
+                row.classList.add('float-up');
+                row.style.opacity = '';
+            } else {
+                row.style.opacity = '0';
+                msgs.appendChild(row);
+                msgs.scrollTop = msgs.scrollHeight;
+                row.offsetHeight;
+                row.classList.add('pop-in');
+                row.style.opacity = '';
+            }
         }
 
         function addRead() {
