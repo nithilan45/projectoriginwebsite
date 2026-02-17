@@ -117,7 +117,7 @@
 
         .message-content {
             flex: 1;
-            max-width: 70%;
+            max-width: 75%;
         }
 
         .message.ai .message-bubble {
@@ -144,6 +144,78 @@
 
         .message.user .message-bubble {
             border-radius: 16px 16px 4px 16px;
+        }
+
+        /* Formatted AI response styles */
+        .message-bubble h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1f2937;
+            margin: 16px 0 6px 0;
+        }
+
+        .message-bubble h4:first-child {
+            margin-top: 0;
+        }
+
+        .message-bubble p {
+            margin: 0 0 10px 0;
+            font-size: 14.5px;
+            line-height: 1.65;
+            color: #374151;
+        }
+
+        .message-bubble p:last-child {
+            margin-bottom: 0;
+        }
+
+        .message-bubble ul {
+            margin: 6px 0 10px 0;
+            padding-left: 18px;
+        }
+
+        .message-bubble ul li {
+            font-size: 14.5px;
+            line-height: 1.6;
+            color: #374151;
+            margin-bottom: 4px;
+        }
+
+        .message-bubble strong {
+            color: #1f2937;
+            font-weight: 600;
+        }
+
+        .message-bubble em {
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        .message-bubble .ai-section {
+            padding: 10px 14px;
+            background: rgba(102, 126, 234, 0.06);
+            border-left: 3px solid #667eea;
+            border-radius: 0 8px 8px 0;
+            margin: 12px 0;
+        }
+
+        .message-bubble .ai-section p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .message-bubble .ai-takeaway {
+            margin-top: 14px;
+            padding: 12px 14px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.08));
+            border-radius: 10px;
+        }
+
+        .message-bubble .ai-takeaway p {
+            margin: 0;
+            font-weight: 500;
+            color: #4c1d95;
+            font-size: 14px;
         }
 
         .typing-indicator {
@@ -303,7 +375,7 @@
             }
 
             .message-content {
-                max-width: 80%;
+                max-width: 85%;
             }
 
             .quick-prompts {
@@ -348,24 +420,24 @@
     <div class="ai-chat-container">
         <div class="chat-wrapper">
             <div class="chat-header">
-                <h1>🤖 Genesis AI Mentor</h1>
+                <h1>Genesis AI Mentor</h1>
                 <p>Your personal entrepreneurship coach, available 24/7</p>
             </div>
 
             <div class="chat-box">
                 <div class="chat-messages" id="chatMessages">
                     <div class="welcome-message">
-                        <h3>👋 Welcome to Genesis AI!</h3>
+                        <h3>Welcome to Genesis AI!</h3>
                         <p>I'm your AI mentor, here to help you with entrepreneurship questions, business ideas, pitch feedback, and more. Try one of the quick prompts below or ask me anything!</p>
                     </div>
                 </div>
 
                 <div class="chat-input-wrapper">
                     <div class="quick-prompts" id="quickPrompts">
-                        <div class="quick-prompt" data-prompt="How do I validate my business idea?">💡 Validate my idea</div>
-                        <div class="quick-prompt" data-prompt="Help me create a pitch deck">📊 Create pitch deck</div>
-                        <div class="quick-prompt" data-prompt="How do I find my target customers?">🎯 Find customers</div>
-                        <div class="quick-prompt" data-prompt="What should my MVP include?">🚀 Build MVP</div>
+                        <div class="quick-prompt" data-prompt="I'm a first-gen college student with a startup idea to help immigrant families navigate financial aid. How do I turn this into a real business?">Turn my idea into a business</div>
+                        <div class="quick-prompt" data-prompt="How do I validate my business idea?">Validate my idea</div>
+                        <div class="quick-prompt" data-prompt="Help me create a pitch deck">Create pitch deck</div>
+                        <div class="quick-prompt" data-prompt="What should my MVP include?">Build MVP</div>
                     </div>
                     <div class="chat-input-container">
                         <textarea 
@@ -392,13 +464,11 @@
         const sendButton = document.getElementById('sendButton');
         const quickPrompts = document.querySelectorAll('.quick-prompt');
 
-        // Auto-resize textarea
         chatInput.addEventListener('input', function() {
             this.style.height = 'auto';
             this.style.height = Math.min(this.scrollHeight, 120) + 'px';
         });
 
-        // Handle quick prompts
         quickPrompts.forEach(prompt => {
             prompt.addEventListener('click', () => {
                 const promptText = prompt.getAttribute('data-prompt');
@@ -407,10 +477,8 @@
             });
         });
 
-        // Handle send button
         sendButton.addEventListener('click', sendMessage);
 
-        // Handle enter key (shift+enter for new line)
         chatInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
@@ -422,28 +490,21 @@
             const message = chatInput.value.trim();
             if (!message) return;
 
-            // Clear welcome message on first interaction
             const welcomeMsg = document.querySelector('.welcome-message');
             if (welcomeMsg) {
                 welcomeMsg.remove();
                 document.getElementById('quickPrompts').style.display = 'none';
             }
 
-            // Add user message
             addMessage(message, 'user');
 
-            // Clear input
             chatInput.value = '';
             chatInput.style.height = 'auto';
-
-            // Disable input while processing
             chatInput.disabled = true;
             sendButton.disabled = true;
 
-            // Show typing indicator
             showTyping();
 
-            // Simulate AI response (in production, this would call your AI API)
             setTimeout(() => {
                 hideTyping();
                 const response = generateAIResponse(message);
@@ -451,23 +512,28 @@
                 chatInput.disabled = false;
                 sendButton.disabled = false;
                 chatInput.focus();
-            }, 1500 + Math.random() * 1000);
+            }, 1800 + Math.random() * 1200);
         }
 
         function addMessage(text, sender) {
             const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${sender}`;
+            messageDiv.className = 'message ' + sender;
             
             const avatar = document.createElement('div');
             avatar.className = 'message-avatar';
-            avatar.textContent = sender === 'ai' ? '🤖' : '👤';
+            avatar.textContent = sender === 'ai' ? '\uD83E\uDD16' : '\uD83D\uDC64';
             
             const content = document.createElement('div');
             content.className = 'message-content';
             
             const bubble = document.createElement('div');
             bubble.className = 'message-bubble';
-            bubble.textContent = text;
+
+            if (sender === 'ai') {
+                bubble.innerHTML = text;
+            } else {
+                bubble.textContent = text;
+            }
             
             content.appendChild(bubble);
             messageDiv.appendChild(avatar);
@@ -484,7 +550,7 @@
             
             const avatar = document.createElement('div');
             avatar.className = 'message-avatar';
-            avatar.textContent = '🤖';
+            avatar.textContent = '\uD83E\uDD16';
             
             const content = document.createElement('div');
             content.className = 'message-content';
@@ -511,34 +577,66 @@
         }
 
         function generateAIResponse(userMessage) {
-            const responses = {
-                'validate': "Great question! To validate your business idea:\n\n1. **Talk to potential customers** - Interview at least 20 people in your target market\n2. **Test your value proposition** - Can you clearly explain the problem you're solving?\n3. **Create a simple landing page** - Gauge interest with email signups\n4. **Run small experiments** - Try to pre-sell or get commitments\n\nWhat's your business idea? I can help you create a validation plan!",
-                
-                'pitch': "Perfect! Here's a pitch deck framework:\n\n1. **Problem** - What pain point are you solving?\n2. **Solution** - Your product/service\n3. **Market Size** - How big is the opportunity?\n4. **Business Model** - How will you make money?\n5. **Traction** - Early wins and metrics\n6. **Team** - Why are you the right people?\n7. **Ask** - What do you need?\n\nKeep it to 10-12 slides max. Want help with a specific slide?",
-                
-                'customer': "Finding your target customers:\n\n1. **Define your ICP** (Ideal Customer Profile)\n   - Demographics, behaviors, pain points\n2. **Where do they hang out?**\n   - Online communities, forums, social media\n3. **Start conversations**\n   - Join relevant groups, add value first\n4. **Use customer discovery**\n   - Ask open-ended questions about their problems\n\nWho is your target customer? Let's narrow it down!",
-                
-                'mvp': "Your MVP should include:\n\n1. **Core features only** - The minimum needed to solve the main problem\n2. **One clear value proposition** - What's the #1 benefit?\n3. **Feedback mechanism** - How will users tell you what works?\n4. **Simple onboarding** - Get users to value fast\n\nRemember: MVP = Minimum **Viable** Product, not Minimum **Perfect** Product!\n\nWhat problem does your product solve?",
-                
-                'default': "That's a great question! As your AI mentor, I'm here to help you with:\n\n• Validating business ideas\n• Creating pitch decks\n• Finding customers\n• Building MVPs\n• Fundraising strategies\n• Market research\n• Business planning\n\nCould you tell me more about what you're working on? The more context you provide, the better I can help!"
-            };
+            return '<p>I love this idea. Financial aid is one of the most broken, confusing systems for first-gen families, and <strong>you have lived experience</strong> that gives you a massive advantage over anyone else trying to solve this. Here is exactly how I would approach turning this into a real business.</p>' +
 
-            const lowerMessage = userMessage.toLowerCase();
-            
-            if (lowerMessage.includes('validate') || lowerMessage.includes('idea')) {
-                return responses.validate;
-            } else if (lowerMessage.includes('pitch') || lowerMessage.includes('deck')) {
-                return responses.pitch;
-            } else if (lowerMessage.includes('customer') || lowerMessage.includes('target')) {
-                return responses.customer;
-            } else if (lowerMessage.includes('mvp') || lowerMessage.includes('build')) {
-                return responses.mvp;
-            } else {
-                return responses.default;
-            }
+                '<h4>1. Define the Specific Problem You Solve</h4>' +
+                '<p>The financial aid space is huge, so you need to get razor-sharp on <strong>which part</strong> you are tackling. Ask yourself:</p>' +
+                '<ul>' +
+                    '<li>Is the problem that families don\'t <em>know</em> aid exists?</li>' +
+                    '<li>Is it that the FAFSA is too confusing to fill out correctly?</li>' +
+                    '<li>Is it that families miss deadlines or don\'t appeal bad packages?</li>' +
+                    '<li>Is it that undocumented families think they don\'t qualify for anything?</li>' +
+                '</ul>' +
+                '<div class="ai-section"><p>Pick one. You can expand later, but starting narrow lets you build something people actually rely on instead of a surface-level tool that tries to do everything.</p></div>' +
+
+                '<h4>2. Interview 20 Families This Month</h4>' +
+                '<p>Before you build anything, talk to real families. Reach out through community centers, church groups, high school counselor networks, or WhatsApp groups. Ask:</p>' +
+                '<ul>' +
+                    '<li>"What was the hardest part about figuring out financial aid?"</li>' +
+                    '<li>"Where did you go for help? Did it actually work?"</li>' +
+                    '<li>"What would have made the biggest difference for your family?"</li>' +
+                '</ul>' +
+                '<p>Write down their <strong>exact words</strong>. Those phrases become your marketing copy, your landing page headline, and your pitch deck\'s problem slide.</p>' +
+
+                '<h4>3. Build a Free MVP in One Weekend</h4>' +
+                '<p>You don\'t need code or money to start. Here is a realistic MVP stack:</p>' +
+                '<ul>' +
+                    '<li><strong>Carrd or Google Sites</strong> &mdash; free landing page explaining what you offer</li>' +
+                    '<li><strong>Calendly (free tier)</strong> &mdash; let families book a 20-minute walkthrough with you</li>' +
+                    '<li><strong>Google Sheets</strong> &mdash; track every family you help, what questions they have, and their outcomes</li>' +
+                    '<li><strong>WhatsApp or Discord group</strong> &mdash; create a community where families can ask questions and help each other</li>' +
+                '</ul>' +
+                '<p>Your MVP is <strong>you personally helping 10 families</strong> navigate financial aid. That\'s it. The product is the service, delivered by hand.</p>' +
+
+                '<h4>4. Prove Traction With Real Numbers</h4>' +
+                '<p>After helping those first 10 families, you will have data that matters:</p>' +
+                '<ul>' +
+                    '<li>How much additional aid did families receive after your help?</li>' +
+                    '<li>How many families completed FAFSA who wouldn\'t have otherwise?</li>' +
+                    '<li>What was the most common mistake you caught?</li>' +
+                '</ul>' +
+                '<p>These numbers are your <strong>traction metrics</strong>. "$47,000 in additional aid secured for 10 families in 3 weeks" is more powerful than any slide deck.</p>' +
+
+                '<h4>5. Turn It Into a Scalable Product</h4>' +
+                '<p>Once you understand the patterns, start automating the repetitive parts:</p>' +
+                '<ul>' +
+                    '<li>A <strong>step-by-step FAFSA guide</strong> in plain language (or in Spanish, Vietnamese, etc.)</li>' +
+                    '<li>A <strong>deadline tracker</strong> that texts families reminders</li>' +
+                    '<li>An <strong>aid package comparison tool</strong> that tells families if their offer is below average</li>' +
+                '</ul>' +
+                '<p>This is where you can eventually introduce no-code tools like <strong>Softr</strong>, <strong>Airtable</strong>, or <strong>Glide</strong> to turn your spreadsheet into an app.</p>' +
+
+                '<h4>6. Funding and Growth</h4>' +
+                '<p>With proven impact, you are now in a strong position to apply for:</p>' +
+                '<ul>' +
+                    '<li><strong>University entrepreneurship grants</strong> (most schools have $1K&ndash;$10K available)</li>' +
+                    '<li><strong>Social impact accelerators</strong> like Echoing Green, Fast Forward, or Camelback Ventures</li>' +
+                    '<li><strong>Pitch competitions</strong> &mdash; your story plus real impact data will stand out</li>' +
+                '</ul>' +
+
+                '<div class="ai-takeaway"><p><strong>Key Takeaway:</strong> You already have the hardest thing to get in entrepreneurship &mdash; <em>authentic understanding of your customer\'s pain</em>. Start by helping 10 families this month. Everything else builds from there.</p></div>';
         }
 
-        // Focus input on load
         window.addEventListener('load', () => {
             chatInput.focus();
         });
