@@ -11,9 +11,9 @@
         body.imessage-page {
             margin: 0;
             padding: 0;
-            background: #000;
+            background: #fff;
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
-            color: #fff;
+            color: #000;
             overflow: hidden;
             height: 100vh;
         }
@@ -27,16 +27,16 @@
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            background: #000;
+            background: #fff;
             position: relative;
         }
 
         /* iOS-style top bar */
         .ios-topbar-wrap {
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(249, 249, 249, 0.94);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 0.5px solid rgba(0, 0, 0, 0.12);
             flex-shrink: 0;
             z-index: 10;
         }
@@ -55,7 +55,7 @@
             display: flex;
             align-items: center;
             gap: 4px;
-            color: #0a84ff;
+            color: #007aff;
             text-decoration: none;
             font-size: 17px;
             font-weight: 400;
@@ -92,12 +92,12 @@
         .ios-contact-name {
             font-size: 13px;
             font-weight: 600;
-            color: #fff;
+            color: #000;
         }
 
         .ios-contact-status {
             font-size: 11px;
-            color: rgba(255, 255, 255, 0.4);
+            color: rgba(0, 0, 0, 0.4);
         }
 
         .ios-topbar-right {
@@ -125,7 +125,7 @@
         .ios-timestamp {
             text-align: center;
             font-size: 11px;
-            color: rgba(255, 255, 255, 0.35);
+            color: rgba(0, 0, 0, 0.35);
             padding: 8px 0;
             font-weight: 400;
         }
@@ -204,8 +204,8 @@
         }
 
         .ios-msg.received .ios-bubble {
-            background: #3a3a3c;
-            color: #fff;
+            background: #e9e9eb;
+            color: #000;
             border-radius: 18px 18px 18px 4px;
         }
 
@@ -219,7 +219,7 @@
         .ios-read {
             align-self: flex-end;
             font-size: 11px;
-            color: rgba(255, 255, 255, 0.35);
+            color: rgba(0, 0, 0, 0.35);
             padding: 2px 4px 0 0;
             animation: readFade 0.3s ease forwards;
         }
@@ -233,18 +233,22 @@
         .ios-bubble h4 {
             font-size: 15px;
             font-weight: 700;
-            color: #fff;
+            color: #000;
             margin: 14px 0 4px 0;
         }
 
         .ios-bubble h4:first-child { margin-top: 2px; }
 
+        .ios-msg.sent .ios-bubble h4 { color: #fff; }
+
         .ios-bubble p {
             margin: 0 0 8px 0;
             font-size: 15px;
             line-height: 1.5;
-            color: rgba(255, 255, 255, 0.92);
+            color: rgba(0, 0, 0, 0.85);
         }
+
+        .ios-msg.sent .ios-bubble p { color: rgba(255, 255, 255, 0.95); }
 
         .ios-bubble p:last-child { margin-bottom: 0; }
 
@@ -256,24 +260,30 @@
         .ios-bubble ul li {
             font-size: 15px;
             line-height: 1.45;
-            color: rgba(255, 255, 255, 0.88);
+            color: rgba(0, 0, 0, 0.78);
             margin-bottom: 3px;
         }
 
+        .ios-msg.sent .ios-bubble ul li { color: rgba(255, 255, 255, 0.9); }
+
         .ios-bubble strong {
             font-weight: 600;
-            color: #fff;
+            color: #000;
         }
+
+        .ios-msg.sent .ios-bubble strong { color: #fff; }
 
         .ios-bubble em {
             font-style: italic;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(0, 0, 0, 0.5);
         }
+
+        .ios-msg.sent .ios-bubble em { color: rgba(255, 255, 255, 0.6); }
 
         .ios-bubble .ai-callout {
             padding: 8px 12px;
-            background: rgba(255, 255, 255, 0.08);
-            border-left: 2px solid #0a84ff;
+            background: rgba(0, 0, 0, 0.04);
+            border-left: 2px solid #007aff;
             border-radius: 0 6px 6px 0;
             margin: 8px 0;
         }
@@ -286,14 +296,14 @@
         .ios-bubble .ai-bottom {
             margin-top: 10px;
             padding: 8px 12px;
-            background: rgba(10, 132, 255, 0.12);
+            background: rgba(0, 122, 255, 0.08);
             border-radius: 8px;
         }
 
         .ios-bubble .ai-bottom p {
             margin: 0;
             font-size: 14px;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(0, 0, 0, 0.8);
         }
 
         /* Typing indicator (iMessage style) */
@@ -311,7 +321,7 @@
         }
 
         .ios-typing-bubble {
-            background: #3a3a3c;
+            background: #e9e9eb;
             border-radius: 18px 18px 18px 4px;
             padding: 12px 16px;
             display: flex;
@@ -323,7 +333,7 @@
             width: 7px;
             height: 7px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(0, 0, 0, 0.3);
             animation: iosTyping 1.4s infinite;
         }
 
@@ -352,28 +362,28 @@
 
         .ios-chip {
             flex-shrink: 0;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 18px;
             padding: 8px 16px;
             font-size: 14px;
-            color: #0a84ff;
+            color: #007aff;
             cursor: pointer;
             transition: all 0.15s ease;
             white-space: nowrap;
         }
 
         .ios-chip:hover {
-            background: rgba(10, 132, 255, 0.15);
-            border-color: rgba(10, 132, 255, 0.3);
+            background: rgba(0, 122, 255, 0.08);
+            border-color: rgba(0, 122, 255, 0.25);
         }
 
         /* Bottom input area */
         .ios-input-wrap {
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(249, 249, 249, 0.94);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-top: 0.5px solid rgba(255, 255, 255, 0.1);
+            border-top: 0.5px solid rgba(0, 0, 0, 0.12);
             flex-shrink: 0;
         }
 
@@ -392,9 +402,9 @@
             width: 34px;
             height: 34px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(0, 0, 0, 0.04);
             border: none;
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(0, 0, 0, 0.35);
             font-size: 22px;
             display: flex;
             align-items: center;
@@ -405,12 +415,12 @@
 
         .ios-input-field {
             flex: 1;
-            background: rgba(255, 255, 255, 0.08);
-            border: 0.5px solid rgba(255, 255, 255, 0.15);
+            background: #fff;
+            border: 0.5px solid rgba(0, 0, 0, 0.15);
             border-radius: 20px;
             padding: 9px 16px;
             font-size: 16px;
-            color: #fff;
+            color: #000;
             font-family: inherit;
             resize: none;
             max-height: 100px;
@@ -419,14 +429,14 @@
         }
 
         .ios-input-field::placeholder {
-            color: rgba(255, 255, 255, 0.3);
+            color: rgba(0, 0, 0, 0.3);
         }
 
         .ios-send-btn {
             width: 34px;
             height: 34px;
             border-radius: 50%;
-            background: #0a84ff;
+            background: #007aff;
             border: none;
             color: #fff;
             display: flex;
@@ -438,8 +448,8 @@
         }
 
         .ios-send-btn:disabled {
-            background: rgba(255, 255, 255, 0.08);
-            color: rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.06);
+            color: rgba(0, 0, 0, 0.15);
             cursor: default;
         }
 
